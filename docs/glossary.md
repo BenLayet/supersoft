@@ -45,6 +45,8 @@ Terms are grouped by subdomain, one section per document in `docs/domain/`.
 | To confirm (state) | `to_confirm` | rests on a maker's assumption |
 | Questioned (state) | `questioned` | agreed once, now disputed |
 | Withdrawn (state) | `withdrawn` | kept, with its reason |
+| Recorded state | `RecordedState` | the four states a statement carries: `agreed` is never one of them |
+| State of a statement | `stateOf` | the visible state, agreement included |
 | History | `Revision` | what changed, when, at whose request |
 
 ## Brand and style — [brand.md](domain/brand.md)

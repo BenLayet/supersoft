@@ -65,10 +65,10 @@ supersoft/
 │   └── glossary.md      # business terms ↔ names in the code
 ```
 
-**The rule that matters**: `packages/domain` imports nothing external. Decisions — "does this agreement still hold?", "does this proposal touch a reserved decision?", "what are this project's open points?" — are pure functions, tested without a database, a network or a model.
+**The rule that matters**: `packages/domain` imports nothing external. Decisions — "is this version of the statement agreed?", "does this proposal touch a reserved decision?", "what are this project's open points?" — are pure functions, tested without a database, a network or a model.
 
 ## Status
 
-Founding documents only. The domain, the ports and the application are not built yet; the layout above is the target, not the current state.
+Founding documents, plus the first slice of the domain: participants and their roles, statements and their states, remarks and questions, agreement on a version, and a project's open points — pure functions with zero runtime dependencies. The ports, the adapters, the generator and the portal do not exist yet; the layout above is the target, not the current state.
 
 **First project**: an existing application, already built with this method — specification as files, pure domain, a mock adapter for every port. It is the proof the method works, and the first specification the tooling must be able to read.

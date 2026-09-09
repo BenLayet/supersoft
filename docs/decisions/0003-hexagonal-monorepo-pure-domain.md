@@ -26,7 +26,7 @@ The forces at play:
 
 2. **Hexagonal architecture (ports and adapters).** The domain never imports a framework, an ORM or an SDK. One external service = one port in the domain + one adapter outside it. In particular the **repository host**, the **generator** and any **language model** are ports — none of them is a dependency of the domain.
 
-3. **Business decisions are pure functions**, tested without I/O: whether an agreement lapses, what a project's open points are, whether a proposal touches a reserved decision, what a specification change implies.
+3. **Business decisions are pure functions**, tested without I/O: whether a statement is agreed in the version it now has, what a project's open points are, whether a proposal touches a reserved decision, what a specification change implies.
 
 4. **Every port has a mock adapter**, so Supersoft runs end-to-end with no external service — for demonstrations, prototyping and CI. Adding a port means adding its mock alongside. This is not a testing convenience; it is the same guarantee Supersoft makes to its users about [their prototypes](../domain/prototype.md), applied to itself.
 

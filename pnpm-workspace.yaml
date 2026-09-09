@@ -1,0 +1,8 @@
+packages:
+  - apps/*
+  - packages/*
+
+# Dependencies whose postinstall scripts we skip: everything works without
+# them (prebuilt binaries) — verified via typecheck + tests.
+ignoredBuiltDependencies:
+  - esbuild

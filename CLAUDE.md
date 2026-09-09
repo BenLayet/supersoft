@@ -16,4 +16,4 @@ Read `README.md` for the full picture. The essentials:
 
 ## Status
 
-Founding documents only — `docs/` exists, no code yet. The layout in `README.md` is the target, not the current state.
+pnpm monorepo with `packages/domain` (zero runtime dependencies, vitest). Implemented: `project/participant`, `specification/statement`, `conversation/remark`, `conversation/agreement`, `conversation/open-point`. Not started: ports and their mock adapters, the generator, the portal, and everything in brand, stories, prototype, customer-building, delivery and shared-patterns. The layout in `README.md` is the target, not the current state.

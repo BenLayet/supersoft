@@ -36,6 +36,8 @@ Every statement in the specification carries a state, and the state is visible t
 - **questioned** — agreed once, now disputed or found wrong;
 - **withdrawn** — no longer wanted; kept, with the reason, because the reason is often re-discovered later.
 
+**Agreed** is the only one of these states a statement does not carry by itself. It holds for as long as an [agreement](conversation.md) covers the version now written, and stops holding when that version changes. The other four are recorded on the statement by the people working on it.
+
 A statement that is **questioned** or **to confirm** is an [open point](conversation.md).
 
 **Rule.** Nothing becomes agreed by silence. Agreement is an act, by the customer, on a named statement as it is written that day, on a date.
