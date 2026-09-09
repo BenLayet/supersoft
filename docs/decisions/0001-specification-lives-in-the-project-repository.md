@@ -47,4 +47,6 @@ Harder / accepted costs:
 
 The rejected alternative — specification in a Supersoft database, repositories as an export target — is easier for everything except the one thing that cannot be compromised. An export is not a guarantee: it is a promise to cooperate later, which is exactly what an organisation without leverage cannot rely on.
 
+[ADR 0004](0004-structure-rides-in-the-prose-and-a-sidecar.md) settles what point 2 leaves open, and refines it: a statement's identifier is the one piece of structure that belongs in the prose rather than the sidecar, because it is what makes a project's files still legible once Supersoft is gone.
+
 A read-only projection of specifications into a database, built by indexing repositories, is not excluded by this decision and will likely be needed for search and for the pattern library. What is excluded is that projection ever becoming the source of truth.

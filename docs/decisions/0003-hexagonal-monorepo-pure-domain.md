@@ -51,6 +51,6 @@ Harder / accepted costs:
 
 ## Notes
 
-Some structural choices are deliberately left open and will each get their own ADR when decided: the interface framework for the portal, the repository host integration, the structured format carried alongside the prose ([ADR 0001](0001-specification-lives-in-the-project-repository.md) point 2), the generation technique, and how generated and hand-written code coexist ([ADR 0002](0002-customer-edits-the-specification-never-the-code.md) point 5).
+Some structural choices are deliberately left open and will each get their own ADR when decided: the interface framework for the portal, the repository host integration, the generation technique, and how generated and hand-written code coexist ([ADR 0002](0002-customer-edits-the-specification-never-the-code.md) point 5).
 
-They are not part of this decision. The architecture above is what makes each of them reversible.
+They are not part of this decision. The architecture above is what makes each of them reversible. The structured format carried alongside the prose was one of them, and is now [ADR 0004](0004-structure-rides-in-the-prose-and-a-sidecar.md).
