@@ -15,6 +15,16 @@
  */
 export { readSpecification, type SpecificationInFiles, type StatementOrigin } from "./read";
 export {
+  assignIdentifiers,
+  planIdentifiers,
+  withIdentifiers,
+  type DocumentToWrite,
+  type IdentifierAssigned,
+  type IdentifierPlan,
+  type IdentifiersAssigned,
+} from "./assign";
+export { nextIdentifier, slugFor } from "./identifier";
+export {
   agreementsDirectory,
   defaultLayout,
   layoutFile,

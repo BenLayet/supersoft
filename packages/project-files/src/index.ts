@@ -7,6 +7,6 @@
  * disk, which is the same guarantee Supersoft makes to its users about their
  * prototypes.
  */
-export { inMemoryProjectFiles, type FilesInMemory } from "./in-memory";
+export { inMemoryProjectFiles, type FilesInMemory, type ProjectInMemory } from "./in-memory";
 export { fileSystemProjectFiles } from "./file-system";
 export { directoryOf, join, nameOf, normalisePath } from "./paths";

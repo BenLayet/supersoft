@@ -16,8 +16,13 @@ export interface StatementInProse {
   readonly statementId?: StatementId;
   /** The sentence, with what belongs to the document taken out. */
   readonly text: string;
-  /** Where it is, for a person who has to go and fix something. */
+  /** Where it starts, for a person who has to go and fix something. */
   readonly line: number;
+  /**
+   * The line the statement ends on, which is where an identifier is written
+   * when one is assigned. A rule wrapped over three lines ends on the third.
+   */
+  readonly endLine: number;
 }
 
 export interface DocumentInProse {
@@ -53,11 +58,13 @@ function sectionOf(title: string, layout: SpecificationLayout): Section {
   return "elsewhere";
 }
 
-function statementIn(item: string, line: number): StatementInProse {
+function statementIn(item: string, line: number, endLine: number): StatementInProse {
   const identifiers = [...item.matchAll(identifierComment)].map((match) => match[1]);
   const text = normaliseStatementText(item.replace(comment, " "));
   const statementId = identifiers.at(-1);
-  return statementId === undefined ? { text, line } : { statementId, text, line };
+  return statementId === undefined
+    ? { text, line, endLine }
+    : { statementId, text, line, endLine };
 }
 
 /**
@@ -83,14 +90,14 @@ export function readDocument(
 
   let section: Section = "elsewhere";
   let insideFence = false;
-  let item: { line: number; parts: string[] } | undefined;
+  let item: { line: number; endLine: number; parts: string[] } | undefined;
   let afterBlankLine = false;
 
   const close = (): void => {
     if (item !== undefined) {
       const text = item.parts.join(" ");
       if (section === "statements") {
-        statements.push(statementIn(text, item.line));
+        statements.push(statementIn(text, item.line, item.endLine));
       } else if (section === "terms") {
         const term = termIn(text);
         if (term !== undefined) terms.push(term);
@@ -125,7 +132,7 @@ export function readDocument(
     const started = line.match(wanted);
     if (started !== null) {
       close();
-      item = { line: index + 1, parts: [started[1] ?? ""] };
+      item = { line: index + 1, endLine: index + 1, parts: [started[1] ?? ""] };
       continue;
     }
 
@@ -136,6 +143,7 @@ export function readDocument(
     if (item !== undefined && !(otherKind && !indented) && (indented || !afterBlankLine)) {
       // A rule wrapped over two lines, or a paragraph belonging to it.
       item.parts.push(line.trim());
+      item.endLine = index + 1;
       afterBlankLine = false;
       continue;
     }

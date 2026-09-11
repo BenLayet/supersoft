@@ -64,6 +64,28 @@ agreements:
     on: 2026-09-01
 ```
 
+## Assigning identifiers
+
+A specification written by hand carries no identifiers, so nothing in it can
+be agreed to yet. `assignIdentifiers` takes it in hand:
+
+```ts
+const { assigned, documentsWritten } = await assignIdentifiers(files);
+```
+
+It reads the whole project first — prose, sidecars and agreements — because a
+number is never handed out twice, even for a rule that has been deleted
+([ADR 0008](../../docs/decisions/0008-how-an-identifier-is-minted.md)). Then
+it inserts ` <!-- @adhesions-r2 -->` after the last non-whitespace character
+of the line each unnamed rule ends on, and **nothing else**: not a word, not a
+list number, not a line ending, not the trailing spaces of a hard line break,
+not the final newline a file may not have. Remove the comments it added and
+the file is byte for byte what it was — which is a test, not a promise.
+
+`planIdentifiers` answers the same question and writes nothing, so a diff can
+be shown to the person whose document it is first. A document with nothing to
+assign is never written to, and a second pass does nothing at all.
+
 **The declaration**, `supersoft.yaml` at the root of the project, optional,
 saying where to look when a project does not write in English
 ([ADR 0007](../../docs/decisions/0007-a-project-declares-where-its-specification-is.md)).
@@ -77,9 +99,8 @@ specification:
 
 ## What it does not do yet
 
-- **Writing.** Assigning an identifier to a rule that has none, and recording
-  an agreement, are writes to a project's files. They need the write half of
-  the port, and they come with the slice that needs them.
+- **Recording an agreement.** It is a write of a file of its own, touching no
+  prose, and it comes with the slice that needs it.
 - **Identifiers on terms.** A term is an addressable element too
   ([ADR 0004](../../docs/decisions/0004-structure-rides-in-the-prose-and-a-sidecar.md)
   point 2), but what identifies one is not decided. Terms are read by name.

@@ -52,3 +52,25 @@ describe("fileSystemProjectFiles", () => {
     expect(await project.list("docs/domaine")).toHaveLength(2);
   });
 });
+
+describe("fileSystemProjectFiles, written to", () => {
+  it("writes a file, making the directories it needs", async () => {
+    const project = fileSystemProjectFiles(root);
+    await project.write("docs/agreements/2026-09.yaml", "agreements: []\n");
+    expect(await project.read("docs/agreements/2026-09.yaml")).toBe("agreements: []\n");
+    expect(await project.list("docs/agreements")).toEqual(["docs/agreements/2026-09.yaml"]);
+  });
+
+  it("replaces the whole text of a file that is already there", async () => {
+    const project = fileSystemProjectFiles(root);
+    await project.write("docs/domaine/adhesions.md", "# Adhésions\n\n## Règles\n");
+    expect(await project.read("docs/domaine/adhesions.md")).toBe("# Adhésions\n\n## Règles\n");
+  });
+
+  it("refuses to write outside the project", async () => {
+    const project = fileSystemProjectFiles(root);
+    await expect(project.write("../elsewhere.md", "nothing")).rejects.toThrow(
+      /leaves the project/,
+    );
+  });
+});

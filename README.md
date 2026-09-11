@@ -80,6 +80,8 @@ A specification can now be read from the files of a project's repository: the ru
 
 It has been read against a real, non-trivial specification written entirely by hand, with no tooling: 36 rules and 28 terms, and every rule reported as not yet carrying an identifier — which is exactly what a specification no tool has ever touched looks like.
 
-Writing back to a project's files — assigning an identifier to a rule that has none, recording an agreement — the generator and the portal do not exist yet; the layout above is the target, not the current state.
+A specification written by hand can also be taken in hand: assigning identifiers mints one per unnamed rule, above every number the project has ever mentioned, and writes it into the prose as an invisible comment. That write is the only edit the tooling ever makes to a customer's document, and it is minimal in the exact sense — remove the comments it added and the file is byte for byte what it was. On the hand-written specification above, one pass names all 36 rules across six documents, changes nothing else, and leaves the project reading clean; a second pass does nothing.
+
+Recording an agreement, the generator and the portal do not exist yet; the layout above is the target, not the current state.
 
 **First project**: an existing application, already built with this method — specification as files, pure domain, a mock adapter for every port. It is the proof the method works, and the first specification the tooling must be able to read.

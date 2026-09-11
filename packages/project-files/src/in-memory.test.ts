@@ -40,3 +40,28 @@ describe("inMemoryProjectFiles", () => {
     );
   });
 });
+
+describe("inMemoryProjectFiles, written to", () => {
+  it("keeps what was written, and hands the whole project back", async () => {
+    const files = inMemoryProjectFiles({ "docs/domain/membership.md": "# Membership\n" });
+    await files.write("docs/domain/membership.md", "# Membership\n\n## Rules\n");
+    await files.write("docs/agreements/2026-09.yaml", "agreements: []\n");
+
+    expect(await files.read("docs/domain/membership.md")).toBe("# Membership\n\n## Rules\n");
+    expect(files.snapshot()).toEqual({
+      "docs/domain/membership.md": "# Membership\n\n## Rules\n",
+      "docs/agreements/2026-09.yaml": "agreements: []\n",
+    });
+  });
+
+  it("lists a file the moment it is written", async () => {
+    const files = inMemoryProjectFiles({});
+    await files.write("docs/agreements/2026-09.yaml", "agreements: []\n");
+    expect(await files.list("docs/agreements")).toEqual(["docs/agreements/2026-09.yaml"]);
+  });
+
+  it("refuses to write outside the project", async () => {
+    const files = inMemoryProjectFiles({});
+    await expect(files.write("../elsewhere.md", "nothing")).rejects.toThrow(/leaves the project/);
+  });
+});

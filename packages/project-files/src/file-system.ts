@@ -3,9 +3,9 @@
  * has cloned, which is how a maker works and how the tooling runs in a
  * project's own build.
  */
-import { readdir, readFile } from "node:fs/promises";
-import { join as joinOnDisk, resolve } from "node:path";
-import type { ProjectFiles } from "@supersoft/domain";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
+import { dirname, join as joinOnDisk, resolve } from "node:path";
+import type { WritableProjectFiles } from "@supersoft/domain";
 import { join, leavesTheProject, normalisePath } from "./paths";
 
 function isMissing(error: unknown): boolean {
@@ -14,7 +14,7 @@ function isMissing(error: unknown): boolean {
 }
 
 /** `root` is the directory holding the project, as an absolute path. */
-export function fileSystemProjectFiles(root: string): ProjectFiles {
+export function fileSystemProjectFiles(root: string): WritableProjectFiles {
   const projectRoot = resolve(root);
 
   function onDisk(path: string): string {
@@ -45,6 +45,12 @@ export function fileSystemProjectFiles(root: string): ProjectFiles {
         if (isMissing(error)) return undefined;
         throw error;
       }
+    },
+
+    async write(path, text) {
+      const file = onDisk(path);
+      await mkdir(dirname(file), { recursive: true });
+      await writeFile(file, text, "utf8");
     },
   };
 }

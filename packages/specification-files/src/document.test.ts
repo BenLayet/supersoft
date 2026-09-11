@@ -59,6 +59,12 @@ describe("readDocument", () => {
 
   it("says where each rule is, for whoever has to go and fix it", () => {
     expect(read.statements[0]?.line).toBe(13);
+    expect(read.statements[0]?.endLine).toBe(13);
+  });
+
+  it("says where a wrapped rule ends, which is where its identifier goes", () => {
+    expect(read.statements[2]?.line).toBe(15);
+    expect(read.statements[2]?.endLine).toBe(16);
   });
 
   it("reads the terms the rules are written in", () => {
@@ -131,6 +137,11 @@ describe("readDocument, on the shapes a document takes", () => {
       "## Rules\n\n1. A rule. <!-- a note --> <!-- @m-r1 -->\n",
       defaultLayout,
     );
-    expect(read.statements[0]).toEqual({ statementId: "m-r1", text: "A rule.", line: 3 });
+    expect(read.statements[0]).toEqual({
+      statementId: "m-r1",
+      text: "A rule.",
+      line: 3,
+      endLine: 3,
+    });
   });
 });

@@ -23,3 +23,20 @@ export interface ProjectFiles {
   /** The text of a file, or undefined when the project has no such file. */
   read(path: string): Promise<string | undefined>;
 }
+
+/**
+ * The files of a project, when they can be written back.
+ *
+ * Reading and writing are separated because most of what Supersoft does is
+ * reading, and a source that can only be read — a repository someone else
+ * owns, a revision out of the history — is a legitimate thing to hold. Only
+ * the acts that change a project ask for this one.
+ *
+ * Nothing here knows about commits, branches or pull requests: writing a
+ * file is as much as this port promises, and how those writes reach a
+ * repository is the concern of whatever satisfies it.
+ */
+export interface WritableProjectFiles extends ProjectFiles {
+  /** Writes the whole text of a file, creating it if the project has none. */
+  write(path: string, text: string): Promise<void>;
+}

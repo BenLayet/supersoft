@@ -6,13 +6,18 @@
  * demonstrations, for prototyping and for tests. This one is also how a
  * project's files are described in a test: as the files themselves.
  */
-import type { ProjectFiles } from "@supersoft/domain";
+import type { WritableProjectFiles } from "@supersoft/domain";
 import { directoryOf, leavesTheProject, normalisePath } from "./paths";
 
 /** Project-relative path to the text of the file, as in a repository. */
 export type FilesInMemory = Readonly<Record<string, string>>;
 
-export function inMemoryProjectFiles(files: FilesInMemory): ProjectFiles {
+export interface ProjectInMemory extends WritableProjectFiles {
+  /** Every file of the project as it stands, for whoever is watching it. */
+  snapshot(): FilesInMemory;
+}
+
+export function inMemoryProjectFiles(files: FilesInMemory): ProjectInMemory {
   const contents = new Map<string, string>(
     Object.entries(files).map(([path, text]) => [normalisePath(path), text]),
   );
@@ -28,6 +33,17 @@ export function inMemoryProjectFiles(files: FilesInMemory): ProjectFiles {
         throw new Error(`Path leaves the project: ${path}`);
       }
       return contents.get(normalisePath(path));
+    },
+
+    async write(path, text) {
+      if (leavesTheProject(path)) {
+        throw new Error(`Path leaves the project: ${path}`);
+      }
+      contents.set(normalisePath(path), text);
+    },
+
+    snapshot() {
+      return Object.fromEntries(contents);
     },
   };
 }
