@@ -12,6 +12,9 @@
  */
 export * from "./project/participant";
 export * from "./specification/statement";
+export * from "./specification/specification";
+export * from "./specification/revision";
 export * from "./conversation/remark";
 export * from "./conversation/agreement";
 export * from "./conversation/open-point";
+export type * from "./ports";

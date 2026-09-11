@@ -16,4 +16,12 @@ Read `README.md` for the full picture. The essentials:
 
 ## Status
 
-pnpm monorepo with `packages/domain` (zero runtime dependencies, vitest). Implemented: `project/participant`, `specification/statement`, `conversation/remark`, `conversation/agreement`, `conversation/open-point`. Not started: ports and their mock adapters, the generator, the portal, and everything in brand, stories, prototype, customer-building, delivery and shared-patterns. The layout in `README.md` is the target, not the current state.
+pnpm monorepo, vitest everywhere:
+
+- `packages/domain` (zero runtime dependencies) — `project/participant`, `specification/statement`, `specification/specification` (Specification, Term), `specification/revision` (the normalisation of ADR 0006), `conversation/remark`, `conversation/agreement`, `conversation/open-point`, and `ports/project-files` (the only port so far).
+- `packages/project-files` — adapters for that port: `inMemoryProjectFiles` (the mock every port owes) and `fileSystemProjectFiles`.
+- `packages/specification-files` — reading a specification from files, the only code allowed to know the format: prose with identifiers, optional sidecars, agreements as files, revisions computed (ADRs 0004, 0006, 0007). Validated against a real hand-written specification.
+
+Not started: writing back to a project's files (assigning an identifier, recording an agreement), the generator, the portal, and everything in brand, stories, prototype, customer-building, delivery and shared-patterns. The layout in `README.md` is the target, not the current state.
+
+Imports inside a package are extensionless, resolved by vitest and `tsc`. Nothing runs under plain `node` yet; whatever needs to (a validation command, the portal) gets a build step of its own.

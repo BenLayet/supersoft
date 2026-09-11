@@ -52,14 +52,16 @@ pnpm monorepo, TypeScript everywhere, hexagonal architecture: business logic in 
 ```
 supersoft/
 ├── packages/
-│   └── domain/          # @supersoft/domain — pure TS, ZERO runtime dependencies
-│       └── src/
-│           ├── project/       # projects, participants, levels
-│           ├── specification/ # statements, states, terms, revisions
-│           ├── conversation/  # remarks, questions, agreements, open points
-│           ├── prototype/     # prototypes, fictional data, scenarios
-│           ├── pattern/       # shared patterns: adoption, contribution
-│           └── ports/         # interfaces expected from the outside world
+│   ├── domain/                 # @supersoft/domain — pure TS, ZERO runtime dependencies
+│   │   └── src/
+│   │       ├── project/        # projects, participants, levels
+│   │       ├── specification/  # statements, states, terms, revisions
+│   │       ├── conversation/   # remarks, questions, agreements, open points
+│   │       ├── prototype/      # prototypes, fictional data, scenarios
+│   │       ├── pattern/        # shared patterns: adoption, contribution
+│   │       └── ports/          # interfaces expected from the outside world
+│   ├── project-files/          # the files of a project: a working copy, or a map in memory
+│   └── specification-files/    # reading a specification from a project's own files
 ├── docs/
 │   ├── domain/          # business rules & ubiquitous language (tool-free)
 │   ├── decisions/       # Architecture Decision Records
@@ -70,6 +72,14 @@ supersoft/
 
 ## Status
 
-Founding documents, plus the first slice of the domain: participants and their roles, statements and their states, remarks and questions, agreement on a version, and a project's open points — pure functions with zero runtime dependencies. The ports, the adapters, the generator and the portal do not exist yet; the layout above is the target, not the current state.
+Founding documents, the first slice of the domain, and the reading of a specification.
+
+The domain holds participants and their roles, statements and their states, remarks and questions, agreement on a version, and a project's open points — pure functions with zero runtime dependencies.
+
+A specification can now be read from the files of a project's repository: the rules of its prose become statements, identified by what the prose itself carries, with a revision computed from the text of each statement; an optional sidecar records what departs from the default; agreements are their own files. Nothing throws on a project's own files — what cannot be read is reported, for validation to fail the build on. Every file arrives through one port, whose mock adapter holds a whole project in memory.
+
+It has been read against a real, non-trivial specification written entirely by hand, with no tooling: 36 rules and 28 terms, and every rule reported as not yet carrying an identifier — which is exactly what a specification no tool has ever touched looks like.
+
+Writing back to a project's files — assigning an identifier to a rule that has none, recording an agreement — the generator and the portal do not exist yet; the layout above is the target, not the current state.
 
 **First project**: an existing application, already built with this method — specification as files, pure domain, a mock adapter for every port. It is the proof the method works, and the first specification the tooling must be able to read.
