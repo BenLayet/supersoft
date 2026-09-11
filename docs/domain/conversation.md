@@ -26,9 +26,11 @@ Turning remarks into change requests is most of the maker's craft. It is where a
 
 **Agreement** is the customer stating that a part of the specification reflects what they want.
 
-- It is given by the **customer**, on a **named element**, in a **precise version of that element**, on a **date**.
+- It names **who gave it**, on a **named element**, in a **precise version of that element**, on a **date**.
 - It is never implied by silence, by a passing "looks good", or by time going by.
 - It can be **withdrawn**. A customer discovering on a [prototype](prototype.md) that what they agreed to is not what they meant is the system working, not a failure.
+
+Nobody is prevented from agreeing, and no title is checked. An agreement is worth what its author's word is worth, which is why the record always says who gave it: what settles a statement is that the people the application is for have said yes. A maker approving their own sentence has recorded something true about themselves and nothing about the business.
 
 An agreement covers the version it was given on, and nothing else. When the element changes, the new version simply carries no agreement, and is proposed again like any other version never agreed. Nothing needs to expire: agreeing is agreeing to a text, not to a subject.
 

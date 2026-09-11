@@ -2,7 +2,7 @@
  * The customer stating that a part of the specification reflects what they
  * want. See docs/domain/conversation.md and docs/domain/specification.md.
  */
-import { isCustomer, type Participant, type ParticipantId } from "../project/participant";
+import type { Participant, ParticipantId } from "../project/participant";
 import type { Revision, Statement, StatementId, StatementState } from "../specification/statement";
 import { isUnansweredQuestion, type Remark, remarksOn } from "./remark";
 
@@ -47,19 +47,20 @@ export function stateOf(
   return statement.state;
 }
 
-export type AgreementRefusal =
-  | "not_the_customer"
-  | "statement_withdrawn"
-  | "question_standing";
+export type AgreementRefusal = "statement_withdrawn" | "question_standing";
 
 export type AgreementDecision =
   | { readonly allowed: true; readonly agreement: Agreement }
   | { readonly allowed: false; readonly reason: AgreementRefusal };
 
 /**
- * Agreeing is an act, by the customer, on a named statement as it is written
- * that day, on a date. Nothing here ever produces an agreement from silence:
- * the caller must have a participant, a statement and a date in hand.
+ * Agreeing is an act, on a named statement as it is written that day, on a
+ * date. Nothing here ever produces an agreement from silence: the caller must
+ * have a participant, a statement and a date in hand.
+ *
+ * Nobody is refused for holding the wrong role. An agreement is worth what its
+ * author's word is worth, which is why it records who gave it; deciding what
+ * that is worth belongs to the people reading it, not to this function.
  */
 export function decideAgreement(
   statement: Statement,
@@ -67,9 +68,6 @@ export function decideAgreement(
   remarks: readonly Remark[],
   now: Date,
 ): AgreementDecision {
-  if (!isCustomer(participant)) {
-    return { allowed: false, reason: "not_the_customer" };
-  }
   if (statement.state === "withdrawn") {
     return { allowed: false, reason: "statement_withdrawn" };
   }
@@ -95,11 +93,7 @@ export function decideAgreement(
 export function withdrawAgreement(
   agreements: readonly Agreement[],
   statement: Statement,
-  participant: Participant,
 ): Agreement[] {
-  if (!isCustomer(participant)) {
-    return [...agreements];
-  }
   return agreements.filter(
     (agreement) =>
       !(agreement.statementId === statement.id && agreement.revision === statement.revision),

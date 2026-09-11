@@ -12,3 +12,4 @@ Format: **Status** (proposed / accepted / superseded by NNNN), **Context** (the 
 - [0002 — The customer's editing surface is the specification, never the code](0002-customer-edits-the-specification-never-the-code.md)
 - [0003 — Hexagonal monorepo with a pure TypeScript domain](0003-hexagonal-monorepo-pure-domain.md)
 - [0004 — Stable identifiers in the prose, everything else in a sidecar](0004-structure-rides-in-the-prose-and-a-sidecar.md)
+- [0005 — Authority is by consequence, never by role](0005-authority-by-consequence-not-by-role.md)

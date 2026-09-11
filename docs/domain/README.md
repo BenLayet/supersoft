@@ -20,6 +20,7 @@ Unlike a customer project, whose domain documents are written in the language of
 ## The documents
 
 - [Supersoft in brief](supersoft.md) — what the product is and who it serves; the starting point, with a link to each subdomain.
+- [How much of this a project needs](starting-small.md) — the smallest useful project, and why every piece of formality is optional until it is earned.
 - [Projects and participants](projects.md) — what a project is, who takes part, and who may do what.
 - [Specification](specification.md) — the description of what is to be built; the heart of the product.
 - [Brand and style](brand.md) — the identity and the visual and editorial rules of an application.

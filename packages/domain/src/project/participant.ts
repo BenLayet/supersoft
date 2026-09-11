@@ -1,41 +1,30 @@
 /**
- * Who takes part in a project, and what that entitles them to.
+ * Who takes part in a project.
  * See docs/domain/projects.md.
+ *
+ * A role says what someone knows and what they are there for. It is not a
+ * permission: nothing in this package refuses an action because of the role
+ * its author holds. What needs care is decided by what a change reaches —
+ * money, personal data, access rights, anything in real use, anything
+ * irreversible — and never by who is asking.
  */
 
 export type ParticipantId = string;
 
 /**
  * One person may hold several roles: on a small project the customer, the
- * domain expert and the end user are frequently the same person. The roles
- * are named separately because the questions each one answers differ.
+ * domain expert and the end user are frequently the same person, and in an
+ * organisation with no budget the person who knows the business is often the
+ * person doing the work.
  */
 export type Role = "maker" | "customer" | "domainExpert" | "endUser";
-
-export type ParticipationLevel = "reader" | "commenter" | "editor" | "builder";
 
 export interface Participant {
   readonly id: ParticipantId;
   readonly name: string;
   readonly roles: readonly Role[];
-  readonly level: ParticipationLevel;
 }
 
 export function hasRole(participant: Participant, role: Role): boolean {
   return participant.roles.includes(role);
-}
-
-/** Only the customer may give or withdraw an agreement. */
-export function isCustomer(participant: Participant): boolean {
-  return hasRole(participant, "customer");
-}
-
-/** Only the maker changes the code, whatever the customer changes in the specification. */
-export function isMaker(participant: Participant): boolean {
-  return hasRole(participant, "maker");
-}
-
-/** The authority on business vocabulary: when a term is disputed, their usage wins. */
-export function isDomainExpert(participant: Participant): boolean {
-  return hasRole(participant, "domainExpert");
 }

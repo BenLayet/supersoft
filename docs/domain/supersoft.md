@@ -15,6 +15,8 @@ What it covers:
 - **[real use and handover](delivery.md)** — putting the application in front of real people, keeping the specification true afterwards, and guaranteeing the customer can leave with everything at any moment;
 - the **[shared patterns](shared-patterns.md)** — descriptions of business that recur from one project to the next, held in common so that no one starts from nothing.
 
+None of what follows is compulsory. A project uses as little of it as its situation calls for, and [how much of this a project needs](starting-small.md) says what the smallest useful project looks like and when each piece becomes worth its cost.
+
 ## Who it serves
 
 Supersoft is built first for makers working directly with their customers, on small teams or alone.

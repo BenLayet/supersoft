@@ -10,13 +10,8 @@ import {
   withdrawAgreement,
 } from "./agreement";
 
-const customer: Participant = {
-  id: "p1",
-  name: "Camille",
-  roles: ["customer", "domainExpert"],
-  level: "editor",
-};
-const maker: Participant = { id: "p2", name: "Alex", roles: ["maker"], level: "builder" };
+const customer: Participant = { id: "p1", name: "Camille", roles: ["customer", "domainExpert"] };
+const maker: Participant = { id: "p2", name: "Alex", roles: ["maker"] };
 
 const day = new Date("2026-03-03T10:00:00Z");
 
@@ -90,9 +85,12 @@ describe("decideAgreement", () => {
     });
   });
 
-  it("refuses anyone who is not the customer", () => {
+  it("refuses nobody for holding the wrong role, and records who gave it", () => {
     const decision = decideAgreement(statement, maker, [], day);
-    expect(decision).toEqual({ allowed: false, reason: "not_the_customer" });
+    expect(decision).toEqual({
+      allowed: true,
+      agreement: { statementId: "s1", revision: "r7", givenBy: "p2", on: day },
+    });
   });
 
   it("refuses a withdrawn statement", () => {
@@ -133,16 +131,11 @@ describe("decideAgreement", () => {
 
 describe("withdrawAgreement", () => {
   it("removes the agreement covering the current version", () => {
-    expect(withdrawAgreement([agreementOn("r7")], statement, customer)).toEqual([]);
+    expect(withdrawAgreement([agreementOn("r7")], statement)).toEqual([]);
   });
 
   it("leaves agreements on other versions alone", () => {
     const kept = agreementOn("r6");
-    expect(withdrawAgreement([kept, agreementOn("r7")], statement, customer)).toEqual([kept]);
-  });
-
-  it("does nothing when anyone but the customer asks", () => {
-    const agreements = [agreementOn("r7")];
-    expect(withdrawAgreement(agreements, statement, maker)).toEqual(agreements);
+    expect(withdrawAgreement([kept, agreementOn("r7")], statement)).toEqual([kept]);
   });
 });

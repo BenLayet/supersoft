@@ -33,6 +33,7 @@ This is the method Supersoft applies to its users' projects, applied to Supersof
 | [Building by the customer](docs/domain/customer-building.md) | Customers changing their own application — by changing the specification |
 | [Real use and handover](docs/domain/delivery.md) | Going live, keeping the specification true, and leaving freely |
 | [Shared patterns](docs/domain/shared-patterns.md) | Business descriptions that recur across projects, held in common |
+| [How much a project needs](docs/domain/starting-small.md) | The smallest useful project; formality is earned, never imposed |
 
 ## The three decisions that shape everything
 

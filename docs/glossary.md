@@ -20,7 +20,6 @@ Terms are grouped by subdomain, one section per document in `docs/domain/`.
 | Customer | `customer` | commissions and owns the project |
 | Domain expert | `domainExpert` | authority on business vocabulary |
 | End user | `endUser` | uses the application; often not a participant |
-| Level | `ParticipationLevel` | reader / commenter / editor / builder |
 
 ## Projects and participants — [projects.md](domain/projects.md)
 
@@ -31,6 +30,7 @@ Terms are grouped by subdomain, one section per document in `docs/domain/`.
 | Prototype (moment) | `prototyping` | |
 | Real use (moment) | `live` | see [delivery.md](domain/delivery.md) |
 | Maintenance (moment) | `maintenance` | |
+| What needs care | `needsMoreThanOnePerson` | by consequence, never by role |
 
 ## Specification — [specification.md](domain/specification.md)
 
@@ -98,8 +98,7 @@ Terms are grouped by subdomain, one section per document in `docs/domain/`.
 | Business term | Name in the code | Note |
 | --- | --- | --- |
 | Proposal | `Proposal` | changes the prototype at once, real use only after review |
-| Reader / commenter / editor / builder | `reader` / `commenter` / `editor` / `builder` | `ParticipationLevel` |
-| Reserved decision | `ReservedDecision` | money, personal data, access rights |
+| Reserved decision | `ReservedDecision` | money, personal data, access rights, real use, the irreversible |
 
 ## Real use and handover — [delivery.md](domain/delivery.md)
 
