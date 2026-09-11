@@ -15,3 +15,4 @@ Format: **Status** (proposed / accepted / superseded by NNNN), **Context** (the 
 - [0005 — Authority is by consequence, never by role](0005-authority-by-consequence-not-by-role.md)
 - [0006 — A revision is the hash of the statement's text, normalised for whitespace only](0006-a-revision-is-the-hash-of-normalised-text.md)
 - [0007 — A project declares where its specification is, in one optional file](0007-a-project-declares-where-its-specification-is.md)
+- [0008 — How an identifier is minted, and the only edit the tooling makes to prose](0008-how-an-identifier-is-minted.md)
