@@ -4,23 +4,19 @@ A support for the conversation between a maker and a customer about a web or mob
 
 The expensive failure in this work is not writing code. It is building the wrong thing, slowly, and finding out late. Supersoft answers that with one commitment:
 
-> **The specification is the source of truth, it is written in the customer's own words, and the application is a consequence of it.**
+> **The domain is the source of truth, it is written in the customer's own words, and the application is a consequence of it.**
 
 Its longer purpose is to lower the cost of good software for organisations that cannot afford it: charities, associations, and people meeting real needs with no budget.
 
 ## What it covers
 
-Seven activities, in no strict order — [the domain documents](docs/domain/README.md) say what each one is:
+A project has three parts, and [the domain documents](docs/domain/README.md) say what each one is:
 
 | | |
 | --- | --- |
-| **Discovery** | writing down what nobody knows yet |
-| **The domain** | the concepts of the business, their names, the rules that govern them |
-| **The solution** | what the application does about that business |
-| **Stories** | what one person wants to do with it, and why |
-| **Planning** | what is next, what is being built, what is finished |
-| **Versions** | gathering done stories into something deliverable |
-| **Deployment** | knowing where a version is on its way to real people |
+| **[The project](docs/domain/project.md)** | who takes part: the customer, whose words the domain is written in, and the maker |
+| **[The domain](docs/domain/domain.md)** | the business itself — informal (what was said, recorded, filmed, asked) and formal (the lexicon and the description, the project's main source of truth) |
+| **[The solution](docs/domain/solution.md)** | what the application does about it — features broken into stories, gathered into versions, followed into real use |
 
 ## Method: describe the business, then build it
 
@@ -65,7 +61,7 @@ pnpm dev         # the prototype, on http://localhost:3000
 
 ## Status
 
-Early, and deliberately small. The domain holds participants, questions, terms, rules, stories and versions as pure functions. The prototype shows all of it on one fictional project, with nothing stored anywhere.
+Early, and deliberately small. The domain holds participants, sources, questions, terms, rules, features, stories and versions as pure functions. The prototype shows all of it on one fictional project — an association of meditators publishing recorded practices and gathering for events — with nothing stored anywhere.
 
 The generator, the portal, and reading a specification from a project's own files do not exist yet. The first of those to be built will be the one the prototype makes impossible to avoid.
 

@@ -88,3 +88,27 @@ export function Input({
 export function Empty({ children }: { children: ReactNode }) {
   return <p className="text-sm italic text-muted">{children}</p>
 }
+
+export function Select({
+  name,
+  options,
+  defaultValue,
+}: {
+  name: string
+  options: readonly string[]
+  defaultValue?: string
+}) {
+  return (
+    <select
+      name={name}
+      defaultValue={defaultValue}
+      className="rounded-md border border-rule bg-card px-3 py-1.5 text-sm"
+    >
+      {options.map((option) => (
+        <option key={option} value={option}>
+          {option}
+        </option>
+      ))}
+    </select>
+  )
+}

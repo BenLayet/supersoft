@@ -3,13 +3,11 @@ import { countByState, nextStory, openQuestions, versionInUse } from '@supersoft
 import { inMemoryProjectStore } from '@/prototype/in-memory-project-store'
 import { Card, Page, Pill, Section } from './ui'
 
-const roleLabels = { customer: 'customer', maker: 'maker', domainExpert: 'domain expert' }
-
 export default async function ProjectPage() {
   const project = await inMemoryProjectStore.load()
-  const { specification, stories, versions } = project
-  const open = openQuestions(specification.questions)
-  const agreed = specification.rules.filter((rule) => rule.state === 'agreed')
+  const { domain, features, stories, versions } = project
+  const open = openQuestions(domain.questions)
+  const agreed = domain.rules.filter((rule) => rule.state === 'agreed')
   const counts = countByState(stories)
   const next = nextStory(stories)
   const live = versionInUse(versions)
@@ -25,43 +23,49 @@ export default async function ProjectPage() {
             {project.participants.map((participant) => (
               <li key={participant.name} className="flex items-center gap-2">
                 <span>{participant.name}</span>
-                <Pill>{roleLabels[participant.role]}</Pill>
+                <Pill>{participant.role}</Pill>
               </li>
             ))}
           </ul>
         </Card>
       </Section>
 
-      <Section title="Where it stands">
+      <Section title="The domain">
         <div className="grid gap-3 sm:grid-cols-2">
           <Card>
-            <Link href="/discovery" className="text-sm font-medium hover:text-accent">
-              Discovery
+            <Link href="/domain/discovery" className="text-sm font-medium hover:text-accent">
+              Informal
             </Link>
             <p className="mt-1 text-sm text-muted">
-              {open.length} open question{open.length === 1 ? '' : 's'} out of{' '}
-              {specification.questions.length}.
+              {domain.sources.length} sources kept, {open.length} question
+              {open.length === 1 ? '' : 's'} still open.
             </p>
           </Card>
           <Card>
-            <Link href="/domain" className="text-sm font-medium hover:text-accent">
-              Domain
+            <Link href="/domain/formalisation" className="text-sm font-medium hover:text-accent">
+              Formal
             </Link>
             <p className="mt-1 text-sm text-muted">
-              {specification.terms.length} terms, {agreed.length} of {specification.rules.length}{' '}
+              {domain.terms.length} terms in the lexicon, {agreed.length} of {domain.rules.length}{' '}
               rules agreed.
             </p>
           </Card>
+        </div>
+      </Section>
+
+      <Section title="The solution">
+        <div className="grid gap-3 sm:grid-cols-2">
           <Card>
-            <Link href="/stories" className="text-sm font-medium hover:text-accent">
-              Stories
+            <Link href="/solution/features" className="text-sm font-medium hover:text-accent">
+              Features
             </Link>
             <p className="mt-1 text-sm text-muted">
-              {counts.done} done, {counts.in_progress} in progress, {counts.to_do} to do.
+              {features.length} features, {counts.done} stories done, {counts.in_progress} in
+              progress, {counts.to_do} to do.
             </p>
           </Card>
           <Card>
-            <Link href="/versions" className="text-sm font-medium hover:text-accent">
+            <Link href="/solution/versions" className="text-sm font-medium hover:text-accent">
               Versions
             </Link>
             <p className="mt-1 text-sm text-muted">

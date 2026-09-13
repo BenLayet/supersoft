@@ -14,38 +14,37 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | --- | --- | --- |
 | Project | `Project` | one application, for one customer |
 | Participant | `Participant` | anyone taking part |
-| Customer | `customer` | commissions and owns the project |
+| Customer | `customer` | commissions and owns the project; their words are the domain's |
 | Maker | `maker` | builds and maintains |
-| Domain expert | `domainExpert` | authority on business vocabulary |
 
-## Specification — [specification.md](domain/specification.md)
+## The domain — [domain.md](domain/domain.md)
 
 | Business term | Name in the code | Note |
 | --- | --- | --- |
-| Specification | `Specification` | questions, terms and rules together |
+| Domain | `Domain` | the business the application serves |
+| Source | `Source` | informal material, kept as it was given |
+| Note / audio / video | `note` / `audio` / `video` | what a source is made of |
 | Question | `Question` | something the project knows it does not know |
 | Open question | `openQuestions` | unanswered; always countable |
-| Term | `Term` | one concept, one name, one definition |
-| Rule | `Rule` | one sentence a customer can confirm or deny |
+| Lexicon | `Term` | one concept, one name, one definition |
+| Description | `Rule` | one sentence a customer can confirm or deny |
 | Proposed (state) | `proposed` | written, not yet confirmed |
 | Agreed (state) | `agreed` | confirmed by the customer |
 | Agreeing | `agree` | |
 | Rewriting a rule | `restate` | makes it `proposed` again |
 
-## Stories — [stories.md](domain/stories.md)
+## The solution — [solution.md](domain/solution.md)
 
 | Business term | Name in the code | Note |
 | --- | --- | --- |
+| Feature | `Feature` | one thing the application offers |
+| Stories of a feature | `storiesOf` | a feature with none describes nothing |
+| State of a feature | `stateOf` | derived from its stories, never set by hand |
 | Story | `Story` | person + intention + reason |
 | Reason | `Story.reason` | mandatory |
 | Essential / expected / later | `essential` / `expected` / `later` | priority, set by the customer |
 | To do / in progress / done | `to_do` / `in_progress` / `done` | |
 | What comes next | `nextStory` | the most important story still to do |
-
-## Versions and deployment — [release.md](domain/release.md)
-
-| Business term | Name in the code | Note |
-| --- | --- | --- |
 | Version | `Version` | gathers done stories |
 | Planned / deploying / in real use / failed | `planned` / `deploying` / `live` / `failed` | |
 | The version real people use | `versionInUse` | |

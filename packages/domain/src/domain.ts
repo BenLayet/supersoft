@@ -1,3 +1,12 @@
+/** Informal material, kept as it was given: a page of notes, a recording, a film. */
+export interface Source {
+  readonly id: string
+  readonly kind: 'note' | 'audio' | 'video'
+  readonly title: string
+  /** Who it came from, in their own words where possible. */
+  readonly from: string
+}
+
 /** Something the project knows it does not know. */
 export interface Question {
   readonly id: string
@@ -13,15 +22,19 @@ export interface Term {
 
 export type RuleState = 'proposed' | 'agreed'
 
-/** One thing that is true of the business, as one sentence a customer can confirm or deny. */
+/** One sentence of the description: something true of the business. */
 export interface Rule {
   readonly id: string
   readonly statement: string
   readonly state: RuleState
 }
 
-export interface Specification {
+/** The business the application serves: what was said, and what was written from it. */
+export interface Domain {
+  /** The informal side. */
+  readonly sources: readonly Source[]
   readonly questions: readonly Question[]
+  /** The formal side: the lexicon, and the description. */
   readonly terms: readonly Term[]
   readonly rules: readonly Rule[]
 }

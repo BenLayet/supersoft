@@ -1,19 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import './globals.css'
+import { NavLink } from './nav-link'
 
 export const metadata: Metadata = {
   title: 'Supersoft',
   description: 'Specifying and planning an application, with the customer in the conversation.',
 }
-
-const nav = [
-  { href: '/', label: 'Project' },
-  { href: '/discovery', label: 'Discovery' },
-  { href: '/domain', label: 'Domain' },
-  { href: '/stories', label: 'Stories' },
-  { href: '/versions', label: 'Versions' },
-]
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -24,12 +17,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <Link href="/" className="text-sm font-semibold tracking-tight">
               Supersoft
             </Link>
-            <nav className="flex gap-4 text-sm text-muted">
-              {nav.map((item) => (
-                <Link key={item.href} href={item.href} className="hover:text-ink">
-                  {item.label}
-                </Link>
-              ))}
+            <nav className="flex gap-5">
+              <NavLink href="/" activeOn="/">
+                Project
+              </NavLink>
+              <NavLink href="/domain/discovery" activeOn="/domain">
+                Domain
+              </NavLink>
+              <NavLink href="/solution/features" activeOn="/solution">
+                Solution
+              </NavLink>
             </nav>
           </div>
         </header>

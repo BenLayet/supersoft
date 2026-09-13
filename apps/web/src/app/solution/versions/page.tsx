@@ -1,8 +1,8 @@
 import { releasableStories, versionInUse } from '@supersoft/domain'
 import type { Version } from '@supersoft/domain'
 import { inMemoryProjectStore } from '@/prototype/in-memory-project-store'
-import { cutVersion, deploymentFailed, deploymentSucceeded, startDeployment } from '../actions'
-import { Button, Card, Empty, Input, Page, Pill, Section } from '../ui'
+import { cutVersion, deploymentFailed, deploymentSucceeded, startDeployment } from '../../actions'
+import { Button, Card, Empty, Input, Page, Pill, Section } from '../../ui'
 
 const tones: Record<Version['deployment'], 'plain' | 'accent' | 'warn'> = {
   planned: 'plain',
@@ -32,9 +32,7 @@ export default async function VersionsPage() {
       <Section title="In real use">
         <Card>
           <p className="text-sm">
-            {live
-              ? `Real people are using ${live.name}.`
-              : 'Nothing has reached real people yet.'}
+            {live ? `Real people are using ${live.name}.` : 'Nothing has reached real people yet.'}
           </p>
         </Card>
       </Section>

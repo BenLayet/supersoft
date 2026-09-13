@@ -13,7 +13,7 @@ import {
   start,
   succeeded,
 } from '@supersoft/domain'
-import type { Priority, Project, Question, Rule, Story, Version } from '@supersoft/domain'
+import type { Domain, Priority, Project, Source, Story, Version } from '@supersoft/domain'
 import { inMemoryProjectStore as store } from '@/prototype/in-memory-project-store'
 
 const text = (formData: FormData, field: string): string => {
@@ -33,14 +33,9 @@ const change = async (apply: (project: Project) => Project): Promise<void> => {
   revalidatePath('/', 'layout')
 }
 
-const withQuestions = (project: Project, questions: readonly Question[]): Project => ({
+const withDomain = (project: Project, domain: Partial<Domain>): Project => ({
   ...project,
-  specification: { ...project.specification, questions },
-})
-
-const withRules = (project: Project, rules: readonly Rule[]): Project => ({
-  ...project,
-  specification: { ...project.specification, rules },
+  domain: { ...project.domain, ...domain },
 })
 
 const mapById = <T extends { id: string }>(items: readonly T[], id: string, apply: (item: T) => T) =>
@@ -49,13 +44,31 @@ const mapById = <T extends { id: string }>(items: readonly T[], id: string, appl
 const mapByName = (versions: readonly Version[], name: string, apply: (v: Version) => Version) =>
   versions.map((version) => (version.name === name ? apply(version) : version))
 
+/* The informal side of the domain. */
+
+export async function keepSource(formData: FormData) {
+  const kind = text(formData, 'kind') as Source['kind']
+  const title = text(formData, 'title')
+  const from = text(formData, 'from')
+  await change((project) =>
+    withDomain(project, {
+      sources: [
+        ...project.domain.sources,
+        { id: nextId('M', project.domain.sources), kind, title, from },
+      ],
+    }),
+  )
+}
+
 export async function askQuestion(formData: FormData) {
   const asked = text(formData, 'asked')
   await change((project) =>
-    withQuestions(project, [
-      ...project.specification.questions,
-      { id: nextId('Q', project.specification.questions), asked },
-    ]),
+    withDomain(project, {
+      questions: [
+        ...project.domain.questions,
+        { id: nextId('Q', project.domain.questions), asked },
+      ],
+    }),
   )
 }
 
@@ -63,53 +76,65 @@ export async function answer(formData: FormData) {
   const id = text(formData, 'id')
   const said = text(formData, 'answer')
   await change((project) =>
-    withQuestions(
-      project,
-      mapById(project.specification.questions, id, (question) => answerQuestion(question, said)),
-    ),
+    withDomain(project, {
+      questions: mapById(project.domain.questions, id, (question) =>
+        answerQuestion(question, said),
+      ),
+    }),
   )
 }
+
+/* The formal side: the lexicon and the description. */
 
 export async function defineTerm(formData: FormData) {
   const name = text(formData, 'name')
   const definition = text(formData, 'definition')
-  await change((project) => ({
-    ...project,
-    specification: {
-      ...project.specification,
-      terms: [...project.specification.terms, { name, definition }],
-    },
-  }))
+  await change((project) =>
+    withDomain(project, { terms: [...project.domain.terms, { name, definition }] }),
+  )
 }
 
 export async function writeRule(formData: FormData) {
   const statement = text(formData, 'statement')
   await change((project) =>
-    withRules(project, [
-      ...project.specification.rules,
-      { id: nextId('R', project.specification.rules), statement, state: 'proposed' },
-    ]),
+    withDomain(project, {
+      rules: [
+        ...project.domain.rules,
+        { id: nextId('R', project.domain.rules), statement, state: 'proposed' },
+      ],
+    }),
   )
 }
 
 export async function agreeRule(formData: FormData) {
   const id = text(formData, 'id')
-  await change((project) => withRules(project, mapById(project.specification.rules, id, agree)))
+  await change((project) => withDomain(project, { rules: mapById(project.domain.rules, id, agree) }))
 }
 
 export async function restateRule(formData: FormData) {
   const id = text(formData, 'id')
   const statement = text(formData, 'statement')
   await change((project) =>
-    withRules(
-      project,
-      mapById(project.specification.rules, id, (rule) => restate(rule, statement)),
-    ),
+    withDomain(project, {
+      rules: mapById(project.domain.rules, id, (rule) => restate(rule, statement)),
+    }),
   )
+}
+
+/* The solution. */
+
+export async function addFeature(formData: FormData) {
+  const name = text(formData, 'name')
+  const purpose = text(formData, 'purpose')
+  await change((project) => ({
+    ...project,
+    features: [...project.features, { id: nextId('F', project.features), name, purpose }],
+  }))
 }
 
 export async function addStory(formData: FormData) {
   const story: Omit<Story, 'id'> = {
+    featureId: text(formData, 'featureId'),
     role: text(formData, 'role'),
     intention: text(formData, 'intention'),
     reason: text(formData, 'reason'),

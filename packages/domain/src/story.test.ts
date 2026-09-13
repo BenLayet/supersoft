@@ -4,9 +4,10 @@ import type { Priority, Story, StoryState } from './story'
 
 const story = (id: string, priority: Priority, state: StoryState = 'to_do'): Story => ({
   id,
+  featureId: 'F1',
   role: 'member',
-  intention: 'renew my membership',
-  reason: 'I do not have to ask anyone',
+  intention: 'take a place at an event',
+  reason: 'I know I am expected',
   priority,
   state,
 })

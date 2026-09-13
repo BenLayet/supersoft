@@ -6,6 +6,8 @@ export type StoryState = 'to_do' | 'in_progress' | 'done'
 /** One thing a person wants to do with the application, and why. */
 export interface Story {
   readonly id: string
+  /** Every story belongs to exactly one feature. */
+  readonly featureId: string
   /** The person who wants it — a role of the domain, never "the user". */
   readonly role: string
   readonly intention: string

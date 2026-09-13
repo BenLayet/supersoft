@@ -1,5 +1,6 @@
 export * from './project'
-export * from './specification'
+export * from './domain'
+export * from './feature'
 export * from './story'
 export * from './version'
 export * from './ports/project-store'
