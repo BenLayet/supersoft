@@ -11,17 +11,19 @@ Read `README.md` for the full picture. The essentials:
 - **Every port has a mock adapter**, so Supersoft runs end-to-end with no external service. Adding a port means adding its mock alongside.
 - Structural decisions go in `docs/decisions/` as ADRs before they go in the code. The three that constrain everything: [0001](docs/decisions/0001-specification-lives-in-the-project-repository.md) specification lives in the project's repository; [0002](docs/decisions/0002-customer-edits-the-specification-never-the-code.md) the customer edits the specification, never the code; [0003](docs/decisions/0003-hexagonal-monorepo-pure-domain.md) hexagonal monorepo, pure domain.
 - **No part of a project may depend on Supersoft continuing to exist.** Treat any proposal that breaks this as wrong by default and say so, whatever it buys.
+- **Keep it short, and stay one step ahead of the prototype, never further.** A rule earns its place in `docs/domain/` when something runnable needs it. The first version of this repository specified a product nobody had seen; that is the mistake to avoid, and ADR [0004](docs/decisions/0004-the-prototype-is-a-web-application-held-in-memory.md) says why.
 - Language: code, comments, tests and docs in English.
 - This repository is public. The reference implementation and first customer project is a private repository and must never be named here — not in `docs/`, not in `README.md`, not in commit messages. Refer to it as "an existing project" when its existence is load-bearing for an argument. Local, uncommitted notes may name it.
 
 ## Status
 
-pnpm monorepo, vitest everywhere:
+pnpm monorepo, vitest for the domain:
 
-- `packages/domain` (zero runtime dependencies) — `project/participant`, `specification/statement`, `specification/specification` (Specification, Term), `specification/revision` (the normalisation of ADR 0006), `conversation/remark`, `conversation/agreement`, `conversation/open-point`, and `ports/project-files` (`ProjectFiles`, and `WritableProjectFiles` for the acts that change a project — the only port so far).
-- `packages/project-files` — adapters for that port: `inMemoryProjectFiles` (the mock every port owes, writable, with a `snapshot()`) and `fileSystemProjectFiles`.
-- `packages/specification-files` — reading a specification from files and assigning identifiers to it, the only code allowed to know the format: prose with identifiers, optional sidecars, agreements as files, revisions computed (ADRs 0004, 0006, 0007, 0008). Both validated against a real hand-written specification.
+- `packages/domain` (zero runtime dependencies) — `project` (participants, who settles what), `specification` (questions, terms, rules, agreeing), `story` (priority, tracking, what comes next), `version` (gathering done stories, following a deployment), and `ports/project-store` (`ProjectStore`, the only port so far).
+- `apps/web` — the prototype: Next.js, React and Tailwind, one fictional project held in memory by `inMemoryProjectStore`, the mock adapter of that port. Server actions read the project, apply a domain function, write it back. No outside service, nothing persisted.
 
-Not started: recording an agreement, the generator, the portal, and everything in brand, stories, prototype, customer-building, delivery and shared-patterns. The layout in `README.md` is the target, not the current state.
+Not started: reading a specification from a project's own files, the generator, and the portal. The layout in `README.md` is the current state, not a target.
 
-Imports inside a package are extensionless, resolved by vitest and `tsc`. Nothing runs under plain `node` yet; whatever needs to (a validation command, the portal) gets a build step of its own.
+Imports inside a package are extensionless, resolved by vitest, Next and `tsc`.
+
+`pnpm test` runs the domain; `pnpm dev` runs the prototype on port 3000.

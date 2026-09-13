@@ -6,29 +6,37 @@ This folder describes **what Supersoft does**, in the language of the people it 
 - every business term maps to its name in the code in the [glossary](../glossary.md);
 - a business rule that is not written here does not exist.
 
+## What Supersoft is
+
+Supersoft is a **support for the conversation** between a maker and a customer about a web or mobile application. Its method is borrowed from domain-driven design: the business is described, in the customer's words, before it is built.
+
+It covers seven activities, in no strict order:
+
+1. **Discovery** — asking what the application is for, and writing down what nobody knows yet.
+2. **Formalising the domain** — the concepts of the business, their names, and the rules that govern them.
+3. **Defining the solution** — what the application does about that business.
+4. **Breaking it into stories** — what one person wants to do with it, and why.
+5. **Planning and tracking the stories** — what is next, what is being built, what is finished.
+6. **Cutting a version** — gathering finished stories into something that can be delivered.
+7. **Following the deployment** — knowing where a version is on its way to real people.
+
+Everything it produces belongs to the customer and stays readable without it.
+
 ## Writing conventions
 
-- No mention of a tool, a piece of software or a technique: we write "the prototype runs without any outside service", never the name of a framework, a hosting provider or a database. Supersoft is a tool for making software, so the temptation is constant — resist it. *Specification*, *prototype* and *demonstration* are business concepts of this product; named products are not.
+- No mention of a tool, a piece of software or a technique. Supersoft is a tool for making software, so the temptation is constant — resist it.
 - **These documents change only when the business changes** — never when the tooling changes. Nothing here says what is "already built", "in progress" or "planned".
-- Rules that are uncertain or still to be validated are marked **"To confirm"**.
-- Prices, plans and commercial terms are not written here: they change over time and are handled elsewhere.
+- Keep it short. A rule nobody can find is a rule nobody follows.
 
 ## Language
 
-Unlike a customer project, whose domain documents are written in the language of its own domain experts, Supersoft's are written in English: its domain experts are its makers and its contributor community. The principle is unchanged — the domain is described in the language of the people who own the business.
+Unlike a customer project, whose domain documents are written in the language of its own domain experts, Supersoft's are written in English: its domain experts are its makers.
 
 ## The documents
 
-- [Supersoft in brief](supersoft.md) — what the product is and who it serves; the starting point, with a link to each subdomain.
-- [How much of this a project needs](starting-small.md) — the smallest useful project, and why every piece of formality is optional until it is earned.
-- [Projects and participants](projects.md) — what a project is, who takes part, and who may do what.
-- [Specification](specification.md) — the description of what is to be built; the heart of the product.
-- [Brand and style](brand.md) — the identity and the visual and editorial rules of an application.
-- [Stories and journeys](stories.md) — what people do with the application.
-- [Conversation and agreement](conversation.md) — how customer and maker discuss, question and agree on the specification.
-- [Prototype and demonstration](prototype.md) — showing a runnable application before it exists for real.
-- [Building by the customer](customer-building.md) — how a customer changes their own application.
-- [Real use and handover](delivery.md) — going into real use, keeping the specification true, and leaving freely.
-- [Shared patterns](shared-patterns.md) — the business descriptions that recur across projects and belong to everyone.
+- [Project and participants](project.md) — what a project is and who takes part.
+- [Specification](specification.md) — discovery, the domain, the solution.
+- [Stories](stories.md) — breaking the work down, planning it, tracking it.
+- [Versions and deployment](release.md) — delivering, and knowing where it is.
 
 When a new concept appears: define it here first, then add it to the [glossary](../glossary.md) **before** giving it a name anywhere else.

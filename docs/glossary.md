@@ -4,115 +4,48 @@ The bridge between the business documentation ([`docs/domain/`](domain/README.md
 
 Supersoft's domain documents and its code are both in English, so this glossary is not a translation — it fixes **which** English word is used, and forbids the synonyms. Most naming drift in a codebase is not a wrong word; it is three right ones for the same thing.
 
-When a new concept appears: define it first in [`docs/domain/`](domain/README.md), choose its name, and add it here **before** using it in the code. A concept absent from this glossary has no name in the code.
+When a new concept appears: define it first in [`docs/domain/`](domain/README.md), choose its name, and add it here **before** using it in the code.
 
-Terms are grouped by subdomain, one section per document in `docs/domain/`.
+> A customer project has its own glossary, in its own language. This one is Supersoft's.
 
-> A customer project has its own glossary, in its own language, mapping its own business terms to its own code. This one is Supersoft's.
-
-## Common
+## Project and participants — [project.md](domain/project.md)
 
 | Business term | Name in the code | Note |
 | --- | --- | --- |
 | Project | `Project` | one application, for one customer |
-| Participant | `Participant` | anyone taking part in a project |
-| Maker | `maker` | builds and maintains; the only role that changes code |
+| Participant | `Participant` | anyone taking part |
 | Customer | `customer` | commissions and owns the project |
+| Maker | `maker` | builds and maintains |
 | Domain expert | `domainExpert` | authority on business vocabulary |
-| End user | `endUser` | uses the application; often not a participant |
-
-## Projects and participants — [projects.md](domain/projects.md)
-
-| Business term | Name in the code | Note |
-| --- | --- | --- |
-| Exploration (moment) | `exploration` | |
-| Agreement (moment) | `agreement` | not to be confused with an `Agreement` on a statement |
-| Prototype (moment) | `prototyping` | |
-| Real use (moment) | `live` | see [delivery.md](domain/delivery.md) |
-| Maintenance (moment) | `maintenance` | |
-| What needs care | `needsMoreThanOnePerson` | by consequence, never by role |
 
 ## Specification — [specification.md](domain/specification.md)
 
 | Business term | Name in the code | Note |
 | --- | --- | --- |
-| Specification | `Specification` | the source of truth of a project |
-| Statement | `Statement` | one addressable element of a specification |
-| Domain (part) | `domain` | the business the application serves |
-| Ubiquitous language | `Term` | one concept, one name |
-| Proposed (state) | `proposed` | |
-| Agreed (state) | `agreed` | |
-| To confirm (state) | `to_confirm` | rests on a maker's assumption |
-| Questioned (state) | `questioned` | agreed once, now disputed |
-| Withdrawn (state) | `withdrawn` | kept, with its reason |
-| Recorded state | `RecordedState` | the four states a statement carries: `agreed` is never one of them |
-| State of a statement | `stateOf` | the visible state, agreement included |
-| History | `Revision` | what changed, when, at whose request |
+| Specification | `Specification` | questions, terms and rules together |
+| Question | `Question` | something the project knows it does not know |
+| Open question | `openQuestions` | unanswered; always countable |
+| Term | `Term` | one concept, one name, one definition |
+| Rule | `Rule` | one sentence a customer can confirm or deny |
+| Proposed (state) | `proposed` | written, not yet confirmed |
+| Agreed (state) | `agreed` | confirmed by the customer |
+| Agreeing | `agree` | |
+| Rewriting a rule | `restate` | makes it `proposed` again |
 
-## Brand and style — [brand.md](domain/brand.md)
-
-| Business term | Name in the code | Note |
-| --- | --- | --- |
-| Brand | `Brand` | |
-| Tone of voice | `tone` | |
-| Colour (with a purpose) | `ColorRole` | never a palette without meaning |
-| Typography scale | `TypeScale` | |
-| Density | `density` | |
-| Accessibility commitment | `AccessibilityCommitment` | wins over any brand choice it conflicts with |
-
-## Stories and journeys — [stories.md](domain/stories.md)
+## Stories — [stories.md](domain/stories.md)
 
 | Business term | Name in the code | Note |
 | --- | --- | --- |
 | Story | `Story` | person + intention + reason |
 | Reason | `Story.reason` | mandatory |
-| Journey | `Journey` | ordered stories completing something real |
-| Acceptance | `Acceptance` | observable by the customer |
 | Essential / expected / later | `essential` / `expected` / `later` | priority, set by the customer |
+| To do / in progress / done | `to_do` / `in_progress` / `done` | |
+| What comes next | `nextStory` | the most important story still to do |
 
-## Conversation and agreement — [conversation.md](domain/conversation.md)
-
-| Business term | Name in the code | Note |
-| --- | --- | --- |
-| Remark | `Remark` | always attached to an element |
-| Question | `Question` | a remark naming who must answer |
-| Change request | `ChangeRequest` | precise enough to be accepted as written |
-| Agreement | `Agreement` | by the customer, on one version of an element, on a date |
-| Version agreed on | `Agreement.revision` | an agreement covers that version only |
-| Withdrawn agreement | `withdrawAgreement` | by the customer, before the element changes |
-| Open point | `OpenPoint` | always countable, always visible |
-| Refusal | `Refusal` | a remark closed with a stated reason |
-
-## Prototype and demonstration — [prototype.md](domain/prototype.md)
+## Versions and deployment — [release.md](domain/release.md)
 
 | Business term | Name in the code | Note |
 | --- | --- | --- |
-| Prototype | `Prototype` | rebuildable from the specification; disposable |
-| Fictional data | `fictionalData` | never real personal data, never "anonymised" real data |
-| Awkward case | `edgeCase` | deliberately present in fictional data |
-| Scenario | `Scenario` | a prepared path with data arranged |
-| Demonstration | `Demonstration` | remarks attach to what was on screen |
-
-## Building by the customer — [customer-building.md](domain/customer-building.md)
-
-| Business term | Name in the code | Note |
-| --- | --- | --- |
-| Proposal | `Proposal` | changes the prototype at once, real use only after review |
-| Reserved decision | `ReservedDecision` | money, personal data, access rights, real use, the irreversible |
-
-## Real use and handover — [delivery.md](domain/delivery.md)
-
-| Business term | Name in the code | Note |
-| --- | --- | --- |
-| Real use | `live` | |
-| Drift | `Drift` | specification and application disagree; recorded as an open point |
-| Handover | `handover` | a guarantee, needing no cooperation from the maker |
-
-## Shared patterns — [shared-patterns.md](domain/shared-patterns.md)
-
-| Business term | Name in the code | Note |
-| --- | --- | --- |
-| Pattern | `Pattern` | |
-| Adopting | `adopt` | copies into the project; stays a copy, never linked |
-| Contributing | `contribute` | needs the customer's consent |
-| Questions it always raises | `Pattern.recurringQuestions` | |
+| Version | `Version` | gathers done stories |
+| Planned / deploying / in real use / failed | `planned` / `deploying` / `live` / `failed` | |
+| The version real people use | `versionInUse` | |

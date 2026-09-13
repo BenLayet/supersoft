@@ -1,41 +1,15 @@
 # @supersoft/domain
 
-Supersoft's business rules, as pure functions: what a specification, a
-statement, an agreement, a remark and a proposal are, and what follows from
-them.
+The business rules of Supersoft as pure TypeScript: **zero runtime dependencies**, no framework, no I/O.
 
-## The rule that matters
+Every type and function here has an entry in the [glossary](../../docs/glossary.md) and a document behind it in [`docs/domain/`](../../docs/domain/README.md). Read those first; this package only says the same thing in a language a machine can check.
 
-**This package imports nothing external.** No framework, no ORM, no SDK, no
-HTTP client, no model. Its `dependencies` are empty and are meant to stay
-empty; `devDependencies` hold the type checker and the test runner, nothing
-else. Everything from the outside world — the current date included — arrives
-as an argument or through a port in `src/ports`.
+- `project.ts` — the project and its participants, and who settles what.
+- `specification.ts` — questions, terms and rules; agreeing, and what rewriting undoes.
+- `story.ts` — stories, their priority, their tracking, and what comes next.
+- `version.ts` — gathering done stories, and following a deployment.
+- `ports/project-store.ts` — where a project is kept. The only port so far.
 
-This is [ADR 0003](../../docs/decisions/0003-hexagonal-monorepo-pure-domain.md).
-It is what makes the rules of the product testable in milliseconds, and what
-lets the generator be replaced without touching what a specification means.
-
-## Where the rules come from
-
-[`docs/domain/`](../../docs/domain/README.md) is the source of truth, in
-business language and free of any tool name.
-[`docs/glossary.md`](../../docs/glossary.md) fixes the name each concept
-carries here. The order is always the same: the business document, then the
-glossary entry, then the code and its tests.
-
-The test suite is the executable form of `docs/domain/`. A test that has no
-corresponding sentence in those documents is describing a rule that does not
-exist yet — write the sentence first.
-
-## Layout
-
-    src/
-      project/        projects, participants, levels
-      specification/  statements, states, terms, revisions
-      conversation/   remarks, questions, agreements, open points
-      prototype/      prototypes, fictional data, scenarios
-      pattern/        shared patterns: adoption, contribution
-      ports/          interfaces expected from the outside world
-
-Each folder holds its rules next to their tests (`*.test.ts`).
+```bash
+pnpm --filter @supersoft/domain test
+```

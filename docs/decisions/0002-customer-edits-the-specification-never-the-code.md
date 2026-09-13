@@ -4,7 +4,7 @@
 
 ## Context
 
-Supersoft offers [low-code and no-code building to customers](../domain/customer-building.md). This is the part of the product most likely to destroy the rest of it.
+Supersoft offers low-code and no-code building to customers. This is the part of the product most likely to destroy the rest of it.
 
 The ordinary failure of no-code platforms is well known and worth stating plainly, because avoiding it is a structural decision rather than a matter of care:
 
@@ -26,9 +26,9 @@ The forces at play:
 
 1. **The specification is the only surface a customer edits.** There is no visual editor over the running application, no settings screen holding business rules, and no configuration that overrides what the specification says. A customer's change is a change to specification files ([ADR 0001](0001-specification-lives-in-the-project-repository.md)).
 
-2. **A customer edit produces a proposal**: it regenerates that customer's [prototype](../domain/prototype.md) immediately, so its author sees their own idea running within moments, and it reaches real use only after a maker has reviewed it — accepted, or refused with a stated reason in the [conversation](../domain/conversation.md).
+2. **A customer edit produces a proposal**: it regenerates that customer's prototype immediately, so its author sees their own idea running within moments, and it reaches real use only after a maker has reviewed it — accepted, or refused with a stated reason.
 
-3. **Reserved decisions always require a maker**, whatever the customer's level — *superseded in its wording by [ADR 0005](0005-authority-by-consequence-not-by-role.md): they require more than one person, not a maker, and levels no longer exist*: anything touching money, personal data, or access rights; any connection to an outside service. This is enforced by the system, not by convention.
+3. **Reserved decisions require more than one person**, whoever is asking: anything touching money, personal data, or access rights; any connection to an outside service. This is enforced by the system, not by convention.
 
 4. **The generated application is code, in the repository, reviewable.** Generation produces readable source that a maker reads and may edit by hand; it is not an interpreted description executed by a runtime. A project must remain a normal codebase that any developer can pick up and continue **without Supersoft**.
 

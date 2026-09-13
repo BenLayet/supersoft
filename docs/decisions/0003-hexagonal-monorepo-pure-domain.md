@@ -21,14 +21,14 @@ The forces at play:
 ## Decision
 
 1. **pnpm monorepo, TypeScript everywhere**, mirroring the shape of that project:
-   - `packages/domain` (`@supersoft/domain`) — specifications, remarks, agreements, proposals, patterns: **zero runtime dependencies**;
+   - `packages/domain` (`@supersoft/domain`) — the business rules of Supersoft: **zero runtime dependencies**;
    - further packages as the product needs them, each obeying the same rule about its own boundary.
 
 2. **Hexagonal architecture (ports and adapters).** The domain never imports a framework, an ORM or an SDK. One external service = one port in the domain + one adapter outside it. In particular the **repository host**, the **generator** and any **language model** are ports — none of them is a dependency of the domain.
 
 3. **Business decisions are pure functions**, tested without I/O: whether a statement is agreed in the version it now has, what a project's open points are, whether a proposal touches a reserved decision, what a specification change implies.
 
-4. **Every port has a mock adapter**, so Supersoft runs end-to-end with no external service — for demonstrations, prototyping and CI. Adding a port means adding its mock alongside. This is not a testing convenience; it is the same guarantee Supersoft makes to its users about [their prototypes](../domain/prototype.md), applied to itself.
+4. **Every port has a mock adapter**, so Supersoft runs end-to-end with no external service — for demonstrations, prototyping and CI. Adding a port means adding its mock alongside. This is not a testing convenience; it is the same guarantee Supersoft makes to its users about their prototypes, applied to itself.
 
 5. **`docs/domain/` is the source of truth for business rules**, tool-free, with the [glossary](../glossary.md) mapping every term to its name in the code. Every new rule is documented there first, then implemented in the domain with its tests, then integrated in the application.
 
@@ -51,6 +51,6 @@ Harder / accepted costs:
 
 ## Notes
 
-Some structural choices are deliberately left open and will each get their own ADR when decided: the interface framework for the portal, the repository host integration, the generation technique, and how generated and hand-written code coexist ([ADR 0002](0002-customer-edits-the-specification-never-the-code.md) point 5).
+Some structural choices are deliberately left open and will each get their own ADR when decided: the repository host integration, the generation technique, and how generated and hand-written code coexist ([ADR 0002](0002-customer-edits-the-specification-never-the-code.md) point 5).
 
-They are not part of this decision. The architecture above is what makes each of them reversible. The structured format carried alongside the prose was one of them, and is now [ADR 0004](0004-structure-rides-in-the-prose-and-a-sidecar.md).
+They are not part of this decision. The architecture above is what makes each of them reversible.

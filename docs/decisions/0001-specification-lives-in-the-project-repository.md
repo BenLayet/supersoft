@@ -4,7 +4,7 @@
 
 ## Context
 
-Supersoft's central claim is that the [specification](../domain/specification.md) is the source of truth of a project, and that the customer can [take everything and leave at any moment](../domain/delivery.md). Where the specification physically lives decides whether that claim is real.
+Supersoft's central claim is that the [specification](../domain/specification.md) is the source of truth of a project, and that the customer can [take everything and leave at any moment](../domain/project.md). Where the specification physically lives decides whether that claim is real.
 
 The forces at play:
 
@@ -20,7 +20,7 @@ The forces at play:
 
 2. **Prose is primary; structure is attached to it, not a replacement for it.** A domain document is a document a customer reads. Machine-readable structure (terms, states, identifiers on statements) rides along in front matter and sidecar files. Anything a generator or an editor needs that would damage readability lives in the sidecar, not in the prose.
 
-3. **Version control is the history mechanism.** Revisions, authorship, dates and the record of what changed are git's, not a table of ours. [Agreements](../domain/conversation.md), which are business events rather than edits, are recorded as files too, so that they travel with the project.
+3. **Version control is the history mechanism.** Revisions, authorship, dates and the record of what changed are git's, not a table of ours. Agreements, which are business events rather than edits, are recorded as files too, so that they travel with the project.
 
 4. **The portal is a git client.** It reads the repository, renders the specification for a customer, collects remarks and agreements, and writes changes back as commits and pull requests. It holds no authoritative state of its own; anything it stores is a cache that can be rebuilt from the repository.
 
@@ -39,14 +39,12 @@ Harder / accepted costs:
 
 - **Real-time collaboration is not free.** Two people editing the same document at once is a merge, not a live cursor. Accepted: specifications move at the speed of conversation, not of typing.
 - **The no-code editor is harder to build.** It must produce valid file changes rather than write rows, and must handle conflicts. This is the price of the guarantee.
-- **Querying across projects is not free.** Anything cross-project (the [pattern library](../domain/shared-patterns.md), search) needs its own index, built by reading repositories.
+- **Querying across projects is not free.** Anything cross-project (a library of patterns shared between projects, search) needs its own index, built by reading repositories.
 - **The customer needs a repository.** For non-technical customers this must be invisible — provisioned and operated by the maker or the portal. If the customer is ever asked to understand git, the product has failed at its own job.
 - **Structured data in files can go stale or invalid.** The format needs validation as a build step, in the same way tests are.
 
 ## Notes
 
 The rejected alternative — specification in a Supersoft database, repositories as an export target — is easier for everything except the one thing that cannot be compromised. An export is not a guarantee: it is a promise to cooperate later, which is exactly what an organisation without leverage cannot rely on.
-
-[ADR 0004](0004-structure-rides-in-the-prose-and-a-sidecar.md) settles what point 2 leaves open, and refines it: a statement's identifier is the one piece of structure that belongs in the prose rather than the sidecar, because it is what makes a project's files still legible once Supersoft is gone.
 
 A read-only projection of specifications into a database, built by indexing repositories, is not excluded by this decision and will likely be needed for search and for the pattern library. What is excluded is that projection ever becoming the source of truth.
