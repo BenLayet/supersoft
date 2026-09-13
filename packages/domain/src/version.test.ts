@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest'
-import { deploy, failed, planVersion, releasableStories, succeeded, versionInUse } from './version'
+import {
+  deploy,
+  failed,
+  planVersion,
+  releasableStories,
+  succeeded,
+  versionCarrying,
+  versionInUse,
+} from './version'
 import type { Version } from './version'
 import type { Story, StoryState } from './story'
 
@@ -59,5 +67,16 @@ describe('following a deployment', () => {
 
   it('names none when nothing has reached real people', () => {
     expect(versionInUse([version('1.0', 'planned')])).toBeUndefined()
+  })
+})
+
+describe('which version carried a story', () => {
+  it('names it', () => {
+    const versions = [version('1.0', 'live', ['S1']), version('1.1', 'planned', ['S2'])]
+    expect(versionCarrying(versions, 'S2')?.name).toBe('1.1')
+  })
+
+  it('names none for a story that has never gone out', () => {
+    expect(versionCarrying([version('1.0', 'live', ['S1'])], 'S9')).toBeUndefined()
   })
 })

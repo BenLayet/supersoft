@@ -40,4 +40,6 @@ A version is **planned**, then **deploying**, then **in real use** — or it **f
 
 **Rule.** A project always knows which version real people are using. A version nobody can name is a version nobody can fix.
 
+**Rule.** A story that has gone out names the version that carried it. Asking when something reached real people is asking about a story, not about a log.
+
 **Rule.** Once a version is in real use, a change still starts as a change to the [domain](domain.md). The order is the same on day one and in year five.

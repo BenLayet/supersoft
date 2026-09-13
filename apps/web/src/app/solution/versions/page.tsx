@@ -1,8 +1,10 @@
+import Link from 'next/link'
 import { releasableStories, versionInUse } from '@supersoft/domain'
 import type { Version } from '@supersoft/domain'
 import { inMemoryProjectStore } from '@/prototype/in-memory-project-store'
 import { cutVersion, deploymentFailed, deploymentSucceeded, startDeployment } from '../../actions'
 import { Button, Card, Empty, Input, Page, Pill, Section } from '../../ui'
+import { storyHref } from '../features/story-line'
 
 const tones: Record<Version['deployment'], 'plain' | 'accent' | 'warn'> = {
   planned: 'plain',
@@ -40,9 +42,9 @@ export default async function VersionsPage() {
         )}
         {releasable.map((story) => (
           <Card key={story.id}>
-            <p className="text-sm">
+            <Link href={storyHref(story)} className="text-sm hover:text-accent">
               As a <strong>{story.role}</strong>, I want to {story.intention}.
-            </p>
+            </Link>
           </Card>
         ))}
         {releasable.length > 0 && (
@@ -62,9 +64,20 @@ export default async function VersionsPage() {
               <div>
                 <p className="text-sm font-medium">{version.name}</p>
                 <ul className="mt-1 space-y-0.5 text-sm text-muted">
-                  {version.storyIds.map((id) => (
-                    <li key={id}>{storyById.get(id)?.intention ?? id}</li>
-                  ))}
+                  {version.storyIds.map((id) => {
+                    const story = storyById.get(id)
+                    return (
+                      <li key={id}>
+                        {story ? (
+                          <Link href={storyHref(story)} className="hover:text-accent">
+                            {story.intention}
+                          </Link>
+                        ) : (
+                          id
+                        )}
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
               <Pill tone={tones[version.deployment]}>{labels[version.deployment]}</Pill>

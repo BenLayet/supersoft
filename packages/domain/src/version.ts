@@ -39,3 +39,9 @@ export const failed = (version: Version): Version => ({ ...version, deployment: 
 /** A project always knows which version real people are using. */
 export const versionInUse = (versions: readonly Version[]): Version | undefined =>
   [...versions].reverse().find((version) => version.deployment === 'live')
+
+/** A story that has gone out names the version that carried it. */
+export const versionCarrying = (
+  versions: readonly Version[],
+  storyId: string,
+): Version | undefined => versions.find((version) => version.storyIds.includes(storyId))

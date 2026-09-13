@@ -48,3 +48,4 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Version | `Version` | gathers done stories |
 | Planned / deploying / in real use / failed | `planned` / `deploying` / `live` / `failed` | |
 | The version real people use | `versionInUse` | |
+| The version that carried a story | `versionCarrying` | |

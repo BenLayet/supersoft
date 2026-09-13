@@ -3,7 +3,7 @@ import { countByState, nextStory, stateOf, storiesOf } from '@supersoft/domain'
 import { inMemoryProjectStore } from '@/prototype/in-memory-project-store'
 import { addFeature } from '../../actions'
 import { Button, Card, Input, Page, Pill, Section } from '../../ui'
-import { stateLabels } from './story-line'
+import { stateLabels, storyHref } from './story-line'
 
 export default async function FeaturesPage() {
   const { features, stories } = await inMemoryProjectStore.load()
@@ -16,9 +16,9 @@ export default async function FeaturesPage() {
         <Card>
           {next ? (
             <>
-              <p className="text-sm">
+              <Link href={storyHref(next)} className="block text-sm hover:text-accent">
                 As a <strong>{next.role}</strong>, I want to {next.intention}, so that {next.reason}.
-              </p>
+              </Link>
               {nextFeature && (
                 <Link
                   href={`/solution/features/${nextFeature.id}`}

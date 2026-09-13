@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { countByState, nextStory, openQuestions, versionInUse } from '@supersoft/domain'
 import { inMemoryProjectStore } from '@/prototype/in-memory-project-store'
 import { Card, Page, Pill, Section } from './ui'
+import { storyHref } from './solution/features/story-line'
 
 export default async function ProjectPage() {
   const project = await inMemoryProjectStore.load()
@@ -75,9 +76,9 @@ export default async function ProjectPage() {
       <Section title="What comes next">
         <Card>
           {next ? (
-            <p className="text-sm">
+            <Link href={storyHref(next)} className="text-sm hover:text-accent">
               As a <strong>{next.role}</strong>, I want to {next.intention}, so that {next.reason}.
-            </p>
+            </Link>
           ) : (
             <p className="text-sm italic text-muted">
               Nothing is waiting. Every story is under way or done.
