@@ -1,63 +1,52 @@
+import Link from 'next/link'
+import { rulesOf, termsOf } from '@supersoft/domain'
 import { inMemoryProjectStore } from '@/prototype/in-memory-project-store'
-import { agreeRule, defineTerm, restateRule, writeRule } from '../../actions'
+import { addSubdomain } from '../../actions'
 import { Button, Card, Empty, Input, Page, Pill, Section } from '../../ui'
 
 export default async function FormalisationPage() {
   const { domain } = await inMemoryProjectStore.load()
-  const agreed = domain.rules.filter((rule) => rule.state === 'agreed').length
 
   return (
     <Page title="The formal side">
-      <Section title={`Lexicon — ${domain.terms.length}`}>
-        {domain.terms.length === 0 && <Empty>No concept has been named yet.</Empty>}
-        {domain.terms.map((term) => (
-          <Card key={term.name}>
-            <p className="text-sm font-medium">{term.name}</p>
-            <p className="mt-1 text-sm text-muted">{term.definition}</p>
-          </Card>
-        ))}
+      <Section title={`Subdomains — ${domain.subdomains.length}`}>
+        {domain.subdomains.length === 0 && <Empty>The business has not been cut up yet.</Empty>}
+        {domain.subdomains.map((subdomain) => {
+          const terms = termsOf(subdomain, domain.terms)
+          const rules = rulesOf(subdomain, domain.rules)
+          const agreed = rules.filter((rule) => rule.state === 'agreed').length
+          return (
+            <Card key={subdomain.id}>
+              <div className="flex items-start justify-between gap-3">
+                <Link
+                  href={`/domain/formalisation/${subdomain.id}`}
+                  className="text-sm font-medium hover:text-accent"
+                >
+                  {subdomain.name}
+                </Link>
+                <Pill tone={rules.length > 0 && agreed === rules.length ? 'accent' : 'plain'}>
+                  {agreed} of {rules.length} agreed
+                </Pill>
+              </div>
+              <p className="mt-2 text-sm text-muted">{subdomain.description}</p>
+              <p className="mt-2 text-sm text-muted">
+                {terms.length} terms, {rules.length} rules.
+              </p>
+            </Card>
+          )
+        })}
         <Card>
-          <form action={defineTerm} className="flex flex-col gap-2">
-            <Input name="name" placeholder="One concept, one name" />
-            <Input name="definition" placeholder="In the customer's own words" />
+          <form action={addSubdomain} className="flex flex-col gap-2">
+            <Input name="name" placeholder="One part of the business, named as its people name it" />
+            <Input name="description" placeholder="What it is, in business terms only" />
             <div>
-              <Button quiet>Define</Button>
+              <Button quiet>Add a subdomain</Button>
             </div>
-          </form>
-        </Card>
-      </Section>
-
-      <Section title={`Description — ${agreed} of ${domain.rules.length} agreed`}>
-        {domain.rules.map((rule) => (
-          <Card key={rule.id}>
-            <div className="flex items-start justify-between gap-3">
-              <p className="text-sm">{rule.statement}</p>
-              <Pill tone={rule.state === 'agreed' ? 'accent' : 'warn'}>{rule.state}</Pill>
-            </div>
-            <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center">
-              {rule.state === 'proposed' && (
-                <form action={agreeRule}>
-                  <input type="hidden" name="id" value={rule.id} />
-                  <Button>Agree</Button>
-                </form>
-              )}
-              <form action={restateRule} className="flex flex-1 flex-col gap-2 sm:flex-row">
-                <input type="hidden" name="id" value={rule.id} />
-                <Input name="statement" placeholder="Rewrite it" defaultValue={rule.statement} />
-                <Button quiet>Rewrite</Button>
-              </form>
-            </div>
-          </Card>
-        ))}
-        <Card>
-          <form action={writeRule} className="flex flex-col gap-2 sm:flex-row">
-            <Input name="statement" placeholder="One sentence the customer can confirm or deny" />
-            <Button quiet>Write it down</Button>
           </form>
         </Card>
         <p className="text-xs text-muted">
-          Rewriting an agreed rule makes it proposed again: agreement is given to a sentence, not to
-          a subject.
+          A subdomain is described in business terms only. What the application does about it is the
+          solution, and it is written elsewhere.
         </p>
       </Section>
     </Page>

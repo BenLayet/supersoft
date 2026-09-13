@@ -44,8 +44,8 @@ export default async function ProjectPage() {
               Formal
             </Link>
             <p className="mt-1 text-sm text-muted">
-              {domain.terms.length} terms in the lexicon, {agreed.length} of {domain.rules.length}{' '}
-              rules agreed.
+              {domain.subdomains.length} subdomains, {domain.terms.length} terms,{' '}
+              {agreed.length} of {domain.rules.length} rules agreed.
             </p>
           </Card>
         </div>

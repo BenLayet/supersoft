@@ -86,21 +86,36 @@ export async function answer(formData: FormData) {
 
 /* The formal side: the lexicon and the description. */
 
+export async function addSubdomain(formData: FormData) {
+  const name = text(formData, 'name')
+  const description = text(formData, 'description')
+  await change((project) =>
+    withDomain(project, {
+      subdomains: [
+        ...project.domain.subdomains,
+        { id: nextId('D', project.domain.subdomains), name, description },
+      ],
+    }),
+  )
+}
+
 export async function defineTerm(formData: FormData) {
+  const subdomainId = text(formData, 'subdomainId')
   const name = text(formData, 'name')
   const definition = text(formData, 'definition')
   await change((project) =>
-    withDomain(project, { terms: [...project.domain.terms, { name, definition }] }),
+    withDomain(project, { terms: [...project.domain.terms, { name, definition, subdomainId }] }),
   )
 }
 
 export async function writeRule(formData: FormData) {
+  const subdomainId = text(formData, 'subdomainId')
   const statement = text(formData, 'statement')
   await change((project) =>
     withDomain(project, {
       rules: [
         ...project.domain.rules,
-        { id: nextId('R', project.domain.rules), statement, state: 'proposed' },
+        { id: nextId('R', project.domain.rules), statement, state: 'proposed', subdomainId },
       ],
     }),
   )

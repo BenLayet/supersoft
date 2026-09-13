@@ -19,7 +19,7 @@ Read `README.md` for the full picture. The essentials:
 
 pnpm monorepo, vitest for the domain:
 
-- `packages/domain` (zero runtime dependencies) — `project` (participants: customer and maker), `domain` (sources and questions on the informal side, terms and rules on the formal one), `feature` (stories gathered, state derived), `story` (priority, tracking, what comes next), `version` (gathering done stories, following a deployment), and `ports/project-store` (`ProjectStore`, the only port so far).
+- `packages/domain` (zero runtime dependencies) — `project` (participants: customer and maker), `domain` (sources and questions on the informal side; subdomains, each owning its terms and rules, on the formal one), `feature` (stories gathered, state derived), `story` (priority, tracking, what comes next), `version` (gathering done stories, following a deployment), and `ports/project-store` (`ProjectStore`, the only port so far).
 - `apps/web` — the prototype: Next.js, React and Tailwind, three sections (project, domain, solution) over one fictional project held in memory by `inMemoryProjectStore`, the mock adapter of that port. Server actions read the project, apply a domain function, write it back. No outside service, nothing persisted.
 
 Not started: reading a specification from a project's own files, the generator, and the portal. The layout in `README.md` is the current state, not a target.

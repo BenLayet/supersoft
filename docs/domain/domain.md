@@ -14,7 +14,13 @@ A **question** is something the project knows it does not know. It is written do
 
 ## The formal side
 
-Two things, both written by the maker and owned by the customer.
+A business is rarely one thing. Each part of it that has its own words is a **subdomain**: named as the people inside it would name it, described in a few sentences they would recognise, and owning its own lexicon and its own rules.
+
+**Rule.** A subdomain is described in business terms only. What the application does about it is the [solution](solution.md), and it is written elsewhere. A description that cannot be read by someone who will never see the application has stopped describing the business.
+
+**Rule.** Every term and every rule belongs to exactly one subdomain — the part of the business that owns the word, even when the rest of the business uses it.
+
+Each subdomain holds two things, both written by the maker and owned by the customer.
 
 The **lexicon**: every concept of the business, with one name and one definition, in the customer's own words. The same name is then used everywhere — in the description, in the stories, on the screens and in the code.
 

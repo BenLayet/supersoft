@@ -48,59 +48,95 @@ export const fictionalProject: Project = {
       },
       { id: 'Q3', asked: 'What happens to a registration when an event is cancelled?' },
     ],
+    subdomains: [
+      {
+        id: 'D1',
+        name: 'The video library',
+        description:
+          'Teachers record practices and teachings. A recording is listened to by the teacher who made it before anyone else hears it, and the association keeps it for as long as it is worth hearing. What matters here is the voice: people come back to a teacher, not to a catalogue.',
+      },
+      {
+        id: 'D2',
+        name: 'Events',
+        description:
+          'The association gathers: evening sittings in the hall, days of practice, retreats. A gathering happens on a date, in one place, with one teacher, and it holds a certain number of people. Places are taken in the order they are asked for, and someone who cannot come says so — an empty cushion is a place somebody else wanted.',
+      },
+      {
+        id: 'D3',
+        name: 'Membership',
+        description:
+          'Belonging to the association is paid once a season, and a season is the year the association lives by, from September to August. Belonging is what opens the recordings and the gatherings. When a membership ends, belonging ends with it, and what the person attended remains true.',
+      },
+    ],
     terms: [
       {
         name: 'Member',
         definition: 'Someone who has paid the membership for the current season.',
+        subdomainId: 'D3',
       },
       {
         name: 'Membership',
         definition: 'What a member pays once a season to belong to the association.',
+        subdomainId: 'D3',
+      },
+      {
+        name: 'Season',
+        definition: 'The year the association lives by: September to August.',
+        subdomainId: 'D3',
       },
       {
         name: 'Teacher',
-        definition: 'A member who records practices and leads events.',
+        definition: 'A member who records practices and leads gatherings.',
+        subdomainId: 'D1',
       },
       {
         name: 'Video',
-        definition: 'A recorded practice or teaching, published in the library once reviewed.',
+        definition: 'A recorded practice or teaching, heard by its teacher before anyone else.',
+        subdomainId: 'D1',
       },
       {
         name: 'Event',
-        definition: 'A gathering on a date, in the hall or remote, with a limited number of places.',
+        definition: 'A gathering on a date, in the hall or remote, holding a certain number of people.',
+        subdomainId: 'D2',
       },
       {
         name: 'Registration',
-        definition: 'A member taking one of the places an event offers.',
+        definition: 'A member taking one of the places a gathering holds.',
+        subdomainId: 'D2',
       },
     ],
     rules: [
-      { id: 'R1', statement: 'Only a member can watch a video.', state: 'agreed' },
-      {
-        id: 'R2',
-        statement: 'A season runs from the first of September to the end of August.',
-        state: 'agreed',
-      },
+      { id: 'R1', statement: 'Only a member can watch a video.', state: 'agreed', subdomainId: 'D1' },
       {
         id: 'R3',
-        statement: 'A video is published only after the teacher who recorded it has reviewed it.',
+        statement: 'A video is shared only after the teacher who recorded it has heard it again.',
         state: 'proposed',
+        subdomainId: 'D1',
       },
       {
         id: 'R4',
-        statement: 'An event has a limited number of places, and registration stops when they are taken.',
+        statement: 'An event holds a certain number of people, and places stop being given when they are taken.',
         state: 'agreed',
+        subdomainId: 'D2',
       },
       {
         id: 'R5',
         statement: 'A member can give a place back up to twenty-four hours before the event.',
         state: 'proposed',
+        subdomainId: 'D2',
+      },
+      {
+        id: 'R2',
+        statement: 'A season runs from the first of September to the end of August.',
+        state: 'agreed',
+        subdomainId: 'D3',
       },
       {
         id: 'R6',
         statement:
-          'A member whose membership has lapsed keeps their past registrations but can no longer register.',
+          'A member whose membership has lapsed keeps what they attended but can no longer take a place.',
         state: 'proposed',
+        subdomainId: 'D3',
       },
     ],
   },

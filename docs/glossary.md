@@ -26,7 +26,11 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Note / audio / video | `note` / `audio` / `video` | what a source is made of |
 | Question | `Question` | something the project knows it does not know |
 | Open question | `openQuestions` | unanswered; always countable |
+| Subdomain | `Subdomain` | one part of the business, with its own words |
+| What a subdomain is | `Subdomain.description` | business only; never what the application does |
 | Lexicon | `Term` | one concept, one name, one definition |
+| Lexicon of a subdomain | `termsOf` | |
+| Description of a subdomain | `rulesOf` | |
 | Description | `Rule` | one sentence a customer can confirm or deny |
 | Proposed (state) | `proposed` | written, not yet confirmed |
 | Agreed (state) | `agreed` | confirmed by the customer |
