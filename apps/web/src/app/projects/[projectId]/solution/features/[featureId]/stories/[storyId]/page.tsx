@@ -1,18 +1,19 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { nextStory, versionCarrying } from '@supersoft/domain'
-import { inMemoryProjectStore } from '@/prototype/in-memory-project-store'
-import { finishStory, startStory } from '../../../../../actions'
-import { Button, Card, Page, Pill, Section } from '../../../../../ui'
-import { stateLabels } from '../../../story-line'
+import { open } from '@/session'
+import { finishStory, startStory } from '@/app/actions'
+import { stateLabels } from '@/app/story-line'
+import { Button, Card, Page, Pill, Section } from '@/app/ui'
 
 export default async function StoryPage({
   params,
 }: {
-  params: Promise<{ featureId: string; storyId: string }>
+  params: Promise<{ projectId: string; featureId: string; storyId: string }>
 }) {
-  const { featureId, storyId } = await params
-  const { features, stories, versions } = await inMemoryProjectStore.load()
+  const { projectId, featureId, storyId } = await params
+  const { project, writable } = await open(projectId)
+  const { features, stories, versions } = project
   const story = stories.find((one) => one.id === storyId)
   const feature = features.find((one) => one.id === featureId)
   if (!story || !feature || story.featureId !== feature.id) notFound()
@@ -23,7 +24,10 @@ export default async function StoryPage({
   return (
     <Page
       title={story.intention}
-      back={{ href: `/solution/features/${feature.id}`, label: feature.name }}
+      back={{
+        href: `/projects/${project.id}/solution/features/${feature.id}`,
+        label: feature.name,
+      }}
     >
       <Section title="The story">
         <Card>
@@ -54,11 +58,9 @@ export default async function StoryPage({
             <Pill tone={story.priority === 'essential' ? 'accent' : 'plain'}>{story.priority}</Pill>
             {story.id === next?.id && <Pill tone="accent">next</Pill>}
           </div>
-          {story.state !== 'done' && (
-            <form
-              action={story.state === 'to_do' ? startStory : finishStory}
-              className="mt-3"
-            >
+          {writable && story.state !== 'done' && (
+            <form action={story.state === 'to_do' ? startStory : finishStory} className="mt-3">
+              <input type="hidden" name="projectId" value={project.id} />
               <input type="hidden" name="id" value={story.id} />
               <Button>{story.state === 'to_do' ? 'Start it' : 'It is done'}</Button>
             </form>
@@ -74,15 +76,19 @@ export default async function StoryPage({
           {carried ? (
             <p className="text-sm">
               Carried by{' '}
-              <Link href="/solution/versions" className="hover:text-accent">
+              <Link
+                href={`/projects/${project.id}/solution/versions`}
+                className="hover:text-accent"
+              >
                 version {carried.name}
               </Link>
-              , {carried.deployment === 'live' ? 'which real people are using.' : `which is ${carried.deployment}.`}
+              ,{' '}
+              {carried.deployment === 'live'
+                ? 'which real people are using.'
+                : `which is ${carried.deployment}.`}
             </p>
           ) : (
-            <p className="text-sm italic text-muted">
-              No version carries it yet.
-            </p>
+            <p className="text-sm italic text-muted">No version carries it yet.</p>
           )}
         </Card>
       </Section>

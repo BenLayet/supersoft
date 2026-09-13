@@ -1,10 +1,15 @@
+import type { Account, AvailableProject } from '../arrival'
 import type { Project } from '../project'
 
 /**
- * Where a project is kept. The domain never knows whether that is memory,
- * files or anything else — one port, and a mock adapter for it.
+ * Where the projects are. The domain never knows whether that is memory, files
+ * or anything else — one port, and a mock adapter for it.
+ *
+ * Supersoft never creates a project here: it opens what already exists.
  */
 export interface ProjectStore {
-  load(): Promise<Project>
+  /** What this person can reach. Without an account, what is open to everyone. */
+  available(account?: Account): Promise<readonly AvailableProject[]>
+  load(projectId: string): Promise<Project | undefined>
   save(project: Project): Promise<void>
 }

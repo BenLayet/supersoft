@@ -3,21 +3,23 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-/** The one client component: it only needs to know which section is being read. */
+/** The one client component: it only needs to know which part is being read. */
 export function NavLink({
   href,
   activeOn,
+  exact = false,
   variant = 'top',
   children,
 }: {
   href: string
   activeOn?: string
+  exact?: boolean
   variant?: 'top' | 'sub'
   children: React.ReactNode
 }) {
   const pathname = usePathname()
   const match = activeOn ?? href
-  const active = match === '/' ? pathname === '/' : pathname.startsWith(match)
+  const active = exact ? pathname === match : pathname.startsWith(match)
 
   const styles =
     variant === 'top'

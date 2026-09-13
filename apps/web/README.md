@@ -1,12 +1,19 @@
 # @supersoft/web
 
-Supersoft's own prototype: the three parts of a project — the project, the domain (informal and
-formal) and the solution (features and versions) — on one fictional project, an association of
-meditators publishing recorded practices and gathering for events.
+Supersoft's own prototype: arriving at a project, then its three parts — the project, the domain
+(informal and formal) and the solution (features and versions).
 
-It runs with **no outside service**: the project is held in memory by `inMemoryProjectStore`, the
-mock adapter of the `ProjectStore` port, seeded with fictional data. Every decision it takes comes
-from [`@supersoft/domain`](../../packages/domain/README.md); this app only shows and collects.
+Two projects are on offer. **Supersoft** is open to everyone: it can be read without signing in,
+and it is Supersoft described in its own terms. **Medito** is an invented association of meditators
+publishing recorded practices and gathering for events, open only to the people it recognises. A
+third, `bakery-site`, is there to be refused: it is not written in the form Supersoft reads, and it
+says so instead of hiding.
+
+It runs with **no outside service**: the projects are held in memory by `inMemoryProjectStore`, and
+who is here is remembered by the visitor's own browser through `cookieArrivals` — the mock adapters
+of the two ports. Signing in invents one account. Every decision it takes comes from
+[`@supersoft/domain`](../../packages/domain/README.md); this app only shows and collects, and the
+rule that changing anything means being recognised is enforced in the actions, not in the buttons.
 
 ```bash
 pnpm dev        # http://localhost:3000

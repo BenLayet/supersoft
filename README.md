@@ -14,7 +14,7 @@ A project has three parts, and [the domain documents](docs/domain/README.md) say
 
 | | |
 | --- | --- |
-| **[The project](docs/domain/project.md)** | who takes part: the customer, whose words the domain is written in, and the maker |
+| **[The project](docs/domain/project.md)** | who takes part, and how someone arrives at a project Supersoft did not create |
 | **[The domain](docs/domain/domain.md)** | the business itself — informal (what was said, recorded, filmed, asked) and formal (the lexicon and the description, the project's main source of truth) |
 | **[The solution](docs/domain/solution.md)** | what the application does about it — features broken into stories, gathered into versions, followed into real use |
 
@@ -42,7 +42,7 @@ This is the method Supersoft applies to its users' projects, applied to Supersof
 ```
 supersoft/
 ├── apps/
-│   └── web/            # @supersoft/web — the prototype: Next.js, one fictional project in memory
+│   └── web/            # @supersoft/web — the prototype: Next.js, fictional projects in memory
 ├── packages/
 │   └── domain/         # @supersoft/domain — pure TS, zero runtime dependencies
 └── docs/
@@ -61,7 +61,7 @@ pnpm dev         # the prototype, on http://localhost:3000
 
 ## Status
 
-Early, and deliberately small. The domain holds participants, sources, questions, terms, rules, features, stories and versions as pure functions. The prototype shows all of it on one fictional project — an association of meditators publishing recorded practices and gathering for events — with nothing stored anywhere.
+Early, and deliberately small. The domain holds arrivals, participants, sources, questions, subdomains, terms, rules, features, stories and versions as pure functions. The prototype shows all of it on two fictional projects — Supersoft itself, open to everyone, and an association of meditators open only to the people it recognises — with nothing stored anywhere.
 
 The generator, the portal, and reading a specification from a project's own files do not exist yet. The first of those to be built will be the one the prototype makes impossible to avoid.
 

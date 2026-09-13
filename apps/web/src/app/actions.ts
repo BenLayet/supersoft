@@ -7,6 +7,7 @@ import {
   deploy,
   failed,
   finish,
+  mayChange,
   planVersion,
   releasableStories,
   restate,
@@ -14,7 +15,8 @@ import {
   succeeded,
 } from '@supersoft/domain'
 import type { Domain, Priority, Project, Source, Story, Version } from '@supersoft/domain'
-import { inMemoryProjectStore as store } from '@/prototype/in-memory-project-store'
+import { cookieArrivals } from '@/prototype/cookie-arrivals'
+import { findProject, inMemoryProjectStore as store } from '@/prototype/in-memory-project-store'
 
 const text = (formData: FormData, field: string): string => {
   const value = formData.get(field)
@@ -27,9 +29,24 @@ const nextId = (prefix: string, taken: readonly { id: string }[]): string => {
   return `${prefix}${Math.max(0, ...numbers) + 1}`
 }
 
-/** Every action is the same shape: read the project, apply the domain, write it back. */
-const change = async (apply: (project: Project) => Project): Promise<void> => {
-  await store.save(apply(await store.load()))
+/**
+ * Every action is the same shape: say who you are, be recognised by the
+ * project, then read it, apply the domain, and write it back.
+ */
+const change = async (
+  formData: FormData,
+  apply: (project: Project) => Project,
+): Promise<void> => {
+  const projectId = text(formData, 'projectId')
+  const account = await cookieArrivals.whoIsHere()
+  const found = await findProject(projectId, account)
+  if (!found || !mayChange(found, account))
+    throw new Error('Changing anything means saying who you are, and being recognised.')
+
+  const project = await store.load(projectId)
+  if (!project) throw new Error(`No such project: ${projectId}`)
+
+  await store.save(apply(project))
   revalidatePath('/', 'layout')
 }
 
@@ -50,7 +67,7 @@ export async function keepSource(formData: FormData) {
   const kind = text(formData, 'kind') as Source['kind']
   const title = text(formData, 'title')
   const from = text(formData, 'from')
-  await change((project) =>
+  await change(formData, (project) =>
     withDomain(project, {
       sources: [
         ...project.domain.sources,
@@ -62,12 +79,9 @@ export async function keepSource(formData: FormData) {
 
 export async function askQuestion(formData: FormData) {
   const asked = text(formData, 'asked')
-  await change((project) =>
+  await change(formData, (project) =>
     withDomain(project, {
-      questions: [
-        ...project.domain.questions,
-        { id: nextId('Q', project.domain.questions), asked },
-      ],
+      questions: [...project.domain.questions, { id: nextId('Q', project.domain.questions), asked }],
     }),
   )
 }
@@ -75,7 +89,7 @@ export async function askQuestion(formData: FormData) {
 export async function answer(formData: FormData) {
   const id = text(formData, 'id')
   const said = text(formData, 'answer')
-  await change((project) =>
+  await change(formData, (project) =>
     withDomain(project, {
       questions: mapById(project.domain.questions, id, (question) =>
         answerQuestion(question, said),
@@ -84,12 +98,12 @@ export async function answer(formData: FormData) {
   )
 }
 
-/* The formal side: the lexicon and the description. */
+/* The formal side: the subdomains, their lexicon and their description. */
 
 export async function addSubdomain(formData: FormData) {
   const name = text(formData, 'name')
   const description = text(formData, 'description')
-  await change((project) =>
+  await change(formData, (project) =>
     withDomain(project, {
       subdomains: [
         ...project.domain.subdomains,
@@ -103,7 +117,7 @@ export async function defineTerm(formData: FormData) {
   const subdomainId = text(formData, 'subdomainId')
   const name = text(formData, 'name')
   const definition = text(formData, 'definition')
-  await change((project) =>
+  await change(formData, (project) =>
     withDomain(project, { terms: [...project.domain.terms, { name, definition, subdomainId }] }),
   )
 }
@@ -111,7 +125,7 @@ export async function defineTerm(formData: FormData) {
 export async function writeRule(formData: FormData) {
   const subdomainId = text(formData, 'subdomainId')
   const statement = text(formData, 'statement')
-  await change((project) =>
+  await change(formData, (project) =>
     withDomain(project, {
       rules: [
         ...project.domain.rules,
@@ -123,13 +137,15 @@ export async function writeRule(formData: FormData) {
 
 export async function agreeRule(formData: FormData) {
   const id = text(formData, 'id')
-  await change((project) => withDomain(project, { rules: mapById(project.domain.rules, id, agree) }))
+  await change(formData, (project) =>
+    withDomain(project, { rules: mapById(project.domain.rules, id, agree) }),
+  )
 }
 
 export async function restateRule(formData: FormData) {
   const id = text(formData, 'id')
   const statement = text(formData, 'statement')
-  await change((project) =>
+  await change(formData, (project) =>
     withDomain(project, {
       rules: mapById(project.domain.rules, id, (rule) => restate(rule, statement)),
     }),
@@ -141,7 +157,7 @@ export async function restateRule(formData: FormData) {
 export async function addFeature(formData: FormData) {
   const name = text(formData, 'name')
   const purpose = text(formData, 'purpose')
-  await change((project) => ({
+  await change(formData, (project) => ({
     ...project,
     features: [...project.features, { id: nextId('F', project.features), name, purpose }],
   }))
@@ -156,7 +172,7 @@ export async function addStory(formData: FormData) {
     priority: text(formData, 'priority') as Priority,
     state: 'to_do',
   }
-  await change((project) => ({
+  await change(formData, (project) => ({
     ...project,
     stories: [...project.stories, { id: nextId('S', project.stories), ...story }],
   }))
@@ -164,17 +180,20 @@ export async function addStory(formData: FormData) {
 
 export async function startStory(formData: FormData) {
   const id = text(formData, 'id')
-  await change((project) => ({ ...project, stories: mapById(project.stories, id, start) }))
+  await change(formData, (project) => ({ ...project, stories: mapById(project.stories, id, start) }))
 }
 
 export async function finishStory(formData: FormData) {
   const id = text(formData, 'id')
-  await change((project) => ({ ...project, stories: mapById(project.stories, id, finish) }))
+  await change(formData, (project) => ({
+    ...project,
+    stories: mapById(project.stories, id, finish),
+  }))
 }
 
 export async function cutVersion(formData: FormData) {
   const name = text(formData, 'name')
-  await change((project) => ({
+  await change(formData, (project) => ({
     ...project,
     versions: [
       ...project.versions,
@@ -185,15 +204,24 @@ export async function cutVersion(formData: FormData) {
 
 export async function startDeployment(formData: FormData) {
   const name = text(formData, 'name')
-  await change((project) => ({ ...project, versions: mapByName(project.versions, name, deploy) }))
+  await change(formData, (project) => ({
+    ...project,
+    versions: mapByName(project.versions, name, deploy),
+  }))
 }
 
 export async function deploymentSucceeded(formData: FormData) {
   const name = text(formData, 'name')
-  await change((project) => ({ ...project, versions: mapByName(project.versions, name, succeeded) }))
+  await change(formData, (project) => ({
+    ...project,
+    versions: mapByName(project.versions, name, succeeded),
+  }))
 }
 
 export async function deploymentFailed(formData: FormData) {
   const name = text(formData, 'name')
-  await change((project) => ({ ...project, versions: mapByName(project.versions, name, failed) }))
+  await change(formData, (project) => ({
+    ...project,
+    versions: mapByName(project.versions, name, failed),
+  }))
 }

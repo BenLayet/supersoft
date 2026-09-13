@@ -16,6 +16,14 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Participant | `Participant` | anyone taking part |
 | Customer | `customer` | commissions and owns the project; their words are the domain's |
 | Maker | `maker` | builds and maintains |
+| Someone arriving | `Account` | who they are where their projects live |
+| Project on offer | `AvailableProject` | what Supersoft found, readable or not |
+| Open to everyone | `openToEveryone` | read without saying who you are |
+| Written in the form | `inTheForm` | Supersoft can read it |
+| Recognised by the project | `guardians` | who may change it |
+| May open it | `mayOpen` | |
+| May change it | `mayChange` | |
+| Where someone left off | `lastOpened` | a convenience, never authority |
 
 ## The domain — [domain.md](domain/domain.md)
 

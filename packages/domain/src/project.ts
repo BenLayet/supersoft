@@ -13,6 +13,8 @@ export interface Participant {
 
 /** One application, built for one customer. */
 export interface Project {
+  /** How the project is named where it lives. */
+  readonly id: string
   readonly name: string
   readonly participants: readonly Participant[]
   readonly domain: Domain

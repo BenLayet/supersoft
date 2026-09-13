@@ -1,12 +1,12 @@
 import type { Project } from '@supersoft/domain'
 
 /**
- * The project Supersoft shows when it has nothing real to show: an invented
- * association of meditators, publishing recorded practices and gathering for
- * events. Invented people, invented videos — plausible enough to provoke real
- * remarks, and no outside service anywhere.
+ * An invented association of meditators, publishing recorded practices and
+ * gathering for events. Invented people, invented videos — plausible enough to
+ * provoke real remarks, and no outside service anywhere.
  */
-export const fictionalProject: Project = {
+export const medito: Project = {
+  id: 'medito',
   name: 'Medito',
   participants: [
     { name: 'Amara Diallo', role: 'customer' },

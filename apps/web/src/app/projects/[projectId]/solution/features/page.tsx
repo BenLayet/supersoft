@@ -1,12 +1,14 @@
 import Link from 'next/link'
 import { countByState, nextStory, stateOf, storiesOf } from '@supersoft/domain'
-import { inMemoryProjectStore } from '@/prototype/in-memory-project-store'
-import { addFeature } from '../../actions'
-import { Button, Card, Input, Page, Pill, Section } from '../../ui'
-import { stateLabels, storyHref } from './story-line'
+import { open } from '@/session'
+import { addFeature } from '@/app/actions'
+import { stateLabels, storyHref } from '@/app/story-line'
+import { Button, Card, Input, Page, Pill, Section } from '@/app/ui'
 
-export default async function FeaturesPage() {
-  const { features, stories } = await inMemoryProjectStore.load()
+export default async function FeaturesPage({ params }: { params: Promise<{ projectId: string }> }) {
+  const { projectId } = await params
+  const { project, writable } = await open(projectId)
+  const { features, stories } = project
   const next = nextStory(stories)
   const nextFeature = features.find((feature) => feature.id === next?.featureId)
 
@@ -16,12 +18,12 @@ export default async function FeaturesPage() {
         <Card>
           {next ? (
             <>
-              <Link href={storyHref(next)} className="block text-sm hover:text-accent">
+              <Link href={storyHref(project.id, next)} className="block text-sm hover:text-accent">
                 As a <strong>{next.role}</strong>, I want to {next.intention}, so that {next.reason}.
               </Link>
               {nextFeature && (
                 <Link
-                  href={`/solution/features/${nextFeature.id}`}
+                  href={`/projects/${project.id}/solution/features/${nextFeature.id}`}
                   className="mt-2 inline-block text-sm text-muted hover:text-accent"
                 >
                   in {nextFeature.name} →
@@ -45,7 +47,7 @@ export default async function FeaturesPage() {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <Link
-                    href={`/solution/features/${feature.id}`}
+                    href={`/projects/${project.id}/solution/features/${feature.id}`}
                     className="text-sm font-medium hover:text-accent"
                   >
                     {feature.name}
@@ -64,15 +66,18 @@ export default async function FeaturesPage() {
             </Card>
           )
         })}
-        <Card>
-          <form action={addFeature} className="flex flex-col gap-2">
-            <Input name="name" placeholder="One thing the application offers" />
-            <Input name="purpose" placeholder="What it is for, in one line" />
-            <div>
-              <Button quiet>Add a feature</Button>
-            </div>
-          </form>
-        </Card>
+        {writable && (
+          <Card>
+            <form action={addFeature} className="flex flex-col gap-2">
+              <input type="hidden" name="projectId" value={project.id} />
+              <Input name="name" placeholder="One thing the application offers" />
+              <Input name="purpose" placeholder="What it is for, in one line" />
+              <div>
+                <Button quiet>Add a feature</Button>
+              </div>
+            </form>
+          </Card>
+        )}
       </Section>
     </Page>
   )

@@ -1,87 +1,102 @@
 import Link from 'next/link'
-import { countByState, nextStory, openQuestions, versionInUse } from '@supersoft/domain'
+import { mayOpen } from '@supersoft/domain'
+import type { Account, AvailableProject } from '@supersoft/domain'
+import { cookieArrivals } from '@/prototype/cookie-arrivals'
 import { inMemoryProjectStore } from '@/prototype/in-memory-project-store'
-import { Card, Page, Pill, Section } from './ui'
-import { storyHref } from './solution/features/story-line'
+import { arrive, openByName } from './arrival-actions'
+import { Button, Card, Empty, Input, Page, Pill, Section } from './ui'
 
-export default async function ProjectPage() {
-  const project = await inMemoryProjectStore.load()
-  const { domain, features, stories, versions } = project
-  const open = openQuestions(domain.questions)
-  const agreed = domain.rules.filter((rule) => rule.state === 'agreed')
-  const counts = countByState(stories)
-  const next = nextStory(stories)
-  const live = versionInUse(versions)
-
+function ProjectRow({ project, account }: { project: AvailableProject; account?: Account }) {
+  const open = mayOpen(project, account)
   return (
-    <Page title={project.name}>
-      <Section title="Who takes part">
-        <Card>
-          <ul className="space-y-1 text-sm">
-            {project.participants.map((participant) => (
-              <li key={participant.name} className="flex items-center gap-2">
-                <span>{participant.name}</span>
-                <Pill>{participant.role}</Pill>
-              </li>
-            ))}
-          </ul>
-        </Card>
-      </Section>
-
-      <Section title="The domain">
-        <div className="grid gap-3 sm:grid-cols-2">
-          <Card>
-            <Link href="/domain/discovery" className="text-sm font-medium hover:text-accent">
-              Informal
-            </Link>
-            <p className="mt-1 text-sm text-muted">
-              {domain.sources.length} sources kept, {open.length} question
-              {open.length === 1 ? '' : 's'} still open.
-            </p>
-          </Card>
-          <Card>
-            <Link href="/domain/formalisation" className="text-sm font-medium hover:text-accent">
-              Formal
-            </Link>
-            <p className="mt-1 text-sm text-muted">
-              {domain.subdomains.length} subdomains, {domain.terms.length} terms,{' '}
-              {agreed.length} of {domain.rules.length} rules agreed.
-            </p>
-          </Card>
-        </div>
-      </Section>
-
-      <Section title="The solution">
-        <div className="grid gap-3 sm:grid-cols-2">
-          <Card>
-            <Link href="/solution/features" className="text-sm font-medium hover:text-accent">
-              Features
-            </Link>
-            <p className="mt-1 text-sm text-muted">
-              {features.length} features, {counts.done} stories done, {counts.in_progress} in
-              progress, {counts.to_do} to do.
-            </p>
-          </Card>
-          <Card>
-            <Link href="/solution/versions" className="text-sm font-medium hover:text-accent">
-              Versions
-            </Link>
-            <p className="mt-1 text-sm text-muted">
-              {live ? `Real people are using ${live.name}.` : 'Nothing has reached real people yet.'}
-            </p>
-          </Card>
-        </div>
-      </Section>
-
-      <Section title="What comes next">
-        <Card>
-          {next ? (
-            <Link href={storyHref(next)} className="text-sm hover:text-accent">
-              As a <strong>{next.role}</strong>, I want to {next.intention}, so that {next.reason}.
+    <Card>
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          {open ? (
+            <Link
+              href={`/projects/${project.id}`}
+              className="text-sm font-medium hover:text-accent"
+            >
+              {project.name}
             </Link>
           ) : (
-            <p className="text-sm italic text-muted">
-              Nothing is waiting. Every story is under way or done.
+            <p className="text-sm font-medium text-muted">{project.name}</p>
+          )}
+          <p className="mt-1 text-sm text-muted">
+            {project.inTheForm
+              ? project.openToEveryone
+                ? 'Open to everyone — read without saying who you are.'
+                : 'Only the people it recognises.'
+              : 'Not written in the form Supersoft reads.'}
+          </p>
+        </div>
+        <Pill tone={project.inTheForm ? 'accent' : 'warn'}>
+          {project.inTheForm ? 'readable' : 'unreadable'}
+        </Pill>
+      </div>
+    </Card>
+  )
+}
+
+export default async function ArrivalPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ unknown?: string }>
+}) {
+  const { unknown } = await searchParams
+  const account = await cookieArrivals.whoIsHere()
+  const last = await cookieArrivals.lastOpened()
+  const projects = await inMemoryProjectStore.available(account)
+  const lastProject = projects.find((project) => project.id === last)
+
+  return (
+    <Page title={account ? 'Your projects' : 'Arrive'}>
+      {!account && (
+        <Section title="Say who you are">
+          <Card>
+            <p className="text-sm text-muted">
+              Supersoft never creates a project. It opens one that already exists where you keep it,
+              and it can only act where you could already act without it.
+            </p>
+            <form action={arrive} className="mt-3">
+              <Button>Sign in where my projects live</Button>
+            </form>
+          </Card>
+        </Section>
+      )}
+
+      {account && lastProject && mayOpen(lastProject, account) && (
+        <Section title="Where you left off">
+          <Card>
+            <Link
+              href={`/projects/${lastProject.id}`}
+              className="text-sm font-medium hover:text-accent"
+            >
+              {lastProject.name} →
+            </Link>
+            <p className="mt-1 text-sm text-muted">
+              Remembered as a convenience. Forget it and no project loses anything.
+            </p>
+          </Card>
+        </Section>
+      )}
+
+      <Section title={account ? `Found for you — ${projects.length}` : 'Open to everyone'}>
+        {projects.length === 0 && <Empty>Nothing found.</Empty>}
+        {projects.map((project) => (
+          <ProjectRow key={project.id} project={project} account={account} />
+        ))}
+      </Section>
+
+      <Section title="Or name one that is open to everyone">
+        <Card>
+          <form action={openByName} className="flex flex-col gap-2 sm:flex-row">
+            <Input name="name" placeholder="supersoft" />
+            <Button quiet>Open it</Button>
+          </form>
+          {unknown && (
+            <p className="mt-2 text-sm text-warn">
+              Nothing open to everyone is called “{unknown}”.
             </p>
           )}
         </Card>
