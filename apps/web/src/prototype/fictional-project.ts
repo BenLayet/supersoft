@@ -7,7 +7,7 @@ import type { Project } from '@supersoft/domain'
  * remarks, and no outside service anywhere.
  */
 export const fictionalProject: Project = {
-  name: 'Quiet Hours',
+  name: 'Medito',
   participants: [
     { name: 'Amara Diallo', role: 'customer' },
     { name: 'Jules Perrin', role: 'maker' },

@@ -7,10 +7,7 @@ export default async function FormalisationPage() {
   const agreed = domain.rules.filter((rule) => rule.state === 'agreed').length
 
   return (
-    <Page
-      title="The formal side"
-      lead="The lexicon and the description of the business, written from what was said. This is the project's main source of truth."
-    >
+    <Page title="The formal side">
       <Section title={`Lexicon — ${domain.terms.length}`}>
         {domain.terms.length === 0 && <Empty>No concept has been named yet.</Empty>}
         {domain.terms.map((term) => (

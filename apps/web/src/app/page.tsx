@@ -13,10 +13,7 @@ export default async function ProjectPage() {
   const live = versionInUse(versions)
 
   return (
-    <Page
-      title={project.name}
-      lead="One application, for one customer. Everything below is written in the words of the people who commissioned it."
-    >
+    <Page title={project.name}>
       <Section title="Who takes part">
         <Card>
           <ul className="space-y-1 text-sm">

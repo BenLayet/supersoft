@@ -12,10 +12,7 @@ export default async function DiscoveryPage() {
   const answered = domain.questions.filter((question) => !isOpen(question))
 
   return (
-    <Page
-      title="The informal side"
-      lead="What the business said, as it came out: conversations, recordings, films, notes — and everything the project knows it does not know."
-    >
+    <Page title="The informal side">
       <Section title={`Sources — ${domain.sources.length}`}>
         {domain.sources.length === 0 && <Empty>Nothing has been kept yet.</Empty>}
         {domain.sources.map((source) => (

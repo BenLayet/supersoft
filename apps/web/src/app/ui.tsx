@@ -1,18 +1,24 @@
+import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 export function Page({
   title,
-  lead,
+  back,
   children,
 }: {
   title: string
-  lead: string
+  /** Where this page came from, when it is not a section of its own. */
+  back?: { href: string; label: string }
   children: ReactNode
 }) {
   return (
     <div className="mx-auto max-w-3xl px-6 py-10">
-      <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
-      <p className="mt-2 max-w-2xl text-sm text-muted">{lead}</p>
+      {back && (
+        <Link href={back.href} className="text-sm text-muted hover:text-ink">
+          ← {back.label}
+        </Link>
+      )}
+      <h1 className={`text-2xl font-semibold tracking-tight ${back ? 'mt-2' : ''}`}>{title}</h1>
       <div className="mt-8 space-y-8">{children}</div>
     </div>
   )

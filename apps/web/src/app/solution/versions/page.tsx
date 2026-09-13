@@ -25,10 +25,7 @@ export default async function VersionsPage() {
   const storyById = new Map(stories.map((story) => [story.id, story]))
 
   return (
-    <Page
-      title="Versions"
-      lead="Finished stories, gathered so they can be put in front of real people together — and followed all the way there."
-    >
+    <Page title="Versions">
       <Section title="In real use">
         <Card>
           <p className="text-sm">
