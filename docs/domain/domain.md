@@ -4,7 +4,7 @@ The **domain** is the business the application serves, described in the words of
 
 ## The informal side
 
-Everything the business said, as it came out: a conversation, a recording, a visit filmed on a phone, a page of notes. Each of these is a **source**. A source is never rewritten and never tidied — it is the evidence the formal description answers to.
+Everything the business said, as it came out: a conversation, a recording, a visit filmed on a phone, a page of notes. Each of these is a **source**. A source is never rewritten and never tidied — it is the evidence the formal description answers to. It says where it is kept, so that anyone reading the project can go back to it as it was given.
 
 A **question** is something the project knows it does not know. It is written down as soon as it appears and stays visible until it is answered.
 

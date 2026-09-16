@@ -26,6 +26,13 @@ export const supersoft: Project = {
         title: 'An application built with this method before any tooling existed',
         from: 'Ben Layet',
       },
+      {
+        id: 'M3',
+        kind: 'video',
+        title: 'Why a non-profit’s software is hard to use, and hard to change',
+        from: 'Ben Layet',
+        location: '/discovery/20260916%20general%20presentation/presentation.mp4',
+      },
     ],
     questions: [
       {

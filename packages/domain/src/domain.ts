@@ -5,6 +5,8 @@ export interface Source {
   readonly title: string
   /** Who it came from, in their own words where possible. */
   readonly from: string
+  /** Where it is kept, to go back to it as it was given. */
+  readonly location?: string
 }
 
 /** Something the project knows it does not know. */

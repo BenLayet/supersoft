@@ -32,6 +32,7 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Domain | `Domain` | the business the application serves |
 | Source | `Source` | informal material, kept as it was given |
 | Note / audio / video | `note` / `audio` / `video` | what a source is made of |
+| Where a source is kept | `Source.location` | to go back to it as it was given |
 | Question | `Question` | something the project knows it does not know |
 | Open question | `openQuestions` | unanswered; always countable |
 | Subdomain | `Subdomain` | one part of the business, with its own words |

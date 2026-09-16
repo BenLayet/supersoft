@@ -27,12 +27,24 @@ export default async function DiscoveryPage({
               <div>
                 <p className="text-sm">
                   <span className="mr-2 text-muted">{marks[source.kind]}</span>
-                  {source.title}
+                  {source.location && source.kind === 'note' ? (
+                    <a href={source.location} className="hover:text-accent">
+                      {source.title}
+                    </a>
+                  ) : (
+                    source.title
+                  )}
                 </p>
                 <p className="mt-1 text-sm text-muted">from {source.from}</p>
               </div>
               <Pill>{source.kind}</Pill>
             </div>
+            {source.location && source.kind === 'video' && (
+              <video controls preload="metadata" src={source.location} className="mt-3 w-full rounded" />
+            )}
+            {source.location && source.kind === 'audio' && (
+              <audio controls preload="metadata" src={source.location} className="mt-3 w-full" />
+            )}
           </Card>
         ))}
         {writable && (
