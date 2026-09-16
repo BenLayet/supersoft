@@ -1,4 +1,5 @@
 import { SubNav } from '@/app/subnav'
+import { dictionary } from '@/i18n'
 
 export default async function SolutionLayout({
   children,
@@ -9,13 +10,14 @@ export default async function SolutionLayout({
 }) {
   const { projectId } = await params
   const at = `/projects/${projectId}/solution`
+  const t = await dictionary()
 
   return (
     <>
       <SubNav
         links={[
-          { href: `${at}/features`, label: 'Features' },
-          { href: `${at}/versions`, label: 'Versions' },
+          { href: `${at}/features`, label: t.project.features },
+          { href: `${at}/versions`, label: t.project.versions },
         ]}
       />
       {children}

@@ -1,51 +1,51 @@
 import Link from 'next/link'
 import { countByState, nextStory, stateOf, storiesOf } from '@supersoft/domain'
 import { open } from '@/session'
+import { dictionary } from '@/i18n'
 import { addFeature } from '@/app/actions'
-import { stateLabels, storyHref } from '@/app/story-line'
+import { StorySentence, storyHref } from '@/app/story-line'
 import { Button, Card, Input, Page, Pill, Section } from '@/app/ui'
 
 export default async function FeaturesPage({ params }: { params: Promise<{ projectId: string }> }) {
   const { projectId } = await params
   const { project, writable } = await open(projectId)
+  const t = await dictionary()
   const { features, stories } = project
   const next = nextStory(stories)
   const nextFeature = features.find((feature) => feature.id === next?.featureId)
 
   return (
-    <Page title="Features">
-      <Section title="What comes next">
+    <Page title={t.features.title}>
+      <Section title={t.project.whatComesNext}>
         <Card>
           {next ? (
             <>
               <Link href={storyHref(project.id, next)} className="block text-sm hover:text-accent">
-                As a <strong>{next.role}</strong>, I want to {next.intention}, so that {next.reason}.
+                <StorySentence story={next} language={project.language} />
               </Link>
               {nextFeature && (
                 <Link
                   href={`/projects/${project.id}/solution/features/${nextFeature.id}`}
                   className="mt-2 inline-block text-sm text-muted hover:text-accent"
                 >
-                  in {nextFeature.name} →
+                  {t.features.inFeature(nextFeature.name)}
                 </Link>
               )}
             </>
           ) : (
-            <p className="text-sm italic text-muted">
-              Nothing is waiting. Every story is under way or done.
-            </p>
+            <p className="text-sm italic text-muted">{t.project.nothingWaiting}</p>
           )}
         </Card>
       </Section>
 
-      <Section title={`Features — ${features.length}`}>
+      <Section title={t.features.list(features.length)}>
         {features.map((feature) => {
           const own = storiesOf(feature, stories)
           const counts = countByState(own)
           return (
             <Card key={feature.id}>
               <div className="flex items-start justify-between gap-3">
-                <div>
+                <div lang={project.language}>
                   <Link
                     href={`/projects/${project.id}/solution/features/${feature.id}`}
                     className="text-sm font-medium hover:text-accent"
@@ -53,16 +53,16 @@ export default async function FeaturesPage({ params }: { params: Promise<{ proje
                     {feature.name}
                   </Link>
                   <p className="mt-1 text-sm text-muted">{feature.purpose}</p>
-                  <p className="mt-2 text-sm text-muted">
-                    {own.length === 0
-                      ? 'No story yet — it describes nothing.'
-                      : `${own.length} stories — ${counts.done} done, ${counts.in_progress} in progress, ${counts.to_do} to do.`}
-                  </p>
                 </div>
                 <Pill tone={stateOf(feature, stories) === 'done' ? 'accent' : 'plain'}>
-                  {stateLabels[stateOf(feature, stories)]}
+                  {t.storyStates[stateOf(feature, stories)]}
                 </Pill>
               </div>
+              <p className="mt-2 text-sm text-muted">
+                {own.length === 0
+                  ? t.features.noStory
+                  : t.features.storyCounts(own.length, counts.done, counts.in_progress, counts.to_do)}
+              </p>
             </Card>
           )
         })}
@@ -70,10 +70,10 @@ export default async function FeaturesPage({ params }: { params: Promise<{ proje
           <Card>
             <form action={addFeature} className="flex flex-col gap-2">
               <input type="hidden" name="projectId" value={project.id} />
-              <Input name="name" placeholder="One thing the application offers" />
-              <Input name="purpose" placeholder="What it is for, in one line" />
+              <Input name="name" placeholder={t.features.featureName} />
+              <Input name="purpose" placeholder={t.features.featurePurpose} />
               <div>
-                <Button quiet>Add a feature</Button>
+                <Button quiet>{t.features.addFeature}</Button>
               </div>
             </form>
           </Card>

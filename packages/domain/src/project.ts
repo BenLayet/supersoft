@@ -16,6 +16,8 @@ export interface Project {
   /** How the project is named where it lives. */
   readonly id: string
   readonly name: string
+  /** The language it is written in: its customer's. Supersoft never translates it. */
+  readonly language: string
   readonly participants: readonly Participant[]
   readonly domain: Domain
   readonly features: readonly Feature[]

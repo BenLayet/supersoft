@@ -11,6 +11,12 @@ A project belongs to its customer, from the first day and whatever happens to th
 
 One person may hold both, and the roles say what someone knows rather than what they are allowed to touch.
 
+## Language
+
+**Rule.** A project is written in one language: its customer's. Its domain and its solution are kept in that language, and Supersoft never translates them.
+
+**Rule.** Supersoft speaks to each person in the language they choose, and says which language a project is written in, so the one is never mistaken for the other.
+
 ## Arriving at a project
 
 A project is never created by Supersoft. It already exists, where its customer keeps it, and it goes on existing if Supersoft stops. Supersoft **opens** it, and offers the ones the person arriving can reach.

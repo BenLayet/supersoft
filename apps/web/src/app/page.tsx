@@ -1,12 +1,27 @@
 import Link from 'next/link'
 import { mayOpen } from '@supersoft/domain'
 import type { Account, AvailableProject } from '@supersoft/domain'
+import { currentLocale, dictionaryOf, languageName } from '@/i18n'
+import type { Dictionary, Locale } from '@/i18n'
 import { cookieArrivals } from '@/prototype/cookie-arrivals'
 import { inMemoryProjectStore } from '@/prototype/in-memory-project-store'
 import { arrive, openByName } from './arrival-actions'
 import { Button, Card, Empty, Input, Page, Pill, Section } from './ui'
 
-function ProjectRow({ project, account }: { project: AvailableProject; account?: Account }) {
+function ProjectRow({
+  project,
+  account,
+  language,
+  locale,
+  t,
+}: {
+  project: AvailableProject
+  account?: Account
+  /** Known only once the project has been read. */
+  language?: string
+  locale: Locale
+  t: Dictionary
+}) {
   const open = mayOpen(project, account)
   return (
     <Card>
@@ -25,14 +40,17 @@ function ProjectRow({ project, account }: { project: AvailableProject; account?:
           <p className="mt-1 text-sm text-muted">
             {project.inTheForm
               ? project.openToEveryone
-                ? 'Open to everyone — read without saying who you are.'
-                : 'Only the people it recognises.'
-              : 'Not written in the form Supersoft reads.'}
+                ? t.arrival.readWithoutSaying
+                : t.arrival.onlyRecognised
+              : t.arrival.notInTheForm}
           </p>
         </div>
-        <Pill tone={project.inTheForm ? 'accent' : 'warn'}>
-          {project.inTheForm ? 'readable' : 'unreadable'}
-        </Pill>
+        <div className="flex shrink-0 gap-1">
+          {language && <Pill>{t.writtenIn(languageName(language, locale))}</Pill>}
+          <Pill tone={project.inTheForm ? 'accent' : 'warn'}>
+            {project.inTheForm ? t.arrival.readable : t.arrival.unreadable}
+          </Pill>
+        </div>
       </div>
     </Card>
   )
@@ -44,29 +62,35 @@ export default async function ArrivalPage({
   searchParams: Promise<{ unknown?: string }>
 }) {
   const { unknown } = await searchParams
+  const locale = await currentLocale()
+  const t = dictionaryOf(locale)
   const account = await cookieArrivals.whoIsHere()
   const last = await cookieArrivals.lastOpened()
   const projects = await inMemoryProjectStore.available(account)
   const lastProject = projects.find((project) => project.id === last)
+  const languages = new Map(
+    await Promise.all(
+      projects
+        .filter((project) => mayOpen(project, account))
+        .map(async (project) => [project.id, (await inMemoryProjectStore.load(project.id))?.language] as const),
+    ),
+  )
 
   return (
-    <Page title={account ? 'Your projects' : 'Arrive'}>
+    <Page title={account ? t.arrival.yourProjects : t.arrival.arrive}>
       {!account && (
-        <Section title="Say who you are">
+        <Section title={t.arrival.sayWhoYouAre}>
           <Card>
-            <p className="text-sm text-muted">
-              Supersoft never creates a project. It opens one that already exists where you keep it,
-              and it can only act where you could already act without it.
-            </p>
+            <p className="text-sm text-muted">{t.arrival.neverCreates}</p>
             <form action={arrive} className="mt-3">
-              <Button>Sign in where my projects live</Button>
+              <Button>{t.arrival.signIn}</Button>
             </form>
           </Card>
         </Section>
       )}
 
       {account && lastProject && mayOpen(lastProject, account) && (
-        <Section title="Where you left off">
+        <Section title={t.arrival.whereYouLeftOff}>
           <Card>
             <Link
               href={`/projects/${lastProject.id}`}
@@ -74,31 +98,34 @@ export default async function ArrivalPage({
             >
               {lastProject.name} →
             </Link>
-            <p className="mt-1 text-sm text-muted">
-              Remembered as a convenience. Forget it and no project loses anything.
-            </p>
+            <p className="mt-1 text-sm text-muted">{t.arrival.remembered}</p>
           </Card>
         </Section>
       )}
 
-      <Section title={account ? `Found for you — ${projects.length}` : 'Open to everyone'}>
-        {projects.length === 0 && <Empty>Nothing found.</Empty>}
+      <Section
+        title={account ? t.arrival.foundForYou(projects.length) : t.arrival.openToEveryone}
+      >
+        {projects.length === 0 && <Empty>{t.arrival.nothingFound}</Empty>}
         {projects.map((project) => (
-          <ProjectRow key={project.id} project={project} account={account} />
+          <ProjectRow
+            key={project.id}
+            project={project}
+            account={account}
+            language={languages.get(project.id)}
+            locale={locale}
+            t={t}
+          />
         ))}
       </Section>
 
-      <Section title="Or name one that is open to everyone">
+      <Section title={t.arrival.nameOne}>
         <Card>
           <form action={openByName} className="flex flex-col gap-2 sm:flex-row">
             <Input name="name" placeholder="supersoft" />
-            <Button quiet>Open it</Button>
+            <Button quiet>{t.arrival.openIt}</Button>
           </form>
-          {unknown && (
-            <p className="mt-2 text-sm text-warn">
-              Nothing open to everyone is called “{unknown}”.
-            </p>
-          )}
+          {unknown && <p className="mt-2 text-sm text-warn">{t.arrival.unknown(unknown)}</p>}
         </Card>
       </Section>
     </Page>

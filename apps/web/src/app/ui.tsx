@@ -101,7 +101,8 @@ export function Select({
   defaultValue,
 }: {
   name: string
-  options: readonly string[]
+  /** What is sent, and what is read — the value never changes with the language. */
+  options: Readonly<Record<string, string>>
   defaultValue?: string
 }) {
   return (
@@ -110,9 +111,9 @@ export function Select({
       defaultValue={defaultValue}
       className="rounded-md border border-rule bg-card px-3 py-1.5 text-sm"
     >
-      {options.map((option) => (
-        <option key={option} value={option}>
-          {option}
+      {Object.entries(options).map(([value, label]) => (
+        <option key={value} value={value}>
+          {label}
         </option>
       ))}
     </select>

@@ -1,6 +1,7 @@
 import { isOpen } from '@supersoft/domain'
 import type { Source } from '@supersoft/domain'
 import { open } from '@/session'
+import { dictionary } from '@/i18n'
 import { answer, askQuestion, keepSource } from '@/app/actions'
 import { Button, Card, Empty, Input, Page, Pill, Section, Select } from '@/app/ui'
 
@@ -13,19 +14,20 @@ export default async function DiscoveryPage({
 }) {
   const { projectId } = await params
   const { project, writable } = await open(projectId)
+  const t = await dictionary()
   const { domain } = project
   const openQuestions = domain.questions.filter(isOpen)
   const answered = domain.questions.filter((question) => !isOpen(question))
 
   return (
-    <Page title="The informal side">
-      <Section title={`Sources — ${domain.sources.length}`}>
-        {domain.sources.length === 0 && <Empty>Nothing has been kept yet.</Empty>}
+    <Page title={t.informal.title}>
+      <Section title={t.informal.sources(domain.sources.length)}>
+        {domain.sources.length === 0 && <Empty>{t.informal.nothingKept}</Empty>}
         {domain.sources.map((source) => (
           <Card key={source.id}>
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="text-sm">
+                <p className="text-sm" lang={project.language}>
                   <span className="mr-2 text-muted">{marks[source.kind]}</span>
                   {source.location && source.kind === 'note' ? (
                     <a href={source.location} className="hover:text-accent">
@@ -35,9 +37,9 @@ export default async function DiscoveryPage({
                     source.title
                   )}
                 </p>
-                <p className="mt-1 text-sm text-muted">from {source.from}</p>
+                <p className="mt-1 text-sm text-muted">{t.informal.from(source.from)}</p>
               </div>
-              <Pill>{source.kind}</Pill>
+              <Pill>{t.sourceKinds[source.kind]}</Pill>
             </div>
             {source.location && source.kind === 'video' && (
               <video controls preload="metadata" src={source.location} className="mt-3 w-full rounded" />
@@ -51,34 +53,35 @@ export default async function DiscoveryPage({
           <Card>
             <form action={keepSource} className="flex flex-col gap-2">
               <input type="hidden" name="projectId" value={project.id} />
-              <Input name="title" placeholder="What it is — a recording, a film, a page of notes" />
-              <Input name="from" placeholder="Who it came from" />
+              <Input name="title" placeholder={t.informal.whatItIs} />
+              <Input name="from" placeholder={t.informal.whoFrom} />
               <div className="flex items-center gap-2">
-                <Select name="kind" options={['note', 'audio', 'video']} defaultValue="note" />
-                <Button quiet>Keep it</Button>
+                <Select name="kind" options={t.sourceKinds} defaultValue="note" />
+                <Button quiet>{t.informal.keepIt}</Button>
               </div>
             </form>
           </Card>
         )}
         <p className="text-xs text-muted">
-          A source is kept as it was given. What the maker understood from it belongs to the formal
-          side, where the customer can contradict it.
+          {t.informal.keptAsGiven}
         </p>
       </Section>
 
-      <Section title={`Open questions — ${openQuestions.length}`}>
+      <Section title={t.informal.openQuestions(openQuestions.length)}>
         {openQuestions.length === 0 && (
-          <Empty>Nothing open. Either the project is small, or nobody is asking.</Empty>
+          <Empty>{t.informal.nothingOpen}</Empty>
         )}
         {openQuestions.map((question) => (
           <Card key={question.id}>
-            <p className="text-sm">{question.asked}</p>
+            <p className="text-sm" lang={project.language}>
+              {question.asked}
+            </p>
             {writable && (
               <form action={answer} className="mt-3 flex flex-col gap-2 sm:flex-row">
                 <input type="hidden" name="projectId" value={project.id} />
                 <input type="hidden" name="id" value={question.id} />
-                <Input name="answer" placeholder="What was decided, and by whom" />
-                <Button quiet>Answer</Button>
+                <Input name="answer" placeholder={t.informal.whatWasDecided} />
+                <Button quiet>{t.informal.answer}</Button>
               </form>
             )}
           </Card>
@@ -87,19 +90,21 @@ export default async function DiscoveryPage({
           <Card>
             <form action={askQuestion} className="flex flex-col gap-2 sm:flex-row">
               <input type="hidden" name="projectId" value={project.id} />
-              <Input name="asked" placeholder="What does nobody know yet?" />
-              <Button>Ask</Button>
+              <Input name="asked" placeholder={t.informal.whatNobodyKnows} />
+              <Button>{t.informal.ask}</Button>
             </form>
           </Card>
         )}
       </Section>
 
-      <Section title="Answered">
-        {answered.length === 0 && <Empty>No question has been answered yet.</Empty>}
+      <Section title={t.informal.answered}>
+        {answered.length === 0 && <Empty>{t.informal.noneAnswered}</Empty>}
         {answered.map((question) => (
           <Card key={question.id}>
-            <p className="text-sm text-muted">{question.asked}</p>
-            <p className="mt-1 text-sm">{question.answer}</p>
+            <p className="text-sm text-muted" lang={project.language}>{question.asked}</p>
+            <p className="mt-1 text-sm" lang={project.language}>
+              {question.answer}
+            </p>
           </Card>
         ))}
       </Section>

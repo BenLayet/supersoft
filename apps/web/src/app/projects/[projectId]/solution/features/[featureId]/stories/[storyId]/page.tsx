@@ -2,8 +2,9 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { nextStory, versionCarrying } from '@supersoft/domain'
 import { open } from '@/session'
+import { dictionary } from '@/i18n'
 import { finishStory, startStory } from '@/app/actions'
-import { stateLabels } from '@/app/story-line'
+import { StorySentence } from '@/app/story-line'
 import { Button, Card, Page, Pill, Section } from '@/app/ui'
 
 export default async function StoryPage({
@@ -13,6 +14,7 @@ export default async function StoryPage({
 }) {
   const { projectId, featureId, storyId } = await params
   const { project, writable } = await open(projectId)
+  const t = await dictionary()
   const { features, stories, versions } = project
   const story = stories.find((one) => one.id === storyId)
   const feature = features.find((one) => one.id === featureId)
@@ -29,66 +31,66 @@ export default async function StoryPage({
         label: feature.name,
       }}
     >
-      <Section title="The story">
+      <Section title={t.story.theStory}>
         <Card>
           <p className="text-sm">
-            As a <strong>{story.role}</strong>, I want to {story.intention}, so that {story.reason}.
+            <StorySentence story={story} language={project.language} />
           </p>
           <dl className="mt-4 space-y-2 border-t border-rule pt-3 text-sm">
             <div className="flex gap-3">
-              <dt className="w-24 shrink-0 text-muted">Person</dt>
-              <dd>{story.role}</dd>
+              <dt className="w-24 shrink-0 text-muted">{t.story.person}</dt>
+              <dd lang={project.language}>{story.role}</dd>
             </div>
             <div className="flex gap-3">
-              <dt className="w-24 shrink-0 text-muted">Intention</dt>
-              <dd>{story.intention}</dd>
+              <dt className="w-24 shrink-0 text-muted">{t.story.intention}</dt>
+              <dd lang={project.language}>{story.intention}</dd>
             </div>
             <div className="flex gap-3">
-              <dt className="w-24 shrink-0 text-muted">Reason</dt>
-              <dd>{story.reason}</dd>
+              <dt className="w-24 shrink-0 text-muted">{t.story.reason}</dt>
+              <dd lang={project.language}>{story.reason}</dd>
             </div>
           </dl>
         </Card>
       </Section>
 
-      <Section title="Where it stands">
+      <Section title={t.story.whereItStands}>
         <Card>
           <div className="flex flex-wrap items-center gap-2">
-            <Pill tone={story.state === 'done' ? 'plain' : 'warn'}>{stateLabels[story.state]}</Pill>
-            <Pill tone={story.priority === 'essential' ? 'accent' : 'plain'}>{story.priority}</Pill>
-            {story.id === next?.id && <Pill tone="accent">next</Pill>}
+            <Pill tone={story.state === 'done' ? 'plain' : 'warn'}>{t.storyStates[story.state]}</Pill>
+            <Pill tone={story.priority === 'essential' ? 'accent' : 'plain'}>{t.priorities[story.priority]}</Pill>
+            {story.id === next?.id && <Pill tone="accent">{t.story.next}</Pill>}
           </div>
           {writable && story.state !== 'done' && (
             <form action={story.state === 'to_do' ? startStory : finishStory} className="mt-3">
               <input type="hidden" name="projectId" value={project.id} />
               <input type="hidden" name="id" value={story.id} />
-              <Button>{story.state === 'to_do' ? 'Start it' : 'It is done'}</Button>
+              <Button>{story.state === 'to_do' ? t.story.startIt : t.story.itIsDone}</Button>
             </form>
           )}
           <p className="mt-3 text-xs text-muted">
-            Done means the customer could see it working, not that the code exists.
+            {t.story.doneMeans}
           </p>
         </Card>
       </Section>
 
-      <Section title="Real people">
+      <Section title={t.story.realPeople}>
         <Card>
           {carried ? (
             <p className="text-sm">
-              Carried by{' '}
+              {t.story.carriedBy}{' '}
               <Link
                 href={`/projects/${project.id}/solution/versions`}
                 className="hover:text-accent"
               >
-                version {carried.name}
+                {t.story.version(carried.name)}
               </Link>
               ,{' '}
               {carried.deployment === 'live'
-                ? 'which real people are using.'
-                : `which is ${carried.deployment}.`}
+                ? t.story.whichIsInUse
+                : t.story.whichIs(t.deployments[carried.deployment])}
             </p>
           ) : (
-            <p className="text-sm italic text-muted">No version carries it yet.</p>
+            <p className="text-sm italic text-muted">{t.story.noVersion}</p>
           )}
         </Card>
       </Section>

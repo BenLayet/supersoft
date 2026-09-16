@@ -1,4 +1,5 @@
 import { open } from '@/session'
+import { currentLocale, dictionaryOf, languageName } from '@/i18n'
 import { NavLink } from './nav'
 import { Pill } from '@/app/ui'
 
@@ -11,6 +12,8 @@ export default async function ProjectLayout({
 }) {
   const { projectId } = await params
   const { project, writable } = await open(projectId)
+  const locale = await currentLocale()
+  const t = dictionaryOf(locale)
   const at = `/projects/${project.id}`
 
   return (
@@ -20,20 +23,19 @@ export default async function ProjectLayout({
           <span className="text-sm font-semibold tracking-tight">{project.name}</span>
           <nav className="flex gap-5">
             <NavLink href={at} exact>
-              Project
+              {t.project.project}
             </NavLink>
             <NavLink href={`${at}/domain/discovery`} activeOn={`${at}/domain`}>
-              Domain
+              {t.project.domain}
             </NavLink>
             <NavLink href={`${at}/solution/features`} activeOn={`${at}/solution`}>
-              Solution
+              {t.project.solution}
             </NavLink>
           </nav>
-          {!writable && (
-            <span className="ml-auto">
-              <Pill>reading only</Pill>
-            </span>
-          )}
+          <span className="ml-auto flex gap-1">
+            <Pill>{t.writtenIn(languageName(project.language, locale))}</Pill>
+            {!writable && <Pill>{t.project.readingOnly}</Pill>}
+          </span>
         </div>
       </div>
       {children}

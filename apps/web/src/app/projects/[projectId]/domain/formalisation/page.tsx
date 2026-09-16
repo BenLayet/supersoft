@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { rulesOf, termsOf } from '@supersoft/domain'
 import { open } from '@/session'
+import { dictionary } from '@/i18n'
 import { addSubdomain } from '@/app/actions'
 import { Button, Card, Empty, Input, Page, Pill, Section } from '@/app/ui'
 
@@ -11,12 +12,13 @@ export default async function FormalisationPage({
 }) {
   const { projectId } = await params
   const { project, writable } = await open(projectId)
+  const t = await dictionary()
   const { domain } = project
 
   return (
-    <Page title="The formal side">
-      <Section title={`Subdomains — ${domain.subdomains.length}`}>
-        {domain.subdomains.length === 0 && <Empty>The business has not been cut up yet.</Empty>}
+    <Page title={t.formal.title}>
+      <Section title={t.formal.subdomains(domain.subdomains.length)}>
+        {domain.subdomains.length === 0 && <Empty>{t.formal.notCut}</Empty>}
         {domain.subdomains.map((subdomain) => {
           const terms = termsOf(subdomain, domain.terms)
           const rules = rulesOf(subdomain, domain.rules)
@@ -27,16 +29,19 @@ export default async function FormalisationPage({
                 <Link
                   href={`/projects/${project.id}/domain/formalisation/${subdomain.id}`}
                   className="text-sm font-medium hover:text-accent"
+                  lang={project.language}
                 >
                   {subdomain.name}
                 </Link>
                 <Pill tone={rules.length > 0 && agreed === rules.length ? 'accent' : 'plain'}>
-                  {agreed} of {rules.length} agreed
+                  {t.formal.agreedOf(agreed, rules.length)}
                 </Pill>
               </div>
-              <p className="mt-2 text-sm text-muted">{subdomain.description}</p>
+              <p className="mt-2 text-sm text-muted" lang={project.language}>
+                {subdomain.description}
+              </p>
               <p className="mt-2 text-sm text-muted">
-                {terms.length} terms, {rules.length} rules.
+                {t.formal.counts(terms.length, rules.length)}
               </p>
             </Card>
           )
@@ -45,20 +50,16 @@ export default async function FormalisationPage({
           <Card>
             <form action={addSubdomain} className="flex flex-col gap-2">
               <input type="hidden" name="projectId" value={project.id} />
-              <Input
-                name="name"
-                placeholder="One part of the business, named as its people name it"
-              />
-              <Input name="description" placeholder="What it is, in business terms only" />
+              <Input name="name" placeholder={t.formal.subdomainName} />
+              <Input name="description" placeholder={t.formal.subdomainDescription} />
               <div>
-                <Button quiet>Add a subdomain</Button>
+                <Button quiet>{t.formal.addSubdomain}</Button>
               </div>
             </form>
           </Card>
         )}
         <p className="text-xs text-muted">
-          A subdomain is described in business terms only. What the application does about it is the
-          solution, and it is written elsewhere.
+          {t.formal.businessTermsOnly}
         </p>
       </Section>
     </Page>
