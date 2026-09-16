@@ -1,0 +1,31 @@
+The problem Supersoft is trying to solve is, for example, if I'm a member of a non-profit,
+and I use the non-profit's software, and I find it a little difficult to sign up,
+or difficult to join an event, or to find content.
+Everything can be done, but it's a little complicated, a little odd.
+It's not intuitive, it's not clear, it's not smooth.
+And as a leader, when I ask the developers to change things,
+communication is a little difficult, everything is very expensive,
+we change something, but it creates other problems elsewhere, etc.
+Nothing is very simple.
+To solve that, the solution is for the developers to talk and understand.
+And for them to understand perfectly the need, the business, the non-profit's domain.
+And for you, as a leader, to understand perfectly the developers' craft too,
+and what they need to understand well, and to make software that is easy to use,
+maintainable, easy to evolve, etc.
+And even, why not...
+Why not take part yourself in building the software.
+And thanks to that, you get something that is very smooth, very intuitive for users,
+and if users want to change something,
+it's very simple to propose changes to the software,
+it's smooth, really.
+That both using the software is smooth,
+and the way it evolves is smooth.
+The two go together.
+That's the idea.
+And so, Supersoft is a platform for exchange
+between developers and the leaders of a non-profit,
+the people who commission the software,
+exchanging to clarify the needs,
+plan the changes carefully,
+test, check that it really matches,
+get it validated by users, etc.
