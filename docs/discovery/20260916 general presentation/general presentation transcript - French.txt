@@ -1,0 +1,47 @@
+L'idée de Supersoft, c'est de partir d'un besoin métier
+et d'arriver petit à petit à une solution parfaitement adaptée à ce besoin.
+Et donc, à quelque chose de facile à utiliser, et facile à faire évoluer.
+Comment on fait ?
+On va commencer par bien comprendre le domaine de l'utilisateur
+et on va créer au départ un document de périmètre de l'application
+qui permet de définir le périmètre, mais quelque chose de très court et de très large
+et d'assez flou, qui n'évoluera pas beaucoup au cours de la vie du développement de l'application.
+Et ensuite, à partir d'une vision, on va définir les différentes fonctionnalités
+en comprenant très bien les différents domaines de l'utilisateur.
+Par exemple, pour une association, le domaine de l'adhésion,
+le domaine de la création des vidéos.
+Le domaine des événements et de l'inscription aux événements.
+Et à partir de là, on va, dans ces différents domaines,
+on va les décrire très précisément avec des mots extrêmement précis
+pour définir un langage qui sera utilisé dans le code
+et dans les descriptions de l'application pour bien comprendre de quoi on parle
+afin que les développeurs comprennent parfaitement
+quels sont les termes, qu'est-ce qui se passe,
+à quoi sert l'outil de façon très précise.
+À partir de là, on a un périmètre général,
+une description très précise de chaque besoin métier,
+un lexique extrêmement précis.
+On va avoir aussi des règles métier qui vont être non ambiguës,
+vraiment très précises,
+qui vont être rédigées dans ces termes métier.
+Et là, ça fait déjà du code qui est déjà...
+Enfin, des attributs.
+Donc, on a des règles métier qui sont déjà prévues.
+Des choses qui seront une première version du cœur de l'application, qui sont les règles métier, qui
+vont être sans avoir forcément d'interface, mais déjà du code très précis, testable, non
+ambigu, et on comprend très clairement à quoi ça sert quand on est développeur et qu'on regarde
+le code. Et ensuite, on va faire également des prototypes des interfaces, et ça, c'est vraiment
+une co-création avec le client et avec les utilisateurs. Donc on peut faire tester des
+prototypes, vérifier ce qui est fluide, ce qui fonctionne bien. Bien
+sûr, ces prototypes vont intégrer les règles métier, qui, elles, sont
+faciles à développer, à comprendre. Et ensuite, une fois qu'on a ces prototypes, on peut les
+affiner pour faire quelque chose de joli, faire des maquettes très réalistes, et ça, ça peut faire
+déjà une première version de l'application, mais pour l'instant complètement déconnectée de tout
+système externe, qui soit vraiment juste une application de démonstration. Et
+une fois que tout ça, c'est bien validé, il suffit de connecter cette interface à une base de
+données ou un système d'e-mail, etc., pour avoir un outil vraiment opérationnel en production. Une
+fois qu'on a une première version, on peut continuer en faisant pareil, en rajoutant des
+prototypes pour les nouvelles fonctionnalités, ou même des nouveaux domaines : on va définir le
+lexique, les règles, les prototypes, les maquettes, finaliser, et ensuite, à partir de là, on aura
+une nouvelle version, de nouvelles versions, etc. Et systématiquement, on pourra toujours vérifier
+les anciennes versions si besoin, et prévisualiser les versions futures.

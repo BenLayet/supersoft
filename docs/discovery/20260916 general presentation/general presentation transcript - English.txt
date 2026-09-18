@@ -1,0 +1,47 @@
+The idea of Supersoft is to start from a business need
+and to arrive, little by little, at a solution perfectly suited to that need.
+And so, at something easy to use, and easy to evolve.
+How do we do it?
+We start by really understanding the user's domain,
+and at the outset we create a scope document for the application
+that defines the scope — but something very short, very broad
+and fairly vague, which will not change much over the life of the application's development.
+And then, starting from a vision, we define the different features
+by understanding the user's different domains very well.
+For example, for a non-profit, the membership domain,
+the domain of creating videos.
+The domain of events, and of registering for events.
+And from there, in each of these domains,
+we describe them very precisely, with extremely precise words,
+to define a language that will be used in the code
+and in the descriptions of the application, so that we understand what we are talking about,
+so that the developers understand perfectly
+what the terms are, what happens,
+what the tool is for, very precisely.
+From there, we have a general scope,
+a very precise description of each business need,
+an extremely precise lexicon.
+We will also have business rules that are unambiguous,
+really very precise,
+written in those business terms.
+And that already makes code that is already...
+Well, attributes.
+So we have business rules that are already laid out.
+things that will be a first version of the core of the application, which are the business rules, which
+will not necessarily have an interface yet, but are already very precise code — testable, un-
+ambiguous — and it is very clear what it is for when you are a developer looking at
+the code. And then we also make prototypes of the interfaces, and that is really
+a co-creation with the customer and with the users, so we can have
+prototypes tested, check what feels smooth, what works well. Of
+course these prototypes integrate the business rules, which are
+easy to develop and to understand. And then, once we have these prototypes, we can
+refine them to make something beautiful, make very realistic mock-ups, and that can already be
+a first version of the application, but for now completely disconnected from any
+external system — really just a demonstration application. And
+once all of that is properly validated, all it takes is connecting this interface to a
+database or an email system, etc., to have a tool that is really operational in production. Once
+we have a first version, we can carry on the same way, adding
+prototypes for new features or even new domains: we define, in turn,
+the lexicon, the rules, the prototypes, the mock-ups, finalise them, and from there we will have
+a new version, new versions, etc. And systematically we will always be able to check
+old versions if needed, and preview future versions.
