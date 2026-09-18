@@ -30,9 +30,21 @@ A story is **to do**, then **in progress**, then **done**. It is done when the c
 
 **Rule.** What comes next is the most important story still to do. A project always knows what it is doing next, and it is one thing.
 
+## Prototypes
+
+A **prototype** is the application as the customer and the people who will use it can try it, before it is real. Making it is a shared work: they try it, say what is smooth and what is not, and it changes while that is still cheap.
+
+**Rule.** A prototype applies the rules of the [domain](domain.md); it never holds one of its own. Trying it refines the rules, and the rules refine it: a rule found while trying a prototype is written in the description before the prototype uses it.
+
+Once it is right, a prototype is refined into realistic **mock-ups**. That is already a first version of the application: a **demonstration**, connected to nothing outside it.
+
+**Rule.** A demonstration depends on nothing outside itself. It can be shown at any moment, by anyone, with no consequence.
+
 ## Versions
 
 A **version** gathers stories that are finished, so that they can be put in front of real people together.
+
+**Rule.** Only a validated demonstration is connected to the outside world — where information is kept, how messages are sent — to become a version real people use.
 
 **Rule.** A version contains only done stories. Work in progress waits for the next one.
 
@@ -42,4 +54,4 @@ A version is **planned**, then **deploying**, then **in real use** — or it **f
 
 **Rule.** A story that has gone out names the version that carried it. Asking when something reached real people is asking about a story, not about a log.
 
-**Rule.** Once a version is in real use, a change still starts as a change to the [domain](domain.md). The order is the same on day one and in year five.
+**Rule.** Once a version is in real use, a change still starts as a change to the [domain](domain.md). Every new feature, and every new part of the business, goes through the same steps — lexicon, rules, prototype, mock-ups, then a version. The order is the same on day one and in year five.

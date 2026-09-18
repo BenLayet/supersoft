@@ -6,6 +6,8 @@ The expensive failure in this work is not writing code. It is building the wrong
 
 > **The domain is the source of truth, it is written in the customer's own words, and the application is a consequence of it.**
 
+A project gets there step by step — scope, lexicon and rules, prototypes tried with the people who will use them, then versions connected to the real world — as [the domain documents](docs/domain/README.md#how-a-project-grows) describe and [the general presentation](docs/discovery/20260916%20general%20presentation/general%20presentation%20-%20key%20points.md) tells.
+
 Its longer purpose is to lower the cost of good software for organisations that cannot afford it: charities, associations, and people meeting real needs with no budget.
 
 ## What it covers

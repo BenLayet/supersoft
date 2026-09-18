@@ -30,4 +30,6 @@ The **description**: what is true of the business, written as sentences a custom
 
 **Rule.** A rule says what the business requires, never what the application is made of.
 
+**Rule.** The rules are the core of the application. Each one can be checked on its own — before any screen exists, and without anything outside the application — and the rest of the application only uses them.
+
 **Rule.** A rule is **proposed** when it is written, and **agreed** once the customer has confirmed it. Rewriting an agreed rule makes it proposed again: agreement is given to a sentence, not to a subject.

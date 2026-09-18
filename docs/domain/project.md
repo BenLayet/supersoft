@@ -4,6 +4,12 @@ A **project** is one application built for one customer. It gathers the [domain]
 
 A project belongs to its customer, from the first day and whatever happens to the maker afterwards.
 
+## Scope
+
+A project starts with its **scope**: a few sentences saying what the application is for and what it is not. It is short, broad and deliberately vague, and it hardly changes over the life of the application. The precision lives in the [domain](domain.md), not here.
+
+**Rule.** The features of a project are drawn from its scope and from the parts of its business. A feature the scope cannot account for is either a change of scope, said out loud, or not wanted.
+
 ## Participants
 
 - The **customer** — commissions the application and owns it. They know how the business works, their words are the ones the domain is written in, and they decide what is wanted.
