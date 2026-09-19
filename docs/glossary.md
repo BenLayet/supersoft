@@ -13,7 +13,7 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Business term | Name in the code | Note |
 | --- | --- | --- |
 | Project | `Project` | one application, for one customer |
-| Scope | — | short, broad, deliberately vague; not in the code yet |
+| Scope | `Project.scope` | short, broad, deliberately vague |
 | Participant | `Participant` | anyone taking part |
 | Customer | `customer` | commissions and owns the project; their words are the domain's |
 | Maker | `maker` | builds and maintains |
@@ -53,7 +53,10 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 
 | Business term | Name in the code | Note |
 | --- | --- | --- |
-| Prototype | — | the application as it can be tried before it is real; not in the code yet |
+| Prototype | `Prototype` | the application as it can be tried before it is real |
+| Where a prototype is tried | `Prototype.location` | |
+| Being tried / validated | `being_tried` / `validated` | |
+| Validating a prototype | `validate` | by the customer |
 | Mock-up / demonstration | — | a refined prototype, connected to nothing; not in the code yet |
 | Feature | `Feature` | one thing the application offers |
 | Stories of a feature | `storiesOf` | a feature with none describes nothing |

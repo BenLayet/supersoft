@@ -28,7 +28,7 @@ export default async function VersionsPage({ params }: { params: Promise<{ proje
       <Section title={t.versions.inRealUse}>
         <Card>
           <p className="text-sm">
-            {live ? t.project.inUse(live.name) : t.project.nothingInUse}
+            {live ? t.overview.inUse(live.name) : t.overview.nothingInUse}
           </p>
         </Card>
       </Section>
@@ -51,6 +51,7 @@ export default async function VersionsPage({ params }: { params: Promise<{ proje
             </form>
           </Card>
         )}
+        <p className="text-xs text-muted">{t.versions.onlyValidated}</p>
       </Section>
 
       <Section title={t.versions.all}>

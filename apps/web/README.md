@@ -1,7 +1,8 @@
 # @supersoft/web
 
-Supersoft's own prototype: arriving at a project, then its three parts — the project, the domain
-(informal and formal) and the solution (features and versions).
+Supersoft's own prototype: arriving at a project, then following it through the steps it grows by —
+1 understand (scope, sources and questions, features), 2 describe (the parts of the business, each
+with its lexicon and rules), 3 prototype, 4 versions.
 
 Two projects are on offer. **Supersoft** is open to everyone: it can be read without signing in,
 and it is Supersoft described in its own terms. **Medito** is an invented association of meditators

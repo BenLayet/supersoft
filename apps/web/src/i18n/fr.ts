@@ -12,6 +12,7 @@ export const fr: Dictionary = {
   storyStates: { to_do: 'à faire', in_progress: 'en cours', done: 'terminé' },
   priorities: { essential: 'essentiel', expected: 'attendu', later: 'plus tard' },
   ruleStates: { proposed: 'proposée', agreed: 'approuvée' },
+  prototypeStates: { being_tried: 'en essai', validated: 'validé' },
   deployments: {
     planned: 'prévue',
     deploying: 'en déploiement',
@@ -48,35 +49,56 @@ export const fr: Dictionary = {
     unreadable: 'illisible',
   },
 
-  project: {
-    project: 'Projet',
-    domain: 'Domaine',
-    solution: 'Solution',
+  nav: {
+    overview: 'Vue d’ensemble',
+    understand: 'Comprendre',
+    describe: 'Décrire',
+    prototype: 'Prototyper',
+    versions: 'Versions',
+    scope: 'Périmètre',
+    sources: 'Sources et questions',
+    features: 'Fonctionnalités',
+  },
+
+  steps: {
+    understand: 'Comprendre le métier',
+    describe: 'Le décrire précisément',
+    prototype: 'Le prototyper avec ceux qui l’utiliseront',
+    versions: 'Le mettre entre les mains de vraies personnes',
+  },
+
+  overview: {
     readingOnly: 'lecture seule',
     whoTakesPart: 'Qui participe',
     keptBy: (owner: string) => `Gardé par ${owner}.`,
     openToEveryone: 'Ouvert à tous — se lit sans dire qui vous êtes.',
     openToRecognised: 'Ouvert aux personnes qu’il reconnaît.',
-    theDomain: 'Le domaine',
-    informal: 'Informel',
-    informalSummary: (sources: number, open: number) =>
+    sourcesSummary: (sources: number, open: number) =>
       `${sources} sources gardées, ${open} question${open > 1 ? 's' : ''} encore ouverte${open > 1 ? 's' : ''}.`,
-    formal: 'Formel',
-    formalSummary: (subdomains: number, terms: number, agreed: number, rules: number) =>
-      `${subdomains} sous-domaines, ${terms} termes, ${agreed} règles approuvées sur ${rules}.`,
-    theSolution: 'La solution',
-    features: 'Fonctionnalités',
     featuresSummary: (features: number, done: number, inProgress: number, toDo: number) =>
       `${features} fonctionnalités, ${done} récits terminés, ${inProgress} en cours, ${toDo} à faire.`,
-    versions: 'Versions',
+    partsOfTheBusiness: 'Les parties du métier',
+    describeSummary: (subdomains: number, terms: number, agreed: number, rules: number) =>
+      `${subdomains} parties, ${terms} termes, ${agreed} règles approuvées sur ${rules}.`,
+    prototypesSummary: (beingTried: number, validated: number) =>
+      `${beingTried} en essai, ${validated} validé${validated > 1 ? 's' : ''}.`,
     inUse: (name: string) => `De vraies personnes utilisent la version ${name}.`,
     nothingInUse: 'Rien n’a encore atteint de vraies personnes.',
     whatComesNext: 'Ce qui vient ensuite',
     nothingWaiting: 'Rien n’attend. Chaque récit est en cours ou terminé.',
   },
 
+  scope: {
+    title: 'Périmètre',
+    noScope: 'Pas encore de périmètre : personne n’a dit à quoi sert l’application.',
+    rewrite: 'Réécrire le périmètre',
+    placeholder: 'À quoi sert l’application, et à quoi elle ne sert pas',
+    shortOnPurpose:
+      'Court, large et volontairement flou : il ne change presque pas. La précision vit dans les parties du métier. Chaque fonctionnalité découle du périmètre — une fonctionnalité qu’il n’explique pas est un changement de périmètre, dit à voix haute.',
+  },
+
   informal: {
-    title: 'Le côté informel',
+    title: 'Sources et questions',
     sources: (count: number) => `Sources — ${count}`,
     nothingKept: 'Rien n’a encore été gardé.',
     from: (who: string) => `donnée par ${who}`,
@@ -84,7 +106,7 @@ export const fr: Dictionary = {
     whoFrom: 'De qui cela vient',
     keepIt: 'Le garder',
     keptAsGiven:
-      'Une source est gardée telle qu’elle a été donnée. Ce que le développeur en a compris appartient au côté formel, où le client peut le contredire.',
+      'Une source est gardée telle qu’elle a été donnée. Ce que le développeur en a compris s’écrit dans les parties du métier, où le client peut le contredire.',
     openQuestions: (count: number) => `Questions ouvertes — ${count}`,
     nothingOpen: 'Rien d’ouvert. Soit le projet est petit, soit personne ne pose de question.',
     whatWasDecided: 'Ce qui a été décidé, et par qui',
@@ -96,7 +118,7 @@ export const fr: Dictionary = {
   },
 
   formal: {
-    title: 'Le côté formel',
+    title: 'Les parties du métier',
     subdomains: (count: number) => `Sous-domaines — ${count}`,
     notCut: 'Le métier n’a pas encore été découpé.',
     agreedOf: (agreed: number, rules: number) => `${agreed} sur ${rules} approuvées`,
@@ -105,7 +127,7 @@ export const fr: Dictionary = {
     subdomainDescription: 'Ce qu’elle est, en termes métier uniquement',
     addSubdomain: 'Ajouter un sous-domaine',
     businessTermsOnly:
-      'Un sous-domaine se décrit en termes métier uniquement. Ce que l’application en fait, c’est la solution, et cela s’écrit ailleurs.',
+      'Un sous-domaine se décrit en termes métier uniquement. Ce que l’application en fait se raconte dans ses fonctionnalités, ailleurs.',
     whatThisPartIs: 'Ce qu’est cette partie du métier',
     lexicon: (count: number) => `Lexique — ${count}`,
     noTerm: 'Aucun concept n’a encore été nommé ici.',
@@ -164,8 +186,25 @@ export const fr: Dictionary = {
     noVersion: 'Aucune version ne le porte encore.',
   },
 
+  prototypes: {
+    title: 'Prototypes',
+    beingTried: (count: number) => `En essai — ${count}`,
+    validated: (count: number) => `Validés — ${count}`,
+    nothingToTry: 'Rien à essayer pour l’instant.',
+    noneValidated: 'Rien n’est encore validé.',
+    tryIt: 'L’essayer →',
+    validate: 'Valider',
+    name: 'Ce qu’il permet d’essayer',
+    location: 'Où l’essayer (facultatif)',
+    add: 'Ajouter un prototype',
+    appliesTheRules:
+      'Un prototype applique les règles du métier et n’en détient aucune : une règle découverte en l’essayant est d’abord écrite. La validation est un acte du client. Une fois validé, il est affiné en maquettes réalistes — une démonstration, reliée à rien.',
+  },
+
   versions: {
     title: 'Versions',
+    onlyValidated:
+      'Seule une démonstration validée est reliée au monde extérieur et sort en version.',
     inRealUse: 'En usage réel',
     readyToGoOut: (count: number) => `Prêts à sortir — ${count}`,
     noneReady: 'Aucun récit terminé n’attend. Rien à partir de quoi faire une version.',

@@ -1,4 +1,4 @@
-import type { Deployment, Priority, Role, RuleState, Source, StoryState } from '@supersoft/domain'
+import type { Deployment, Priority, PrototypeState, Role, RuleState, Source, StoryState } from '@supersoft/domain'
 
 /** What Supersoft says, in English. Never what a project says: that is never translated. */
 export const en = {
@@ -18,6 +18,10 @@ export const en = {
     string
   >,
   ruleStates: { proposed: 'proposed', agreed: 'agreed' } satisfies Record<RuleState, string>,
+  prototypeStates: { being_tried: 'being tried', validated: 'validated' } satisfies Record<
+    PrototypeState,
+    string
+  >,
   deployments: {
     planned: 'planned',
     deploying: 'deploying',
@@ -55,35 +59,57 @@ export const en = {
     unreadable: 'unreadable',
   },
 
-  project: {
-    project: 'Project',
-    domain: 'Domain',
-    solution: 'Solution',
+  nav: {
+    overview: 'Overview',
+    understand: 'Understand',
+    describe: 'Describe',
+    prototype: 'Prototype',
+    versions: 'Versions',
+    scope: 'Scope',
+    sources: 'Sources & questions',
+    features: 'Features',
+  },
+
+  /** The steps a project grows by, always in the same order. */
+  steps: {
+    understand: 'Understand the business',
+    describe: 'Describe it precisely',
+    prototype: 'Prototype it with the people who will use it',
+    versions: 'Put it in front of real people',
+  },
+
+  overview: {
     readingOnly: 'reading only',
     whoTakesPart: 'Who takes part',
     keptBy: (owner: string) => `Kept by ${owner}.`,
     openToEveryone: 'Open to everyone — read without saying who you are.',
     openToRecognised: 'Open to the people it recognises.',
-    theDomain: 'The domain',
-    informal: 'Informal',
-    informalSummary: (sources: number, open: number) =>
+    sourcesSummary: (sources: number, open: number) =>
       `${sources} sources kept, ${open} question${open === 1 ? '' : 's'} still open.`,
-    formal: 'Formal',
-    formalSummary: (subdomains: number, terms: number, agreed: number, rules: number) =>
-      `${subdomains} subdomains, ${terms} terms, ${agreed} of ${rules} rules agreed.`,
-    theSolution: 'The solution',
-    features: 'Features',
     featuresSummary: (features: number, done: number, inProgress: number, toDo: number) =>
       `${features} features, ${done} stories done, ${inProgress} in progress, ${toDo} to do.`,
-    versions: 'Versions',
+    partsOfTheBusiness: 'Parts of the business',
+    describeSummary: (subdomains: number, terms: number, agreed: number, rules: number) =>
+      `${subdomains} parts, ${terms} terms, ${agreed} of ${rules} rules agreed.`,
+    prototypesSummary: (beingTried: number, validated: number) =>
+      `${beingTried} being tried, ${validated} validated.`,
     inUse: (name: string) => `Real people are using ${name}.`,
     nothingInUse: 'Nothing has reached real people yet.',
     whatComesNext: 'What comes next',
     nothingWaiting: 'Nothing is waiting. Every story is under way or done.',
   },
 
+  scope: {
+    title: 'Scope',
+    noScope: 'No scope yet: nobody has said what the application is for.',
+    rewrite: 'Rewrite the scope',
+    placeholder: 'What the application is for, and what it is not',
+    shortOnPurpose:
+      'Short, broad and deliberately vague: it hardly changes. The precision lives in the parts of the business. Every feature is drawn from the scope — one it cannot account for is a change of scope, said out loud.',
+  },
+
   informal: {
-    title: 'The informal side',
+    title: 'Sources & questions',
     sources: (count: number) => `Sources — ${count}`,
     nothingKept: 'Nothing has been kept yet.',
     from: (who: string) => `from ${who}`,
@@ -91,7 +117,7 @@ export const en = {
     whoFrom: 'Who it came from',
     keepIt: 'Keep it',
     keptAsGiven:
-      'A source is kept as it was given. What the maker understood from it belongs to the formal side, where the customer can contradict it.',
+      'A source is kept as it was given. What the maker understood from it is written in the parts of the business, where the customer can contradict it.',
     openQuestions: (count: number) => `Open questions — ${count}`,
     nothingOpen: 'Nothing open. Either the project is small, or nobody is asking.',
     whatWasDecided: 'What was decided, and by whom',
@@ -103,7 +129,7 @@ export const en = {
   },
 
   formal: {
-    title: 'The formal side',
+    title: 'Parts of the business',
     subdomains: (count: number) => `Subdomains — ${count}`,
     notCut: 'The business has not been cut up yet.',
     agreedOf: (agreed: number, rules: number) => `${agreed} of ${rules} agreed`,
@@ -112,7 +138,7 @@ export const en = {
     subdomainDescription: 'What it is, in business terms only',
     addSubdomain: 'Add a subdomain',
     businessTermsOnly:
-      'A subdomain is described in business terms only. What the application does about it is the solution, and it is written elsewhere.',
+      'A subdomain is described in business terms only. What the application does about it is told in its features, elsewhere.',
     whatThisPartIs: 'What this part of the business is',
     lexicon: (count: number) => `Lexicon — ${count}`,
     noTerm: 'No concept has been named here yet.',
@@ -170,8 +196,25 @@ export const en = {
     noVersion: 'No version carries it yet.',
   },
 
+  prototypes: {
+    title: 'Prototypes',
+    beingTried: (count: number) => `Being tried — ${count}`,
+    validated: (count: number) => `Validated — ${count}`,
+    nothingToTry: 'Nothing to try yet.',
+    noneValidated: 'Nothing validated yet.',
+    tryIt: 'Try it →',
+    validate: 'Validate',
+    name: 'What it lets people try',
+    location: 'Where it can be tried (optional)',
+    add: 'Add a prototype',
+    appliesTheRules:
+      'A prototype applies the rules of the business and never holds one of its own: a rule found while trying it is written down first. Validation is the customer’s act. Once validated, it is refined into realistic mock-ups — a demonstration, connected to nothing.',
+  },
+
   versions: {
     title: 'Versions',
+    onlyValidated:
+      'Only a validated demonstration is connected to the outside world and goes out as a version.',
     inRealUse: 'In real use',
     readyToGoOut: (count: number) => `Ready to go out — ${count}`,
     noneReady: 'No finished story is waiting. Nothing to cut a version from.',

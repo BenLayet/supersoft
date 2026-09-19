@@ -24,7 +24,7 @@ export default async function FeaturePage({
   return (
     <Page
       title={feature.name}
-      back={{ href: `/projects/${project.id}/solution/features`, label: t.features.title }}
+      back={{ href: `/projects/${project.id}/understand/features`, label: t.features.title }}
     >
       <Section title={t.features.whatItIsFor}>
         <Card>

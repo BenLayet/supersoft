@@ -10,6 +10,8 @@ export const medito: Project = {
   id: 'medito',
   name: 'Medito',
   language: 'fr',
+  scope:
+    'L’application de l’association : ses adhérents y retrouvent les pratiques enregistrées par les enseignants et s’inscrivent aux rassemblements. Elle ne remplace ni la salle, ni la comptabilité de l’association.',
   participants: [
     { name: 'Amara Diallo', role: 'customer' },
     { name: 'Jules Perrin', role: 'maker' },
@@ -237,6 +239,10 @@ export const medito: Project = {
       priority: 'expected',
       state: 'to_do',
     },
+  ],
+  prototypes: [
+    { id: 'P1', name: 'Regarder une pratique depuis son téléphone', state: 'validated' },
+    { id: 'P2', name: 'Prendre et rendre une place à un événement', state: 'being_tried' },
   ],
   versions: [{ name: '1.0', storyIds: ['S1', 'S2'], deployment: 'live' }],
 }

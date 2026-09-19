@@ -36,6 +36,8 @@ A **prototype** is the application as the customer and the people who will use i
 
 **Rule.** A prototype applies the rules of the [domain](domain.md); it never holds one of its own. Trying it refines the rules, and the rules refine it: a rule found while trying a prototype is written in the description before the prototype uses it.
 
+A prototype is **being tried** until the customer **validates** it. Like any agreement, validation is an act, by the customer, on a date.
+
 Once it is right, a prototype is refined into realistic **mock-ups**. That is already a first version of the application: a **demonstration**, connected to nothing outside it.
 
 **Rule.** A demonstration depends on nothing outside itself. It can be shown at any moment, by anyone, with no consequence.

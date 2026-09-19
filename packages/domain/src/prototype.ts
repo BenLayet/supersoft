@@ -1,0 +1,20 @@
+export type PrototypeState = 'being_tried' | 'validated'
+
+/**
+ * The application as the customer and the people who will use it can try it,
+ * before it is real. It applies the rules of the domain and never holds one of
+ * its own.
+ */
+export interface Prototype {
+  readonly id: string
+  readonly name: string
+  /** Where it can be tried. */
+  readonly location?: string
+  readonly state: PrototypeState
+}
+
+/** Validation is an act by the customer, and it is given once. */
+export const validate = (prototype: Prototype): Prototype => {
+  if (prototype.state === 'validated') throw new Error(`Already validated: ${prototype.id}`)
+  return { ...prototype, state: 'validated' }
+}

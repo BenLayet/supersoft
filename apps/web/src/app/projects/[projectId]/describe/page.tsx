@@ -27,7 +27,7 @@ export default async function FormalisationPage({
             <Card key={subdomain.id}>
               <div className="flex items-start justify-between gap-3">
                 <Link
-                  href={`/projects/${project.id}/domain/formalisation/${subdomain.id}`}
+                  href={`/projects/${project.id}/describe/${subdomain.id}`}
                   className="text-sm font-medium hover:text-accent"
                   lang={project.language}
                 >

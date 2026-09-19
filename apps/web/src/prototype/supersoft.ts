@@ -10,6 +10,8 @@ export const supersoft: Project = {
   id: 'supersoft',
   name: 'Supersoft',
   language: 'fr',
+  scope:
+    'Un support pour la conversation entre un développeur et son client à propos d’une application web ou mobile : la spécifier, la planifier, et la suivre jusqu’à l’usage réel. Supersoft n’écrit pas l’application à la place de personne, et aucun projet ne dépend de lui pour continuer d’exister.',
   participants: [
     { name: 'Des développeurs qui construisent pour leurs propres clients', role: 'customer' },
     { name: 'Ben Layet', role: 'maker' },
@@ -252,6 +254,9 @@ export const supersoft: Project = {
       priority: 'essential',
       state: 'to_do',
     },
+  ],
+  prototypes: [
+    { id: 'P1', name: 'Arriver sur un projet et le parcourir', location: '/', state: 'being_tried' },
   ],
   versions: [
     { name: '0.1', storyIds: ['S3', 'S4', 'S6'], deployment: 'live' },
