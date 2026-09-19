@@ -27,7 +27,7 @@ export default async function StoryPage({
     <Page
       title={story.intention}
       back={{
-        href: `/projects/${project.id}/understand/features/${feature.id}`,
+        href: `/projects/${project.id}/features/${feature.id}`,
         label: feature.name,
       }}
     >

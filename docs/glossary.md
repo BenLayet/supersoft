@@ -55,6 +55,7 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | --- | --- | --- |
 | Prototype | `Prototype` | the application as it can be tried before it is real |
 | Where a prototype is tried | `Prototype.location` | |
+| Prototypes of a feature | `prototypesOf` | each belongs to exactly one feature |
 | Being tried / validated | `being_tried` / `validated` | |
 | Validating a prototype | `validate` | by the customer |
 | Mock-up / demonstration | — | a refined prototype, connected to nothing; not in the code yet |

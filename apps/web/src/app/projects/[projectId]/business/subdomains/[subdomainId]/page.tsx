@@ -24,7 +24,7 @@ export default async function SubdomainPage({
   return (
     <Page
       title={subdomain.name}
-      back={{ href: `/projects/${project.id}/describe`, label: t.formal.title }}
+      back={{ href: `/projects/${project.id}/business/subdomains`, label: t.formal.title }}
     >
       <Section title={t.formal.whatThisPartIs}>
         <Card>

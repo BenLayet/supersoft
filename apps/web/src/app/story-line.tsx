@@ -7,7 +7,7 @@ import { storyWordsIn } from '@/i18n'
 
 /** Where a story is read. It hangs under the one feature it belongs to. */
 export const storyHref = (projectId: string, story: Story) =>
-  `/projects/${projectId}/understand/features/${story.featureId}/stories/${story.id}`
+  `/projects/${projectId}/features/${story.featureId}/stories/${story.id}`
 
 /** A story, told in the language of the project it belongs to — never translated. */
 export function StorySentence({

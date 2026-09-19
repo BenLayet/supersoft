@@ -256,7 +256,7 @@ export const supersoft: Project = {
     },
   ],
   prototypes: [
-    { id: 'P1', name: 'Arriver sur un projet et le parcourir', location: '/', state: 'being_tried' },
+    { id: 'P1', featureId: 'F1', name: 'Arriver sur un projet et le parcourir', location: '/', state: 'being_tried' },
   ],
   versions: [
     { name: '0.1', storyIds: ['S3', 'S4', 'S6'], deployment: 'live' },

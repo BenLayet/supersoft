@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation'
-import { nextStory, stateOf, storiesOf } from '@supersoft/domain'
+import { nextStory, prototypesOf, stateOf, storiesOf } from '@supersoft/domain'
 import { open } from '@/session'
 import { dictionary } from '@/i18n'
-import { addStory } from '@/app/actions'
+import { addPrototype, addStory } from '@/app/actions'
+import { PrototypeCard } from '@/app/prototype-card'
 import { StoryLine } from '@/app/story-line'
 import { Button, Card, Empty, Input, Page, Pill, Section, Select } from '@/app/ui'
 
@@ -19,12 +20,13 @@ export default async function FeaturePage({
   if (!feature) notFound()
 
   const own = storiesOf(feature, stories)
+  const prototypes = prototypesOf(feature, project.prototypes)
   const next = nextStory(stories)
 
   return (
     <Page
       title={feature.name}
-      back={{ href: `/projects/${project.id}/understand/features`, label: t.features.title }}
+      back={{ href: `/projects/${project.id}/features`, label: t.features.title }}
     >
       <Section title={t.features.whatItIsFor}>
         <Card>
@@ -85,6 +87,34 @@ export default async function FeaturePage({
           </p>
         </Section>
       )}
+
+      <Section title={t.prototypes.list(prototypes.length)}>
+        {prototypes.length === 0 && <Empty>{t.prototypes.nothingToTry}</Empty>}
+        {prototypes.map((prototype) => (
+          <PrototypeCard
+            key={prototype.id}
+            prototype={prototype}
+            projectId={project.id}
+            language={project.language}
+            writable={writable}
+            t={t}
+          />
+        ))}
+        {writable && (
+          <Card>
+            <form action={addPrototype} className="flex flex-col gap-2">
+              <input type="hidden" name="projectId" value={project.id} />
+              <input type="hidden" name="featureId" value={feature.id} />
+              <Input name="name" placeholder={t.prototypes.name} />
+              <Input name="location" placeholder={t.prototypes.location} required={false} />
+              <div>
+                <Button quiet>{t.prototypes.add}</Button>
+              </div>
+            </form>
+          </Card>
+        )}
+        <p className="text-xs text-muted">{t.prototypes.appliesTheRules}</p>
+      </Section>
     </Page>
   )
 }

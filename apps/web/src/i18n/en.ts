@@ -61,21 +61,11 @@ export const en = {
 
   nav: {
     overview: 'Overview',
-    understand: 'Understand',
-    describe: 'Describe',
-    prototype: 'Prototype',
-    versions: 'Versions',
-    scope: 'Scope',
-    sources: 'Sources & questions',
+    business: 'Business',
     features: 'Features',
-  },
-
-  /** The steps a project grows by, always in the same order. */
-  steps: {
-    understand: 'Understand the business',
-    describe: 'Describe it precisely',
-    prototype: 'Prototype it with the people who will use it',
-    versions: 'Put it in front of real people',
+    versions: 'Versions',
+    sources: 'Sources & questions',
+    subdomains: 'Subdomains',
   },
 
   overview: {
@@ -88,11 +78,10 @@ export const en = {
       `${sources} sources kept, ${open} question${open === 1 ? '' : 's'} still open.`,
     featuresSummary: (features: number, done: number, inProgress: number, toDo: number) =>
       `${features} features, ${done} stories done, ${inProgress} in progress, ${toDo} to do.`,
-    partsOfTheBusiness: 'Parts of the business',
-    describeSummary: (subdomains: number, terms: number, agreed: number, rules: number) =>
-      `${subdomains} parts, ${terms} terms, ${agreed} of ${rules} rules agreed.`,
+    subdomainsSummary: (subdomains: number, terms: number, agreed: number, rules: number) =>
+      `${subdomains} subdomains, ${terms} terms, ${agreed} of ${rules} rules agreed.`,
     prototypesSummary: (beingTried: number, validated: number) =>
-      `${beingTried} being tried, ${validated} validated.`,
+      `Prototypes: ${beingTried} being tried, ${validated} validated.`,
     inUse: (name: string) => `Real people are using ${name}.`,
     nothingInUse: 'Nothing has reached real people yet.',
     whatComesNext: 'What comes next',
@@ -105,7 +94,7 @@ export const en = {
     rewrite: 'Rewrite the scope',
     placeholder: 'What the application is for, and what it is not',
     shortOnPurpose:
-      'Short, broad and deliberately vague: it hardly changes. The precision lives in the parts of the business. Every feature is drawn from the scope — one it cannot account for is a change of scope, said out loud.',
+      'Short, broad and deliberately vague: it hardly changes. The precision lives in the subdomains. Every feature is drawn from the scope — one it cannot account for is a change of scope, said out loud.',
   },
 
   informal: {
@@ -117,7 +106,7 @@ export const en = {
     whoFrom: 'Who it came from',
     keepIt: 'Keep it',
     keptAsGiven:
-      'A source is kept as it was given. What the maker understood from it is written in the parts of the business, where the customer can contradict it.',
+      'A source is kept as it was given. What the maker understood from it is written in the subdomains, where the customer can contradict it.',
     openQuestions: (count: number) => `Open questions — ${count}`,
     nothingOpen: 'Nothing open. Either the project is small, or nobody is asking.',
     whatWasDecided: 'What was decided, and by whom',
@@ -129,7 +118,7 @@ export const en = {
   },
 
   formal: {
-    title: 'Parts of the business',
+    title: 'Subdomains',
     subdomains: (count: number) => `Subdomains — ${count}`,
     notCut: 'The business has not been cut up yet.',
     agreedOf: (agreed: number, rules: number) => `${agreed} of ${rules} agreed`,
@@ -197,11 +186,8 @@ export const en = {
   },
 
   prototypes: {
-    title: 'Prototypes',
-    beingTried: (count: number) => `Being tried — ${count}`,
-    validated: (count: number) => `Validated — ${count}`,
-    nothingToTry: 'Nothing to try yet.',
-    noneValidated: 'Nothing validated yet.',
+    list: (count: number) => `Prototypes — ${count}`,
+    nothingToTry: 'Nothing to try yet for this feature.',
     tryIt: 'Try it →',
     validate: 'Validate',
     name: 'What it lets people try',

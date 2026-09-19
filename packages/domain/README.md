@@ -10,7 +10,7 @@ Every type and function here has an entry in the [glossary](../../docs/glossary.
 - `feature.ts` — the stories a feature gathers, and the state derived from them.
 - `story.ts` — stories, their priority, their tracking, and what comes next.
 - `version.ts` — gathering done stories, and following a deployment.
-- `prototype.ts` — a prototype, being tried until the customer validates it.
+- `prototype.ts` — the prototypes of a feature, each being tried until the customer validates it.
 - `ports/project-store.ts` — where the projects are. Supersoft opens them; it never creates them.
 - `ports/arrivals.ts` — who is here, and where they left off.
 

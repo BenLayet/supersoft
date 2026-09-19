@@ -34,6 +34,8 @@ A story is **to do**, then **in progress**, then **done**. It is done when the c
 
 A **prototype** is the application as the customer and the people who will use it can try it, before it is real. Making it is a shared work: they try it, say what is smooth and what is not, and it changes while that is still cheap.
 
+**Rule.** Every prototype belongs to exactly one feature: it lets people try what that feature's stories ask for.
+
 **Rule.** A prototype applies the rules of the [domain](domain.md); it never holds one of its own. Trying it refines the rules, and the rules refine it: a rule found while trying a prototype is written in the description before the prototype uses it.
 
 A prototype is **being tried** until the customer **validates** it. Like any agreement, validation is an act, by the customer, on a date.

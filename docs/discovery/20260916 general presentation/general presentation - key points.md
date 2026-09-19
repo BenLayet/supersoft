@@ -11,7 +11,7 @@
 - **Define the features from a vision**, by understanding each of the user's domains. 
   - Example: for a non-profit, membership, events and registrations...
 
-## 2. Describe a feature precisely
+## 2. Describe the business precisely
 
 - **A reference lexicon.** Each domain is described with absolutely precise words. The same words are used in the code and in every description, so developers know exactly what each term means.
 - **Business rules.** Unambiguous, and written in those same terms. They become the core of the application: precise, testable code, with no interface yet, or any external system.

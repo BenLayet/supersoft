@@ -51,20 +51,11 @@ export const fr: Dictionary = {
 
   nav: {
     overview: 'Vue d’ensemble',
-    understand: 'Comprendre',
-    describe: 'Décrire',
-    prototype: 'Prototyper',
-    versions: 'Versions',
-    scope: 'Périmètre',
-    sources: 'Sources et questions',
+    business: 'Métier',
     features: 'Fonctionnalités',
-  },
-
-  steps: {
-    understand: 'Comprendre le métier',
-    describe: 'Le décrire précisément',
-    prototype: 'Le prototyper avec ceux qui l’utiliseront',
-    versions: 'Le mettre entre les mains de vraies personnes',
+    versions: 'Versions',
+    sources: 'Sources et questions',
+    subdomains: 'Sous-domaines',
   },
 
   overview: {
@@ -77,11 +68,10 @@ export const fr: Dictionary = {
       `${sources} sources gardées, ${open} question${open > 1 ? 's' : ''} encore ouverte${open > 1 ? 's' : ''}.`,
     featuresSummary: (features: number, done: number, inProgress: number, toDo: number) =>
       `${features} fonctionnalités, ${done} récits terminés, ${inProgress} en cours, ${toDo} à faire.`,
-    partsOfTheBusiness: 'Les parties du métier',
-    describeSummary: (subdomains: number, terms: number, agreed: number, rules: number) =>
-      `${subdomains} parties, ${terms} termes, ${agreed} règles approuvées sur ${rules}.`,
+    subdomainsSummary: (subdomains: number, terms: number, agreed: number, rules: number) =>
+      `${subdomains} sous-domaines, ${terms} termes, ${agreed} règles approuvées sur ${rules}.`,
     prototypesSummary: (beingTried: number, validated: number) =>
-      `${beingTried} en essai, ${validated} validé${validated > 1 ? 's' : ''}.`,
+      `Prototypes : ${beingTried} en essai, ${validated} validé${validated > 1 ? 's' : ''}.`,
     inUse: (name: string) => `De vraies personnes utilisent la version ${name}.`,
     nothingInUse: 'Rien n’a encore atteint de vraies personnes.',
     whatComesNext: 'Ce qui vient ensuite',
@@ -94,7 +84,7 @@ export const fr: Dictionary = {
     rewrite: 'Réécrire le périmètre',
     placeholder: 'À quoi sert l’application, et à quoi elle ne sert pas',
     shortOnPurpose:
-      'Court, large et volontairement flou : il ne change presque pas. La précision vit dans les parties du métier. Chaque fonctionnalité découle du périmètre — une fonctionnalité qu’il n’explique pas est un changement de périmètre, dit à voix haute.',
+      'Court, large et volontairement flou : il ne change presque pas. La précision vit dans les sous-domaines. Chaque fonctionnalité découle du périmètre — une fonctionnalité qu’il n’explique pas est un changement de périmètre, dit à voix haute.',
   },
 
   informal: {
@@ -106,7 +96,7 @@ export const fr: Dictionary = {
     whoFrom: 'De qui cela vient',
     keepIt: 'Le garder',
     keptAsGiven:
-      'Une source est gardée telle qu’elle a été donnée. Ce que le développeur en a compris s’écrit dans les parties du métier, où le client peut le contredire.',
+      'Une source est gardée telle qu’elle a été donnée. Ce que le développeur en a compris s’écrit dans les sous-domaines, où le client peut le contredire.',
     openQuestions: (count: number) => `Questions ouvertes — ${count}`,
     nothingOpen: 'Rien d’ouvert. Soit le projet est petit, soit personne ne pose de question.',
     whatWasDecided: 'Ce qui a été décidé, et par qui',
@@ -118,7 +108,7 @@ export const fr: Dictionary = {
   },
 
   formal: {
-    title: 'Les parties du métier',
+    title: 'Sous-domaines',
     subdomains: (count: number) => `Sous-domaines — ${count}`,
     notCut: 'Le métier n’a pas encore été découpé.',
     agreedOf: (agreed: number, rules: number) => `${agreed} sur ${rules} approuvées`,
@@ -187,11 +177,8 @@ export const fr: Dictionary = {
   },
 
   prototypes: {
-    title: 'Prototypes',
-    beingTried: (count: number) => `En essai — ${count}`,
-    validated: (count: number) => `Validés — ${count}`,
-    nothingToTry: 'Rien à essayer pour l’instant.',
-    noneValidated: 'Rien n’est encore validé.',
+    list: (count: number) => `Prototypes — ${count}`,
+    nothingToTry: 'Rien à essayer pour l’instant pour cette fonctionnalité.',
     tryIt: 'L’essayer →',
     validate: 'Valider',
     name: 'Ce qu’il permet d’essayer',

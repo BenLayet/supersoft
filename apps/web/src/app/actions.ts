@@ -62,7 +62,7 @@ const mapById = <T extends { id: string }>(items: readonly T[], id: string, appl
 const mapByName = (versions: readonly Version[], name: string, apply: (v: Version) => Version) =>
   versions.map((version) => (version.name === name ? apply(version) : version))
 
-/* Understanding the business: the scope, then what was said. */
+/* The scope, then the business: what was said. */
 
 export async function rewriteScope(formData: FormData) {
   const scope = text(formData, 'scope')
@@ -104,7 +104,7 @@ export async function answer(formData: FormData) {
   )
 }
 
-/* Describing it precisely: the parts of the business, their lexicon and their rules. */
+/* The subdomains of the business, their lexicon and their rules. */
 
 export async function addSubdomain(formData: FormData) {
   const name = text(formData, 'name')
@@ -197,16 +197,17 @@ export async function finishStory(formData: FormData) {
   }))
 }
 
-/* Prototypes, tried before anything is real. */
+/* Prototypes of a feature, tried before anything is real. */
 
 export async function addPrototype(formData: FormData) {
+  const featureId = text(formData, 'featureId')
   const name = text(formData, 'name')
   const location = String(formData.get('location') ?? '').trim() || undefined
   await change(formData, (project) => ({
     ...project,
     prototypes: [
       ...project.prototypes,
-      { id: nextId('P', project.prototypes), name, location, state: 'being_tried' },
+      { id: nextId('P', project.prototypes), featureId, name, location, state: 'being_tried' },
     ],
   }))
 }

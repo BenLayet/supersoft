@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { countByState, nextStory, stateOf, storiesOf } from '@supersoft/domain'
+import { countByState, nextStory, prototypesOf, stateOf, storiesOf } from '@supersoft/domain'
 import { open } from '@/session'
 import { dictionary } from '@/i18n'
 import { addFeature } from '@/app/actions'
@@ -25,7 +25,7 @@ export default async function FeaturesPage({ params }: { params: Promise<{ proje
               </Link>
               {nextFeature && (
                 <Link
-                  href={`/projects/${project.id}/understand/features/${nextFeature.id}`}
+                  href={`/projects/${project.id}/features/${nextFeature.id}`}
                   className="mt-2 inline-block text-sm text-muted hover:text-accent"
                 >
                   {t.features.inFeature(nextFeature.name)}
@@ -42,12 +42,14 @@ export default async function FeaturesPage({ params }: { params: Promise<{ proje
         {features.map((feature) => {
           const own = storiesOf(feature, stories)
           const counts = countByState(own)
+          const prototypes = prototypesOf(feature, project.prototypes)
+          const validated = prototypes.filter((prototype) => prototype.state === 'validated')
           return (
             <Card key={feature.id}>
               <div className="flex items-start justify-between gap-3">
                 <div lang={project.language}>
                   <Link
-                    href={`/projects/${project.id}/understand/features/${feature.id}`}
+                    href={`/projects/${project.id}/features/${feature.id}`}
                     className="text-sm font-medium hover:text-accent"
                   >
                     {feature.name}
@@ -63,6 +65,11 @@ export default async function FeaturesPage({ params }: { params: Promise<{ proje
                   ? t.features.noStory
                   : t.features.storyCounts(own.length, counts.done, counts.in_progress, counts.to_do)}
               </p>
+              {prototypes.length > 0 && (
+                <p className="mt-1 text-sm text-muted">
+                  {t.overview.prototypesSummary(prototypes.length - validated.length, validated.length)}
+                </p>
+              )}
             </Card>
           )
         })}
