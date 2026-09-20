@@ -47,7 +47,7 @@ export const fr: Dictionary = {
   overview: {
     readingOnly: 'lecture seule',
     whoTakesPart: 'Qui participe',
-    keptBy: (owner: string) => `Gardé par ${owner}.`,
+    address: 'Adresse',
   },
 
   scope: {

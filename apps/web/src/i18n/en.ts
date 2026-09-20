@@ -57,7 +57,7 @@ export const en = {
   overview: {
     readingOnly: 'reading only',
     whoTakesPart: 'Who takes part',
-    keptBy: (owner: string) => `Kept by ${owner}.`,
+    address: 'Address',
   },
 
   scope: {

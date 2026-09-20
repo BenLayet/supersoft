@@ -1,27 +1,15 @@
-import Link from 'next/link'
 import { open } from '@/session'
 import { dictionary } from '@/i18n'
 import { rewriteScope } from '@/app/actions'
 import { Button, Card, Empty, Page, Pill, Section, Textarea } from '@/app/ui'
 
-function PartCard({ href, title }: { href: string; title: string }) {
-  return (
-    <Card>
-      <Link href={href} className="text-sm font-medium hover:text-accent">
-        {title}
-      </Link>
-    </Card>
-  )
-}
-
 export default async function ProjectPage({ params }: { params: Promise<{ projectId: string }> }) {
   const { projectId } = await params
   const { project, found, writable } = await open(projectId)
   const t = await dictionary()
-  const at = `/projects/${project.id}`
 
   return (
-    <Page title={project.name}>
+    <Page>
       <Section title={t.scope.title}>
         <Card>
           {project.scope ? (
@@ -58,26 +46,23 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
               </li>
             ))}
           </ul>
-          <p className="mt-3 text-sm text-muted">
-            {t.overview.keptBy(found.owner)}{' '}
-            {found.isPublic ? t.publicProject : t.privateProject}
-          </p>
         </Card>
       </Section>
 
-      <Section title={t.nav.business}>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <PartCard href={`${at}/business/sources`} title={t.nav.sources} />
-          <PartCard href={`${at}/business/subdomains`} title={t.nav.subdomains} />
-        </div>
-      </Section>
-
-      <Section title={t.nav.features}>
-        <PartCard href={`${at}/features`} title={t.nav.features} />
-      </Section>
-
-      <Section title={t.nav.versions}>
-        <PartCard href={`${at}/versions`} title={t.versions.title} />
+      <Section title={t.overview.address}>
+        <Card>
+          <a
+            href={found.address}
+            target="_blank"
+            rel="noreferrer"
+            className="block text-sm hover:text-accent"
+          >
+            {found.address}
+          </a>
+          <p className="mt-1 text-sm text-muted">
+            {found.isPublic ? t.publicProject : t.privateProject}
+          </p>
+        </Card>
       </Section>
     </Page>
   )
