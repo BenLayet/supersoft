@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { nextStory, prototypesOf, stateOf, storiesOf } from '@supersoft/domain'
 import { open } from '@/session'
-import { dictionary } from '@/i18n'
+import { dictionaryIn } from '@/i18n'
 import { addPrototype, addStory } from '@/app/actions'
 import { PrototypeCard } from '@/app/prototype-card'
 import { StoryLine } from '@/app/story-line'
@@ -14,7 +14,7 @@ export default async function FeaturePage({
 }) {
   const { projectId, featureId } = await params
   const { project, writable } = await open(projectId)
-  const t = await dictionary()
+  const t = await dictionaryIn(project.language)
   const { features, stories } = project
   const feature = features.find((one) => one.id === featureId)
   if (!feature) notFound()

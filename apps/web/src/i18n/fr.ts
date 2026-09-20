@@ -5,7 +5,13 @@ export const fr: Dictionary = {
   languageName: 'Français',
   description: 'Spécifier et planifier une application, avec le client dans la conversation.',
   header: { leave: 'Partir', notSignedIn: 'non connecté' },
-  footer: 'Prototype — projets fictifs, gardés en mémoire, aucun service extérieur.',
+  footer: {
+    note: 'Prototype — projets fictifs, gardés en mémoire, aucun service extérieur.',
+    language: 'Langue',
+    useProjectLanguage: 'Utiliser la langue du projet',
+    yes: 'Oui',
+    no: 'Non',
+  },
 
   roles: { customer: 'client', maker: 'développeur' },
   sourceKinds: { note: 'note', audio: 'audio', video: 'vidéo' },

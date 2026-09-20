@@ -1,7 +1,7 @@
 import { isOpen } from '@supersoft/domain'
 import type { Source } from '@supersoft/domain'
 import { open } from '@/session'
-import { dictionary } from '@/i18n'
+import { dictionaryIn } from '@/i18n'
 import { answer, askQuestion, keepSource } from '@/app/actions'
 import { Button, Card, Empty, Input, Page, Pill, Section, Select } from '@/app/ui'
 
@@ -14,7 +14,7 @@ export default async function DiscoveryPage({
 }) {
   const { projectId } = await params
   const { project, writable } = await open(projectId)
-  const t = await dictionary()
+  const t = await dictionaryIn(project.language)
   const { domain } = project
   const openQuestions = domain.questions.filter(isOpen)
   const answered = domain.questions.filter((question) => !isOpen(question))

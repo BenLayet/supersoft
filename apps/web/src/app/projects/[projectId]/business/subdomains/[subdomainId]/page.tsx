@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { rulesOf, termsOf } from '@supersoft/domain'
 import { open } from '@/session'
-import { dictionary } from '@/i18n'
+import { dictionaryIn } from '@/i18n'
 import { agreeRule, defineTerm, restateRule, writeRule } from '@/app/actions'
 import { Button, Card, Empty, Input, Page, Pill, Section } from '@/app/ui'
 
@@ -12,7 +12,7 @@ export default async function SubdomainPage({
 }) {
   const { projectId, subdomainId } = await params
   const { project, writable } = await open(projectId)
-  const t = await dictionary()
+  const t = await dictionaryIn(project.language)
   const { domain } = project
   const subdomain = domain.subdomains.find((one) => one.id === subdomainId)
   if (!subdomain) notFound()

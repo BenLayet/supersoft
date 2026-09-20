@@ -19,6 +19,7 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Maker | `maker` | builds and maintains |
 | Language of a project | `Project.language` | the customer's; never translated |
 | Language Supersoft speaks | `Locale` | chosen by the person; a convenience |
+| Speaking the project's language | `localeIn` | asked for by the person; translates nothing |
 | Someone arriving | `Account` | who they are where their projects live |
 | Project on offer | `AvailableProject` | what Supersoft found |
 | Address of a project | `address` | where its customer keeps it |

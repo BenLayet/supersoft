@@ -23,6 +23,8 @@ One person may hold both, and the roles say what someone knows rather than what 
 
 **Rule.** Supersoft speaks to each person in the language they choose, and says which language a project is written in, so the one is never mistaken for the other.
 
+**Rule.** A person may ask to be spoken to in the language of whatever project they are reading. That is still their choice, and it translates nothing: the project keeps its own words.
+
 ## Arriving at a project
 
 A project is never created by Supersoft. It already exists, where its customer keeps it, and it goes on existing if Supersoft stops. Supersoft **opens** it, at the **address** where its customer keeps it.

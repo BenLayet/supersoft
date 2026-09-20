@@ -1,5 +1,6 @@
 import { SubNav } from '@/app/subnav'
-import { dictionary } from '@/i18n'
+import { open } from '@/session'
+import { dictionaryIn } from '@/i18n'
 
 export default async function BusinessLayout({
   children,
@@ -10,7 +11,8 @@ export default async function BusinessLayout({
 }) {
   const { projectId } = await params
   const at = `/projects/${projectId}/business`
-  const t = await dictionary()
+  const { project } = await open(projectId)
+  const t = await dictionaryIn(project.language)
 
   return (
     <>

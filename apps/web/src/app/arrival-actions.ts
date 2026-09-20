@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { isLocale } from '@/i18n'
-import { LOCALE } from '@/prototype/cookie-names'
+import { LOCALE, PROJECT_LANGUAGE } from '@/prototype/cookie-names'
 import { cookieArrivals, thePerson } from '@/prototype/cookie-arrivals'
 import { inMemoryProjectStore } from '@/prototype/in-memory-project-store'
 
@@ -40,8 +40,16 @@ export async function removeProject(formData: FormData) {
   redirect('/')
 }
 
+const forAYear = { path: '/', maxAge: 60 * 60 * 24 * 365 } as const
+
 /** The language Supersoft speaks to this person. A convenience, like everything the browser keeps. */
 export async function chooseLocale(formData: FormData) {
   const locale = formData.get('locale')
-  if (isLocale(locale)) (await cookies()).set(LOCALE, locale, { path: '/', maxAge: 60 * 60 * 24 * 365 })
+  if (isLocale(locale)) (await cookies()).set(LOCALE, locale, forAYear)
+}
+
+/** Whether Supersoft speaks the language of the project being read, instead of that one. */
+export async function useProjectLanguage(formData: FormData) {
+  const follow = formData.get('follow') === 'yes' ? 'yes' : 'no'
+  ;(await cookies()).set(PROJECT_LANGUAGE, follow, forAYear)
 }

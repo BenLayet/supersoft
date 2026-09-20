@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import { countByState, prototypesOf, stateOf, storiesOf } from '@supersoft/domain'
 import { open } from '@/session'
-import { dictionary } from '@/i18n'
+import { dictionaryIn } from '@/i18n'
 import { addFeature } from '@/app/actions'
 import { Button, Card, Input, Page, Pill, Section } from '@/app/ui'
 
 export default async function FeaturesPage({ params }: { params: Promise<{ projectId: string }> }) {
   const { projectId } = await params
   const { project, writable } = await open(projectId)
-  const t = await dictionary()
+  const t = await dictionaryIn(project.language)
   const { features, stories } = project
 
   return (

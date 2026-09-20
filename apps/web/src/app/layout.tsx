@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import './globals.css'
-import { currentLocale, dictionary, dictionaryOf, locales } from '@/i18n'
+import { currentLocale, dictionary, dictionaryOf, locales, speaksProjectLanguage } from '@/i18n'
 import { cookieArrivals } from '@/prototype/cookie-arrivals'
-import { chooseLocale, leave } from './arrival-actions'
+import { chooseLocale, leave, useProjectLanguage } from './arrival-actions'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await dictionary()
@@ -14,6 +14,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const account = await cookieArrivals.whoIsHere()
   const locale = await currentLocale()
   const t = dictionaryOf(locale)
+  const follows = await speaksProjectLanguage()
 
   return (
     <html lang={locale} className="h-full antialiased">
@@ -23,18 +24,24 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             <Link href="/" className="text-sm font-semibold tracking-tight">
               Supersoft
             </Link>
-            <div className="flex items-center gap-5">
-              {account ? (
-                <form action={leave} className="flex items-center gap-3">
-                  <span className="text-sm text-muted">{account.name}</span>
-                  <button type="submit" className="text-sm text-muted hover:text-ink">
-                    {t.header.leave}
-                  </button>
-                </form>
-              ) : (
-                <span className="text-sm text-muted">{t.header.notSignedIn}</span>
-              )}
-              <form action={chooseLocale} className="flex gap-2">
+            {account ? (
+              <form action={leave} className="flex items-center gap-3">
+                <span className="text-sm text-muted">{account.name}</span>
+                <button type="submit" className="text-sm text-muted hover:text-ink">
+                  {t.header.leave}
+                </button>
+              </form>
+            ) : (
+              <span className="text-sm text-muted">{t.header.notSignedIn}</span>
+            )}
+          </div>
+        </header>
+        <main className="flex-1">{children}</main>
+        <footer className="border-t border-rule px-6 py-4 text-xs text-muted">
+          <div className="mx-auto flex max-w-3xl flex-col gap-2">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <form action={chooseLocale} className="flex items-center gap-2">
+                <span>{t.footer.language}</span>
                 {locales.map((one) => (
                   <button
                     key={one}
@@ -43,18 +50,33 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                     value={one}
                     lang={one}
                     aria-pressed={one === locale}
-                    className={`text-sm ${one === locale ? 'font-medium text-ink' : 'text-muted hover:text-ink'}`}
+                    className={one === locale ? 'font-medium text-ink' : 'hover:text-ink'}
                   >
                     {dictionaryOf(one).languageName}
                   </button>
                 ))}
               </form>
+              <form action={useProjectLanguage} className="flex items-center gap-2">
+                <span>{t.footer.useProjectLanguage}</span>
+                {[
+                  { value: 'yes', label: t.footer.yes, taken: follows },
+                  { value: 'no', label: t.footer.no, taken: !follows },
+                ].map((one) => (
+                  <button
+                    key={one.value}
+                    type="submit"
+                    name="follow"
+                    value={one.value}
+                    aria-pressed={one.taken}
+                    className={one.taken ? 'font-medium text-ink' : 'hover:text-ink'}
+                  >
+                    {one.label}
+                  </button>
+                ))}
+              </form>
             </div>
+            <span>{t.footer.note}</span>
           </div>
-        </header>
-        <main className="flex-1">{children}</main>
-        <footer className="border-t border-rule px-6 py-4 text-center text-xs text-muted">
-          {t.footer}
         </footer>
       </body>
     </html>

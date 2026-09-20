@@ -1,5 +1,5 @@
 import { cookies, headers } from 'next/headers'
-import { LOCALE } from '@/prototype/cookie-names'
+import { LOCALE, PROJECT_LANGUAGE } from '@/prototype/cookie-names'
 import type { Dictionary } from './dictionary'
 import { en } from './en'
 import { fr } from './fr'
@@ -16,19 +16,38 @@ export const locales = Object.keys(dictionaries) as Locale[]
 export const isLocale = (value: unknown): value is Locale =>
   typeof value === 'string' && Object.hasOwn(dictionaries, value)
 
-/** What the person chose, else what their browser asks for, else English. */
-export const currentLocale = async (): Promise<Locale> => {
-  const chosen = (await cookies()).get(LOCALE)?.value
-  if (isLocale(chosen)) return chosen
-  const asked = ((await headers()).get('accept-language') ?? '')
+const chosen = async (): Promise<Locale | undefined> => {
+  const value = (await cookies()).get(LOCALE)?.value
+  return isLocale(value) ? value : undefined
+}
+
+const asked = async (): Promise<Locale | undefined> =>
+  ((await headers()).get('accept-language') ?? '')
     .split(',')
     .map((part) => part.split(';')[0].trim().slice(0, 2).toLowerCase())
-  return asked.find(isLocale) ?? 'en'
-}
+    .find(isLocale)
+
+/** What the person chose, else what their browser asks for, else English. */
+export const currentLocale = async (): Promise<Locale> =>
+  (await chosen()) ?? (await asked()) ?? 'en'
+
+/** Whether this person asked to be spoken to in the language of what they read. */
+export const speaksProjectLanguage = async (): Promise<boolean> =>
+  (await cookies()).get(PROJECT_LANGUAGE)?.value !== 'no'
+
+/**
+ * While a project is being read: the language that project is written in, if
+ * the person asked for that, else their own. Nothing is translated either way.
+ */
+export const localeIn = async (language: string): Promise<Locale> =>
+  (await speaksProjectLanguage()) && isLocale(language) ? language : currentLocale()
 
 export const dictionary = async (): Promise<Dictionary> => dictionaries[await currentLocale()]
 
 export const dictionaryOf = (locale: Locale): Dictionary => dictionaries[locale]
+
+export const dictionaryIn = async (language: string): Promise<Dictionary> =>
+  dictionaryOf(await localeIn(language))
 
 /**
  * The words a story is told with belong to the project, not to the reader: a

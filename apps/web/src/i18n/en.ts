@@ -5,7 +5,13 @@ export const en = {
   languageName: 'English',
   description: 'Specifying and planning an application, with the customer in the conversation.',
   header: { leave: 'Leave', notSignedIn: 'not signed in' },
-  footer: 'Prototype — fictional projects, held in memory, no outside service.',
+  footer: {
+    note: 'Prototype — fictional projects, held in memory, no outside service.',
+    language: 'Language',
+    useProjectLanguage: "Use the project's language",
+    yes: 'Yes',
+    no: 'No',
+  },
 
   roles: { customer: 'customer', maker: 'maker' } satisfies Record<Role, string>,
   sourceKinds: { note: 'note', audio: 'audio', video: 'video' } satisfies Record<Source['kind'], string>,

@@ -13,7 +13,7 @@ export const supersoft: Project = {
   scope:
     'Un support pour la conversation entre un développeur et son client à propos d’une application web ou mobile : la spécifier, la planifier, et la suivre jusqu’à l’usage réel. Supersoft n’écrit pas l’application à la place de personne, et aucun projet ne dépend de lui pour continuer d’exister.',
   participants: [
-    { name: 'Des développeurs qui construisent pour leurs propres clients', role: 'customer' },
+    { name: 'Ben Layet', role: 'customer' },
     { name: 'Ben Layet', role: 'maker' },
   ],
   domain: {

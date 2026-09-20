@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { nextStory, versionCarrying } from '@supersoft/domain'
 import { open } from '@/session'
-import { dictionary } from '@/i18n'
+import { dictionaryIn } from '@/i18n'
 import { finishStory, startStory } from '@/app/actions'
 import { StorySentence } from '@/app/story-line'
 import { Button, Card, Page, Pill, Section } from '@/app/ui'
@@ -14,7 +14,7 @@ export default async function StoryPage({
 }) {
   const { projectId, featureId, storyId } = await params
   const { project, writable } = await open(projectId)
-  const t = await dictionary()
+  const t = await dictionaryIn(project.language)
   const { features, stories, versions } = project
   const story = stories.find((one) => one.id === storyId)
   const feature = features.find((one) => one.id === featureId)

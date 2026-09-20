@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { releasableStories } from '@supersoft/domain'
 import { open } from '@/session'
-import { dictionary } from '@/i18n'
+import { dictionaryIn } from '@/i18n'
 import { cutVersion } from '@/app/actions'
 import { StorySentence, storyHref } from '@/app/story-line'
 import { Button, Card, Empty, Input, Page, Section } from '@/app/ui'
@@ -9,7 +9,7 @@ import { Button, Card, Empty, Input, Page, Section } from '@/app/ui'
 export default async function VersionsPage({ params }: { params: Promise<{ projectId: string }> }) {
   const { projectId } = await params
   const { project, writable } = await open(projectId)
-  const t = await dictionary()
+  const t = await dictionaryIn(project.language)
   const { stories, versions } = project
   const releasable = releasableStories(stories, versions)
   const storyById = new Map(stories.map((story) => [story.id, story]))
