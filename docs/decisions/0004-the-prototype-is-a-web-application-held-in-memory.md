@@ -12,7 +12,7 @@ What was missing is the thing Supersoft asks its own users for: something runnab
 
 Supersoft has a prototype of its own, `apps/web`: Next.js, React and Tailwind — the same stack it will generate for its users — showing the activities of a project on one fictional project.
 
-The prototype holds everything in memory. Two ports — `ProjectStore`, for the projects Supersoft opens, and `Arrivals`, for who is here and where they left off — each with a mock adapter: fictional projects in memory, and one invented account remembered by the visitor's own browser. No database, no repository host, no outside service of any kind.
+The prototype holds everything in memory. Two ports — `ProjectStore`, for the projects Supersoft opens, and `Arrivals`, for who is here and what they added — each with a mock adapter: fictional projects in memory, and one invented account remembered by the visitor's own browser. No database, no repository host, no outside service of any kind.
 
 Every decision it takes comes from `packages/domain`, which stays pure and tested. The application shows and collects; it decides nothing.
 

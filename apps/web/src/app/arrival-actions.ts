@@ -9,8 +9,7 @@ import { inMemoryProjectStore } from '@/prototype/in-memory-project-store'
 
 export async function arrive() {
   await cookieArrivals.arrive(thePerson)
-  const last = await cookieArrivals.lastOpened()
-  redirect(last ? `/projects/${last}` : '/')
+  redirect('/')
 }
 
 export async function leave() {
@@ -18,16 +17,27 @@ export async function leave() {
   redirect('/')
 }
 
-/** Naming a project that is open to everyone, without saying who you are. */
-export async function openByName(formData: FormData) {
-  const named = String(formData.get('name') ?? '')
-    .trim()
-    .toLowerCase()
+/** An address, as it was typed: the scheme and a trailing slash change nothing. */
+const plainly = (address: string) =>
+  address.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/+$/, '')
+
+/** Adding a project at its address. A public one is added without saying who you are. */
+export async function openByAddress(formData: FormData) {
+  const typed = plainly(String(formData.get('address') ?? ''))
   const account = await cookieArrivals.whoIsHere()
-  const found = (await inMemoryProjectStore.available(account)).find(
-    (project) => project.id.toLowerCase() === named || project.name.toLowerCase() === named,
-  )
-  redirect(found ? `/projects/${found.id}` : `/?unknown=${encodeURIComponent(named)}`)
+  const found = (await inMemoryProjectStore.available(account)).find((project) => {
+    const address = plainly(project.address)
+    return address === typed || address.endsWith(`/${typed}`)
+  })
+  if (!found) redirect(`/?unknown=${encodeURIComponent(typed)}`)
+  await cookieArrivals.addProject(found.id)
+  redirect(`/projects/${found.id}`)
+}
+
+/** Removing one from this person's own list. The project itself loses nothing. */
+export async function removeProject(formData: FormData) {
+  await cookieArrivals.removeProject(String(formData.get('projectId') ?? ''))
+  redirect('/')
 }
 
 /** The language Supersoft speaks to this person. A convenience, like everything the browser keeps. */

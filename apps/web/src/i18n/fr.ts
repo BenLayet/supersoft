@@ -13,12 +13,9 @@ export const fr: Dictionary = {
   priorities: { essential: 'essentiel', expected: 'attendu', later: 'plus tard' },
   ruleStates: { proposed: 'proposée', agreed: 'approuvée' },
   prototypeStates: { being_tried: 'en essai', validated: 'validé' },
-  deployments: {
-    planned: 'prévue',
-    deploying: 'en déploiement',
-    live: 'en usage réel',
-    failed: 'échouée',
-  },
+
+  publicProject: 'Projet public',
+  privateProject: 'Projet privé',
 
   writtenIn: (language: string) => `rédigé en ${language}`,
   storyWords: {
@@ -28,25 +25,14 @@ export const fr: Dictionary = {
   },
 
   arrival: {
-    yourProjects: 'Vos projets',
-    arrive: 'Arriver',
-    sayWhoYouAre: 'Dites qui vous êtes',
-    neverCreates:
-      'Supersoft ne crée jamais de projet. Il ouvre un projet qui existe déjà là où vous le gardez, et il ne peut agir que là où vous pouviez déjà agir sans lui.',
-    signIn: 'Me connecter là où vivent mes projets',
-    whereYouLeftOff: 'Là où vous en étiez',
-    remembered: 'Retenu par commodité. Oubliez-le, et aucun projet ne perd rien.',
-    foundForYou: (count: number) => `Trouvés pour vous — ${count}`,
-    openToEveryone: 'Ouverts à tous',
-    nothingFound: 'Rien trouvé.',
-    nameOne: 'Ou nommez-en un qui est ouvert à tous',
-    openIt: "L'ouvrir",
-    unknown: (name: string) => `Aucun projet ouvert à tous ne s'appelle « ${name} ».`,
-    readWithoutSaying: 'Ouvert à tous — se lit sans dire qui vous êtes.',
-    onlyRecognised: 'Seulement les personnes qu’il reconnaît.',
-    notInTheForm: 'Pas rédigé sous la forme que Supersoft sait lire.',
-    readable: 'lisible',
-    unreadable: 'illisible',
+    yourProjects: (count: number) => `Vos projets — ${count}`,
+    signIn: 'Se connecter',
+    nothingAdded: 'Aucun projet ajouté.',
+    addProject: 'Ajouter un projet',
+    remove: 'Retirer',
+    projectAddress: 'Adresse du projet',
+    openIt: 'Ouvrir',
+    unknown: (address: string) => `Aucun projet à l'adresse « ${address} ».`,
   },
 
   nav: {
@@ -62,20 +48,6 @@ export const fr: Dictionary = {
     readingOnly: 'lecture seule',
     whoTakesPart: 'Qui participe',
     keptBy: (owner: string) => `Gardé par ${owner}.`,
-    openToEveryone: 'Ouvert à tous — se lit sans dire qui vous êtes.',
-    openToRecognised: 'Ouvert aux personnes qu’il reconnaît.',
-    sourcesSummary: (sources: number, open: number) =>
-      `${sources} sources gardées, ${open} question${open > 1 ? 's' : ''} encore ouverte${open > 1 ? 's' : ''}.`,
-    featuresSummary: (features: number, done: number, inProgress: number, toDo: number) =>
-      `${features} fonctionnalités, ${done} récits terminés, ${inProgress} en cours, ${toDo} à faire.`,
-    subdomainsSummary: (subdomains: number, terms: number, agreed: number, rules: number) =>
-      `${subdomains} sous-domaines, ${terms} termes, ${agreed} règles approuvées sur ${rules}.`,
-    prototypesSummary: (beingTried: number, validated: number) =>
-      `Prototypes : ${beingTried} en essai, ${validated} validé${validated > 1 ? 's' : ''}.`,
-    inUse: (name: string) => `De vraies personnes utilisent la version ${name}.`,
-    nothingInUse: 'Rien n’a encore atteint de vraies personnes.',
-    whatComesNext: 'Ce qui vient ensuite',
-    nothingWaiting: 'Rien n’attend. Chaque récit est en cours ou terminé.',
   },
 
   scope: {
@@ -83,8 +55,6 @@ export const fr: Dictionary = {
     noScope: 'Pas encore de périmètre : personne n’a dit à quoi sert l’application.',
     rewrite: 'Réécrire le périmètre',
     placeholder: 'À quoi sert l’application, et à quoi elle ne sert pas',
-    shortOnPurpose:
-      'Court, large et volontairement flou : il ne change presque pas. La précision vit dans les sous-domaines. Chaque fonctionnalité découle du périmètre — une fonctionnalité qu’il n’explique pas est un changement de périmètre, dit à voix haute.',
   },
 
   informal: {
@@ -95,8 +65,6 @@ export const fr: Dictionary = {
     whatItIs: 'Ce que c’est — un enregistrement, un film, une page de notes',
     whoFrom: 'De qui cela vient',
     keepIt: 'Le garder',
-    keptAsGiven:
-      'Une source est gardée telle qu’elle a été donnée. Ce que le développeur en a compris s’écrit dans les sous-domaines, où le client peut le contredire.',
     openQuestions: (count: number) => `Questions ouvertes — ${count}`,
     nothingOpen: 'Rien d’ouvert. Soit le projet est petit, soit personne ne pose de question.',
     whatWasDecided: 'Ce qui a été décidé, et par qui',
@@ -116,8 +84,6 @@ export const fr: Dictionary = {
     subdomainName: 'Une partie du métier, nommée comme ses gens la nomment',
     subdomainDescription: 'Ce qu’elle est, en termes métier uniquement',
     addSubdomain: 'Ajouter un sous-domaine',
-    businessTermsOnly:
-      'Un sous-domaine se décrit en termes métier uniquement. Ce que l’application en fait se raconte dans ses fonctionnalités, ailleurs.',
     whatThisPartIs: 'Ce qu’est cette partie du métier',
     lexicon: (count: number) => `Lexique — ${count}`,
     noTerm: 'Aucun concept n’a encore été nommé ici.',
@@ -131,13 +97,10 @@ export const fr: Dictionary = {
     rewrite: 'Réécrire',
     ruleStatement: 'Une phrase que le client peut confirmer ou démentir',
     writeItDown: 'L’écrire',
-    agreementIsToASentence:
-      'Réécrire une règle approuvée la rend de nouveau proposée : l’accord porte sur une phrase, pas sur un sujet.',
   },
 
   features: {
     title: 'Fonctionnalités',
-    inFeature: (name: string) => `dans ${name} →`,
     list: (count: number) => `Fonctionnalités — ${count}`,
     noStory: 'Aucun récit — elle ne décrit rien.',
     storyCounts: (stories: number, done: number, inProgress: number, toDo: number) =>
@@ -154,8 +117,6 @@ export const fr: Dictionary = {
     intention: 'Je veux…',
     reason: 'Pour…',
     add: 'Ajouter',
-    priorityIsTheCustomers:
-      'La priorité revient au client. Ce qu’apporte le développeur, c’est le coût, annoncé avant que la priorité soit choisie.',
   },
 
   story: {
@@ -167,39 +128,29 @@ export const fr: Dictionary = {
     next: 'ensuite',
     startIt: 'Le commencer',
     itIsDone: 'C’est terminé',
-    doneMeans: 'Terminé veut dire que le client a pu le voir fonctionner, pas que le code existe.',
-    realPeople: 'De vraies personnes',
     carriedBy: 'Porté par la',
     version: (name: string) => `version ${name}`,
-    whichIsInUse: 'que de vraies personnes utilisent.',
-    whichIs: (deployment: string) => `qui est ${deployment}.`,
     noVersion: 'Aucune version ne le porte encore.',
   },
 
   prototypes: {
     list: (count: number) => `Prototypes — ${count}`,
+    counts: (beingTried: number, validated: number) =>
+      `${beingTried} en essai, ${validated} validés.`,
     nothingToTry: 'Rien à essayer pour l’instant pour cette fonctionnalité.',
     tryIt: 'L’essayer →',
     validate: 'Valider',
     name: 'Ce qu’il permet d’essayer',
     location: 'Où l’essayer (facultatif)',
     add: 'Ajouter un prototype',
-    appliesTheRules:
-      'Un prototype applique les règles du métier et n’en détient aucune : une règle découverte en l’essayant est d’abord écrite. La validation est un acte du client. Une fois validé, il est affiné en maquettes réalistes — une démonstration, reliée à rien.',
   },
 
   versions: {
     title: 'Versions',
-    onlyValidated:
-      'Seule une démonstration validée est reliée au monde extérieur et sort en version.',
-    inRealUse: 'En usage réel',
     readyToGoOut: (count: number) => `Prêts à sortir — ${count}`,
     noneReady: 'Aucun récit terminé n’attend. Rien à partir de quoi faire une version.',
     versionName: 'Nommer cette version, par ex. 1.1',
     cut: 'Faire la version',
     all: 'Toutes les versions',
-    deploy: 'La déployer',
-    itIsUp: 'Elle est en ligne',
-    itFailed: 'Elle a échoué',
   },
 }

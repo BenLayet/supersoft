@@ -4,18 +4,15 @@ import { revalidatePath } from 'next/cache'
 import {
   agree,
   answerQuestion,
-  deploy,
-  failed,
   finish,
   mayChange,
   planVersion,
   releasableStories,
   restate,
   start,
-  succeeded,
   validate,
 } from '@supersoft/domain'
-import type { Domain, Priority, Project, Source, Story, Version } from '@supersoft/domain'
+import type { Domain, Priority, Project, Source, Story } from '@supersoft/domain'
 import { cookieArrivals } from '@/prototype/cookie-arrivals'
 import { findProject, inMemoryProjectStore as store } from '@/prototype/in-memory-project-store'
 
@@ -58,9 +55,6 @@ const withDomain = (project: Project, domain: Partial<Domain>): Project => ({
 
 const mapById = <T extends { id: string }>(items: readonly T[], id: string, apply: (item: T) => T) =>
   items.map((item) => (item.id === id ? apply(item) : item))
-
-const mapByName = (versions: readonly Version[], name: string, apply: (v: Version) => Version) =>
-  versions.map((version) => (version.name === name ? apply(version) : version))
 
 /* The scope, then the business: what was said. */
 
@@ -220,7 +214,7 @@ export async function validatePrototype(formData: FormData) {
   }))
 }
 
-/* Versions, put in front of real people. */
+/* Versions, gathering what is done. */
 
 export async function cutVersion(formData: FormData) {
   const name = text(formData, 'name')
@@ -230,29 +224,5 @@ export async function cutVersion(formData: FormData) {
       ...project.versions,
       planVersion(name, releasableStories(project.stories, project.versions)),
     ],
-  }))
-}
-
-export async function startDeployment(formData: FormData) {
-  const name = text(formData, 'name')
-  await change(formData, (project) => ({
-    ...project,
-    versions: mapByName(project.versions, name, deploy),
-  }))
-}
-
-export async function deploymentSucceeded(formData: FormData) {
-  const name = text(formData, 'name')
-  await change(formData, (project) => ({
-    ...project,
-    versions: mapByName(project.versions, name, succeeded),
-  }))
-}
-
-export async function deploymentFailed(formData: FormData) {
-  const name = text(formData, 'name')
-  await change(formData, (project) => ({
-    ...project,
-    versions: mapByName(project.versions, name, failed),
   }))
 }

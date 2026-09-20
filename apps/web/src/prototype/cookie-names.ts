@@ -1,4 +1,4 @@
 /** The three things the visitor's own browser remembers. */
 export const WHO_IS_HERE = 'supersoft.who'
-export const LAST_OPENED = 'supersoft.last'
+export const ADDED_PROJECTS = 'supersoft.added'
 export const LOCALE = 'supersoft.locale'

@@ -58,9 +58,6 @@ export default async function FormalisationPage({
             </form>
           </Card>
         )}
-        <p className="text-xs text-muted">
-          {t.formal.businessTermsOnly}
-        </p>
       </Section>
     </Page>
   )

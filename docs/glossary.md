@@ -20,13 +20,15 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Language of a project | `Project.language` | the customer's; never translated |
 | Language Supersoft speaks | `Locale` | chosen by the person; a convenience |
 | Someone arriving | `Account` | who they are where their projects live |
-| Project on offer | `AvailableProject` | what Supersoft found, readable or not |
-| Open to everyone | `openToEveryone` | read without saying who you are |
-| Written in the form | `inTheForm` | Supersoft can read it |
+| Project on offer | `AvailableProject` | what Supersoft found |
+| Address of a project | `address` | where its customer keeps it |
+| Public project | `isPublic` | read without saying who you are |
+| Private project | `isPublic` false | read only by the people it recognises |
 | Recognised by the project | `guardians` | who may change it |
 | May open it | `mayOpen` | |
 | May change it | `mayChange` | |
-| Where someone left off | `lastOpened` | a convenience, never authority |
+| Projects someone added | `addedProjects` | kept for them alone; grants nothing |
+| Someone's projects | `projectsFor` | the ones they added and can open |
 
 ## The domain — [domain.md](domain/domain.md)
 
@@ -68,6 +70,4 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | To do / in progress / done | `to_do` / `in_progress` / `done` | |
 | What comes next | `nextStory` | the most important story still to do |
 | Version | `Version` | gathers done stories |
-| Planned / deploying / in real use / failed | `planned` / `deploying` / `live` / `failed` | |
-| The version real people use | `versionInUse` | |
 | The version that carried a story | `versionCarrying` | |

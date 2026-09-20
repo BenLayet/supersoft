@@ -98,9 +98,6 @@ export default async function SubdomainPage({
             </form>
           </Card>
         )}
-        <p className="text-xs text-muted">
-          {t.formal.agreementIsToASentence}
-        </p>
       </Section>
     </Page>
   )

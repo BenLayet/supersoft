@@ -244,5 +244,5 @@ export const medito: Project = {
     { id: 'P1', featureId: 'F1', name: 'Regarder une pratique depuis son téléphone', state: 'validated' },
     { id: 'P2', featureId: 'F2', name: 'Prendre et rendre une place à un événement', state: 'being_tried' },
   ],
-  versions: [{ name: '1.0', storyIds: ['S1', 'S2'], deployment: 'live' }],
+  versions: [{ name: '1.0', storyIds: ['S1', 'S2'] }],
 }

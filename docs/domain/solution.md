@@ -52,10 +52,6 @@ A **version** gathers stories that are finished, so that they can be put in fron
 
 **Rule.** A version contains only done stories. Work in progress waits for the next one.
 
-A version is **planned**, then **deploying**, then **in real use** — or it **failed**, which is a state like any other and is said out loud.
-
-**Rule.** A project always knows which version real people are using. A version nobody can name is a version nobody can fix.
-
 **Rule.** A story that has gone out names the version that carried it. Asking when something reached real people is asking about a story, not about a log.
 
 **Rule.** Once a version is in real use, a change still starts as a change to the [domain](domain.md). Every new feature, and every new part of the business, goes through the same steps — lexicon, rules, prototype, mock-ups, then a version. The order is the same on day one and in year five.

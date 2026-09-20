@@ -44,6 +44,6 @@ Unlike a customer project, whose domain documents are written in the language of
 
 - [Project and participants](project.md) — what a project is and who takes part.
 - [The domain](domain.md) — the informal material, and the formal description written from it.
-- [The solution](solution.md) — features, stories, versions, deployment.
+- [The solution](solution.md) — features, stories, prototypes, versions.
 
 When a new concept appears: define it here first, then add it to the [glossary](../glossary.md) **before** giving it a name anywhere else.

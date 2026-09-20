@@ -67,13 +67,10 @@ export default async function StoryPage({
               <Button>{story.state === 'to_do' ? t.story.startIt : t.story.itIsDone}</Button>
             </form>
           )}
-          <p className="mt-3 text-xs text-muted">
-            {t.story.doneMeans}
-          </p>
         </Card>
       </Section>
 
-      <Section title={t.story.realPeople}>
+      <Section title={t.versions.title}>
         <Card>
           {carried ? (
             <p className="text-sm">
@@ -84,10 +81,6 @@ export default async function StoryPage({
               >
                 {t.story.version(carried.name)}
               </Link>
-              ,{' '}
-              {carried.deployment === 'live'
-                ? t.story.whichIsInUse
-                : t.story.whichIs(t.deployments[carried.deployment])}
             </p>
           ) : (
             <p className="text-sm italic text-muted">{t.story.noVersion}</p>

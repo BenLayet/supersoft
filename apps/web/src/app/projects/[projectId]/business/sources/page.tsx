@@ -62,9 +62,6 @@ export default async function DiscoveryPage({
             </form>
           </Card>
         )}
-        <p className="text-xs text-muted">
-          {t.informal.keptAsGiven}
-        </p>
       </Section>
 
       <Section title={t.informal.openQuestions(openQuestions.length)}>

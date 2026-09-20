@@ -25,15 +25,13 @@ One person may hold both, and the roles say what someone knows rather than what 
 
 ## Arriving at a project
 
-A project is never created by Supersoft. It already exists, where its customer keeps it, and it goes on existing if Supersoft stops. Supersoft **opens** it, and offers the ones the person arriving can reach.
+A project is never created by Supersoft. It already exists, where its customer keeps it, and it goes on existing if Supersoft stops. Supersoft **opens** it, at the **address** where its customer keeps it.
 
-**Rule.** A project **open to everyone** is read without saying who you are. Its domain, its solution and its versions are looked at by anyone, at no cost and with nothing asked.
+**Rule.** A **public project** is read without saying who you are. Its domain, its solution and its versions are looked at by anyone, at no cost and with nothing asked. A **private project** is read only by the people it recognises.
 
 **Rule.** Changing anything means saying who you are, and being someone the project already **recognises**. Supersoft grants nothing of its own: it can only act where the person could already act without it.
 
-**Rule.** A project Supersoft cannot read — one not written in the form these documents describe — is named as such. Never hidden, and never half-opened.
-
-**Rule.** Supersoft remembers where someone has been, so that they come back to the project they left. That memory is a convenience: everything it holds can be thrown away without any project losing anything.
+**Rule.** Someone's projects are the ones they have **added**, each at the address where it is kept. Adding grants nothing: a project is added only if it can already be opened. What someone added is kept for them alone — they remove it whenever they like, and the project loses nothing by it.
 
 ## Rules
 

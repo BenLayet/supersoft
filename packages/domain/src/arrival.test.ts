@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { mayChange, mayOpen } from './arrival'
+import { mayChange, mayOpen, projectsFor } from './arrival'
 import type { Account, AvailableProject } from './arrival'
 
 const ben: Account = { handle: 'ben', name: 'Ben' }
@@ -9,15 +9,15 @@ const project = (over: Partial<AvailableProject> = {}): AvailableProject => ({
   id: 'medito',
   name: 'Medito',
   owner: 'ben',
-  openToEveryone: false,
-  inTheForm: true,
+  address: 'kept/medito',
+  isPublic: false,
   guardians: ['ben'],
   ...over,
 })
 
 describe('opening a project', () => {
-  it('asks nothing of anyone when it is open to everyone', () => {
-    expect(mayOpen(project({ openToEveryone: true }))).toBe(true)
+  it('asks nothing of anyone when the project is public', () => {
+    expect(mayOpen(project({ isPublic: true }))).toBe(true)
   })
 
   it('is closed to someone the project does not recognise', () => {
@@ -28,11 +28,31 @@ describe('opening a project', () => {
   it('opens to someone it recognises', () => {
     expect(mayOpen(project(), ben)).toBe(true)
   })
+})
 
-  it('stays shut when Supersoft cannot read it, whoever is asking', () => {
-    const unreadable = project({ inTheForm: false, openToEveryone: true })
-    expect(mayOpen(unreadable, ben)).toBe(false)
-    expect(mayOpen(unreadable)).toBe(false)
+describe("someone's projects", () => {
+  const mine = project({ id: 'medito' })
+  const theirs = project({ id: 'supersoft', isPublic: true, guardians: ['alex'] })
+  const shut = project({ id: 'shut', guardians: ['alex'] })
+  const found = [mine, theirs, shut]
+
+  it('holds nothing before anything is added, whoever they are', () => {
+    expect(projectsFor(found, [], ben)).toEqual([])
+  })
+
+  it('holds what was added, in the order it was found', () => {
+    expect(projectsFor(found, ['supersoft', 'medito'], ben).map((one) => one.id)).toEqual([
+      'medito',
+      'supersoft',
+    ])
+  })
+
+  it('adds nothing that could not already be opened', () => {
+    expect(projectsFor(found, ['shut'], ben)).toEqual([])
+  })
+
+  it('holds what someone who has not said who they are added', () => {
+    expect(projectsFor(found, ['supersoft']).map((one) => one.id)).toEqual(['supersoft'])
   })
 })
 
@@ -42,7 +62,7 @@ describe('changing a project', () => {
     expect(mayChange(project(), stranger)).toBe(false)
   })
 
-  it('is refused to someone who has not said who they are, open or not', () => {
-    expect(mayChange(project({ openToEveryone: true }))).toBe(false)
+  it('is refused to someone who has not said who they are, public or not', () => {
+    expect(mayChange(project({ isPublic: true }))).toBe(false)
   })
 })

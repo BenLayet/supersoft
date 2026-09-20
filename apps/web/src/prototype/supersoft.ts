@@ -128,7 +128,7 @@ export const supersoft: Project = {
       },
       {
         id: 'R3',
-        statement: 'Un projet ouvert à tous se lit sans dire qui l’on est.',
+        statement: 'Un projet public se lit sans dire qui l’on est.',
         state: 'proposed',
         subdomainId: 'D1',
       },
@@ -168,7 +168,7 @@ export const supersoft: Project = {
     {
       id: 'F1',
       name: 'Arriver sur un projet',
-      purpose: 'chacun trouve le projet sur lequel il travaille, ou en consulte un qui est ouvert à tous',
+      purpose: 'chacun trouve le projet sur lequel il travaille, ou en consulte un qui est public',
     },
     {
       id: 'F2',
@@ -186,7 +186,7 @@ export const supersoft: Project = {
       id: 'S1',
       featureId: 'F1',
       role: 'développeur',
-      intention: 'consulter un projet ouvert à tous sans dire qui je suis',
+      intention: 'consulter un projet public sans dire qui je suis',
       reason: 'voir ce que produit la méthode avant de m’engager à quoi que ce soit',
       priority: 'essential',
       state: 'in_progress',
@@ -259,7 +259,7 @@ export const supersoft: Project = {
     { id: 'P1', featureId: 'F1', name: 'Arriver sur un projet et le parcourir', location: '/', state: 'being_tried' },
   ],
   versions: [
-    { name: '0.1', storyIds: ['S3', 'S4', 'S6'], deployment: 'live' },
-    { name: '0.2', storyIds: ['S5', 'S7'], deployment: 'planned' },
+    { name: '0.1', storyIds: ['S3', 'S4', 'S6'] },
+    { name: '0.2', storyIds: ['S5', 'S7'] },
   ],
 }

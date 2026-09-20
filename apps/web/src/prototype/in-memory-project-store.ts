@@ -12,33 +12,22 @@ const held = new Map<string, Project>([
   [medito.id, medito],
 ])
 
-/**
- * What Supersoft would find where someone keeps their projects. The third one
- * is there on purpose: a project Supersoft cannot read is named as such.
- */
+/** What Supersoft would find where someone keeps their projects. */
 const found: readonly AvailableProject[] = [
   {
     id: 'supersoft',
     name: 'Supersoft',
     owner: 'ben',
-    openToEveryone: true,
-    inTheForm: true,
+    address: 'https://github.com/BenLayet/supersoft',
+    isPublic: true,
     guardians: ['ben'],
   },
   {
     id: 'medito',
     name: 'Medito',
     owner: 'ben',
-    openToEveryone: false,
-    inTheForm: true,
-    guardians: ['ben'],
-  },
-  {
-    id: 'bakery-site',
-    name: 'bakery-site',
-    owner: 'ben',
-    openToEveryone: true,
-    inTheForm: false,
+    address: 'https://github.com/BenLayet/medito',
+    isPublic: false,
     guardians: ['ben'],
   },
 ]
@@ -46,7 +35,7 @@ const found: readonly AvailableProject[] = [
 export const inMemoryProjectStore: ProjectStore = {
   async available(account?: Account) {
     return found.filter(
-      (project) => project.openToEveryone || (account && project.guardians.includes(account.handle)),
+      (project) => project.isPublic || (account && project.guardians.includes(account.handle)),
     )
   },
   async load(projectId: string) {

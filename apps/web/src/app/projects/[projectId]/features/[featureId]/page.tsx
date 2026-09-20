@@ -82,9 +82,6 @@ export default async function FeaturePage({
               </div>
             </form>
           </Card>
-          <p className="text-xs text-muted">
-            {t.features.priorityIsTheCustomers}
-          </p>
         </Section>
       )}
 
@@ -113,7 +110,6 @@ export default async function FeaturePage({
             </form>
           </Card>
         )}
-        <p className="text-xs text-muted">{t.prototypes.appliesTheRules}</p>
       </Section>
     </Page>
   )

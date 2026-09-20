@@ -8,7 +8,7 @@ import type { Project } from '../project'
  * Supersoft never creates a project here: it opens what already exists.
  */
 export interface ProjectStore {
-  /** What this person can reach. Without an account, what is open to everyone. */
+  /** What this person can reach. Without an account, the public directories. */
   available(account?: Account): Promise<readonly AvailableProject[]>
   load(projectId: string): Promise<Project | undefined>
   save(project: Project): Promise<void>

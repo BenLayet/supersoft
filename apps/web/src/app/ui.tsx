@@ -6,7 +6,7 @@ export function Page({
   back,
   children,
 }: {
-  title: string
+  title?: string
   /** Where this page came from, when it is not a section of its own. */
   back?: { href: string; label: string }
   children: ReactNode
@@ -18,8 +18,10 @@ export function Page({
           ← {back.label}
         </Link>
       )}
-      <h1 className={`text-2xl font-semibold tracking-tight ${back ? 'mt-2' : ''}`}>{title}</h1>
-      <div className="mt-8 space-y-8">{children}</div>
+      {title && (
+        <h1 className={`text-2xl font-semibold tracking-tight ${back ? 'mt-2' : ''}`}>{title}</h1>
+      )}
+      <div className={`space-y-8 ${title ? 'mt-8' : ''}`}>{children}</div>
     </div>
   )
 }
@@ -76,15 +78,19 @@ export function Input({
   placeholder,
   defaultValue,
   required = true,
+  label,
 }: {
   name: string
   placeholder: string
   defaultValue?: string
   required?: boolean
+  /** What this field is, when no heading says it. */
+  label?: string
 }) {
   return (
     <input
       name={name}
+      aria-label={label}
       placeholder={placeholder}
       defaultValue={defaultValue}
       required={required}

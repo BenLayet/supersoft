@@ -1,9 +1,8 @@
 import Link from 'next/link'
-import { countByState, nextStory, prototypesOf, stateOf, storiesOf } from '@supersoft/domain'
+import { countByState, prototypesOf, stateOf, storiesOf } from '@supersoft/domain'
 import { open } from '@/session'
 import { dictionary } from '@/i18n'
 import { addFeature } from '@/app/actions'
-import { StorySentence, storyHref } from '@/app/story-line'
 import { Button, Card, Input, Page, Pill, Section } from '@/app/ui'
 
 export default async function FeaturesPage({ params }: { params: Promise<{ projectId: string }> }) {
@@ -11,33 +10,9 @@ export default async function FeaturesPage({ params }: { params: Promise<{ proje
   const { project, writable } = await open(projectId)
   const t = await dictionary()
   const { features, stories } = project
-  const next = nextStory(stories)
-  const nextFeature = features.find((feature) => feature.id === next?.featureId)
 
   return (
     <Page title={t.features.title}>
-      <Section title={t.overview.whatComesNext}>
-        <Card>
-          {next ? (
-            <>
-              <Link href={storyHref(project.id, next)} className="block text-sm hover:text-accent">
-                <StorySentence story={next} language={project.language} />
-              </Link>
-              {nextFeature && (
-                <Link
-                  href={`/projects/${project.id}/features/${nextFeature.id}`}
-                  className="mt-2 inline-block text-sm text-muted hover:text-accent"
-                >
-                  {t.features.inFeature(nextFeature.name)}
-                </Link>
-              )}
-            </>
-          ) : (
-            <p className="text-sm italic text-muted">{t.overview.nothingWaiting}</p>
-          )}
-        </Card>
-      </Section>
-
       <Section title={t.features.list(features.length)}>
         {features.map((feature) => {
           const own = storiesOf(feature, stories)
@@ -67,7 +42,7 @@ export default async function FeaturesPage({ params }: { params: Promise<{ proje
               </p>
               {prototypes.length > 0 && (
                 <p className="mt-1 text-sm text-muted">
-                  {t.overview.prototypesSummary(prototypes.length - validated.length, validated.length)}
+                  {t.prototypes.counts(prototypes.length - validated.length, validated.length)}
                 </p>
               )}
             </Card>
