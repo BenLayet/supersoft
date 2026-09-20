@@ -1,6 +1,6 @@
 import { NavLink } from './projects/[projectId]/nav'
 
-/** The second level of navigation: the two halves of a part of a project. */
+/** The second level of navigation: what one step of a project is made of. */
 export function SubNav({ links }: { links: { href: string; label: string }[] }) {
   return (
     <div className="border-b border-rule bg-card/60">

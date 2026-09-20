@@ -13,6 +13,7 @@ import {
   restate,
   start,
   succeeded,
+  validate,
 } from '@supersoft/domain'
 import type { Domain, Priority, Project, Source, Story, Version } from '@supersoft/domain'
 import { cookieArrivals } from '@/prototype/cookie-arrivals'
@@ -61,7 +62,12 @@ const mapById = <T extends { id: string }>(items: readonly T[], id: string, appl
 const mapByName = (versions: readonly Version[], name: string, apply: (v: Version) => Version) =>
   versions.map((version) => (version.name === name ? apply(version) : version))
 
-/* The informal side of the domain. */
+/* The scope, then the business: what was said. */
+
+export async function rewriteScope(formData: FormData) {
+  const scope = text(formData, 'scope')
+  await change(formData, (project) => ({ ...project, scope }))
+}
 
 export async function keepSource(formData: FormData) {
   const kind = text(formData, 'kind') as Source['kind']
@@ -98,7 +104,7 @@ export async function answer(formData: FormData) {
   )
 }
 
-/* The formal side: the subdomains, their lexicon and their description. */
+/* The subdomains of the business, their lexicon and their rules. */
 
 export async function addSubdomain(formData: FormData) {
   const name = text(formData, 'name')
@@ -152,7 +158,7 @@ export async function restateRule(formData: FormData) {
   )
 }
 
-/* The solution. */
+/* Features and their stories. */
 
 export async function addFeature(formData: FormData) {
   const name = text(formData, 'name')
@@ -190,6 +196,31 @@ export async function finishStory(formData: FormData) {
     stories: mapById(project.stories, id, finish),
   }))
 }
+
+/* Prototypes of a feature, tried before anything is real. */
+
+export async function addPrototype(formData: FormData) {
+  const featureId = text(formData, 'featureId')
+  const name = text(formData, 'name')
+  const location = String(formData.get('location') ?? '').trim() || undefined
+  await change(formData, (project) => ({
+    ...project,
+    prototypes: [
+      ...project.prototypes,
+      { id: nextId('P', project.prototypes), featureId, name, location, state: 'being_tried' },
+    ],
+  }))
+}
+
+export async function validatePrototype(formData: FormData) {
+  const id = text(formData, 'id')
+  await change(formData, (project) => ({
+    ...project,
+    prototypes: mapById(project.prototypes, id, validate),
+  }))
+}
+
+/* Versions, put in front of real people. */
 
 export async function cutVersion(formData: FormData) {
   const name = text(formData, 'name')

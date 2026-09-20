@@ -1,5 +1,6 @@
 import type { Domain } from './domain'
 import type { Feature } from './feature'
+import type { Prototype } from './prototype'
 import type { Story } from './story'
 import type { Version } from './version'
 
@@ -18,10 +19,13 @@ export interface Project {
   readonly name: string
   /** The language it is written in: its customer's. Supersoft never translates it. */
   readonly language: string
+  /** What the application is for, and what it is not: short, broad, deliberately vague. */
+  readonly scope: string
   readonly participants: readonly Participant[]
   readonly domain: Domain
   readonly features: readonly Feature[]
   readonly stories: readonly Story[]
+  readonly prototypes: readonly Prototype[]
   readonly versions: readonly Version[]
 }
 

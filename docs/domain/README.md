@@ -18,6 +18,18 @@ A project has three parts, and they grow together rather than in sequence:
 
 Everything it produces belongs to the customer and stays readable without it.
 
+## How a project grows
+
+The aim is an application that fits the business precisely: easy to use, and easy to change. It is reached step by step, always in the same order:
+
+1. **Understand the business.** A short [scope](project.md#scope) says what the application is for; the business is then cut into its parts, and the features are drawn from them.
+2. **Describe it precisely.** Each part gets its [lexicon](domain.md#the-formal-side) and its [rules](domain.md#the-formal-side). The rules are the core of the application, true before any screen exists.
+3. **Prototype it with the people who will use it.** A [prototype](solution.md#prototypes) applies the rules, and trying it refines them. It becomes realistic mock-ups: a demonstration, connected to nothing.
+4. **Put it in front of real people.** Only once it is validated is it connected to the outside world and delivered as a [version](solution.md#versions).
+5. **Keep going, the same way.** Every new feature, and every new part of the business, goes through the same steps.
+
+These steps are a cycle, not a sequence of sections: they come round again for every feature. What they produce stays in three places, whatever step a project is at — the **business** ([the domain](domain.md): sources, questions and subdomains), the **features** that answer it ([the solution](solution.md): stories and prototypes), and the **versions** that reach real people.
+
 ## Writing conventions
 
 - No mention of a tool, a piece of software or a technique. Supersoft is a tool for making software, so the temptation is constant — resist it.

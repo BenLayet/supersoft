@@ -75,17 +75,19 @@ export function Input({
   name,
   placeholder,
   defaultValue,
+  required = true,
 }: {
   name: string
   placeholder: string
   defaultValue?: string
+  required?: boolean
 }) {
   return (
     <input
       name={name}
       placeholder={placeholder}
       defaultValue={defaultValue}
-      required
+      required={required}
       className="w-full rounded-md border border-rule bg-card px-3 py-1.5 text-sm outline-none placeholder:text-muted/60 focus:border-accent"
     />
   )
@@ -117,5 +119,26 @@ export function Select({
         </option>
       ))}
     </select>
+  )
+}
+
+export function Textarea({
+  name,
+  placeholder,
+  defaultValue,
+}: {
+  name: string
+  placeholder: string
+  defaultValue?: string
+}) {
+  return (
+    <textarea
+      name={name}
+      placeholder={placeholder}
+      defaultValue={defaultValue}
+      required
+      rows={4}
+      className="w-full rounded-md border border-rule bg-card px-3 py-1.5 text-sm outline-none placeholder:text-muted/60 focus:border-accent"
+    />
   )
 }

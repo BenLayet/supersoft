@@ -27,7 +27,7 @@ export default async function StoryPage({
     <Page
       title={story.intention}
       back={{
-        href: `/projects/${project.id}/solution/features/${feature.id}`,
+        href: `/projects/${project.id}/features/${feature.id}`,
         label: feature.name,
       }}
     >
@@ -79,7 +79,7 @@ export default async function StoryPage({
             <p className="text-sm">
               {t.story.carriedBy}{' '}
               <Link
-                href={`/projects/${project.id}/solution/versions`}
+                href={`/projects/${project.id}/versions`}
                 className="hover:text-accent"
               >
                 {t.story.version(carried.name)}
