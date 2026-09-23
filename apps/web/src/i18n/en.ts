@@ -1,4 +1,4 @@
-import type { Priority, PrototypeState, Role, RuleState, StoryState, Workshop } from '@supersoft/domain'
+import type { DocumentKind, Priority, PrototypeState, Role, RuleState, StoryState } from '@supersoft/domain'
 import { onDay } from './day'
 
 /** In English, only exactly one stays singular. */
@@ -18,10 +18,14 @@ export const en = {
   },
 
   roles: { customer: 'customer', maker: 'maker' } satisfies Record<Role, string>,
-  workshopKinds: { note: 'note', audio: 'audio', video: 'video' } satisfies Record<
-    Workshop['kind'],
-    string
-  >,
+  documentKinds: {
+    slides: 'slides',
+    video: 'video',
+    audio: 'recording',
+    notes: 'notes',
+    report: 'report',
+    transcript: 'transcript',
+  } satisfies Record<DocumentKind, string>,
   storyStates: { to_do: 'to do', in_progress: 'in progress', done: 'done' } satisfies Record<
     StoryState,
     string
@@ -87,11 +91,16 @@ export const en = {
     workshops: (count: number) => `Workshops — ${count}`,
     nothingKept: 'No workshop has been held yet.',
     heldOn: (date: string) => onDay(date, 'en-GB'),
-    heldWith: (who: string) => `with ${who}`,
-    whatItIs: 'What came out of it — a recording, a film, a page of notes',
-    whoWith: 'Who it was with',
+    whatItWasAbout: 'What it was about',
     whenHeld: 'The day it was held',
     keepIt: 'Keep it',
+    documentCount: (count: number) => `${count} document${s(count)}`,
+    documents: (count: number) => `Documents — ${count}`,
+    noDocument: 'Nothing has been kept from this workshop yet.',
+    documentTitle: 'What it is — the slides shown, the report, the transcript',
+    documentLocation: 'Where it is kept (optional)',
+    addDocument: 'Add it',
+    open: 'Open',
   },
 
   formal: {

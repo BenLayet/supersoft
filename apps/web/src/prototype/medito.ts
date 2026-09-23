@@ -21,30 +21,34 @@ export const medito: Project = {
       {
         id: 'W1',
         date: '2026-08-27',
-        kind: 'audio',
-        title: 'Première conversation sur la vidéothèque — 42 minutes',
-        from: 'Amara Diallo',
+        title: 'Découverte de la vidéothèque',
+        documents: [
+          { id: 'W1-1', kind: 'audio', title: 'La conversation avec Amara Diallo — 42 minutes' },
+          { id: 'W1-2', kind: 'notes', title: 'Ce que Jules Perrin en a retenu' },
+        ],
       },
       {
         id: 'W2',
         date: '2026-09-03',
-        kind: 'video',
-        title: 'Visite de la salle de méditation, filmée au téléphone',
-        from: 'Amara Diallo',
+        title: 'Visite de la salle de méditation',
+        documents: [{ id: 'W2-1', kind: 'video', title: 'La visite, filmée au téléphone' }],
       },
       {
         id: 'W3',
         date: '2026-09-10',
-        kind: 'note',
-        title: 'Conseil d’administration : les adhérents veulent pratiquer sans connexion',
-        from: 'Jules Perrin',
+        title: 'Conseil d’administration de septembre',
+        documents: [
+          { id: 'W3-1', kind: 'slides', title: 'Pratiquer sans connexion : les questions posées au conseil' },
+          { id: 'W3-2', kind: 'report', title: 'Compte rendu du conseil' },
+        ],
       },
       {
         id: 'W4',
         date: '2026-09-18',
-        kind: 'audio',
-        title: 'Une enseignante sur la façon dont un enregistrement est fait et relu — 18 minutes',
-        from: 'Noor Haddad, enseignante',
+        title: 'Entretien sur l’enregistrement des pratiques',
+        documents: [
+          { id: 'W4-1', kind: 'audio', title: 'Comment un enregistrement est fait et relu, par Noor Haddad, enseignante — 18 minutes' },
+        ],
       },
     ],
     domains: [

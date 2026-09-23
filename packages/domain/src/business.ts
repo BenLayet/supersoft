@@ -1,14 +1,21 @@
-/** One working session and what came out of it: a page of notes, a recording, a film. */
+export type DocumentKind = 'slides' | 'video' | 'audio' | 'notes' | 'report' | 'transcript'
+
+/** One thing a workshop left behind. */
+export interface WorkshopDocument {
+  readonly id: string
+  readonly kind: DocumentKind
+  readonly title: string
+  /** Where it is kept, to go back to it as it was that day. */
+  readonly location?: string
+}
+
+/** One working session: the day it was held, what it was about, and what it left behind. */
 export interface Workshop {
   readonly id: string
   /** The day it was held, as `YYYY-MM-DD`. A workshop is dated, and never rewritten. */
   readonly date: string
-  readonly kind: 'note' | 'audio' | 'video'
   readonly title: string
-  /** Who it came from, in their own words where possible. */
-  readonly from: string
-  /** Where it is kept, to go back to it as it was that day. */
-  readonly location?: string
+  readonly documents: readonly WorkshopDocument[]
 }
 
 /** Something the project knows it does not know about one part of the business. */
@@ -63,6 +70,21 @@ export interface Business {
 /** A workshop is what was said on one day, not a document kept up to date. */
 export const workshopsByDate = (workshops: readonly Workshop[]): readonly Workshop[] =>
   [...workshops].sort((one, other) => other.date.localeCompare(one.date))
+
+/**
+ * A report or a transcript often comes after the day. Adding one leaves every
+ * document already there as it was.
+ */
+export const addDocument = (
+  workshop: Workshop,
+  document: Omit<WorkshopDocument, 'id'>,
+): Workshop => {
+  const title = document.title.trim()
+  if (title === '') throw new Error('A document says what it is.')
+  const location = document.location?.trim() || undefined
+  const id = `${workshop.id}-${workshop.documents.length + 1}`
+  return { ...workshop, documents: [...workshop.documents, { ...document, id, title, location }] }
+}
 
 export const answerQuestion = (question: Question, answer: string): Question => {
   const answered = answer.trim()

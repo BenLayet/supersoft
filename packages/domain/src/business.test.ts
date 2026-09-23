@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  addDocument,
   agree,
   answerQuestion,
   openQuestions,
@@ -28,9 +29,8 @@ const rule = (statement: string, state: Rule['state'] = 'proposed'): Rule => ({
 const workshop = (id: string, date: string): Workshop => ({
   id,
   date,
-  kind: 'note',
   title: 'What the office does on a Monday',
-  from: 'Claire',
+  documents: [],
 })
 
 describe('workshops', () => {
@@ -47,6 +47,31 @@ describe('workshops', () => {
     const held = [workshop('W1', '2026-01-12'), workshop('W2', '2026-03-04')]
     workshopsByDate(held)
     expect(held.map((one) => one.id)).toEqual(['W1', 'W2'])
+  })
+})
+
+describe('the documents of a workshop', () => {
+  const held = addDocument(workshop('W1', '2026-01-12'), { kind: 'video', title: 'The visit' })
+
+  it('can be added after the day, leaving the ones already there as they were', () => {
+    const later = addDocument(held, { kind: 'transcript', title: 'What was said', location: '/t.txt' })
+    expect(later.documents.map((one) => one.kind)).toEqual(['video', 'transcript'])
+    expect(later.documents[0]).toBe(held.documents[0])
+    expect(later.date).toBe('2026-01-12')
+  })
+
+  it('leave the workshop they were added to untouched', () => {
+    addDocument(held, { kind: 'report', title: 'Report' })
+    expect(held.documents).toHaveLength(1)
+  })
+
+  it('each say what they are', () => {
+    expect(() => addDocument(held, { kind: 'notes', title: '  ' })).toThrow()
+  })
+
+  it('are not said to be kept somewhere when no place was given', () => {
+    const noted = addDocument(held, { kind: 'notes', title: 'Notes', location: ' ' })
+    expect(noted.documents[1]?.location).toBeUndefined()
   })
 })
 

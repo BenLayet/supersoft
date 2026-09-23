@@ -37,9 +37,12 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | --- | --- | --- |
 | Business | `Business` | what the application serves |
 | Workshop | `Workshop` | one working session and what came out of it |
-| Note / audio / video | `note` / `audio` / `video` | what a workshop is made of |
 | Date of a workshop | `Workshop.date` | the day it was held; never rewritten |
-| Where a workshop is kept | `Workshop.location` | to go back to it as it was that day |
+| Title of a workshop | `Workshop.title` | what it was about |
+| Document | `WorkshopDocument` | one thing a workshop left behind |
+| Slides / video / recording / notes / report / transcript | `slides` / `video` / `audio` / `notes` / `report` / `transcript` | the kinds of document |
+| Where a document is kept | `WorkshopDocument.location` | to go back to it as it was that day |
+| Adding a document | `addDocument` | possible after the day; never rewritten |
 | Workshops by date | `workshopsByDate` | most recent first |
 | Domain | `Domain` | one part of the business, with its own words |
 | What a domain is | `Domain.description` | business only; never what the application does |

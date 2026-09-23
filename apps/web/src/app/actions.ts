@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import {
+  addDocument,
   agree,
   answerQuestion,
   finish,
@@ -12,7 +13,7 @@ import {
   start,
   validate,
 } from '@supersoft/domain'
-import type { Business, Priority, Project, Story, Workshop } from '@supersoft/domain'
+import type { Business, DocumentKind, Priority, Project, Story } from '@supersoft/domain'
 import { cookieArrivals } from '@/prototype/cookie-arrivals'
 import { findProject, inMemoryProjectStore as store } from '@/prototype/in-memory-project-store'
 
@@ -20,6 +21,12 @@ const text = (formData: FormData, field: string): string => {
   const value = formData.get(field)
   if (typeof value !== 'string' || value.trim() === '') throw new Error(`Missing ${field}`)
   return value.trim()
+}
+
+/** A field that may be left empty. */
+const optional = (formData: FormData, field: string): string | undefined => {
+  const value = formData.get(field)
+  return typeof value === 'string' && value.trim() !== '' ? value.trim() : undefined
 }
 
 const nextId = (prefix: string, taken: readonly { id: string }[]): string => {
@@ -64,16 +71,28 @@ export async function rewriteScope(formData: FormData) {
 }
 
 export async function keepWorkshop(formData: FormData) {
-  const kind = text(formData, 'kind') as Workshop['kind']
   const date = text(formData, 'date')
   const title = text(formData, 'title')
-  const from = text(formData, 'from')
   await change(formData, (project) =>
     withBusiness(project, {
       workshops: [
         ...project.business.workshops,
-        { id: nextId('W', project.business.workshops), date, kind, title, from },
+        { id: nextId('W', project.business.workshops), date, title, documents: [] },
       ],
+    }),
+  )
+}
+
+export async function keepDocument(formData: FormData) {
+  const workshopId = text(formData, 'workshopId')
+  const kind = text(formData, 'kind') as DocumentKind
+  const title = text(formData, 'title')
+  const location = optional(formData, 'location')
+  await change(formData, (project) =>
+    withBusiness(project, {
+      workshops: mapById(project.business.workshops, workshopId, (workshop) =>
+        addDocument(workshop, { kind, title, location }),
+      ),
     }),
   )
 }

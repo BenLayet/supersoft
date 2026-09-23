@@ -21,24 +21,57 @@ export const supersoft: Project = {
       {
         id: 'W1',
         date: '2026-06-02',
-        kind: 'note',
-        title: 'Les premiers mois ont spécifié un produit que personne n’avait jamais lancé',
-        from: 'Ben Layet',
+        title: 'Bilan des premiers mois',
+        documents: [
+          {
+            id: 'W1-1',
+            kind: 'notes',
+            title: 'Les premiers mois ont spécifié un produit que personne n’avait jamais lancé',
+          },
+        ],
       },
       {
         id: 'W2',
         date: '2026-07-14',
-        kind: 'note',
-        title: 'Une application construite avec cette méthode avant que tout outil existe',
-        from: 'Ben Layet',
+        title: 'Retour d’expérience sur une application existante',
+        documents: [
+          {
+            id: 'W2-1',
+            kind: 'notes',
+            title: 'Une application construite avec cette méthode avant que tout outil existe',
+          },
+        ],
       },
       {
         id: 'W3',
         date: '2026-09-16',
-        kind: 'video',
-        title: 'Pourquoi le logiciel d’une association est difficile à utiliser, et difficile à changer',
-        from: 'Ben Layet',
-        location: '/discovery/20260916%20general%20presentation/presentation.mp4',
+        title: 'Présentation de l’idée générale',
+        documents: [
+          {
+            id: 'W3-1',
+            kind: 'video',
+            title: 'Pourquoi le logiciel d’une association est difficile à utiliser, et difficile à changer',
+            location: '/discovery/20260916%20general%20presentation/presentation.mp4',
+          },
+          {
+            id: 'W3-2',
+            kind: 'transcript',
+            title: 'Transcription, en français',
+            location: '/discovery/20260916%20general%20presentation/general%20presentation%20transcript%20-%20French.txt',
+          },
+          {
+            id: 'W3-3',
+            kind: 'transcript',
+            title: 'Transcription, en anglais',
+            location: '/discovery/20260916%20general%20presentation/general%20presentation%20transcript%20-%20English.txt',
+          },
+          {
+            id: 'W3-4',
+            kind: 'report',
+            title: 'Les points clés',
+            location: '/discovery/20260916%20general%20presentation/general%20presentation%20-%20key%20points.md',
+          },
+        ],
       },
     ],
     domains: [
@@ -74,8 +107,13 @@ export const supersoft: Project = {
         domainId: 'D1',
       },
       {
-        name: 'Source',
-        definition: 'Matériau informel, gardé tel qu’il a été donné : une note, un enregistrement, un film.',
+        name: 'Atelier',
+        definition: 'Une séance de travail, tenue à une date, et les documents qui en sont sortis.',
+        domainId: 'D2',
+      },
+      {
+        name: 'Document',
+        definition: 'Une chose qu’un atelier a laissée : un diaporama, une vidéo, des notes, un compte rendu, une transcription.',
         domainId: 'D2',
       },
       {
