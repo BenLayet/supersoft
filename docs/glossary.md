@@ -39,8 +39,6 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Source | `Source` | informal material, kept as it was given |
 | Note / audio / video | `note` / `audio` / `video` | what a source is made of |
 | Where a source is kept | `Source.location` | to go back to it as it was given |
-| Question | `Question` | something the project knows it does not know |
-| Open question | `openQuestions` | unanswered; always countable |
 | Domain | `Domain` | one part of the business, with its own words |
 | What a domain is | `Domain.description` | business only; never what the application does |
 | Lexicon | `Term` | one concept, one name, one definition |
@@ -51,6 +49,10 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Agreed (state) | `agreed` | confirmed by the customer |
 | Agreeing | `agree` | |
 | Rewriting a rule | `restate` | makes it `proposed` again |
+| Question | `Question` | something the project knows it does not know |
+| Domain of a question | `Question.domainId` | every question belongs to exactly one |
+| Questions of a domain | `questionsOf` | |
+| Open question | `openQuestions` | unanswered; always countable |
 
 ## The solution — [solution.md](domain/solution.md)
 

@@ -1,5 +1,8 @@
 import type { Dictionary } from './dictionary'
 
+/** In French, only more than one takes an s: zero stays singular. */
+const s = (count: number): string => (count > 1 ? 's' : '')
+
 /** What Supersoft says, in French. Never what a project says: that is never translated. */
 export const fr: Dictionary = {
   languageName: 'Français',
@@ -46,7 +49,7 @@ export const fr: Dictionary = {
     business: 'Métier',
     features: 'Fonctionnalités',
     versions: 'Versions',
-    sources: 'Sources et questions',
+    sources: 'Sources',
     domains: 'Domaines',
   },
 
@@ -64,21 +67,13 @@ export const fr: Dictionary = {
   },
 
   informal: {
-    title: 'Sources et questions',
+    title: 'Sources',
     sources: (count: number) => `Sources — ${count}`,
     nothingKept: 'Rien n’a encore été gardé.',
     from: (who: string) => `donnée par ${who}`,
     whatItIs: 'Ce que c’est — un enregistrement, un film, une page de notes',
     whoFrom: 'De qui cela vient',
     keepIt: 'Le garder',
-    openQuestions: (count: number) => `Questions ouvertes — ${count}`,
-    nothingOpen: 'Rien d’ouvert. Soit le projet est petit, soit personne ne pose de question.',
-    whatWasDecided: 'Ce qui a été décidé, et par qui',
-    answer: 'Répondre',
-    whatNobodyKnows: 'Qu’est-ce que personne ne sait encore ?',
-    ask: 'Demander',
-    answered: 'Répondues',
-    noneAnswered: 'Aucune question n’a encore reçu de réponse.',
   },
 
   formal: {
@@ -86,7 +81,9 @@ export const fr: Dictionary = {
     domains: (count: number) => `Domaines — ${count}`,
     notCut: 'Le métier n’a pas encore été découpé.',
     agreedOf: (agreed: number, rules: number) => `${agreed} sur ${rules} approuvées`,
-    counts: (terms: number, rules: number) => `${terms} termes, ${rules} règles.`,
+    counts: (terms: number, rules: number, open: number) =>
+      `${terms} terme${s(terms)}, ${rules} règle${s(rules)}, ` +
+      `${open} question${s(open)} ouverte${s(open)}.`,
     domainName: 'Une partie du métier, nommée comme ses gens la nomment',
     domainDescription: 'Ce qu’elle est, en termes métier uniquement',
     addDomain: 'Ajouter un domaine',
@@ -103,6 +100,14 @@ export const fr: Dictionary = {
     rewrite: 'Réécrire',
     ruleStatement: 'Une phrase que le client peut confirmer ou démentir',
     writeItDown: 'L’écrire',
+    openQuestions: (count: number) => `Questions ouvertes — ${count}`,
+    nothingOpen: 'Rien d’ouvert ici. Soit cette partie est simple, soit personne ne pose de question.',
+    whatWasDecided: 'Ce qui a été décidé, et par qui',
+    answer: 'Répondre',
+    whatNobodyKnows: 'Qu’est-ce que personne ne sait encore sur cette partie du métier ?',
+    ask: 'Demander',
+    answered: 'Répondues',
+    noneAnswered: 'Aucune question n’a encore reçu de réponse ici.',
   },
 
   features: {

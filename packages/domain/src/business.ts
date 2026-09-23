@@ -9,11 +9,13 @@ export interface Source {
   readonly location?: string
 }
 
-/** Something the project knows it does not know. */
+/** Something the project knows it does not know about one part of the business. */
 export interface Question {
   readonly id: string
   readonly asked: string
   readonly answer?: string
+  /** The part of the business the question is about. */
+  readonly domainId: string
 }
 
 /** One part of the business, with its own words. */
@@ -49,11 +51,11 @@ export interface Rule {
 export interface Business {
   /** The informal side. */
   readonly sources: readonly Source[]
-  readonly questions: readonly Question[]
-  /** The formal side: the parts of the business, their lexicon and their description. */
+  /** The formal side: the parts of the business, and what is written under each. */
   readonly domains: readonly Domain[]
   readonly terms: readonly Term[]
   readonly rules: readonly Rule[]
+  readonly questions: readonly Question[]
 }
 
 export const answerQuestion = (question: Question, answer: string): Question => {
@@ -64,7 +66,7 @@ export const answerQuestion = (question: Question, answer: string): Question => 
 
 export const isOpen = (question: Question): boolean => question.answer === undefined
 
-/** The open questions of a project are always countable. */
+/** The open questions of a domain are always countable. */
 export const openQuestions = (questions: readonly Question[]): readonly Question[] =>
   questions.filter(isOpen)
 
@@ -85,3 +87,7 @@ export const termsOf = (domain: Domain, terms: readonly Term[]): readonly Term[]
 /** Every rule belongs to exactly one domain. */
 export const rulesOf = (domain: Domain, rules: readonly Rule[]): readonly Rule[] =>
   rules.filter((rule) => rule.domainId === domain.id)
+
+/** Every question belongs to exactly one domain. */
+export const questionsOf = (domain: Domain, questions: readonly Question[]): readonly Question[] =>
+  questions.filter((question) => question.domainId === domain.id)

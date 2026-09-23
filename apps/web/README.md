@@ -1,7 +1,7 @@
 # @supersoft/web
 
 Supersoft's own prototype: arriving at a project, then its overview (the scope, and who takes part)
-and its three parts — the business (sources and questions, domains with their lexicon and rules),
+and its three parts — the business (sources, domains with their lexicon, rules and questions),
 the features (stories and prototypes), and the versions.
 
 Two projects are on offer. **Supersoft** is a public project: it can be read without signing in,

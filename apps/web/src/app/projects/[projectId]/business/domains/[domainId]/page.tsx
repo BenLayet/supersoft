@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
-import { rulesOf, termsOf } from '@supersoft/domain'
+import { isOpen, openQuestions, questionsOf, rulesOf, termsOf } from '@supersoft/domain'
 import { open } from '@/session'
 import { dictionaryIn } from '@/i18n'
-import { agreeRule, defineTerm, restateRule, writeRule } from '@/app/actions'
+import { agreeRule, answer, askQuestion, defineTerm, restateRule, writeRule } from '@/app/actions'
 import { Button, Card, Empty, Input, Page, Pill, Section } from '@/app/ui'
 
 export default async function DomainPage({
@@ -20,6 +20,9 @@ export default async function DomainPage({
   const terms = termsOf(domain, business.terms)
   const rules = rulesOf(domain, business.rules)
   const agreed = rules.filter((rule) => rule.state === 'agreed').length
+  const questions = questionsOf(domain, business.questions)
+  const stillOpen = openQuestions(questions)
+  const answered = questions.filter((question) => !isOpen(question))
 
   return (
     <Page
@@ -99,6 +102,50 @@ export default async function DomainPage({
           </Card>
         )}
       </Section>
+
+      <Section title={t.formal.openQuestions(stillOpen.length)}>
+        {stillOpen.length === 0 && <Empty>{t.formal.nothingOpen}</Empty>}
+        {stillOpen.map((question) => (
+          <Card key={question.id}>
+            <p className="text-sm" lang={project.language}>
+              {question.asked}
+            </p>
+            {writable && (
+              <form action={answer} className="mt-3 flex flex-col gap-2 sm:flex-row">
+                <input type="hidden" name="projectId" value={project.id} />
+                <input type="hidden" name="id" value={question.id} />
+                <Input name="answer" placeholder={t.formal.whatWasDecided} />
+                <Button quiet>{t.formal.answer}</Button>
+              </form>
+            )}
+          </Card>
+        ))}
+        {writable && (
+          <Card>
+            <form action={askQuestion} className="flex flex-col gap-2 sm:flex-row">
+              <input type="hidden" name="projectId" value={project.id} />
+              <input type="hidden" name="domainId" value={domain.id} />
+              <Input name="asked" placeholder={t.formal.whatNobodyKnows} />
+              <Button>{t.formal.ask}</Button>
+            </form>
+          </Card>
+        )}
+      </Section>
+
+      {answered.length > 0 && (
+        <Section title={t.formal.answered}>
+          {answered.map((question) => (
+            <Card key={question.id}>
+              <p className="text-sm text-muted" lang={project.language}>
+                {question.asked}
+              </p>
+              <p className="mt-1 text-sm" lang={project.language}>
+                {question.answer}
+              </p>
+            </Card>
+          ))}
+        </Section>
+      )}
     </Page>
   )
 }

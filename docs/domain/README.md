@@ -28,7 +28,7 @@ The aim is an application that fits the business precisely: easy to use, and eas
 4. **Put it in front of real people.** Only once it is validated is it connected to the outside world and delivered as a [version](solution.md#versions).
 5. **Keep going, the same way.** Every new feature, and every new part of the business, goes through the same steps.
 
-These steps are a cycle, not a sequence of sections: they come round again for every feature. What they produce stays in three places, whatever step a project is at — the **business** ([sources, questions, and the domains written from them](business.md)), the **features** that answer it ([the solution](solution.md): stories and prototypes), and the **versions** that reach real people.
+These steps are a cycle, not a sequence of sections: they come round again for every feature. What they produce stays in three places, whatever step a project is at — the **business** ([sources, and the domains written from them](business.md)), the **features** that answer it ([the solution](solution.md): stories and prototypes), and the **versions** that reach real people.
 
 ## Writing conventions
 

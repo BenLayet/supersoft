@@ -43,15 +43,6 @@ export const medito: Project = {
         from: 'Noor Haddad, enseignante',
       },
     ],
-    questions: [
-      { id: 'Q1', asked: 'Quelqu’un qui n’est pas adhérent peut-il regarder une vidéo ?' },
-      {
-        id: 'Q2',
-        asked: 'Qui décide qu’un enregistrement est prêt à être publié ?',
-        answer: 'L’enseignant qui l’a enregistré, puis le secrétaire.',
-      },
-      { id: 'Q3', asked: 'Que devient une inscription quand un événement est annulé ?' },
-    ],
     domains: [
       {
         id: 'D1',
@@ -146,6 +137,24 @@ export const medito: Project = {
           'Un adhérent dont l’adhésion a expiré garde ce à quoi il a participé, mais ne peut plus prendre de place.',
         state: 'proposed',
         domainId: 'D3',
+      },
+    ],
+    questions: [
+      {
+        id: 'Q1',
+        asked: 'Quelqu’un qui n’est pas adhérent peut-il regarder une vidéo ?',
+        domainId: 'D1',
+      },
+      {
+        id: 'Q2',
+        asked: 'Qui décide qu’un enregistrement est prêt à être publié ?',
+        answer: 'L’enseignant qui l’a enregistré, puis le secrétaire.',
+        domainId: 'D1',
+      },
+      {
+        id: 'Q3',
+        asked: 'Que devient une inscription quand un événement est annulé ?',
+        domainId: 'D2',
       },
     ],
   },

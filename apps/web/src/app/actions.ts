@@ -56,7 +56,7 @@ const withBusiness = (project: Project, business: Partial<Business>): Project =>
 const mapById = <T extends { id: string }>(items: readonly T[], id: string, apply: (item: T) => T) =>
   items.map((item) => (item.id === id ? apply(item) : item))
 
-/* The scope, then the business: what was said. */
+/* The scope, then the sources: what was said. */
 
 export async function rewriteScope(formData: FormData) {
   const scope = text(formData, 'scope')
@@ -77,28 +77,7 @@ export async function keepSource(formData: FormData) {
   )
 }
 
-export async function askQuestion(formData: FormData) {
-  const asked = text(formData, 'asked')
-  await change(formData, (project) =>
-    withBusiness(project, {
-      questions: [...project.business.questions, { id: nextId('Q', project.business.questions), asked }],
-    }),
-  )
-}
-
-export async function answer(formData: FormData) {
-  const id = text(formData, 'id')
-  const said = text(formData, 'answer')
-  await change(formData, (project) =>
-    withBusiness(project, {
-      questions: mapById(project.business.questions, id, (question) =>
-        answerQuestion(question, said),
-      ),
-    }),
-  )
-}
-
-/* The domains of the business, their lexicon and their rules. */
+/* The domains of the business, their lexicon, their rules and their questions. */
 
 export async function addDomain(formData: FormData) {
   const name = text(formData, 'name')
@@ -131,6 +110,31 @@ export async function writeRule(formData: FormData) {
         ...project.business.rules,
         { id: nextId('R', project.business.rules), statement, state: 'proposed', domainId },
       ],
+    }),
+  )
+}
+
+export async function askQuestion(formData: FormData) {
+  const domainId = text(formData, 'domainId')
+  const asked = text(formData, 'asked')
+  await change(formData, (project) =>
+    withBusiness(project, {
+      questions: [
+        ...project.business.questions,
+        { id: nextId('Q', project.business.questions), asked, domainId },
+      ],
+    }),
+  )
+}
+
+export async function answer(formData: FormData) {
+  const id = text(formData, 'id')
+  const said = text(formData, 'answer')
+  await change(formData, (project) =>
+    withBusiness(project, {
+      questions: mapById(project.business.questions, id, (question) =>
+        answerQuestion(question, said),
+      ),
     }),
   )
 }

@@ -17,7 +17,7 @@ The forces at play:
 
 ## Decision
 
-1. **Everything the specification names is a file in the repository**: scope, sources (or where they are kept), questions, domains with their lexicon and rules, features and their stories, prototypes, agreements, versions. Priority, state and the version that carried a story are attached to the story in its file. None of them is an issue, a discussion, a release or a label.
+1. **Everything the specification names is a file in the repository**: scope, sources (or where they are kept), domains with their lexicon, rules and questions, features and their stories, prototypes, agreements, versions. Priority, state and the version that carried a story are attached to the story in its file. None of them is an issue, a discussion, a release or a label.
 
 2. **The repository host is a port, `RepositoryHost`, never a dependency.** Supersoft uses it for three things only:
    - **identity and rights**: who the person is, and whether the project recognises them, is exactly what the host says about their access to the repository;

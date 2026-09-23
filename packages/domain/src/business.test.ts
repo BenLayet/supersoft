@@ -1,11 +1,21 @@
 import { describe, expect, it } from 'vitest'
-import { agree, answerQuestion, openQuestions, restate, rulesOf, termNamed, termsOf } from './business'
+import {
+  agree,
+  answerQuestion,
+  openQuestions,
+  questionsOf,
+  restate,
+  rulesOf,
+  termNamed,
+  termsOf,
+} from './business'
 import type { Domain, Question, Rule, Term } from './business'
 
-const question = (id: string, answer?: string): Question => ({
+const question = (id: string, answer?: string, domainId = 'D1'): Question => ({
   id,
   asked: 'Can someone who is not a member watch a video?',
   answer,
+  domainId,
 })
 const rule = (statement: string, state: Rule['state'] = 'proposed'): Rule => ({
   id: 'R1',
@@ -74,5 +84,10 @@ describe('a domain', () => {
       { id: 'R2', statement: 'A gathering has a limit', state: 'agreed', domainId: 'D2' },
     ]
     expect(rulesOf(membership, rules).map((rule) => rule.id)).toEqual(['R1'])
+  })
+
+  it('owns the questions still open about it', () => {
+    const asked = [question('Q1'), question('Q2', undefined, 'D2'), question('Q3')]
+    expect(openQuestions(questionsOf(membership, asked)).map((one) => one.id)).toEqual(['Q1', 'Q3'])
   })
 })

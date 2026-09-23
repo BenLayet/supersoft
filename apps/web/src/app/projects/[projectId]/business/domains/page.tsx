@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { rulesOf, termsOf } from '@supersoft/domain'
+import { openQuestions, questionsOf, rulesOf, termsOf } from '@supersoft/domain'
 import { open } from '@/session'
 import { dictionaryIn } from '@/i18n'
 import { addDomain } from '@/app/actions'
@@ -23,6 +23,7 @@ export default async function FormalisationPage({
           const terms = termsOf(domain, business.terms)
           const rules = rulesOf(domain, business.rules)
           const agreed = rules.filter((rule) => rule.state === 'agreed').length
+          const stillOpen = openQuestions(questionsOf(domain, business.questions)).length
           return (
             <Card key={domain.id}>
               <div className="flex items-start justify-between gap-3">
@@ -41,7 +42,7 @@ export default async function FormalisationPage({
                 {domain.description}
               </p>
               <p className="mt-2 text-sm text-muted">
-                {t.formal.counts(terms.length, rules.length)}
+                {t.formal.counts(terms.length, rules.length, stillOpen)}
               </p>
             </Card>
           )

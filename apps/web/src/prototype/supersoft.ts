@@ -38,18 +38,6 @@ export const supersoft: Project = {
         location: '/discovery/20260916%20general%20presentation/presentation.mp4',
       },
     ],
-    questions: [
-      {
-        id: 'Q1',
-        asked: 'Que garde un projet quand il cesse d’utiliser Supersoft ?',
-        answer: 'Tout. Le métier et la solution sont les fichiers du client, lisibles sans Supersoft.',
-      },
-      { id: 'Q2', asked: 'Qui écrit le métier quand le client ne veut pas écrire de prose ?' },
-      {
-        id: 'Q3',
-        asked: 'Comment une version sait-elle quels récits de vraies personnes ont réellement reçus ?',
-      },
-    ],
     domains: [
       {
         id: 'D1',
@@ -160,6 +148,24 @@ export const supersoft: Project = {
         id: 'R8',
         statement: 'Un récit qui est sorti nomme la version qui l’a porté.',
         state: 'proposed',
+        domainId: 'D3',
+      },
+    ],
+    questions: [
+      {
+        id: 'Q1',
+        asked: 'Que garde un projet quand il cesse d’utiliser Supersoft ?',
+        answer: 'Tout. Le métier et la solution sont les fichiers du client, lisibles sans Supersoft.',
+        domainId: 'D1',
+      },
+      {
+        id: 'Q2',
+        asked: 'Qui écrit le métier quand le client ne veut pas écrire de prose ?',
+        domainId: 'D2',
+      },
+      {
+        id: 'Q3',
+        asked: 'Comment une version sait-elle quels récits de vraies personnes ont réellement reçus ?',
         domainId: 'D3',
       },
     ],

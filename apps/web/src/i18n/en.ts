@@ -1,5 +1,8 @@
 import type { Priority, PrototypeState, Role, RuleState, Source, StoryState } from '@supersoft/domain'
 
+/** In English, only exactly one stays singular. */
+const s = (count: number): string => (count === 1 ? '' : 's')
+
 /** What Supersoft says, in English. Never what a project says: that is never translated. */
 export const en = {
   languageName: 'English',
@@ -56,7 +59,7 @@ export const en = {
     business: 'Business',
     features: 'Features',
     versions: 'Versions',
-    sources: 'Sources & questions',
+    sources: 'Sources',
     domains: 'Domains',
   },
 
@@ -74,21 +77,13 @@ export const en = {
   },
 
   informal: {
-    title: 'Sources & questions',
+    title: 'Sources',
     sources: (count: number) => `Sources — ${count}`,
     nothingKept: 'Nothing has been kept yet.',
     from: (who: string) => `from ${who}`,
     whatItIs: 'What it is — a recording, a film, a page of notes',
     whoFrom: 'Who it came from',
     keepIt: 'Keep it',
-    openQuestions: (count: number) => `Open questions — ${count}`,
-    nothingOpen: 'Nothing open. Either the project is small, or nobody is asking.',
-    whatWasDecided: 'What was decided, and by whom',
-    answer: 'Answer',
-    whatNobodyKnows: 'What does nobody know yet?',
-    ask: 'Ask',
-    answered: 'Answered',
-    noneAnswered: 'No question has been answered yet.',
   },
 
   formal: {
@@ -96,7 +91,8 @@ export const en = {
     domains: (count: number) => `Domains — ${count}`,
     notCut: 'The business has not been cut up yet.',
     agreedOf: (agreed: number, rules: number) => `${agreed} of ${rules} agreed`,
-    counts: (terms: number, rules: number) => `${terms} terms, ${rules} rules.`,
+    counts: (terms: number, rules: number, open: number) =>
+      `${terms} term${s(terms)}, ${rules} rule${s(rules)}, ${open} open question${s(open)}.`,
     domainName: 'One part of the business, named as its people name it',
     domainDescription: 'What it is, in business terms only',
     addDomain: 'Add a domain',
@@ -113,6 +109,14 @@ export const en = {
     rewrite: 'Rewrite',
     ruleStatement: 'One sentence the customer can confirm or deny',
     writeItDown: 'Write it down',
+    openQuestions: (count: number) => `Open questions — ${count}`,
+    nothingOpen: 'Nothing open here. Either this part is simple, or nobody is asking.',
+    whatWasDecided: 'What was decided, and by whom',
+    answer: 'Answer',
+    whatNobodyKnows: 'What does nobody know yet about this part of the business?',
+    ask: 'Ask',
+    answered: 'Answered',
+    noneAnswered: 'No question has been answered here yet.',
   },
 
   features: {
