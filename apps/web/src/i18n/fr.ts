@@ -52,6 +52,8 @@ export const fr: Dictionary = {
     versions: 'Versions',
     workshops: 'Ateliers',
     domains: 'Domaines',
+    menu: 'Menu',
+    closeMenu: 'Fermer le menu',
   },
 
   overview: {

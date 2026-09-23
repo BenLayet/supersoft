@@ -65,6 +65,8 @@ export const en = {
     versions: 'Versions',
     workshops: 'Workshops',
     domains: 'Domains',
+    menu: 'Menu',
+    closeMenu: 'Close the menu',
   },
 
   overview: {
