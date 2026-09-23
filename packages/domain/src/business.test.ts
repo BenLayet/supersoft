@@ -8,8 +8,9 @@ import {
   rulesOf,
   termNamed,
   termsOf,
+  workshopsByDate,
 } from './business'
-import type { Domain, Question, Rule, Term } from './business'
+import type { Domain, Question, Rule, Term, Workshop } from './business'
 
 const question = (id: string, answer?: string, domainId = 'D1'): Question => ({
   id,
@@ -22,6 +23,31 @@ const rule = (statement: string, state: Rule['state'] = 'proposed'): Rule => ({
   statement,
   state,
   domainId: 'D1',
+})
+
+const workshop = (id: string, date: string): Workshop => ({
+  id,
+  date,
+  kind: 'note',
+  title: 'What the office does on a Monday',
+  from: 'Claire',
+})
+
+describe('workshops', () => {
+  it('are read by date, the most recent first', () => {
+    const held = [
+      workshop('W1', '2026-01-12'),
+      workshop('W2', '2026-03-04'),
+      workshop('W3', '2026-02-20'),
+    ]
+    expect(workshopsByDate(held).map((one) => one.id)).toEqual(['W2', 'W3', 'W1'])
+  })
+
+  it('are left where they were, since a workshop is never rewritten', () => {
+    const held = [workshop('W1', '2026-01-12'), workshop('W2', '2026-03-04')]
+    workshopsByDate(held)
+    expect(held.map((one) => one.id)).toEqual(['W1', 'W2'])
+  })
 })
 
 describe('questions', () => {

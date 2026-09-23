@@ -1,11 +1,13 @@
-/** Informal material, kept as it was given: a page of notes, a recording, a film. */
-export interface Source {
+/** One working session and what came out of it: a page of notes, a recording, a film. */
+export interface Workshop {
   readonly id: string
+  /** The day it was held, as `YYYY-MM-DD`. A workshop is dated, and never rewritten. */
+  readonly date: string
   readonly kind: 'note' | 'audio' | 'video'
   readonly title: string
   /** Who it came from, in their own words where possible. */
   readonly from: string
-  /** Where it is kept, to go back to it as it was given. */
+  /** Where it is kept, to go back to it as it was that day. */
   readonly location?: string
 }
 
@@ -50,13 +52,17 @@ export interface Rule {
 /** The business the application serves: what was said, and what was written from it. */
 export interface Business {
   /** The informal side. */
-  readonly sources: readonly Source[]
+  readonly workshops: readonly Workshop[]
   /** The formal side: the parts of the business, and what is written under each. */
   readonly domains: readonly Domain[]
   readonly terms: readonly Term[]
   readonly rules: readonly Rule[]
   readonly questions: readonly Question[]
 }
+
+/** A workshop is what was said on one day, not a document kept up to date. */
+export const workshopsByDate = (workshops: readonly Workshop[]): readonly Workshop[] =>
+  [...workshops].sort((one, other) => other.date.localeCompare(one.date))
 
 export const answerQuestion = (question: Question, answer: string): Question => {
   const answered = answer.trim()

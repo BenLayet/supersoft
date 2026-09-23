@@ -4,9 +4,11 @@ The **business** is what the application serves, described in the words of the p
 
 ## The informal side
 
-Everything the business said, as it came out: a conversation, a recording, a visit filmed on a phone, a page of notes. Each of these is a **source**. A source is never rewritten and never tidied — it is the evidence the formal description answers to. It says where it is kept, so that anyone reading the project can go back to it as it was given.
+The business is met in **workshops**. A workshop is one working session and what came out of it: a conversation, a recording, a visit filmed on a phone, a page of notes. It is held on a **date**, and it says where it is kept, so that anyone reading the project can go back to it as it was on that day.
 
-**Rule.** A source is kept as it was given. What the maker understood from it belongs to the formal side, where the customer can contradict it.
+**Rule.** A workshop is dated, and it is never rewritten. It is not a source of truth: it is what was said on one day, and it stays that. What was understood later is a later workshop, or it is written on the formal side, where the customer can contradict it.
+
+**Rule.** Workshops are read by date, the most recent first.
 
 ## The formal side
 

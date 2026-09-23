@@ -63,7 +63,7 @@ pnpm dev         # the prototype, on http://localhost:3000
 
 ## Status
 
-Early, and deliberately small. `@supersoft/domain` holds arrivals, participants, sources, domains, terms, rules, questions, features, stories and versions as pure functions. The prototype shows all of it on two fictional projects — Supersoft itself, a public project, and an association of meditators, a private one — with nothing stored anywhere.
+Early, and deliberately small. `@supersoft/domain` holds arrivals, participants, workshops, domains, terms, rules, questions, features, stories and versions as pure functions. The prototype shows all of it on two fictional projects — Supersoft itself, a public project, and an association of meditators, a private one — with nothing stored anywhere.
 
 The generator, the portal, and reading a specification from a project's own files do not exist yet. The first of those to be built will be the one the prototype makes impossible to avoid.
 

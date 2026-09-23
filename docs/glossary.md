@@ -36,9 +36,11 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Business term | Name in the code | Note |
 | --- | --- | --- |
 | Business | `Business` | what the application serves |
-| Source | `Source` | informal material, kept as it was given |
-| Note / audio / video | `note` / `audio` / `video` | what a source is made of |
-| Where a source is kept | `Source.location` | to go back to it as it was given |
+| Workshop | `Workshop` | one working session and what came out of it |
+| Note / audio / video | `note` / `audio` / `video` | what a workshop is made of |
+| Date of a workshop | `Workshop.date` | the day it was held; never rewritten |
+| Where a workshop is kept | `Workshop.location` | to go back to it as it was that day |
+| Workshops by date | `workshopsByDate` | most recent first |
 | Domain | `Domain` | one part of the business, with its own words |
 | What a domain is | `Domain.description` | business only; never what the application does |
 | Lexicon | `Term` | one concept, one name, one definition |

@@ -17,27 +17,31 @@ export const medito: Project = {
     { name: 'Jules Perrin', role: 'maker' },
   ],
   business: {
-    sources: [
+    workshops: [
       {
-        id: 'M1',
+        id: 'W1',
+        date: '2026-08-27',
         kind: 'audio',
         title: 'Première conversation sur la vidéothèque — 42 minutes',
         from: 'Amara Diallo',
       },
       {
-        id: 'M2',
+        id: 'W2',
+        date: '2026-09-03',
         kind: 'video',
         title: 'Visite de la salle de méditation, filmée au téléphone',
         from: 'Amara Diallo',
       },
       {
-        id: 'M3',
+        id: 'W3',
+        date: '2026-09-10',
         kind: 'note',
         title: 'Conseil d’administration : les adhérents veulent pratiquer sans connexion',
         from: 'Jules Perrin',
       },
       {
-        id: 'M4',
+        id: 'W4',
+        date: '2026-09-18',
         kind: 'audio',
         title: 'Une enseignante sur la façon dont un enregistrement est fait et relu — 18 minutes',
         from: 'Noor Haddad, enseignante',

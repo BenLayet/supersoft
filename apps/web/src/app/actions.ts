@@ -12,7 +12,7 @@ import {
   start,
   validate,
 } from '@supersoft/domain'
-import type { Business, Priority, Project, Source, Story } from '@supersoft/domain'
+import type { Business, Priority, Project, Story, Workshop } from '@supersoft/domain'
 import { cookieArrivals } from '@/prototype/cookie-arrivals'
 import { findProject, inMemoryProjectStore as store } from '@/prototype/in-memory-project-store'
 
@@ -56,22 +56,23 @@ const withBusiness = (project: Project, business: Partial<Business>): Project =>
 const mapById = <T extends { id: string }>(items: readonly T[], id: string, apply: (item: T) => T) =>
   items.map((item) => (item.id === id ? apply(item) : item))
 
-/* The scope, then the sources: what was said. */
+/* The scope, then the workshops: what was said, on the day it was said. */
 
 export async function rewriteScope(formData: FormData) {
   const scope = text(formData, 'scope')
   await change(formData, (project) => ({ ...project, scope }))
 }
 
-export async function keepSource(formData: FormData) {
-  const kind = text(formData, 'kind') as Source['kind']
+export async function keepWorkshop(formData: FormData) {
+  const kind = text(formData, 'kind') as Workshop['kind']
+  const date = text(formData, 'date')
   const title = text(formData, 'title')
   const from = text(formData, 'from')
   await change(formData, (project) =>
     withBusiness(project, {
-      sources: [
-        ...project.business.sources,
-        { id: nextId('M', project.business.sources), kind, title, from },
+      workshops: [
+        ...project.business.workshops,
+        { id: nextId('W', project.business.workshops), date, kind, title, from },
       ],
     }),
   )

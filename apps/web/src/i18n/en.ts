@@ -1,4 +1,5 @@
-import type { Priority, PrototypeState, Role, RuleState, Source, StoryState } from '@supersoft/domain'
+import type { Priority, PrototypeState, Role, RuleState, StoryState, Workshop } from '@supersoft/domain'
+import { onDay } from './day'
 
 /** In English, only exactly one stays singular. */
 const s = (count: number): string => (count === 1 ? '' : 's')
@@ -17,7 +18,10 @@ export const en = {
   },
 
   roles: { customer: 'customer', maker: 'maker' } satisfies Record<Role, string>,
-  sourceKinds: { note: 'note', audio: 'audio', video: 'video' } satisfies Record<Source['kind'], string>,
+  workshopKinds: { note: 'note', audio: 'audio', video: 'video' } satisfies Record<
+    Workshop['kind'],
+    string
+  >,
   storyStates: { to_do: 'to do', in_progress: 'in progress', done: 'done' } satisfies Record<
     StoryState,
     string
@@ -59,7 +63,7 @@ export const en = {
     business: 'Business',
     features: 'Features',
     versions: 'Versions',
-    sources: 'Sources',
+    workshops: 'Workshops',
     domains: 'Domains',
   },
 
@@ -77,12 +81,14 @@ export const en = {
   },
 
   informal: {
-    title: 'Sources',
-    sources: (count: number) => `Sources — ${count}`,
-    nothingKept: 'Nothing has been kept yet.',
-    from: (who: string) => `from ${who}`,
-    whatItIs: 'What it is — a recording, a film, a page of notes',
-    whoFrom: 'Who it came from',
+    title: 'Workshops',
+    workshops: (count: number) => `Workshops — ${count}`,
+    nothingKept: 'No workshop has been held yet.',
+    heldOn: (date: string) => onDay(date, 'en-GB'),
+    heldWith: (who: string) => `with ${who}`,
+    whatItIs: 'What came out of it — a recording, a film, a page of notes',
+    whoWith: 'Who it was with',
+    whenHeld: 'The day it was held',
     keepIt: 'Keep it',
   },
 

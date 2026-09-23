@@ -17,21 +17,24 @@ export const supersoft: Project = {
     { name: 'Ben Layet', role: 'maker' },
   ],
   business: {
-    sources: [
+    workshops: [
       {
-        id: 'M1',
+        id: 'W1',
+        date: '2026-06-02',
         kind: 'note',
         title: 'Les premiers mois ont spécifié un produit que personne n’avait jamais lancé',
         from: 'Ben Layet',
       },
       {
-        id: 'M2',
+        id: 'W2',
+        date: '2026-07-14',
         kind: 'note',
         title: 'Une application construite avec cette méthode avant que tout outil existe',
         from: 'Ben Layet',
       },
       {
-        id: 'M3',
+        id: 'W3',
+        date: '2026-09-16',
         kind: 'video',
         title: 'Pourquoi le logiciel d’une association est difficile à utiliser, et difficile à changer',
         from: 'Ben Layet',

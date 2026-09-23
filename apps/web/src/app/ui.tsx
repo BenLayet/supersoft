@@ -79,6 +79,7 @@ export function Input({
   defaultValue,
   required = true,
   label,
+  type = 'text',
 }: {
   name: string
   placeholder: string
@@ -86,11 +87,14 @@ export function Input({
   required?: boolean
   /** What this field is, when no heading says it. */
   label?: string
+  /** `date` for a day, which the browser asks for in the reader's own format. */
+  type?: 'text' | 'date'
 }) {
   return (
     <input
+      type={type}
       name={name}
-      aria-label={label}
+      aria-label={label ?? placeholder}
       placeholder={placeholder}
       defaultValue={defaultValue}
       required={required}

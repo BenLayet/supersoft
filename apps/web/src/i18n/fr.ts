@@ -1,3 +1,4 @@
+import { onDay } from './day'
 import type { Dictionary } from './dictionary'
 
 /** In French, only more than one takes an s: zero stays singular. */
@@ -17,7 +18,7 @@ export const fr: Dictionary = {
   },
 
   roles: { customer: 'client', maker: 'développeur' },
-  sourceKinds: { note: 'note', audio: 'audio', video: 'vidéo' },
+  workshopKinds: { note: 'note', audio: 'audio', video: 'vidéo' },
   storyStates: { to_do: 'à faire', in_progress: 'en cours', done: 'terminé' },
   priorities: { essential: 'essentiel', expected: 'attendu', later: 'plus tard' },
   ruleStates: { proposed: 'proposée', agreed: 'approuvée' },
@@ -49,7 +50,7 @@ export const fr: Dictionary = {
     business: 'Métier',
     features: 'Fonctionnalités',
     versions: 'Versions',
-    sources: 'Sources',
+    workshops: 'Ateliers',
     domains: 'Domaines',
   },
 
@@ -67,12 +68,14 @@ export const fr: Dictionary = {
   },
 
   informal: {
-    title: 'Sources',
-    sources: (count: number) => `Sources — ${count}`,
-    nothingKept: 'Rien n’a encore été gardé.',
-    from: (who: string) => `donnée par ${who}`,
-    whatItIs: 'Ce que c’est — un enregistrement, un film, une page de notes',
-    whoFrom: 'De qui cela vient',
+    title: 'Ateliers',
+    workshops: (count: number) => `Ateliers — ${count}`,
+    nothingKept: 'Aucun atelier n’a encore eu lieu.',
+    heldOn: (date: string) => onDay(date, 'fr-FR'),
+    heldWith: (who: string) => `avec ${who}`,
+    whatItIs: 'Ce qui en est sorti — un enregistrement, un film, une page de notes',
+    whoWith: 'Avec qui',
+    whenHeld: 'Le jour où il a eu lieu',
     keepIt: 'Le garder',
   },
 
