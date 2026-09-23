@@ -6,7 +6,7 @@ The **business** is what the application serves, described in the words of the p
 
 The business is met in **workshops**. A workshop is one working session, held on a **date**, with a **title** that says what it was about, and the **documents** that came out of it.
 
-A **document** is one thing the workshop left behind: slides, a video, a recording, notes, a report, a transcript. Each says what kind it is and where it is kept, so that anyone reading the project can go back to it.
+A **document** is one thing the workshop left behind: slides, a video, a recording, notes, a report, a transcript. Each says what kind it is and where it is kept, so that anyone reading the project can go back to it. A document can also be written directly in the project — notes, a report — and its **text** is then part of the project.
 
 **Rule.** A workshop is dated. It is not a source of truth: it is what was said on one day. What was understood later is a later workshop, or it is written on the formal side, where the customer can contradict it.
 

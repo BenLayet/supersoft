@@ -101,6 +101,14 @@ export const en = {
     documentLocation: 'Where it is kept (optional)',
     addDocument: 'Add it',
     open: 'Open',
+    correct: 'Correct',
+    writeIt: 'Write it',
+    write: 'Write',
+    preview: 'Preview',
+    writtenIn: 'Written in Markdown: # a heading, - a list, **bold**',
+    nothingWritten: 'Nothing written yet.',
+    save: 'Save',
+    cancel: 'Cancel',
   },
 
   formal: {

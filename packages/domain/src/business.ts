@@ -7,6 +7,8 @@ export interface WorkshopDocument {
   readonly title: string
   /** Where it is kept, to go back to it. */
   readonly location?: string
+  /** Its text, when it is written in the project rather than kept elsewhere. */
+  readonly text?: string
 }
 
 /** One working session: the day it was held, what it was about, and what it left behind. */
@@ -84,6 +86,19 @@ export const addDocument = (
   const location = document.location?.trim() || undefined
   const id = `${workshop.id}-${workshop.documents.length + 1}`
   return { ...workshop, documents: [...workshop.documents, { ...document, id, title, location }] }
+}
+
+/** Reading a document again after the workshop, and writing what it should have said. */
+export const correctDocument = (workshop: Workshop, documentId: string, text: string): Workshop => {
+  if (!workshop.documents.some((document) => document.id === documentId))
+    throw new Error(`No document ${documentId} in this workshop.`)
+  if (text.trim() === '') throw new Error('A document is corrected with something, or left as it was.')
+  return {
+    ...workshop,
+    documents: workshop.documents.map((document) =>
+      document.id === documentId ? { ...document, text } : document,
+    ),
+  }
 }
 
 export const answerQuestion = (question: Question, answer: string): Question => {

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   addDocument,
   agree,
+  correctDocument,
   answerQuestion,
   openQuestions,
   questionsOf,
@@ -67,6 +68,19 @@ describe('the documents of a workshop', () => {
 
   it('each say what they are', () => {
     expect(() => addDocument(held, { kind: 'notes', title: '  ' })).toThrow()
+  })
+
+  it('can be corrected after the workshop, the others left as they were', () => {
+    const both = addDocument(held, { kind: 'report', title: 'Report', text: 'Draft' })
+    const corrected = correctDocument(both, 'W1-2', '# Report\n\nWhat was agreed.')
+    expect(corrected.documents[1]?.text).toBe('# Report\n\nWhat was agreed.')
+    expect(corrected.documents[0]).toBe(both.documents[0])
+    expect(both.documents[1]?.text).toBe('Draft')
+  })
+
+  it('are corrected with something, and only when they belong to the workshop', () => {
+    expect(() => correctDocument(held, 'W1-1', ' \n ')).toThrow()
+    expect(() => correctDocument(held, 'W9-1', 'Text')).toThrow()
   })
 
   it('are not said to be kept somewhere when no place was given', () => {

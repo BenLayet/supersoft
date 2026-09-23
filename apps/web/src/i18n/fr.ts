@@ -91,6 +91,14 @@ export const fr: Dictionary = {
     documentLocation: 'Où il est gardé (facultatif)',
     addDocument: 'L’ajouter',
     open: 'Ouvrir',
+    correct: 'Corriger',
+    writeIt: 'L’écrire',
+    write: 'Écrire',
+    preview: 'Aperçu',
+    writtenIn: 'Écrit en Markdown : # un titre, - une liste, **gras**',
+    nothingWritten: 'Rien n’est encore écrit.',
+    save: 'Enregistrer',
+    cancel: 'Annuler',
   },
 
   formal: {

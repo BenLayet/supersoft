@@ -1,9 +1,11 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 import {
   addDocument,
   agree,
+  correctDocument,
   answerQuestion,
   finish,
   mayChange,
@@ -95,6 +97,23 @@ export async function keepDocument(formData: FormData) {
       ),
     }),
   )
+}
+
+/** Writing a document, or correcting it after the workshop, then reading it again. */
+export async function writeDocument(formData: FormData) {
+  const projectId = text(formData, 'projectId')
+  const workshopId = text(formData, 'workshopId')
+  const documentId = text(formData, 'documentId')
+  const written = formData.get('text')
+  if (typeof written !== 'string') throw new Error('Missing text')
+  await change(formData, (project) =>
+    withBusiness(project, {
+      workshops: mapById(project.business.workshops, workshopId, (workshop) =>
+        correctDocument(workshop, documentId, written),
+      ),
+    }),
+  )
+  redirect(`/projects/${projectId}/business/workshops/${workshopId}#${documentId}`)
 }
 
 /* The domains of the business, their lexicon, their rules and their questions. */

@@ -42,7 +42,9 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Document | `WorkshopDocument` | one thing a workshop left behind |
 | Slides / video / recording / notes / report / transcript | `slides` / `video` / `audio` / `notes` / `report` / `transcript` | the kinds of document |
 | Where a document is kept | `WorkshopDocument.location` | to go back to it |
+| Text of a document | `WorkshopDocument.text` | when it is written in the project |
 | Adding a document | `addDocument` | possible after the day |
+| Correcting a document | `correctDocument` | replaces its text |
 | Workshops by date | `workshopsByDate` | most recent first |
 | Domain | `Domain` | one part of the business, with its own words |
 | What a domain is | `Domain.description` | business only; never what the application does |
