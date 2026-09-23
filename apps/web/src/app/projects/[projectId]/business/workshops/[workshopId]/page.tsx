@@ -3,9 +3,13 @@ import type { WorkshopDocument } from '@supersoft/domain'
 import { open } from '@/session'
 import { dictionaryIn } from '@/i18n'
 import { keepDocument } from '@/app/actions'
+import { MarkdownDocument, isMarkdown } from '@/app/markdown'
 import { Button, Card, Empty, Input, Page, Pill, Section, Select } from '@/app/ui'
 
-/** A recording is played where it is read; anything else is opened where it is kept. */
+/**
+ * A recording is played where it is read, and a Markdown document is shown
+ * there; anything else is opened where it is kept.
+ */
 function Kept({ document, open }: { document: WorkshopDocument; open: string }) {
   if (!document.location) return null
   if (document.kind === 'video')
@@ -20,9 +24,12 @@ function Kept({ document, open }: { document: WorkshopDocument; open: string }) 
   if (document.kind === 'audio')
     return <audio controls preload="metadata" src={document.location} className="mt-3 w-full" />
   return (
-    <a href={document.location} className="mt-2 inline-block text-sm text-accent hover:underline">
-      {open} →
-    </a>
+    <>
+      {isMarkdown(document.location) && <MarkdownDocument location={document.location} />}
+      <a href={document.location} className="mt-2 inline-block text-sm text-accent hover:underline">
+        {open} →
+      </a>
+    </>
   )
 }
 
