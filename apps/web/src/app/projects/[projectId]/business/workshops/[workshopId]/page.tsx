@@ -16,13 +16,13 @@ function Kept({ document, open }: { document: WorkshopDocument; open: string }) 
     return (
       <video
         controls
-        preload="metadata"
+        preload="none"
         src={document.location}
         className="mt-3 w-full rounded"
       />
     )
   if (document.kind === 'audio')
-    return <audio controls preload="metadata" src={document.location} className="mt-3 w-full" />
+    return <audio controls preload="none" src={document.location} className="mt-3 w-full" />
   return (
     <>
       <KeptDocument location={document.location} />
@@ -53,17 +53,40 @@ export default async function WorkshopPage({
 
       <Section title={t.informal.documents(workshop.documents.length)}>
         {workshop.documents.length === 0 && <Empty>{t.informal.noDocument}</Empty>}
-        {workshop.documents.map((document) => (
-          <Card key={document.id}>
-            <div className="flex items-start justify-between gap-3">
-              <p className="text-sm" lang={project.language}>
-                {document.title}
-              </p>
-              <Pill>{t.documentKinds[document.kind]}</Pill>
-            </div>
-            <Kept document={document} open={t.informal.open} />
-          </Card>
-        ))}
+        {workshop.documents.map((document) => {
+          const title = (
+            <span className="text-sm" lang={project.language}>
+              {document.title}
+            </span>
+          )
+          const kind = <Pill>{t.documentKinds[document.kind]}</Pill>
+          // A document kept nowhere has nothing to unfold.
+          if (!document.location)
+            return (
+              <Card key={document.id}>
+                <div className="flex items-start justify-between gap-3">
+                  {title}
+                  {kind}
+                </div>
+              </Card>
+            )
+          return (
+            <Card key={document.id}>
+              <details className="group">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-3 [&::-webkit-details-marker]:hidden">
+                  <span className="flex items-start gap-2">
+                    <span aria-hidden className="text-muted transition-transform group-open:rotate-90">
+                      ›
+                    </span>
+                    {title}
+                  </span>
+                  {kind}
+                </summary>
+                <Kept document={document} open={t.informal.open} />
+              </details>
+            </Card>
+          )
+        })}
         {writable && (
           <Card>
             <form action={keepDocument} className="flex flex-col gap-2">
