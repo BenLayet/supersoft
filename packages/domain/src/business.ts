@@ -5,14 +5,14 @@ export interface WorkshopDocument {
   readonly id: string
   readonly kind: DocumentKind
   readonly title: string
-  /** Where it is kept, to go back to it as it was that day. */
+  /** Where it is kept, to go back to it. */
   readonly location?: string
 }
 
 /** One working session: the day it was held, what it was about, and what it left behind. */
 export interface Workshop {
   readonly id: string
-  /** The day it was held, as `YYYY-MM-DD`. A workshop is dated, and never rewritten. */
+  /** The day it was held, as `YYYY-MM-DD`. */
   readonly date: string
   readonly title: string
   readonly documents: readonly WorkshopDocument[]

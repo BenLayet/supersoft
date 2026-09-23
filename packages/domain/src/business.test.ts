@@ -43,7 +43,7 @@ describe('workshops', () => {
     expect(workshopsByDate(held).map((one) => one.id)).toEqual(['W2', 'W3', 'W1'])
   })
 
-  it('are left where they were, since a workshop is never rewritten', () => {
+  it('are read in that order without being moved', () => {
     const held = [workshop('W1', '2026-01-12'), workshop('W2', '2026-03-04')]
     workshopsByDate(held)
     expect(held.map((one) => one.id)).toEqual(['W1', 'W2'])
