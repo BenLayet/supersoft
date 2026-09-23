@@ -44,8 +44,8 @@ export default async function WorkshopsPage({
             <form action={keepWorkshop} className="flex flex-col gap-2 sm:flex-row">
               <input type="hidden" name="projectId" value={project.id} />
               <Input type="date" name="date" placeholder={t.informal.whenHeld} />
-              <Input name="title" placeholder={t.informal.whatItWasAbout} />
-              <Button quiet>{t.informal.keepIt}</Button>
+              <Input name="title" placeholder={t.informal.workshopName} />
+              <Button quiet>{t.informal.addWorkshop}</Button>
             </form>
           </Card>
         )}
