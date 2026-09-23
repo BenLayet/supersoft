@@ -7,7 +7,8 @@ const kept = path.join(process.cwd(), 'public')
 
 const pathOf = (location: string): string => location.split(/[?#]/)[0] ?? ''
 
-export const isMarkdown = (location: string): boolean => /\.md$/i.test(pathOf(location))
+const isMarkdown = (location: string): boolean => /\.md$/i.test(pathOf(location))
+const isText = (location: string): boolean => /\.txt$/i.test(pathOf(location))
 
 /**
  * Reads a document kept among the prototype's own files. Nothing is fetched
@@ -49,10 +50,21 @@ const components: Components = {
   hr: () => <hr className="mt-4 border-rule" />,
 }
 
-/** A document written in Markdown, shown as it reads rather than as it is typed. */
-export async function MarkdownDocument({ location }: { location: string }) {
+/**
+ * A document that can be read where it is listed: Markdown shown as it reads
+ * rather than as it is typed, plain text shown exactly as it was kept.
+ * Anything else is left to be opened where it is kept.
+ */
+export async function KeptDocument({ location }: { location: string }) {
+  if (!isMarkdown(location) && !isText(location)) return null
   const source = await read(location)
   if (source === undefined) return null
+  if (isText(location))
+    return (
+      <pre className="mt-3 max-h-96 overflow-auto rounded-md border border-rule bg-paper px-4 py-3 font-sans text-sm whitespace-pre-wrap">
+        {source}
+      </pre>
+    )
   return (
     <div className="mt-3 rounded-md border border-rule bg-paper px-4 py-3 text-sm [&>*:first-child]:mt-0">
       <Markdown components={components} urlTransform={besides(location)}>
