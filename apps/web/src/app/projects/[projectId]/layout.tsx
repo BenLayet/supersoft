@@ -27,7 +27,7 @@ export default async function ProjectLayout({
             <NavLink href={at} exact>
               {t.nav.overview}
             </NavLink>
-            <NavLink href={`${at}/business/sources`} activeOn={`${at}/business`}>
+            <NavLink href={`${at}/business/workshops`} activeOn={`${at}/business`}>
               {t.nav.business}
             </NavLink>
             <NavLink href={`${at}/features`}>{t.nav.features}</NavLink>
