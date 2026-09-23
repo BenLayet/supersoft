@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { rulesOf, termsOf } from '@supersoft/domain'
 import { open } from '@/session'
 import { dictionaryIn } from '@/i18n'
-import { addSubdomain } from '@/app/actions'
+import { addDomain } from '@/app/actions'
 import { Button, Card, Empty, Input, Page, Pill, Section } from '@/app/ui'
 
 export default async function FormalisationPage({
@@ -13,32 +13,32 @@ export default async function FormalisationPage({
   const { projectId } = await params
   const { project, writable } = await open(projectId)
   const t = await dictionaryIn(project.language)
-  const { domain } = project
+  const { business } = project
 
   return (
     <Page title={t.formal.title}>
-      <Section title={t.formal.subdomains(domain.subdomains.length)}>
-        {domain.subdomains.length === 0 && <Empty>{t.formal.notCut}</Empty>}
-        {domain.subdomains.map((subdomain) => {
-          const terms = termsOf(subdomain, domain.terms)
-          const rules = rulesOf(subdomain, domain.rules)
+      <Section title={t.formal.domains(business.domains.length)}>
+        {business.domains.length === 0 && <Empty>{t.formal.notCut}</Empty>}
+        {business.domains.map((domain) => {
+          const terms = termsOf(domain, business.terms)
+          const rules = rulesOf(domain, business.rules)
           const agreed = rules.filter((rule) => rule.state === 'agreed').length
           return (
-            <Card key={subdomain.id}>
+            <Card key={domain.id}>
               <div className="flex items-start justify-between gap-3">
                 <Link
-                  href={`/projects/${project.id}/business/subdomains/${subdomain.id}`}
+                  href={`/projects/${project.id}/business/domains/${domain.id}`}
                   className="text-sm font-medium hover:text-accent"
                   lang={project.language}
                 >
-                  {subdomain.name}
+                  {domain.name}
                 </Link>
                 <Pill tone={rules.length > 0 && agreed === rules.length ? 'accent' : 'plain'}>
                   {t.formal.agreedOf(agreed, rules.length)}
                 </Pill>
               </div>
               <p className="mt-2 text-sm text-muted" lang={project.language}>
-                {subdomain.description}
+                {domain.description}
               </p>
               <p className="mt-2 text-sm text-muted">
                 {t.formal.counts(terms.length, rules.length)}
@@ -48,12 +48,12 @@ export default async function FormalisationPage({
         })}
         {writable && (
           <Card>
-            <form action={addSubdomain} className="flex flex-col gap-2">
+            <form action={addDomain} className="flex flex-col gap-2">
               <input type="hidden" name="projectId" value={project.id} />
-              <Input name="name" placeholder={t.formal.subdomainName} />
-              <Input name="description" placeholder={t.formal.subdomainDescription} />
+              <Input name="name" placeholder={t.formal.domainName} />
+              <Input name="description" placeholder={t.formal.domainDescription} />
               <div>
-                <Button quiet>{t.formal.addSubdomain}</Button>
+                <Button quiet>{t.formal.addDomain}</Button>
               </div>
             </form>
           </Card>

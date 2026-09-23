@@ -5,31 +5,31 @@ import { dictionaryIn } from '@/i18n'
 import { agreeRule, defineTerm, restateRule, writeRule } from '@/app/actions'
 import { Button, Card, Empty, Input, Page, Pill, Section } from '@/app/ui'
 
-export default async function SubdomainPage({
+export default async function DomainPage({
   params,
 }: {
-  params: Promise<{ projectId: string; subdomainId: string }>
+  params: Promise<{ projectId: string; domainId: string }>
 }) {
-  const { projectId, subdomainId } = await params
+  const { projectId, domainId } = await params
   const { project, writable } = await open(projectId)
   const t = await dictionaryIn(project.language)
-  const { domain } = project
-  const subdomain = domain.subdomains.find((one) => one.id === subdomainId)
-  if (!subdomain) notFound()
+  const { business } = project
+  const domain = business.domains.find((one) => one.id === domainId)
+  if (!domain) notFound()
 
-  const terms = termsOf(subdomain, domain.terms)
-  const rules = rulesOf(subdomain, domain.rules)
+  const terms = termsOf(domain, business.terms)
+  const rules = rulesOf(domain, business.rules)
   const agreed = rules.filter((rule) => rule.state === 'agreed').length
 
   return (
     <Page
-      title={subdomain.name}
-      back={{ href: `/projects/${project.id}/business/subdomains`, label: t.formal.title }}
+      title={domain.name}
+      back={{ href: `/projects/${project.id}/business/domains`, label: t.formal.title }}
     >
       <Section title={t.formal.whatThisPartIs}>
         <Card>
           <p className="text-sm" lang={project.language}>
-            {subdomain.description}
+            {domain.description}
           </p>
         </Card>
       </Section>
@@ -48,7 +48,7 @@ export default async function SubdomainPage({
           <Card>
             <form action={defineTerm} className="flex flex-col gap-2">
               <input type="hidden" name="projectId" value={project.id} />
-              <input type="hidden" name="subdomainId" value={subdomain.id} />
+              <input type="hidden" name="domainId" value={domain.id} />
               <Input name="name" placeholder={t.formal.termName} />
               <Input name="definition" placeholder={t.formal.termDefinition} />
               <div>
@@ -92,7 +92,7 @@ export default async function SubdomainPage({
           <Card>
             <form action={writeRule} className="flex flex-col gap-2 sm:flex-row">
               <input type="hidden" name="projectId" value={project.id} />
-              <input type="hidden" name="subdomainId" value={subdomain.id} />
+              <input type="hidden" name="domainId" value={domain.id} />
               <Input name="statement" placeholder={t.formal.ruleStatement} />
               <Button quiet>{t.formal.writeItDown}</Button>
             </form>

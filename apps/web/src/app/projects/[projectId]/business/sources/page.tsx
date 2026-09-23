@@ -15,15 +15,15 @@ export default async function DiscoveryPage({
   const { projectId } = await params
   const { project, writable } = await open(projectId)
   const t = await dictionaryIn(project.language)
-  const { domain } = project
-  const openQuestions = domain.questions.filter(isOpen)
-  const answered = domain.questions.filter((question) => !isOpen(question))
+  const { business } = project
+  const openQuestions = business.questions.filter(isOpen)
+  const answered = business.questions.filter((question) => !isOpen(question))
 
   return (
     <Page title={t.informal.title}>
-      <Section title={t.informal.sources(domain.sources.length)}>
-        {domain.sources.length === 0 && <Empty>{t.informal.nothingKept}</Empty>}
-        {domain.sources.map((source) => (
+      <Section title={t.informal.sources(business.sources.length)}>
+        {business.sources.length === 0 && <Empty>{t.informal.nothingKept}</Empty>}
+        {business.sources.map((source) => (
           <Card key={source.id}>
             <div className="flex items-start justify-between gap-3">
               <div>

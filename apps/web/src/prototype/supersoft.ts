@@ -16,7 +16,7 @@ export const supersoft: Project = {
     { name: 'Ben Layet', role: 'customer' },
     { name: 'Ben Layet', role: 'maker' },
   ],
-  domain: {
+  business: {
     sources: [
       {
         id: 'M1',
@@ -42,15 +42,15 @@ export const supersoft: Project = {
       {
         id: 'Q1',
         asked: 'Que garde un projet quand il cesse d’utiliser Supersoft ?',
-        answer: 'Tout. Le domaine et la solution sont les fichiers du client, lisibles sans Supersoft.',
+        answer: 'Tout. Le métier et la solution sont les fichiers du client, lisibles sans Supersoft.',
       },
-      { id: 'Q2', asked: 'Qui écrit le domaine quand le client ne veut pas écrire de prose ?' },
+      { id: 'Q2', asked: 'Qui écrit le métier quand le client ne veut pas écrire de prose ?' },
       {
         id: 'Q3',
         asked: 'Comment une version sait-elle quels récits de vraies personnes ont réellement reçus ?',
       },
     ],
-    subdomains: [
+    domains: [
       {
         id: 'D1',
         name: 'Le projet',
@@ -59,7 +59,7 @@ export const supersoft: Project = {
       },
       {
         id: 'D2',
-        name: 'Le domaine',
+        name: 'Le métier',
         description:
           'Le métier que sert l’application, dans les mots de ceux qui le connaissent. D’un côté, ce qu’ils ont dit, tel que c’est sorti — conversations, enregistrements, films, notes, et tout ce que personne ne sait encore. De l’autre, écrites à partir de cela, les parties du métier, chacune avec ses propres mots et ses propres règles. C’est ce côté écrit qui fait foi pour tout le reste.',
       },
@@ -71,46 +71,46 @@ export const supersoft: Project = {
       },
     ],
     terms: [
-      { name: 'Projet', definition: 'Une application, construite pour un client.', subdomainId: 'D1' },
+      { name: 'Projet', definition: 'Une application, construite pour un client.', domainId: 'D1' },
       {
         name: 'Client',
         definition: 'La personne qui commande l’application et qui la possède.',
-        subdomainId: 'D1',
+        domainId: 'D1',
       },
       {
         name: 'Développeur',
         definition: 'La personne qui la construit et la maintient, et qui met le métier par écrit.',
-        subdomainId: 'D1',
+        domainId: 'D1',
       },
       {
         name: 'Source',
         definition: 'Matériau informel, gardé tel qu’il a été donné : une note, un enregistrement, un film.',
-        subdomainId: 'D2',
+        domainId: 'D2',
       },
       {
-        name: 'Sous-domaine',
+        name: 'Domaine',
         definition: 'Une partie du métier qui a ses propres mots.',
-        subdomainId: 'D2',
+        domainId: 'D2',
       },
       {
         name: 'Règle',
         definition: 'Une phrase qu’un client peut confirmer ou démentir.',
-        subdomainId: 'D2',
+        domainId: 'D2',
       },
       {
         name: 'Fonctionnalité',
         definition: 'Une chose que l’application offre, nommée comme le client la dirait.',
-        subdomainId: 'D3',
+        domainId: 'D3',
       },
       {
         name: 'Récit',
         definition: 'Une chose qu’une personne veut faire avec l’application, et pourquoi.',
-        subdomainId: 'D3',
+        domainId: 'D3',
       },
       {
         name: 'Version',
         definition: 'Des récits terminés, rassemblés pour atteindre ensemble de vraies personnes.',
-        subdomainId: 'D3',
+        domainId: 'D3',
       },
     ],
     rules: [
@@ -118,49 +118,49 @@ export const supersoft: Project = {
         id: 'R1',
         statement: 'Un projet appartient à son client, quoi qu’il arrive au développeur.',
         state: 'agreed',
-        subdomainId: 'D1',
+        domainId: 'D1',
       },
       {
         id: 'R2',
         statement: 'Rien n’est approuvé par le silence. L’accord est un acte, sur une chose nommée, à une date.',
         state: 'agreed',
-        subdomainId: 'D1',
+        domainId: 'D1',
       },
       {
         id: 'R3',
         statement: 'Un projet public se lit sans dire qui l’on est.',
         state: 'proposed',
-        subdomainId: 'D1',
+        domainId: 'D1',
       },
       {
         id: 'R4',
         statement: 'Le métier écrit fait foi ; l’application en est une conséquence.',
         state: 'agreed',
-        subdomainId: 'D2',
+        domainId: 'D2',
       },
       {
         id: 'R5',
         statement: 'Une règle qui n’est pas écrite n’existe pas, et personne n’est en faute quand elle manque.',
         state: 'agreed',
-        subdomainId: 'D2',
+        domainId: 'D2',
       },
       {
         id: 'R6',
         statement: 'Chaque récit appartient à exactement une fonctionnalité.',
         state: 'agreed',
-        subdomainId: 'D3',
+        domainId: 'D3',
       },
       {
         id: 'R7',
         statement: 'Une version ne contient que des récits terminés. Le travail en cours attend la suivante.',
         state: 'agreed',
-        subdomainId: 'D3',
+        domainId: 'D3',
       },
       {
         id: 'R8',
         statement: 'Un récit qui est sorti nomme la version qui l’a porté.',
         state: 'proposed',
-        subdomainId: 'D3',
+        domainId: 'D3',
       },
     ],
   },

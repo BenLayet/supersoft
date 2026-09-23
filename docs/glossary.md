@@ -15,7 +15,7 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Project | `Project` | one application, for one customer |
 | Scope | `Project.scope` | short, broad, deliberately vague |
 | Participant | `Participant` | anyone taking part |
-| Customer | `customer` | commissions and owns the project; their words are the domain's |
+| Customer | `customer` | commissions and owns the project; their words are the business's |
 | Maker | `maker` | builds and maintains |
 | Language of a project | `Project.language` | the customer's; never translated |
 | Language Supersoft speaks | `Locale` | chosen by the person; a convenience |
@@ -31,21 +31,21 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Projects someone added | `addedProjects` | kept for them alone; grants nothing |
 | Someone's projects | `projectsFor` | the ones they added and can open |
 
-## The domain — [domain.md](domain/domain.md)
+## The business — [business.md](domain/business.md)
 
 | Business term | Name in the code | Note |
 | --- | --- | --- |
-| Domain | `Domain` | the business the application serves |
+| Business | `Business` | what the application serves |
 | Source | `Source` | informal material, kept as it was given |
 | Note / audio / video | `note` / `audio` / `video` | what a source is made of |
 | Where a source is kept | `Source.location` | to go back to it as it was given |
 | Question | `Question` | something the project knows it does not know |
 | Open question | `openQuestions` | unanswered; always countable |
-| Subdomain | `Subdomain` | one part of the business, with its own words |
-| What a subdomain is | `Subdomain.description` | business only; never what the application does |
+| Domain | `Domain` | one part of the business, with its own words |
+| What a domain is | `Domain.description` | business only; never what the application does |
 | Lexicon | `Term` | one concept, one name, one definition |
-| Lexicon of a subdomain | `termsOf` | |
-| Description of a subdomain | `rulesOf` | |
+| Lexicon of a domain | `termsOf` | |
+| Description of a domain | `rulesOf` | |
 | Description | `Rule` | one sentence a customer can confirm or deny |
 | Proposed (state) | `proposed` | written, not yet confirmed |
 | Agreed (state) | `agreed` | confirmed by the customer |

@@ -16,7 +16,7 @@ export const medito: Project = {
     { name: 'Amara Diallo', role: 'customer' },
     { name: 'Jules Perrin', role: 'maker' },
   ],
-  domain: {
+  business: {
     sources: [
       {
         id: 'M1',
@@ -52,7 +52,7 @@ export const medito: Project = {
       },
       { id: 'Q3', asked: 'Que devient une inscription quand un événement est annulé ?' },
     ],
-    subdomains: [
+    domains: [
       {
         id: 'D1',
         name: 'La vidéothèque',
@@ -76,37 +76,37 @@ export const medito: Project = {
       {
         name: 'Adhérent',
         definition: 'Quelqu’un qui a payé l’adhésion de la saison en cours.',
-        subdomainId: 'D3',
+        domainId: 'D3',
       },
       {
         name: 'Adhésion',
         definition: 'Ce qu’un adhérent paie une fois par saison pour appartenir à l’association.',
-        subdomainId: 'D3',
+        domainId: 'D3',
       },
       {
         name: 'Saison',
         definition: 'L’année au rythme de laquelle vit l’association : de septembre à août.',
-        subdomainId: 'D3',
+        domainId: 'D3',
       },
       {
         name: 'Enseignant',
         definition: 'Un adhérent qui enregistre des pratiques et anime des rassemblements.',
-        subdomainId: 'D1',
+        domainId: 'D1',
       },
       {
         name: 'Vidéo',
         definition: 'Une pratique ou un enseignement enregistré, entendu par son enseignant avant quiconque.',
-        subdomainId: 'D1',
+        domainId: 'D1',
       },
       {
         name: 'Événement',
         definition: 'Un rassemblement à une date, dans la salle ou à distance, qui accueille un certain nombre de personnes.',
-        subdomainId: 'D2',
+        domainId: 'D2',
       },
       {
         name: 'Inscription',
         definition: 'Un adhérent qui prend l’une des places qu’offre un rassemblement.',
-        subdomainId: 'D2',
+        domainId: 'D2',
       },
     ],
     rules: [
@@ -114,38 +114,38 @@ export const medito: Project = {
         id: 'R1',
         statement: 'Seul un adhérent peut regarder une vidéo.',
         state: 'agreed',
-        subdomainId: 'D1',
+        domainId: 'D1',
       },
       {
         id: 'R3',
         statement: 'Une vidéo n’est partagée qu’après que l’enseignant qui l’a enregistrée l’a réécoutée.',
         state: 'proposed',
-        subdomainId: 'D1',
+        domainId: 'D1',
       },
       {
         id: 'R4',
         statement: 'Un événement accueille un certain nombre de personnes, et on cesse de donner des places quand elles sont prises.',
         state: 'agreed',
-        subdomainId: 'D2',
+        domainId: 'D2',
       },
       {
         id: 'R5',
         statement: 'Un adhérent peut rendre sa place jusqu’à vingt-quatre heures avant l’événement.',
         state: 'proposed',
-        subdomainId: 'D2',
+        domainId: 'D2',
       },
       {
         id: 'R2',
         statement: 'Une saison va du premier septembre à la fin du mois d’août.',
         state: 'agreed',
-        subdomainId: 'D3',
+        domainId: 'D3',
       },
       {
         id: 'R6',
         statement:
           'Un adhérent dont l’adhésion a expiré garde ce à quoi il a participé, mais ne peut plus prendre de place.',
         state: 'proposed',
-        subdomainId: 'D3',
+        domainId: 'D3',
       },
     ],
   },

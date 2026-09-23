@@ -47,7 +47,7 @@ export const fr: Dictionary = {
     features: 'Fonctionnalités',
     versions: 'Versions',
     sources: 'Sources et questions',
-    subdomains: 'Sous-domaines',
+    domains: 'Domaines',
   },
 
   overview: {
@@ -82,14 +82,14 @@ export const fr: Dictionary = {
   },
 
   formal: {
-    title: 'Sous-domaines',
-    subdomains: (count: number) => `Sous-domaines — ${count}`,
+    title: 'Domaines',
+    domains: (count: number) => `Domaines — ${count}`,
     notCut: 'Le métier n’a pas encore été découpé.',
     agreedOf: (agreed: number, rules: number) => `${agreed} sur ${rules} approuvées`,
     counts: (terms: number, rules: number) => `${terms} termes, ${rules} règles.`,
-    subdomainName: 'Une partie du métier, nommée comme ses gens la nomment',
-    subdomainDescription: 'Ce qu’elle est, en termes métier uniquement',
-    addSubdomain: 'Ajouter un sous-domaine',
+    domainName: 'Une partie du métier, nommée comme ses gens la nomment',
+    domainDescription: 'Ce qu’elle est, en termes métier uniquement',
+    addDomain: 'Ajouter un domaine',
     whatThisPartIs: 'Ce qu’est cette partie du métier',
     lexicon: (count: number) => `Lexique — ${count}`,
     noTerm: 'Aucun concept n’a encore été nommé ici.',

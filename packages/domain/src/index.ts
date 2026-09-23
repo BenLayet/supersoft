@@ -1,6 +1,6 @@
 export * from './arrival'
 export * from './project'
-export * from './domain'
+export * from './business'
 export * from './feature'
 export * from './story'
 export * from './version'

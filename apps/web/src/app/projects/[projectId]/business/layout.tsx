@@ -19,7 +19,7 @@ export default async function BusinessLayout({
       <SubNav
         links={[
           { href: `${at}/sources`, label: t.nav.sources },
-          { href: `${at}/subdomains`, label: t.nav.subdomains },
+          { href: `${at}/domains`, label: t.nav.domains },
         ]}
       />
       {children}

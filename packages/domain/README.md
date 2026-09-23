@@ -6,7 +6,7 @@ Every type and function here has an entry in the [glossary](../../docs/glossary.
 
 - `arrival.ts` — who arrived, what Supersoft found for them, and who may open or change it.
 - `project.ts` — the project, its language and scope, its participants, and who settles what.
-- `domain.ts` — sources and questions on the informal side; the lexicon and the description on the formal one, with agreeing and what rewriting undoes.
+- `business.ts` — sources and questions on the informal side; the domains, each owning its lexicon and its description, on the formal one, with agreeing and what rewriting undoes.
 - `feature.ts` — the stories a feature gathers, and the state derived from them.
 - `story.ts` — stories, their priority, their tracking, and what comes next.
 - `version.ts` — gathering done stories, and following a deployment.

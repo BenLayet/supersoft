@@ -4,7 +4,7 @@
 
 ## Context
 
-Supersoft's central claim is that the [domain](../domain/domain.md) is the source of truth of a project, and that the customer can [take everything and leave at any moment](../domain/project.md). Where the specification physically lives decides whether that claim is real.
+Supersoft's central claim is that the written [business](../domain/business.md) is the source of truth of a project, and that the customer can [take everything and leave at any moment](../domain/project.md). Where the specification physically lives decides whether that claim is real.
 
 The forces at play:
 

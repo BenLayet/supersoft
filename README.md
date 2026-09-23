@@ -4,7 +4,7 @@ A support for the conversation between a maker and a customer about a web or mob
 
 The expensive failure in this work is not writing code. It is building the wrong thing, slowly, and finding out late. Supersoft answers that with one commitment:
 
-> **The domain is the source of truth, it is written in the customer's own words, and the application is a consequence of it.**
+> **The written business is the source of truth, it is in the customer's own words, and the application is a consequence of it.**
 
 A project gets there step by step — scope, lexicon and rules, prototypes tried with the people who will use them, then versions connected to the real world — as [the domain documents](docs/domain/README.md#how-a-project-grows) describe and [the general presentation](docs/discovery/20260916%20general%20presentation/general%20presentation%20-%20key%20points.md) tells.
 
@@ -17,7 +17,7 @@ A project has three parts, and [the domain documents](docs/domain/README.md) say
 | | |
 | --- | --- |
 | **[The project](docs/domain/project.md)** | who takes part, and how someone arrives at a project Supersoft did not create |
-| **[The domain](docs/domain/domain.md)** | the business itself — informal (what was said, recorded, filmed, asked) and formal (the lexicon and the description, the project's main source of truth) |
+| **[The business](docs/domain/business.md)** | what the application serves — informal (what was said, recorded, filmed, asked) and formal (the lexicon and the description, the project's main source of truth) |
 | **[The solution](docs/domain/solution.md)** | what the application does about it — features broken into stories, gathered into versions, followed into real use |
 
 ## Method: describe the business, then build it
@@ -63,7 +63,7 @@ pnpm dev         # the prototype, on http://localhost:3000
 
 ## Status
 
-Early, and deliberately small. The domain holds arrivals, participants, sources, questions, subdomains, terms, rules, features, stories and versions as pure functions. The prototype shows all of it on two fictional projects — Supersoft itself, a public project, and an association of meditators, a private one — with nothing stored anywhere.
+Early, and deliberately small. `@supersoft/domain` holds arrivals, participants, sources, questions, domains, terms, rules, features, stories and versions as pure functions. The prototype shows all of it on two fictional projects — Supersoft itself, a public project, and an association of meditators, a private one — with nothing stored anywhere.
 
 The generator, the portal, and reading a specification from a project's own files do not exist yet. The first of those to be built will be the one the prototype makes impossible to avoid.
 

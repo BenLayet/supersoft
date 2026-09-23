@@ -57,7 +57,7 @@ export const en = {
     features: 'Features',
     versions: 'Versions',
     sources: 'Sources & questions',
-    subdomains: 'Subdomains',
+    domains: 'Domains',
   },
 
   overview: {
@@ -92,14 +92,14 @@ export const en = {
   },
 
   formal: {
-    title: 'Subdomains',
-    subdomains: (count: number) => `Subdomains — ${count}`,
+    title: 'Domains',
+    domains: (count: number) => `Domains — ${count}`,
     notCut: 'The business has not been cut up yet.',
     agreedOf: (agreed: number, rules: number) => `${agreed} of ${rules} agreed`,
     counts: (terms: number, rules: number) => `${terms} terms, ${rules} rules.`,
-    subdomainName: 'One part of the business, named as its people name it',
-    subdomainDescription: 'What it is, in business terms only',
-    addSubdomain: 'Add a subdomain',
+    domainName: 'One part of the business, named as its people name it',
+    domainDescription: 'What it is, in business terms only',
+    addDomain: 'Add a domain',
     whatThisPartIs: 'What this part of the business is',
     lexicon: (count: number) => `Lexicon — ${count}`,
     noTerm: 'No concept has been named here yet.',

@@ -17,7 +17,7 @@ export interface Question {
 }
 
 /** One part of the business, with its own words. */
-export interface Subdomain {
+export interface Domain {
   readonly id: string
   readonly name: string
   /**
@@ -32,7 +32,7 @@ export interface Term {
   readonly name: string
   readonly definition: string
   /** The part of the business that owns the word. */
-  readonly subdomainId: string
+  readonly domainId: string
 }
 
 export type RuleState = 'proposed' | 'agreed'
@@ -42,16 +42,16 @@ export interface Rule {
   readonly id: string
   readonly statement: string
   readonly state: RuleState
-  readonly subdomainId: string
+  readonly domainId: string
 }
 
 /** The business the application serves: what was said, and what was written from it. */
-export interface Domain {
+export interface Business {
   /** The informal side. */
   readonly sources: readonly Source[]
   readonly questions: readonly Question[]
   /** The formal side: the parts of the business, their lexicon and their description. */
-  readonly subdomains: readonly Subdomain[]
+  readonly domains: readonly Domain[]
   readonly terms: readonly Term[]
   readonly rules: readonly Rule[]
 }
@@ -78,10 +78,10 @@ export const restate = (rule: Rule, statement: string): Rule =>
 export const termNamed = (terms: readonly Term[], name: string): Term | undefined =>
   terms.find((term) => term.name.toLowerCase() === name.toLowerCase())
 
-/** Every term belongs to exactly one subdomain. */
-export const termsOf = (subdomain: Subdomain, terms: readonly Term[]): readonly Term[] =>
-  terms.filter((term) => term.subdomainId === subdomain.id)
+/** Every term belongs to exactly one domain. */
+export const termsOf = (domain: Domain, terms: readonly Term[]): readonly Term[] =>
+  terms.filter((term) => term.domainId === domain.id)
 
-/** Every rule belongs to exactly one subdomain. */
-export const rulesOf = (subdomain: Subdomain, rules: readonly Rule[]): readonly Rule[] =>
-  rules.filter((rule) => rule.subdomainId === subdomain.id)
+/** Every rule belongs to exactly one domain. */
+export const rulesOf = (domain: Domain, rules: readonly Rule[]): readonly Rule[] =>
+  rules.filter((rule) => rule.domainId === domain.id)
