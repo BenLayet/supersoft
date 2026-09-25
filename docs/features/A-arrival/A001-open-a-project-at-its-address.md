@@ -20,7 +20,6 @@ The app can be started locally, and a project can be opened from the address of 
 ## Tests
 
 - Adding the address of this repository opens it.
-- An address with no `README.md` cannot be added, and Supersoft says why.
 - An address that cannot be read, because nothing is there or the repository is private, cannot be added, and Supersoft says why.
 - Nothing in the project can be changed from Supersoft yet: no button offers it.
 - It answers at Supersoft's production address, deployed from `main`.
