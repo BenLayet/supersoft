@@ -36,6 +36,7 @@ This is the method Supersoft applies to its users' projects, applied to Supersof
 2. **[The customer's editing surface is the specification, never the code](docs/decisions/0002-customer-edits-the-specification-never-the-code.md)**.
 3. **[Hexagonal monorepo with a pure TypeScript domain](docs/decisions/0003-hexagonal-monorepo-pure-domain.md)** — the domain imports nothing external; everything outside is a port with a mock adapter.
 4. **[Supersoft's own prototype is a web application, held in memory](docs/decisions/0004-the-prototype-is-a-web-application-held-in-memory.md)** — runnable before it is finished, with no outside service.
+5. **[`main` is production; stories and prototypes are branches](docs/decisions/0006-main-is-production-stories-and-prototypes-are-branches.md)** — a prototype is never merged, and depends on nothing outside itself.
 
 **No part of a project may depend on Supersoft continuing to exist.** A project abandoned by its maker, and by Supersoft, must remain a working application another maker can pick up by reading its specification.
 
@@ -43,13 +44,12 @@ This is the method Supersoft applies to its users' projects, applied to Supersof
 
 ```
 supersoft/
-├── apps/
-│   └── web/            # @supersoft/web — the prototype: Next.js, fictional projects in memory
 ├── packages/
 │   └── domain/         # @supersoft/domain — pure TS, zero runtime dependencies
 └── docs/
     ├── domain/         # business rules & ubiquitous language (tool-free)
     ├── decisions/      # Architecture Decision Records
+    ├── features/       # Supersoft's own features and stories
     └── glossary.md     # business terms ↔ names in the code
 ```
 
@@ -58,13 +58,12 @@ supersoft/
 ```bash
 pnpm install
 pnpm test        # the domain, in a few milliseconds
-pnpm dev         # the prototype, on http://localhost:3000
 ```
 
 ## Status
 
-Early, and deliberately small. `@supersoft/domain` holds arrivals, participants, workshops, domains, terms, rules, questions, features, stories and versions as pure functions. The prototype shows all of it on two fictional projects — Supersoft itself, a public project, and an association of meditators, a private one — with nothing stored anywhere.
+Early, and deliberately small. `@supersoft/domain` holds arrivals, participants, workshops, domains, terms, rules, questions, features, stories and versions as pure functions. `main` is production: stories are built on `stories/…` branches, and prototypes live on `prototypes/…` branches that are never merged ([0006](docs/decisions/0006-main-is-production-stories-and-prototypes-are-branches.md)). The first prototype, `prototypes/001`, shows all of the domain on two fictional projects — Supersoft itself, a public project, and an association of meditators, a private one — with nothing stored anywhere.
 
-The generator, the portal, and reading a specification from a project's own files do not exist yet. The first of those to be built will be the one the prototype makes impossible to avoid.
+The application itself does not exist yet; its first stories are in [`docs/features/`](docs/features/). Neither do the generator, the portal, or reading a specification from a project's own files.
 
 The method itself is not a guess: an existing application was built with it — specification as files, pure domain, a mock adapter for every port — before any of this tooling existed.

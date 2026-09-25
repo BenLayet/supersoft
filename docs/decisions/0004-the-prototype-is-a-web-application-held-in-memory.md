@@ -1,6 +1,6 @@
 # 0004 — Supersoft's own prototype is a web application, held in memory
 
-**Status**: accepted
+**Status**: accepted; where the prototype lives superseded by [0006](0006-main-is-production-stories-and-prototypes-are-branches.md)
 
 ## Context
 
