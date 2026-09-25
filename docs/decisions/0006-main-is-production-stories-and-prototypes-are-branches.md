@@ -43,3 +43,5 @@ It also left `main` holding two things that do not age the same way. A prototype
 ## Notes
 
 The branch prefixes are plural, `stories/` and `prototypes/`, so that no branch can ever be named `story` or `prototype` alone and block them.
+
+A decision is written on its own branch too, `decisions/<decision>`, named after its file: `decisions/0007-production-runs-on-koyeb`. Work a story needs, such as choosing where production runs, is part of that story's effort, not a separate kind of work.

@@ -22,3 +22,4 @@ The app can be started locally, and a project can be opened from a directory.
 - Adding the address of this repository opens it.
 - An address with no `README.md` cannot be added, and Supersoft says why.
 - Nothing in the project can be changed from Supersoft yet: no button offers it.
+- It answers at Supersoft's production address, deployed from `main`.
