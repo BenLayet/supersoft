@@ -15,7 +15,8 @@ const story = (id: string, featureId: string, state: StoryState): Story => ({
   role: 'member',
   intention: 'watch a guided meditation',
   reason: 'I can practise wherever I am',
-  priority: 'essential',
+  value: 'L',
+  effort: 'M',
   state,
 })
 

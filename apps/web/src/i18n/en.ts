@@ -1,4 +1,4 @@
-import type { DocumentKind, Priority, PrototypeState, Role, RuleState, StoryState } from '@supersoft/domain'
+import type { DocumentKind, PrototypeState, Role, RuleState, Size, StoryState } from '@supersoft/domain'
 import { onDay } from './day'
 
 /** In English, only exactly one stays singular. */
@@ -28,10 +28,6 @@ export const en = {
   } satisfies Record<DocumentKind, string>,
   storyStates: { to_do: 'to do', in_progress: 'in progress', done: 'done' } satisfies Record<
     StoryState,
-    string
-  >,
-  priorities: { essential: 'essential', expected: 'expected', later: 'later' } satisfies Record<
-    Priority,
     string
   >,
   ruleStates: { proposed: 'proposed', agreed: 'agreed' } satisfies Record<RuleState, string>,
@@ -169,6 +165,8 @@ export const en = {
     intention: 'Intention',
     reason: 'Reason',
     whereItStands: 'Where it stands',
+    value: (size: Size) => `value ${size}`,
+    effort: (size: Size) => `effort ${size}`,
     next: 'next',
     startIt: 'Start it',
     itIsDone: 'It is done',

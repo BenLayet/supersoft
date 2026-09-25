@@ -9,7 +9,8 @@ const story = (id: string, state: StoryState): Story => ({
   role: 'member',
   intention: 'take a place at an event',
   reason: 'I know I am expected',
-  priority: 'essential',
+  value: 'L',
+  effort: 'M',
   state,
 })
 

@@ -1,4 +1,5 @@
 import { onDay } from './day'
+import type { Size } from '@supersoft/domain'
 import type { Dictionary } from './dictionary'
 
 /** In French, only more than one takes an s: zero stays singular. */
@@ -27,7 +28,6 @@ export const fr: Dictionary = {
     transcript: 'transcription',
   },
   storyStates: { to_do: 'à faire', in_progress: 'en cours', done: 'terminé' },
-  priorities: { essential: 'essentiel', expected: 'attendu', later: 'plus tard' },
   ruleStates: { proposed: 'proposée', agreed: 'approuvée' },
   prototypeStates: { being_tried: 'en essai', validated: 'validé' },
 
@@ -161,6 +161,8 @@ export const fr: Dictionary = {
     intention: 'Intention',
     reason: 'Raison',
     whereItStands: 'Où il en est',
+    value: (size: Size) => `valeur ${size}`,
+    effort: (size: Size) => `effort ${size}`,
     next: 'ensuite',
     startIt: 'Le commencer',
     itIsDone: 'C’est terminé',

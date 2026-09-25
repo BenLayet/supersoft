@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { nextStory, prototypesOf, stateOf, storiesOf } from '@supersoft/domain'
+import { nextStory, prototypesOf, sizes, stateOf, storiesOf } from '@supersoft/domain'
 import { open } from '@/session'
 import { dictionaryIn } from '@/i18n'
 import { addPrototype, addStory } from '@/app/actions'
@@ -74,9 +74,14 @@ export default async function FeaturePage({
               <Input name="reason" placeholder={t.features.reason} />
               <div className="flex items-center gap-2">
                 <Select
-                  name="priority"
-                  options={t.priorities}
-                  defaultValue="expected"
+                  name="effort"
+                  options={Object.fromEntries(sizes.map((size) => [size, t.story.effort(size)]))}
+                  defaultValue="M"
+                />
+                <Select
+                  name="value"
+                  options={Object.fromEntries(sizes.map((size) => [size, t.story.value(size)]))}
+                  defaultValue="M"
                 />
                 <Button quiet>{t.features.add}</Button>
               </div>

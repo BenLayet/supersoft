@@ -57,7 +57,8 @@ export default async function StoryPage({
         <Card>
           <div className="flex flex-wrap items-center gap-2">
             <Pill tone={story.state === 'done' ? 'plain' : 'warn'}>{t.storyStates[story.state]}</Pill>
-            <Pill tone={story.priority === 'essential' ? 'accent' : 'plain'}>{t.priorities[story.priority]}</Pill>
+            <Pill>{t.story.value(story.value)}</Pill>
+            <Pill>{t.story.effort(story.effort)}</Pill>
             {story.id === next?.id && <Pill tone="accent">{t.story.next}</Pill>}
           </div>
           {writable && story.state !== 'done' && (

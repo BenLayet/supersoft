@@ -56,7 +56,8 @@ export function StoryLine({
         </div>
       </div>
       <div className="mt-2 flex items-center gap-2">
-        <Pill>{t.priorities[story.priority]}</Pill>
+        <Pill>{t.story.value(story.value)}</Pill>
+        <Pill>{t.story.effort(story.effort)}</Pill>
         {writable && story.state !== 'done' && (
           <form action={story.state === 'to_do' ? startStory : finishStory}>
             <input type="hidden" name="projectId" value={projectId} />

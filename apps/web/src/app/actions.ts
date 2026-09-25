@@ -15,7 +15,7 @@ import {
   start,
   validate,
 } from '@supersoft/domain'
-import type { Business, DocumentKind, Priority, Project, Story } from '@supersoft/domain'
+import type { Business, DocumentKind, Project, Size, Story } from '@supersoft/domain'
 import { cookieArrivals } from '@/prototype/cookie-arrivals'
 import { findProject, inMemoryProjectStore as store } from '@/prototype/in-memory-project-store'
 
@@ -212,7 +212,8 @@ export async function addStory(formData: FormData) {
     role: text(formData, 'role'),
     intention: text(formData, 'intention'),
     reason: text(formData, 'reason'),
-    priority: text(formData, 'priority') as Priority,
+    value: text(formData, 'value') as Size,
+    effort: text(formData, 'effort') as Size,
     state: 'to_do',
   }
   await change(formData, (project) => ({

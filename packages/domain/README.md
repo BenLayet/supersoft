@@ -8,7 +8,7 @@ Every type and function here has an entry in the [glossary](../../docs/glossary.
 - `project.ts` — the project, its language and scope, its participants, and who settles what.
 - `business.ts` — the workshops on the informal side; the domains, each owning its lexicon, its description and its open questions, on the formal one, with agreeing and what rewriting undoes.
 - `feature.ts` — the stories a feature gathers, and the state derived from them.
-- `story.ts` — stories, their priority, their tracking, and what comes next.
+- `story.ts` — stories, their value and effort, their tracking, and what comes next.
 - `version.ts` — gathering done stories, and following a deployment.
 - `prototype.ts` — the prototypes of a feature, each being tried until the customer validates it.
 - `ports/project-store.ts` — where the projects are. Supersoft opens them; it never creates them.

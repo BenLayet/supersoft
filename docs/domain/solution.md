@@ -22,13 +22,13 @@ Stories use the words of the [lexicon](business.md). A story that introduces a n
 
 **Rule.** Every story belongs to exactly one feature.
 
-Each story carries a priority — **essential** (the application has no purpose without it), **expected** (its absence would be felt as a defect), or **later** (wanted, and explicitly not now).
+Each story carries two sizes: its **business value**, what it is worth to the business, and its **effort**, what it costs to build. A size is one of **XXS, XS, S, M, L, XL**, and stands for a number so that the two can be weighed against each other: 1, 2, 3, 5, 8, 13. The gaps widen on purpose — the larger something is, the less precisely it is known.
 
-**Rule.** Priority is set by the customer. The maker's contribution is the cost, stated before the priority is chosen.
+**Rule.** Business value is set by the customer. Effort is stated by the maker, before the value is chosen.
 
 A story is **to do**, then **in progress**, then **done**. It is done when the customer could see it working, not when the code exists.
 
-**Rule.** What comes next is the most important story still to do. A project always knows what it is doing next, and it is one thing.
+**Rule.** What comes next is the story still to do that brings the most value for its effort; between two that bring as much, the one worth more. A project always knows what it is doing next, and it is one thing.
 
 ## Prototypes
 

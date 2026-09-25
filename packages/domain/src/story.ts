@@ -1,5 +1,13 @@
-/** Set by the customer, once the maker has stated the cost. */
-export type Priority = 'essential' | 'expected' | 'later'
+/** How big something is. The larger it is, the less precisely it is known. */
+export type Size = 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL'
+
+/** Every size, smallest first. */
+export const sizes: readonly Size[] = ['XXS', 'XS', 'S', 'M', 'L', 'XL']
+
+const points: Record<Size, number> = { XXS: 1, XS: 2, S: 3, M: 5, L: 8, XL: 13 }
+
+/** What a size stands for, so that value and effort can be weighed against each other. */
+export const pointsOf = (size: Size): number => points[size]
 
 export type StoryState = 'to_do' | 'in_progress' | 'done'
 
@@ -13,11 +21,12 @@ export interface Story {
   readonly intention: string
   /** Mandatory: without it nobody can tell, later, whether the story still serves anything. */
   readonly reason: string
-  readonly priority: Priority
+  /** What it is worth to the business. Set by the customer. */
+  readonly value: Size
+  /** What it costs to build. Stated by the maker, before the value is chosen. */
+  readonly effort: Size
   readonly state: StoryState
 }
-
-const priorityOrder: Record<Priority, number> = { essential: 0, expected: 1, later: 2 }
 
 export const start = (story: Story): Story => {
   if (story.state !== 'to_do') throw new Error(`Only a story to do can be started: ${story.id}`)
@@ -31,11 +40,19 @@ export const finish = (story: Story): Story => {
   return { ...story, state: 'done' }
 }
 
-/** What comes next is the most important story still to do — and it is one thing. */
+const valueForEffort = (story: Story): number => pointsOf(story.value) / pointsOf(story.effort)
+
+/**
+ * What comes next is the story still to do that brings the most value for its
+ * effort; between two that bring as much, the one worth more. It is one thing.
+ */
 export const nextStory = (stories: readonly Story[]): Story | undefined =>
   stories
     .filter((story) => story.state === 'to_do')
-    .sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority])[0]
+    .sort(
+      (a, b) =>
+        valueForEffort(b) - valueForEffort(a) || pointsOf(b.value) - pointsOf(a.value),
+    )[0]
 
 export const countByState = (stories: readonly Story[]): Record<StoryState, number> => ({
   to_do: stories.filter((story) => story.state === 'to_do').length,

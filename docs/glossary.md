@@ -76,8 +76,11 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | State of a feature | `stateOf` | derived from its stories, never set by hand |
 | Story | `Story` | person + intention + reason |
 | Reason | `Story.reason` | mandatory |
-| Essential / expected / later | `essential` / `expected` / `later` | priority, set by the customer |
+| Business value | `Story.value` | a size, set by the customer |
+| Effort | `Story.effort` | a size, stated by the maker before the value |
+| Size | `Size`, `sizes` | `XXS` / `XS` / `S` / `M` / `L` / `XL` |
+| What a size stands for | `pointsOf` | 1 / 2 / 3 / 5 / 8 / 13 |
 | To do / in progress / done | `to_do` / `in_progress` / `done` | |
-| What comes next | `nextStory` | the most important story still to do |
+| What comes next | `nextStory` | the most value for its effort, still to do |
 | Version | `Version` | gathers done stories |
 | The version that carried a story | `versionCarrying` | |
