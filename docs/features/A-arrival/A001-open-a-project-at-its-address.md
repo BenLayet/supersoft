@@ -6,13 +6,10 @@
 - Effort: M
 - State: to do
 
-## Context
-First story of the project, to get started.
-
 ## Path
 1. The maker opens the app, which shows an input box for the address of a project.
 2. The maker adds a project, giving the address where it is kept.
-3. Supersoft opens it, for now showing only the overview of the project, with its name and scope from the `README.md` file, and the address where it is kept.
+3. Supersoft opens it, for now showing only the overview of the project, with only the address where it is kept.
 
 ## Before the story
 No app exists yet.
@@ -24,5 +21,4 @@ The app can be started locally, and a project can be opened from a directory.
 
 - Adding the address of this repository opens it.
 - An address with no `README.md` cannot be added, and Supersoft says why.
-- Opening a project writes nothing where it is kept.
 - Nothing in the project can be changed from Supersoft yet: no button offers it.
