@@ -13,3 +13,4 @@ Format: **Status** (proposed / accepted / superseded by NNNN), **Context** (the 
 - [0003 — Hexagonal monorepo with a pure TypeScript domain](0003-hexagonal-monorepo-pure-domain.md)
 - [0004 — Supersoft's own prototype is a web application, held in memory](0004-the-prototype-is-a-web-application-held-in-memory.md)
 - [0005 — Git holds the specification; the repository host holds the conversation](0005-git-holds-the-specification-the-host-holds-the-conversation.md)
+- [0006 — `main` is production; stories and prototypes are branches](0006-main-is-production-stories-and-prototypes-are-branches.md)

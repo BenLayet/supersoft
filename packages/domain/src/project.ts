@@ -1,4 +1,4 @@
-import type { Domain } from './domain'
+import type { Business } from './business'
 import type { Feature } from './feature'
 import type { Prototype } from './prototype'
 import type { Story } from './story'
@@ -22,7 +22,7 @@ export interface Project {
   /** What the application is for, and what it is not: short, broad, deliberately vague. */
   readonly scope: string
   readonly participants: readonly Participant[]
-  readonly domain: Domain
+  readonly business: Business
   readonly features: readonly Feature[]
   readonly stories: readonly Story[]
   readonly prototypes: readonly Prototype[]

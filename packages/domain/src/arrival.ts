@@ -4,15 +4,15 @@ export interface Account {
   readonly name: string
 }
 
-/** A project Supersoft found and can offer — whether or not it can read it. */
+/** A project Supersoft found and can offer. */
 export interface AvailableProject {
   readonly id: string
   readonly name: string
   readonly owner: string
-  /** Read without saying who you are. */
-  readonly openToEveryone: boolean
-  /** Written in the form Supersoft reads. When it is not, it is named as such. */
-  readonly inTheForm: boolean
+  /** Where its customer keeps it. */
+  readonly address: string
+  /** A public project is read without saying who you are. */
+  readonly isPublic: boolean
   /** Who the project already recognises. Supersoft grants nothing of its own. */
   readonly guardians: readonly string[]
 }
@@ -24,6 +24,17 @@ export interface AvailableProject {
 export const mayChange = (project: AvailableProject, account?: Account): boolean =>
   account !== undefined && project.guardians.includes(account.handle)
 
-/** A project open to everyone is read without saying who you are. */
+/** A public project is read without saying who you are; a private one, only by the people it recognises. */
 export const mayOpen = (project: AvailableProject, account?: Account): boolean =>
-  project.inTheForm && (project.openToEveryone || mayChange(project, account))
+  project.isPublic || mayChange(project, account)
+
+/**
+ * Someone's projects: the ones they added and can open. Adding grants nothing,
+ * so one that cannot be opened is not one of them.
+ */
+export const projectsFor = (
+  found: readonly AvailableProject[],
+  added: readonly string[],
+  account?: Account,
+): readonly AvailableProject[] =>
+  found.filter((project) => added.includes(project.id) && mayOpen(project, account))

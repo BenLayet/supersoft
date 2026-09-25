@@ -1,6 +1,6 @@
 # The solution
 
-The **solution** is what the application does about the [domain](domain.md). It is described as features and delivered as versions — never as anything else: a solution that cannot be told as things people do is not understood yet.
+The **solution** is what the application does about the [business](business.md). It is described as features and delivered as versions — never as anything else: a solution that cannot be told as things people do is not understood yet.
 
 ## Features
 
@@ -18,17 +18,19 @@ A **story** describes one thing a person wants to do, and why:
 
 The reason is the part most often dropped and the part that matters most: it lets a maker propose something better than what was asked, and it lets everyone notice later when a story no longer serves anything.
 
-Stories use the words of the [lexicon](domain.md). A story that introduces a new concept is not a story yet — the concept is defined first.
+Stories use the words of the [lexicon](business.md). A story that introduces a new concept is not a story yet — the concept is defined first.
 
 **Rule.** Every story belongs to exactly one feature.
 
-Each story carries a priority — **essential** (the application has no purpose without it), **expected** (its absence would be felt as a defect), or **later** (wanted, and explicitly not now).
+Each story carries two sizes: its **business value**, what it is worth to the business, and its **effort**, what it costs to build. A size is one of **XXS, XS, S, M, L, XL**, and stands for a number so that the two can be weighed against each other: 1, 2, 3, 5, 8, 13. The gaps widen on purpose — the larger something is, the less precisely it is known.
 
-**Rule.** Priority is set by the customer. The maker's contribution is the cost, stated before the priority is chosen.
+**Rule.** Business value is set by the customer. Effort is stated by the maker, before the value is chosen.
 
 A story is **to do**, then **in progress**, then **done**. It is done when the customer could see it working, not when the code exists.
 
-**Rule.** What comes next is the most important story still to do. A project always knows what it is doing next, and it is one thing.
+A story can be **blocked by** other stories: it needs what they bring before it can be done. It stays blocked until every one of them is done.
+
+**Rule.** What comes next is the story still to do, and blocked by nothing, that brings the most value for its effort; between two that bring as much, the one worth more. A project always knows what it is doing next, and it is one thing.
 
 ## Prototypes
 
@@ -36,7 +38,9 @@ A **prototype** is the application as the customer and the people who will use i
 
 **Rule.** Every prototype belongs to exactly one feature: it lets people try what that feature's stories ask for.
 
-**Rule.** A prototype applies the rules of the [domain](domain.md); it never holds one of its own. Trying it refines the rules, and the rules refine it: a rule found while trying a prototype is written in the description before the prototype uses it.
+**Rule.** A prototype applies the rules of the [business](business.md); it never holds one of its own. Trying it refines the rules, and the rules refine it: a rule found while trying a prototype is written in the description before the prototype uses it.
+
+**Rule.** A prototype depends on nothing outside itself: everything it shows is invented for it. It can be tried at any moment, by anyone, with no consequence.
 
 A prototype is **being tried** until the customer **validates** it. Like any agreement, validation is an act, by the customer, on a date.
 
@@ -52,10 +56,6 @@ A **version** gathers stories that are finished, so that they can be put in fron
 
 **Rule.** A version contains only done stories. Work in progress waits for the next one.
 
-A version is **planned**, then **deploying**, then **in real use** — or it **failed**, which is a state like any other and is said out loud.
-
-**Rule.** A project always knows which version real people are using. A version nobody can name is a version nobody can fix.
-
 **Rule.** A story that has gone out names the version that carried it. Asking when something reached real people is asking about a story, not about a log.
 
-**Rule.** Once a version is in real use, a change still starts as a change to the [domain](domain.md). Every new feature, and every new part of the business, goes through the same steps — lexicon, rules, prototype, mock-ups, then a version. The order is the same on day one and in year five.
+**Rule.** Once a version is in real use, a change still starts as a change to the [business](business.md). Every new feature, and every new part of the business, goes through the same steps — lexicon, rules, prototype, mock-ups, then a version. The order is the same on day one and in year five.
