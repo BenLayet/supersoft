@@ -22,5 +22,6 @@ Every file that could not be read is shown, with what is wrong in it. No story i
 
 - A story without "so that" is shown as unreadable, with its file.
 - A business value or an effort that is not XXS, XS, S, M, L or XL is shown as unreadable.
+- A story blocked by a story that does not exist is shown as unreadable.
 - A story whose letter is not its feature's, or two stories with the same number, are shown as unreadable.
 - No story is ever left out silently: every file in a feature's folder is either a story or shown as unreadable.

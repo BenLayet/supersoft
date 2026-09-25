@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { countByState, finish, nextStory, pointsOf, start } from './story'
+import { countByState, finish, isBlocked, nextStory, pointsOf, start } from './story'
 import type { Size, Story, StoryState } from './story'
 
 const story = (
@@ -47,6 +47,18 @@ describe('a size', () => {
   })
 })
 
+describe('a blocked story', () => {
+  it('stays blocked until every story it is blocked by is done', () => {
+    const blocked = { ...story('S3', 'L'), blockedBy: ['S1', 'S2'] }
+    expect(isBlocked(blocked, [story('S1', 'L', 'M', 'done'), story('S2', 'L', 'M', 'in_progress')])).toBe(true)
+    expect(isBlocked(blocked, [story('S1', 'L', 'M', 'done'), story('S2', 'L', 'M', 'done')])).toBe(false)
+  })
+
+  it('is blocked by nothing when it names nothing', () => {
+    expect(isBlocked(story('S1', 'L'), [])).toBe(false)
+  })
+})
+
 describe('what comes next', () => {
   it('is the story still to do that brings the most value for its effort', () => {
     const stories = [story('S1', 'XL', 'XL'), story('S2', 'M', 'XS'), story('S3', 'L', 'M')]
@@ -61,6 +73,13 @@ describe('what comes next', () => {
   it('ignores what is already under way or finished', () => {
     const stories = [story('S1', 'XL', 'XXS', 'in_progress'), story('S2', 'XXS', 'XL')]
     expect(nextStory(stories)?.id).toBe('S2')
+  })
+
+  it('waits for what a story is blocked by', () => {
+    const opening = story('A001', 'XL', 'M')
+    const reading = { ...story('B001', 'L', 'XS'), blockedBy: ['A001'] }
+    expect(nextStory([opening, reading])?.id).toBe('A001')
+    expect(nextStory([{ ...opening, state: 'done' }, reading])?.id).toBe('B001')
   })
 
   it('is nothing at all when everything is under way', () => {

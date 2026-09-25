@@ -5,6 +5,7 @@
 - Business Value: L
 - Effort: XS
 - State: to do
+- Blocked by: A001
 
 ## Path
 

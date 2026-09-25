@@ -28,7 +28,9 @@ Each story carries two sizes: its **business value**, what it is worth to the bu
 
 A story is **to do**, then **in progress**, then **done**. It is done when the customer could see it working, not when the code exists.
 
-**Rule.** What comes next is the story still to do that brings the most value for its effort; between two that bring as much, the one worth more. A project always knows what it is doing next, and it is one thing.
+A story can be **blocked by** other stories: it needs what they bring before it can be done. It stays blocked until every one of them is done.
+
+**Rule.** What comes next is the story still to do, and blocked by nothing, that brings the most value for its effort; between two that bring as much, the one worth more. A project always knows what it is doing next, and it is one thing.
 
 ## Prototypes
 

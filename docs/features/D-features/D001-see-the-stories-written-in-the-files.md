@@ -25,5 +25,6 @@ The project shows its features and their stories as written in `docs/features/`,
 - Opening this repository shows its five features and their stories; business and versions have none yet, and say so.
 - Features are shown in the order of their letters; the letter is not part of their name, and says nothing about what comes next.
 - A story whose title and file name change, and whose letter and number do not, is the same story.
-- What comes next is the story still to do that brings the most value for its effort, as in the prototype.
+- What comes next is the story still to do, and blocked by nothing, that brings the most value for its effort, as in the prototype.
+- A story with a line `- Blocked by: A001` is not what comes next until A001 is done; several stories are separated by commas.
 - The sections a story has beyond its sentence and its lines (path, tests) stay in the file and are not shown yet.

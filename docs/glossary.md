@@ -81,6 +81,8 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Size | `Size`, `sizes` | `XXS` / `XS` / `S` / `M` / `L` / `XL` |
 | What a size stands for | `pointsOf` | 1 / 2 / 3 / 5 / 8 / 13 |
 | To do / in progress / done | `to_do` / `in_progress` / `done` | |
-| What comes next | `nextStory` | the most value for its effort, still to do |
+| Blocked by | `Story.blockedBy` | the stories it needs done first |
+| Blocked | `isBlocked` | while one of them is not done |
+| What comes next | `nextStory` | the most value for its effort, still to do and not blocked |
 | Version | `Version` | gathers done stories |
 | The version that carried a story | `versionCarrying` | |

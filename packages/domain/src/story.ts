@@ -26,6 +26,8 @@ export interface Story {
   /** What it costs to build. Stated by the maker, before the value is chosen. */
   readonly effort: Size
   readonly state: StoryState
+  /** The stories it needs done before it can be done itself. */
+  readonly blockedBy?: readonly string[]
 }
 
 export const start = (story: Story): Story => {
@@ -40,15 +42,20 @@ export const finish = (story: Story): Story => {
   return { ...story, state: 'done' }
 }
 
+/** A story stays blocked until every story it is blocked by is done. */
+export const isBlocked = (story: Story, stories: readonly Story[]): boolean =>
+  (story.blockedBy ?? []).some((id) => stories.find((other) => other.id === id)?.state !== 'done')
+
 const valueForEffort = (story: Story): number => pointsOf(story.value) / pointsOf(story.effort)
 
 /**
- * What comes next is the story still to do that brings the most value for its
- * effort; between two that bring as much, the one worth more. It is one thing.
+ * What comes next is the story still to do, and blocked by nothing, that brings
+ * the most value for its effort; between two that bring as much, the one worth
+ * more. It is one thing.
  */
 export const nextStory = (stories: readonly Story[]): Story | undefined =>
   stories
-    .filter((story) => story.state === 'to_do')
+    .filter((story) => story.state === 'to_do' && !isBlocked(story, stories))
     .sort(
       (a, b) =>
         valueForEffort(b) - valueForEffort(a) || pointsOf(b.value) - pointsOf(a.value),
