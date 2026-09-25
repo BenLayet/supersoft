@@ -19,11 +19,13 @@ Read `README.md` for the full picture. The essentials:
 
 pnpm monorepo, vitest for the domain:
 
-- `packages/domain` (zero runtime dependencies) — `arrival` (who arrived, what was found, who may open or change it), `project` (participants: customer and maker; language and scope), `business` (dated workshops on the informal side; domains, each owning its terms, rules and questions, on the formal one), `feature` (stories gathered, state derived), `story` (priority, tracking, what comes next), `version` (gathering done stories), `prototype` (each belonging to one feature; being tried, then validated), and two ports: `ports/project-store` (`ProjectStore`) and `ports/arrivals` (`Arrivals`).
-- `apps/web` — the prototype: Next.js, React and Tailwind. Arriving at `/`, then a project at `/projects/<id>`, an overview holding its scope, then its three parts: business (workshops by date, domains), features (stories and prototypes), versions. Two fictional projects (`supersoft`, a public project; `medito`, a private one), held in memory by `inMemoryProjectStore`; who is here and the projects they added live in the visitor's own cookies through `cookieArrivals`. Server actions check the project recognises the person, then read it, apply a domain function and write it back. No outside service, nothing persisted. The interface speaks English or French (`src/i18n`, chosen in a cookie); both projects are written in French and never translated.
+- `packages/domain` (zero runtime dependencies) — `arrival` (who arrived, what was found, who may open or change it), `project` (participants: customer and maker; language and scope), `business` (dated workshops on the informal side; domains, each owning its terms, rules and questions, on the formal one), `feature` (stories gathered, state derived), `story` (value and effort, what blocks it, tracking, what comes next), `version` (gathering done stories), `prototype` (each belonging to one feature; being tried, then validated), and two ports: `ports/project-store` (`ProjectStore`) and `ports/arrivals` (`Arrivals`).
+- `docs/features/` — Supersoft's own features and stories, one lettered folder per feature, one numbered file per story (`A001-…`), with business value, effort, state and what blocks it.
 
-Not started: reading a specification from a project's own files, the generator, and the portal. The layout in `README.md` is the current state, not a target.
+`main` is production ([0006](docs/decisions/0006-main-is-production-stories-and-prototypes-are-branches.md)): each story is built on a `stories/<story>` branch, each prototype lives on a `prototypes/<number>` branch and is never merged. The prototype that was `apps/web` is `prototypes/001`: fictional projects in memory, no outside service.
 
-Imports inside a package are extensionless, resolved by vitest, Next and `tsc`.
+Not started: the application itself (story A001), reading a specification from a project's own files, the generator, and the portal. The layout in `README.md` is the current state, not a target.
 
-`pnpm test` runs the domain; `pnpm dev` runs the prototype on port 3000.
+Imports inside a package are extensionless, resolved by vitest and `tsc`.
+
+`pnpm test` runs the domain.
