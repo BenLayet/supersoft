@@ -4,7 +4,7 @@
 
 - Business Value: XL
 - Effort: M
-- State: to do
+- State: in progress
 
 ## Path
 1. The maker opens the app, which shows an input box for the address of a project.

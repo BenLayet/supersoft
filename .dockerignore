@@ -1,0 +1,10 @@
+**/node_modules
+**/.next
+**/*.tsbuildinfo
+.git
+.idea
+.claude
+CLAUDE.local.md
+docs
+.env
+.env.*

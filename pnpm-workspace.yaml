@@ -6,3 +6,4 @@ packages:
 # them (prebuilt binaries) — verified via typecheck + tests.
 ignoredBuiltDependencies:
   - esbuild
+  - sharp
