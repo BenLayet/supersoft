@@ -45,7 +45,8 @@ This is the method Supersoft applies to its users' projects, applied to Supersof
 ```
 supersoft/
 ├── packages/
-│   └── domain/         # @supersoft/domain — pure TS, zero runtime dependencies
+│   ├── domain/         # @supersoft/domain — pure TS, zero runtime dependencies
+│   └── adapters/       # @supersoft/adapters — what the ports reach, starting with their mocks
 └── docs/
     ├── domain/         # business rules & ubiquitous language (tool-free)
     ├── decisions/      # Architecture Decision Records

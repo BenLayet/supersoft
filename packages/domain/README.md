@@ -13,6 +13,7 @@ Every type and function here has an entry in the [glossary](../../docs/glossary.
 - `prototype.ts` — the prototypes of a feature, each being tried until the customer validates it.
 - `ports/project-store.ts` — where the projects are. Supersoft opens them; it never creates them.
 - `ports/arrivals.ts` — who is here, and where they left off.
+- `ports/project-files.ts` — what is kept at a project's address, read and never written.
 
 ```bash
 pnpm --filter @supersoft/domain test
