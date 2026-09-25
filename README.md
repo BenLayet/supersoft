@@ -36,7 +36,7 @@ This is the method Supersoft applies to its users' projects, applied to Supersof
 2. **[The customer's editing surface is the specification, never the code](docs/decisions/0002-customer-edits-the-specification-never-the-code.md)**.
 3. **[Hexagonal monorepo with a pure TypeScript domain](docs/decisions/0003-hexagonal-monorepo-pure-domain.md)** — the domain imports nothing external; everything outside is a port with a mock adapter.
 4. **[Supersoft's own prototype is a web application, held in memory](docs/decisions/0004-the-prototype-is-a-web-application-held-in-memory.md)** — runnable before it is finished, with no outside service.
-5. **[`main` is production; stories and prototypes are branches](docs/decisions/0006-main-is-production-stories-and-prototypes-are-branches.md)** — a prototype is never merged, and depends on nothing outside itself.
+5. **[`main` is production; stories and prototypes are branches](docs/decisions/0006-main-is-production-stories-and-prototypes-are-branches.md)** — a prototype is built like the application, depends on nothing outside itself, and reaches `main` story by story.
 
 **No part of a project may depend on Supersoft continuing to exist.** A project abandoned by its maker, and by Supersoft, must remain a working application another maker can pick up by reading its specification.
 
@@ -62,7 +62,7 @@ pnpm test        # the domain, in a few milliseconds
 
 ## Status
 
-Early, and deliberately small. `@supersoft/domain` holds arrivals, participants, workshops, domains, terms, rules, questions, features, stories and versions as pure functions. `main` is production: stories are built on `stories/…` branches, and prototypes live on `prototypes/…` branches that are never merged ([0006](docs/decisions/0006-main-is-production-stories-and-prototypes-are-branches.md)). The first prototype, `prototypes/001`, shows all of the domain on two fictional projects — Supersoft itself, a public project, and an association of meditators, a private one — with nothing stored anywhere.
+Early, and deliberately small. `@supersoft/domain` holds arrivals, participants, workshops, domains, terms, rules, questions, features, stories and versions as pure functions. `main` is production: stories are built on `stories/…` branches, and prototypes live on `prototypes/…` branches, taken into `main` story by story once validated ([0006](docs/decisions/0006-main-is-production-stories-and-prototypes-are-branches.md)). The first prototype, `prototypes/001`, shows all of the domain on two fictional projects — Supersoft itself, a public project, and an association of meditators, a private one — with nothing stored anywhere.
 
 The application itself does not exist yet; its first stories are in [`docs/features/`](docs/features/). Neither do the generator, the portal, or reading a specification from a project's own files.
 
