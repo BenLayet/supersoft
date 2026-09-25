@@ -20,7 +20,7 @@ Read `README.md` for the full picture. The essentials:
 pnpm monorepo, vitest for the domain:
 
 - `packages/domain` (zero runtime dependencies) — `arrival` (who arrived, what was found, who may open or change it), `project` (participants: customer and maker; language and scope), `business` (dated workshops on the informal side; domains, each owning its terms, rules and questions, on the formal one), `feature` (stories gathered, state derived), `story` (value and effort, what blocks it, tracking, what comes next), `version` (gathering done stories), `prototype` (each belonging to one feature; being tried, then validated), and three ports: `ports/project-store` (`ProjectStore`), `ports/arrivals` (`Arrivals`) and `ports/project-files` (`ProjectFiles`).
-- `packages/adapters` — the adapters behind the ports; for now the in-memory mock of `ProjectFiles`.
+- `packages/adapters` — the adapters behind the ports: `ProjectFiles` in memory (the mock) and from a repository (git, public https only; local paths when asked).
 - `docs/features/` — Supersoft's own features and stories, one lettered folder per feature, one numbered file per story (`A001-…`), with business value, effort, state and what blocks it.
 
 `main` is production ([0006](docs/decisions/0006-main-is-production-stories-and-prototypes-are-branches.md)): each story is built on a `stories/<story>` branch, each ADR on a `decisions/<decision>` branch, each prototype lives on a `prototypes/<number>` branch, is built like the application with mock adapters, and is never merged as a whole: once validated, story branches take its screens. The prototype that was `apps/web` is `prototypes/001`: fictional projects in memory, no outside service.
