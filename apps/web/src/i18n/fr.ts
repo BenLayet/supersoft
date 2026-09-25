@@ -17,7 +17,7 @@ export const fr: Dictionary = {
     no: 'Non',
   },
 
-  roles: { customer: 'client', maker: 'développeur' },
+  roles: { customer: 'client', maker: 'maker' },
   documentKinds: {
     slides: 'diaporama',
     video: 'vidéo',

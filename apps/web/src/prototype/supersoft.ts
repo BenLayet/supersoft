@@ -11,7 +11,7 @@ export const supersoft: Project = {
   name: 'Supersoft',
   language: 'fr',
   scope:
-    'Un support pour la conversation entre un développeur et son client à propos d’une application web ou mobile : la spécifier, la planifier, et la suivre jusqu’à l’usage réel. Supersoft n’écrit pas l’application à la place de personne, et aucun projet ne dépend de lui pour continuer d’exister.',
+    'Un support pour la conversation entre un maker et son client à propos d’une application web ou mobile : la spécifier, la planifier, et la suivre jusqu’à l’usage réel. Supersoft n’écrit pas l’application à la place de personne, et aucun projet ne dépend de lui pour continuer d’exister.',
   participants: [
     { name: 'Ben Layet', role: 'customer' },
     { name: 'Ben Layet', role: 'maker' },
@@ -79,7 +79,7 @@ export const supersoft: Project = {
         id: 'D1',
         name: 'Le projet',
         description:
-          'Un projet est une application construite pour un client, et elle appartient à ce client dès le premier jour. Le client la commande et sait comment fonctionne le métier ; le développeur la construit et met le métier par écrit. Une même personne tient souvent les deux rôles. Un projet existe déjà là où son client le garde, et il continue d’exister quoi qu’il arrive aux personnes qui le servent.',
+          'Un projet est une application construite pour un client, et elle appartient à ce client dès le premier jour. Le client la commande et sait comment fonctionne le métier ; le maker la construit et met le métier par écrit. Une même personne tient souvent les deux rôles. Un projet existe déjà là où son client le garde, et il continue d’exister quoi qu’il arrive aux personnes qui le servent.',
       },
       {
         id: 'D2',
@@ -102,7 +102,7 @@ export const supersoft: Project = {
         domainId: 'D1',
       },
       {
-        name: 'Développeur',
+        name: 'Maker',
         definition: 'La personne qui la construit et la maintient, et qui met le métier par écrit.',
         domainId: 'D1',
       },
@@ -145,7 +145,7 @@ export const supersoft: Project = {
     rules: [
       {
         id: 'R1',
-        statement: 'Un projet appartient à son client, quoi qu’il arrive au développeur.',
+        statement: 'Un projet appartient à son client, quoi qu’il arrive au maker.',
         state: 'agreed',
         domainId: 'D1',
       },
@@ -232,7 +232,7 @@ export const supersoft: Project = {
     {
       id: 'S1',
       featureId: 'F1',
-      role: 'développeur',
+      role: 'maker',
       intention: 'consulter un projet public sans dire qui je suis',
       reason: 'voir ce que produit la méthode avant de m’engager à quoi que ce soit',
       priority: 'essential',
@@ -241,7 +241,7 @@ export const supersoft: Project = {
     {
       id: 'S2',
       featureId: 'F1',
-      role: 'développeur',
+      role: 'maker',
       intention: 'revenir au dernier projet sur lequel j’étais',
       reason: 'ne pas choisir dans une liste à chaque fois que j’arrive',
       priority: 'expected',
@@ -250,7 +250,7 @@ export const supersoft: Project = {
     {
       id: 'S3',
       featureId: 'F2',
-      role: 'développeur',
+      role: 'maker',
       intention: 'garder l’enregistrement d’une conversation à côté de ce que j’en ai écrit',
       reason: 'que le client puisse comparer ce que j’ai compris avec ce qu’il a dit',
       priority: 'essential',
@@ -268,7 +268,7 @@ export const supersoft: Project = {
     {
       id: 'S5',
       featureId: 'F2',
-      role: 'développeur',
+      role: 'maker',
       intention: 'découper le métier en parties qui possèdent chacune leurs mots',
       reason: 'qu’un mot disputé ait un seul endroit où se régler',
       priority: 'expected',
@@ -277,7 +277,7 @@ export const supersoft: Project = {
     {
       id: 'S6',
       featureId: 'F3',
-      role: 'développeur',
+      role: 'maker',
       intention: 'voir le seul récit qui vient ensuite',
       reason: 'qu’un projet qui fait une chose à la fois finisse ce qu’il commence',
       priority: 'essential',
