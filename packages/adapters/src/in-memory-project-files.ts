@@ -1,4 +1,5 @@
 import type { KeptFiles, ProjectFiles } from '@supersoft/domain'
+import { repositoryLink } from './repository-link'
 
 /** The files of one project, by their path from its root. */
 export type Files = Readonly<Record<string, string>>
@@ -14,6 +15,7 @@ export const inMemoryProjectFiles = (projects: Readonly<Record<string, Files>>):
     const kept = new Map(Object.entries(files))
     const opened: KeptFiles = {
       address,
+      link: repositoryLink(address),
       async read(path) {
         return kept.get(path)
       },

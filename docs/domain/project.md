@@ -29,6 +29,8 @@ One person may hold both, and the roles say what someone knows rather than what 
 
 A project is never created by Supersoft. It already exists, where its customer keeps it, and it goes on existing if Supersoft stops. Supersoft **opens** it, at the **address** where its customer keeps it.
 
+What is kept at that address is the project's **repository**: its files and their history. Anyone who may read the project can look at its repository without Supersoft.
+
 **Rule.** A **public project** is read without saying who you are. Its business, its solution and its versions are looked at by anyone, at no cost and with nothing asked. A **private project** is read only by the people it recognises.
 
 **Rule.** Changing anything means saying who you are, and being someone the project already **recognises**. Supersoft grants nothing of its own: it can only act where the person could already act without it.

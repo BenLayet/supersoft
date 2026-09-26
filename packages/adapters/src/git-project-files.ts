@@ -4,6 +4,7 @@ import { mkdir } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { isAbsolute, join, resolve } from 'node:path'
 import type { KeptFiles, ProjectFiles } from '@supersoft/domain'
+import { repositoryLink } from './repository-link'
 
 export interface GitProjectFilesOptions {
   /** Where the copies are kept. Anything here can be lost at any restart. */
@@ -78,6 +79,7 @@ export const gitProjectFiles = (options: GitProjectFilesOptions = {}): ProjectFi
 
       const opened: KeptFiles = {
         address,
+        link: repositoryLink(address),
         async read(path) {
           const segments = path.split('/')
           if (isAbsolute(path) || segments.some((part) => part === '' || part === '.' || part === '..')) {

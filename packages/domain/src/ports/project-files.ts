@@ -4,6 +4,8 @@
  */
 export interface KeptFiles {
   readonly address: string
+  /** Where a person looks at the repository without Supersoft; nothing when a browser cannot open it. */
+  readonly link?: string
   /** The text of the file at this path, or nothing when there is none. */
   read(path: string): Promise<string | undefined>
 }
