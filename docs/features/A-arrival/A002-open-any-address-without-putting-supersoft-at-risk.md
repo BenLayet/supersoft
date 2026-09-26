@@ -11,12 +11,12 @@
 
 Anyone can give Supersoft any address, and opening it is only a link away. So:
 
-- A repository too large, or too slow to read, cannot be opened, as if nothing were there. Only what the overview reads is fetched, not every file.
-- No address reaches Supersoft's own network: an address that leads to a private, local or internal machine, directly or by redirection, cannot be opened.
-- What Supersoft keeps from the repositories it opened stays bounded: the oldest copies are dropped, and an address that could not be opened leaves nothing behind.
+- Opening a repository fetches its structure only. A file is fetched when it is read, and a file larger than 1 MB is not read.
+- An address that takes more than 20 seconds to open, or whose copy grows beyond 50 MB, cannot be opened, as if nothing were there.
+- At most 4 addresses are opened at once; the others wait their turn.
+- No address reaches Supersoft's own network. Only the usual port is allowed, and an address whose machine is local, private, link-local or otherwise not public cannot be opened. Supersoft fetches from the very machine it checked, and follows no redirection.
+- What Supersoft keeps from the repositories it opened stays under 1 GB: beyond it, the copies opened least recently are dropped. An address that could not be opened leaves nothing behind. Nothing else limits how long a copy is kept: every opening fetches the repository again anyway.
 - Reading a repository depends only on Supersoft's own settings, never on how the machine it runs on is configured.
-
-Open questions: the largest repository Supersoft opens, and how much it keeps from the repositories it opened, and for how long.
 
 ## Before the story
 
@@ -28,9 +28,12 @@ Opening an address costs Supersoft a bounded amount of time, space and network, 
 
 ## Tests
 
-- A repository larger than the limit cannot be opened, and Supersoft says so as for any unreadable address.
-- An address on `localhost`, a private network or a link-local address cannot be opened, and neither can an address that redirects to one.
-- Opening a repository fetches its structure and only the files it reads.
+- Opening a repository fetches its structure, and a file only when it is read.
+- A file larger than 1 MB is not read.
+- A repository whose copy grows beyond 50 MB, or that takes more than 20 seconds to open, cannot be opened, and Supersoft says so as for any unreadable address.
+- A fifth address opened while four are being opened waits until one of them is done.
+- An address on `localhost`, on a private network, on a link-local address or with a port of its own cannot be opened, and neither can an address that redirects.
 - An address that could not be opened leaves no copy behind.
-- Beyond the limit, opening a new repository drops the oldest copy.
+- Beyond 1 GB, opening a new repository drops the copies opened least recently.
+- A setting of the machine Supersoft runs on changes nothing in how a repository is read.
 - Opening this repository still works, in production as locally.
