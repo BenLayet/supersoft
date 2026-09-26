@@ -1,6 +1,6 @@
 # 0008 — Stories still to do go straight to `main`
 
-**Status**: proposed (2026-09)
+**Status**: accepted (2026-09)
 
 ## Context
 
