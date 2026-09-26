@@ -44,8 +44,11 @@ This is the method Supersoft applies to its users' projects, applied to Supersof
 
 ```
 supersoft/
+├── apps/
+│   └── web/            # @supersoft/web — the application
 ├── packages/
-│   └── domain/         # @supersoft/domain — pure TS, zero runtime dependencies
+│   ├── domain/         # @supersoft/domain — pure TS, zero runtime dependencies
+│   └── adapters/       # @supersoft/adapters — what the ports reach, starting with their mocks
 └── docs/
     ├── domain/         # business rules & ubiquitous language (tool-free)
     ├── decisions/      # Architecture Decision Records
@@ -57,13 +60,16 @@ supersoft/
 
 ```bash
 pnpm install
-pnpm test        # the domain, in a few milliseconds
+pnpm test        # the domain and the adapters
+pnpm --filter @supersoft/web dev                             # projects read from their repositories, local ones included
+SUPERSOFT_ADAPTERS=mock pnpm --filter @supersoft/web dev     # no outside service at all
+docker build -t supersoft . && docker run -p 3000:3000 supersoft   # as in production
 ```
 
 ## Status
 
 Early, and deliberately small. `@supersoft/domain` holds arrivals, participants, workshops, domains, terms, rules, questions, features, stories and versions as pure functions. `main` is production: stories are built on `stories/…` branches, and prototypes live on `prototypes/…` branches, taken into `main` story by story once validated ([0006](docs/decisions/0006-main-is-production-stories-and-prototypes-are-branches.md)). The first prototype, `prototypes/001`, shows all of the domain on two fictional projects — Supersoft itself, a public project, and an association of meditators, a private one — with nothing stored anywhere.
 
-The application itself does not exist yet; its first stories are in [`docs/features/`](docs/features/). Neither do the generator, the portal, or reading a specification from a project's own files.
+The application, `apps/web`, opens a project at the address of its repository and shows that address; its next stories are in [`docs/features/`](docs/features/). The generator and the portal do not exist yet.
 
 The method itself is not a guess: an existing application was built with it — specification as files, pure domain, a mock adapter for every port — before any of this tooling existed.

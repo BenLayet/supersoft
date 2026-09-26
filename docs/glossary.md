@@ -23,6 +23,8 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Someone arriving | `Account` | who they are where their projects live |
 | Project on offer | `AvailableProject` | what Supersoft found |
 | Address of a project | `address` | where its customer keeps it |
+| Opening a project | `ProjectFiles.open` | reads what is kept at its address, or nothing when it cannot be read |
+| What is kept at an address | `KeptFiles` | read as it was when the project was opened |
 | Public project | `isPublic` | read without saying who you are |
 | Private project | `isPublic` false | read only by the people it recognises |
 | Recognised by the project | `guardians` | who may change it |
