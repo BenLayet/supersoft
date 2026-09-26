@@ -27,7 +27,7 @@ Supersoft is a layer over git. A project's code and its specification live toget
 
 What Supersoft defines is a format: Markdown files, and where they go.
 
-```
+```bash
 project/
 ├── README.md                   # the scope: what the application is for
 └── docs/
@@ -51,7 +51,7 @@ The choices behind this are in [`docs/decisions/`](docs/decisions/README.md).
 
 Supersoft is built with its own method, so this repository follows the layout above. The code:
 
-```
+```bash
 apps/web/            # the application
 packages/domain/     # the business rules, pure TypeScript, no dependencies
 packages/adapters/   # what the domain reaches outside itself, each with a mock
@@ -65,4 +65,4 @@ SUPERSOFT_ADAPTERS=mock pnpm --filter @supersoft/web dev     # no outside servic
 docker build -t supersoft . && docker run -p 3000:3000 supersoft   # as in production
 ```
 
-Early and deliberately small: the application opens a project at the address of its repository. What comes next is in [`docs/features/`](docs/features/).
+Early and deliberately small: the application opens a project at the address of its repository. What comes next is in [`docs/features/`](./docs/features/README.md).
