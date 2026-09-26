@@ -25,6 +25,8 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Address of a project | `address` | where its customer keeps it |
 | Opening a project | `ProjectFiles.open` | reads what is kept at its address, or nothing when it cannot be read |
 | What is kept at an address | `KeptFiles` | read as it was when the project was opened |
+| Repository of a project | `KeptFiles` | its files and their history, kept at its address |
+| Link to a repository | `KeptFiles.link` | where a person looks at it without Supersoft; none when a browser cannot open it |
 | Public project | `isPublic` | read without saying who you are |
 | Private project | `isPublic` false | read only by the people it recognises |
 | Recognised by the project | `guardians` | who may change it |

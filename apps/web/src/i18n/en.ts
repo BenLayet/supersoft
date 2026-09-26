@@ -9,6 +9,6 @@ export const en = {
       `Nothing can be read at “${address}”: there is no repository there, or it is private.`,
   },
   overview: {
-    address: 'Address',
+    repository: 'Repository',
   },
 }

@@ -11,6 +11,12 @@ describe('projects held in memory', () => {
     expect(await opened?.read('README.md')).toBe('# Medito')
   })
 
+  it('links to a project at its address, when a browser can open it', async () => {
+    const files = inMemoryProjectFiles({ [address]: {}, '/home/maker/medito': {} })
+    expect((await files.open(address))?.link).toBe(address)
+    expect((await files.open('/home/maker/medito'))?.link).toBeUndefined()
+  })
+
   it('opens nothing where nothing is kept', async () => {
     expect(await inMemoryProjectFiles({}).open(address)).toBeUndefined()
   })

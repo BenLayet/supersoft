@@ -16,9 +16,22 @@ export default async function ProjectPage({
 
   return (
     <Page>
-      <Section title={t.overview.address}>
+      <Section title={t.overview.repository}>
         <Card>
-          <p className="text-sm break-all">{project.address}</p>
+          <p className="text-sm break-all">
+            {project.link ? (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent underline-offset-2 hover:underline"
+              >
+                {project.address}
+              </a>
+            ) : (
+              project.address
+            )}
+          </p>
         </Card>
       </Section>
     </Page>

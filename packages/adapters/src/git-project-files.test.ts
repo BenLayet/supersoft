@@ -36,6 +36,10 @@ describe('projects read from their repository', () => {
     expect(await opened?.read('README.md')).toBe('# Medito')
   })
 
+  it('links to nothing for a repository on this machine', async () => {
+    expect((await files.open(repository))?.link).toBeUndefined()
+  })
+
   it('opens nothing where nothing is kept', async () => {
     expect(await files.open(join(scratch, 'nowhere'))).toBeUndefined()
   })
