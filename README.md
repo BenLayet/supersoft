@@ -1,75 +1,68 @@
 # Supersoft
 
-A support for the conversation between a maker and a customer about a web or mobile application: specifying it, planning it, and following it into real use.
+Supersoft is an application where a customer and a maker co-create an application together, going step by step from a business need to fluid application that fits the need.
 
-The expensive failure in this work is not writing code. It is building the wrong thing, slowly, and finding out late. Supersoft answers that with one commitment:
+## The business
 
-> **The written business is the source of truth, it is in the customer's own words, and the application is a consequence of it.**
+A project goes round the same cycle, once for every feature:
 
-A project gets there step by step — scope, lexicon and rules, prototypes tried with the people who will use them, then versions connected to the real world — as [the domain documents](docs/domain/README.md#how-a-project-grows) describe and [the general presentation](docs/discovery/20260916%20general%20presentation/general%20presentation%20-%20key%20points.md) tells.
+1. **Workshop** — the customer and the maker meet. What was said, shown or recorded is kept as it came.
+2. **Domain** — the business is written from it: its terms, its rules, its open questions, in the customer's words.
+3. **Prototype** — a prototype with mock-data is tested and refined with users.
+4. **Stories** — the validated prototype is cut into stories, each with its business value and development effort.
+5. **Roadmap** — the stories are prioritised and scheduled.
+6. **Implementation** — each story is implemented and deployed in an integration environment.
+7. **Version** — done stories are gathered, deployed to production.
+8. **Feedback** — the users can give feedback, potentially generating new workshops.
 
-Its longer purpose is to lower the cost of good software for organisations that cannot afford it: charities, associations, and people meeting real needs with no budget.
+The written business is the source of truth; the application is a consequence of it. [`docs/domain/`](docs/domain/README.md) says the rest.
 
-## What it covers
+## The solution
 
-A project has three parts, and [the domain documents](docs/domain/README.md) say what each one is:
+The aim of Supersoft is to support the cycle above, and to do it in a way that makes the business and the solution live together in one git repository. The customer and the maker can read and change that repository without Supersoft, and if Supersoft stops existing, the project goes on.
 
-| | |
-| --- | --- |
-| **[The project](docs/domain/project.md)** | who takes part, and how someone arrives at a project Supersoft did not create |
-| **[The business](docs/domain/business.md)** | what the application serves — informal (what was said, recorded, filmed, asked) and formal (the lexicon and the description, the project's main source of truth) |
-| **[The solution](docs/domain/solution.md)** | what the application does about it — features broken into stories, gathered into versions, followed into real use |
+## The architecture
 
-## Method: describe the business, then build it
+Supersoft is a layer over git. A project's code and its specification live together in the project's own repository — GitHub, GitLab or any other. Supersoft reads that repository, shows it to the customer, and writes changes back as commits and pull requests. Nothing is stored in Supersoft itself, and nothing is lost if Supersoft stops existing.
 
-Everything lives under `docs/`, and the order never changes: the business document, the glossary, the pure domain with its tests, then the application.
+What Supersoft defines is a format: Markdown files, and where they go.
 
-- **[`docs/domain/`](docs/domain/README.md)** — the business rules and the ubiquitous language, tool-free. A rule not written there does not exist.
-- **[`docs/glossary.md`](docs/glossary.md)** — every business term mapped to its name in the code. A concept gets its entry before it gets a name.
-- **[`docs/decisions/`](docs/decisions/README.md)** — the structural technical choices, their context and their costs. Every tool name in this repository lives there or in this file.
-
-This is the method Supersoft applies to its users' projects, applied to Supersoft itself: every cost it imposes, its makers pay first.
-
-## The decisions that shape everything
-
-1. **[A project's specification lives in the project's own repository](docs/decisions/0001-specification-lives-in-the-project-repository.md)** — as files, next to the code. This is what makes handover a guarantee rather than a promise to cooperate later.
-2. **[The customer's editing surface is the specification, never the code](docs/decisions/0002-customer-edits-the-specification-never-the-code.md)**.
-3. **[Hexagonal monorepo with a pure TypeScript domain](docs/decisions/0003-hexagonal-monorepo-pure-domain.md)** — the domain imports nothing external; everything outside is a port with a mock adapter.
-4. **[Supersoft's own prototype is a web application, held in memory](docs/decisions/0004-the-prototype-is-a-web-application-held-in-memory.md)** — runnable before it is finished, with no outside service.
-5. **[`main` is production; stories and prototypes are branches](docs/decisions/0006-main-is-production-stories-and-prototypes-are-branches.md)** — a prototype is built like the application, depends on nothing outside itself, and reaches `main` story by story.
-
-**No part of a project may depend on Supersoft continuing to exist.** A project abandoned by its maker, and by Supersoft, must remain a working application another maker can pick up by reading its specification.
-
-## Layout
-
-```
-supersoft/
-├── apps/
-│   └── web/            # @supersoft/web — the application
-├── packages/
-│   ├── domain/         # @supersoft/domain — pure TS, zero runtime dependencies
-│   └── adapters/       # @supersoft/adapters — what the ports reach, starting with their mocks
+```bash
+project/
+├── README.md                   # the scope: what the application is for
 └── docs/
-    ├── domain/         # business rules & ubiquitous language (tool-free)
-    ├── decisions/      # Architecture Decision Records
-    ├── features/       # Supersoft's own features and stories
-    └── glossary.md     # business terms ↔ names in the code
+    ├── workshops/
+    │   └── <date> <title>/     # what a workshop left behind: notes, recordings, slides
+    ├── domain/                 # one file per domain: terms, rules, questions
+    ├── glossary.md             # each term ↔ its name in the code
+    └── features/
+        └── A-<feature>/
+            ├── README.md
+            └── A001-<story>.md # value, effort, state, what blocks it
 ```
 
-## Running it
+`main` is production. Each story is built on a `stories/<story>` branch, each prototype lives on a `prototypes/<number>` branch, and a version is a git tag plus a file naming its stories.
+
+Hence the one rule over all the others: **no part of a project may depend on Supersoft continuing to exist.** Without Supersoft, a project is still a repository any maker can read, change and take over.
+
+The choices behind this are in [`docs/decisions/`](docs/decisions/README.md).
+
+## This repository
+
+Supersoft is built with its own method, so this repository follows the layout above. The code:
+
+```bash
+apps/web/            # the application
+packages/domain/     # the business rules, pure TypeScript, no dependencies
+packages/adapters/   # what the domain reaches outside itself, each with a mock
+```
 
 ```bash
 pnpm install
-pnpm test        # the domain and the adapters
-pnpm --filter @supersoft/web dev                             # projects read from their repositories, local ones included
+pnpm test                                                    # the domain and the adapters
+pnpm --filter @supersoft/web dev                             # projects read from their repositories
 SUPERSOFT_ADAPTERS=mock pnpm --filter @supersoft/web dev     # no outside service at all
 docker build -t supersoft . && docker run -p 3000:3000 supersoft   # as in production
 ```
 
-## Status
-
-Early, and deliberately small. `@supersoft/domain` holds arrivals, participants, workshops, domains, terms, rules, questions, features, stories and versions as pure functions. `main` is production: stories are built on `stories/…` branches, and prototypes live on `prototypes/…` branches, taken into `main` story by story once validated ([0006](docs/decisions/0006-main-is-production-stories-and-prototypes-are-branches.md)). The first prototype, `prototypes/001`, shows all of the domain on two fictional projects — Supersoft itself, a public project, and an association of meditators, a private one — with nothing stored anywhere.
-
-The application, `apps/web`, opens a project at the address of its repository and shows that address; its next stories are in [`docs/features/`](docs/features/). The generator and the portal do not exist yet.
-
-The method itself is not a guess: an existing application was built with it — specification as files, pure domain, a mock adapter for every port — before any of this tooling existed.
+Early and deliberately small: the application opens a project at the address of its repository. What comes next is in [`docs/features/`](./docs/features/README.md).
