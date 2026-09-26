@@ -1,6 +1,6 @@
 # Architecture Decision Records
 
-Records of the structural technical decisions behind Supersoft: what was decided, in which context, and what it costs. One file per decision, numbered in order (`0001-…`, `0002-…`), never deleted — a reversed decision gets a new ADR that supersedes the old one.
+Records of the structural technical decisions behind Supersoft: what was decided, in which context, and what it costs. One file per decision, numbered in order (`0001-…`, `0002-…`), never deleted — a reversed decision gets a new ADR that supersedes the old one. The one exception is a decision abandoned before anything came to depend on it: it may be deleted, and its number is used again by the next decision.
 
 Unlike [`docs/domain/`](../domain/README.md) (business rules, tool-free), ADRs are about the software and its tooling. Every tool name in this repository belongs here or in the README, and nowhere else.
 
@@ -15,4 +15,3 @@ Format: **Status** (proposed / accepted / superseded by NNNN), **Context** (the 
 - [0005 — Git holds the specification; the repository host holds the conversation](0005-git-holds-the-specification-the-host-holds-the-conversation.md)
 - [0006 — `main` is production; stories and prototypes are branches](0006-main-is-production-stories-and-prototypes-are-branches.md)
 - [0007 — Supersoft's production runs on Koyeb, from its own Dockerfile](0007-production-runs-on-koyeb-from-its-own-dockerfile.md)
-- [0008 — Stories still to do go straight to `main`](0008-stories-to-do-go-straight-to-main.md)
