@@ -1,6 +1,6 @@
 # 0008 — Stories still to do go straight to `main`
 
-**Status**: accepted (2026-09)
+**Status**: reversed (2026-09): [0006](0006-main-is-production-stories-and-prototypes-are-branches.md) applies again.
 
 ## Context
 
@@ -33,3 +33,11 @@ The forces at play:
 **Harder.** A story written straight to `main` is read by nobody before it lands. Accepted: it commits no one to anything, and it can be changed as easily as it was added.
 
 **Harder.** The line is drawn by a story's state, which is written by hand. A story marked "to do" that is already being built must move to "in progress" on its branch first; changing it on `main` from then on is a mistake.
+
+## Reversed
+
+Reversed the day it was accepted, after two stories had gone straight to `main` under it. Every change, stories included, goes through a branch and a pull request again, as [0006](0006-main-is-production-stories-and-prototypes-are-branches.md) says, and a story is marked done on its branch, with its code.
+
+Two reasons. A customer will change their stories through a pull request, opened for them by Supersoft ([0005](0005-git-holds-the-specification-the-host-holds-the-conversation.md)); Supersoft's makers pay that cost first rather than write themselves an exception. And the exception only worked by going around the protection of `main`, which is kept for an administrator alone.
+
+The friction that led here is real. It belongs to the product: making stories cheap to write and reorder is a story for Supersoft, not a rule for git.
