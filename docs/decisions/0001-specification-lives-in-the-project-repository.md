@@ -1,6 +1,6 @@
 # 0001 — The specification lives in the project's own repository
 
-**Status**: accepted (2026-07)
+**Status**: accepted (2026-07); where stories and versions are kept superseded by [0008](0008-the-business-is-in-files-the-solution-in-github-issues.md)
 
 ## Context
 

@@ -1,6 +1,6 @@
 # 0006 — `main` is production; stories and prototypes are branches
 
-**Status**: accepted (2026-09)
+**Status**: accepted (2026-09); how a story's branch is named superseded by [0008](0008-the-business-is-in-files-the-solution-in-github-issues.md)
 
 ## Context
 
