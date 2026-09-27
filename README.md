@@ -19,29 +19,30 @@ The written business is the source of truth; the application is a consequence of
 
 ## The solution
 
-The aim of Supersoft is to support the cycle above, and to do it in a way that makes the business and the solution live together in one git repository. The customer and the maker can read and change that repository without Supersoft, and if Supersoft stops existing, the project goes on.
+The aim of Supersoft is to support the cycle above, and to do it in a way that keeps the whole project in one GitHub repository: the business in its files, the solution in its issues. The customer and the maker can read and change that repository without Supersoft, and if Supersoft stops existing, the project goes on GitHub.
+ Each customer owns a GitHub organisation, where their projects live and the maker is a member. Supersoft reads a project's repository, shows it to the customer, and writes changes back as commits, pull requests and issues. Nothing is stored in Supersoft itself, and nothing is lost if Supersoft stops existing.
 
-## The architecture
-
-Supersoft is a layer over git. A project's code and its specification live together in the project's own repository — GitHub, GitLab or any other. Supersoft reads that repository, shows it to the customer, and writes changes back as commits and pull requests. Nothing is stored in Supersoft itself, and nothing is lost if Supersoft stops existing.
-
-What Supersoft defines is a format: Markdown files, and where they go.
+The business is in files, and changes with the code that applies it:
 
 ```bash
 project/
 ├── README.md                   # the scope: what the application is for
+├── CHANGELOG.md                # each version and the stories it carried
 └── docs/
     ├── workshops/
     │   └── <date> <title>/     # what a workshop left behind: notes, recordings, slides
     ├── domain/                 # one file per domain: terms, rules, questions
-    ├── glossary.md             # each term ↔ its name in the code
-    └── features/
-        └── A-<feature>/
-            ├── README.md
-            └── A001-<story>.md # value, effort, state, what blocks it
+    └── glossary.md             # each term ↔ its name in the code
 ```
 
-`main` is production. Each story is built on a `stories/<story>` branch, each prototype lives on a `prototypes/<number>` branch, and a version is a git tag plus a file naming its stories.
+The solution is in the repository's issues:
+
+- a **feature** is an issue labelled `feature`, and its **stories** are its sub-issues;
+- **business value** and **effort** are labels, `value: M` and `effort: S`, and what blocks a story is GitHub's "blocked by";
+- a story is **in progress** while an open pull request closes it, and **done** once closed;
+- a **version** is gathered in a milestone, then cut as a git tag and a section of `CHANGELOG.md`.
+
+`main` is production. Each story is built on a `stories/<number>-<title>` branch, and each prototype lives on a `prototypes/<number>` branch.
 
 Hence the one rule over all the others: **no part of a project may depend on Supersoft continuing to exist.** Without Supersoft, a project is still a repository any maker can read, change and take over.
 
@@ -49,7 +50,7 @@ The choices behind this are in [`docs/decisions/`](docs/decisions/README.md).
 
 ## This repository
 
-Supersoft is built with its own method, so this repository follows the layout above. The code:
+Supersoft is built with its own method, so this repository follows the layout above; its stories are still in `docs/features/` until they move into issues. The code:
 
 ```bash
 apps/web/            # the application
@@ -65,4 +66,4 @@ SUPERSOFT_ADAPTERS=mock pnpm --filter @supersoft/web dev     # no outside servic
 docker build -t supersoft . && docker run -p 3000:3000 supersoft   # as in production
 ```
 
-Early and deliberately small: the application opens a project at the address of its repository. What comes next is in [`docs/features/`](./docs/features/README.md).
+Early and deliberately small: the application opens a project at the address of its repository. What comes next is in [`docs/features/`](./docs/features/README.md), for now.

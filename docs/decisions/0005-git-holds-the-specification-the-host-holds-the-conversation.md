@@ -1,6 +1,6 @@
 # 0005 — Git holds the specification; the repository host holds the conversation
 
-**Status**: accepted (2026-09)
+**Status**: superseded by [0008](0008-the-business-is-in-files-the-solution-in-github-issues.md)
 
 ## Context
 
