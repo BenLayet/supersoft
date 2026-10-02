@@ -50,7 +50,7 @@ The choices behind this are in [`docs/decisions/`](docs/decisions/README.md).
 
 ## This repository
 
-Clarée is built with its own method, so this repository follows the layout above; its stories are still in `docs/features/` until they move into issues. The code:
+Clarée is built with its own method, so this repository follows the layout above, and its features and stories are its [issues](https://github.com/softersoftware/claree/issues). The code:
 
 ```bash
 apps/web/            # the application
@@ -66,4 +66,4 @@ CLAREE_ADAPTERS=mock pnpm --filter @claree/web dev           # no outside servic
 docker build -t claree . && docker run -p 3000:3000 claree   # as in production
 ```
 
-Early and deliberately small: the application opens a project at the address of its repository. What comes next is in [`docs/features/`](./docs/features/README.md), for now.
+Early and deliberately small: the application opens a project at the address of its repository. What comes next is in its [issues](https://github.com/softersoftware/claree/issues).
