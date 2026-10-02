@@ -3,7 +3,7 @@ import Link from 'next/link'
 import './globals.css'
 import { en as t } from '@/i18n/en'
 
-export const metadata: Metadata = { title: 'Supersoft', description: t.description }
+export const metadata: Metadata = { title: 'Clarée', description: t.description }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -12,7 +12,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <header className="border-b border-rule bg-card">
           <div className="mx-auto max-w-3xl px-6 py-4">
             <Link href="/" className="text-sm font-semibold tracking-tight">
-              Supersoft
+              Clarée
             </Link>
           </div>
         </header>

@@ -1,6 +1,6 @@
-# Supersoft
+# Clarée
 
-Supersoft is an application where a customer and a maker co-create an application together, going step by step from a business need to fluid application that fits the need.
+Clarée is an application where a customer and a maker co-create an application together, going step by step from a business need to fluid application that fits the need.
 
 ## The business
 
@@ -19,8 +19,8 @@ The written business is the source of truth; the application is a consequence of
 
 ## The solution
 
-The aim of Supersoft is to support the cycle above, and to do it in a way that keeps the whole project in one GitHub repository: the business in its files, the solution in its issues. The customer and the maker can read and change that repository without Supersoft, and if Supersoft stops existing, the project goes on GitHub.
- Each customer owns a GitHub organisation, where their projects live and the maker is a member. Supersoft reads a project's repository, shows it to the customer, and writes changes back as commits, pull requests and issues. Nothing is stored in Supersoft itself, and nothing is lost if Supersoft stops existing.
+The aim of Clarée is to support the cycle above, and to do it in a way that keeps the whole project in one GitHub repository: the business in its files, the solution in its issues. The customer and the maker can read and change that repository without Clarée, and if Clarée stops existing, the project goes on GitHub.
+ Each customer owns a GitHub organisation, where their projects live and the maker is a member. Clarée reads a project's repository, shows it to the customer, and writes changes back as commits, pull requests and issues. Nothing is stored in Clarée itself, and nothing is lost if Clarée stops existing.
 
 The business is in files, and changes with the code that applies it:
 
@@ -44,13 +44,13 @@ The solution is in the repository's issues:
 
 `main` is production. Each story is built on a `stories/<number>-<title>` branch, and each prototype lives on a `prototypes/<number>` branch.
 
-Hence the one rule over all the others: **no part of a project may depend on Supersoft continuing to exist.** Without Supersoft, a project is still a repository any maker can read, change and take over.
+Hence the one rule over all the others: **no part of a project may depend on Clarée continuing to exist.** Without Clarée, a project is still a repository any maker can read, change and take over.
 
 The choices behind this are in [`docs/decisions/`](docs/decisions/README.md).
 
 ## This repository
 
-Supersoft is built with its own method, so this repository follows the layout above; its stories are still in `docs/features/` until they move into issues. The code:
+Clarée is built with its own method, so this repository follows the layout above; its stories are still in `docs/features/` until they move into issues. The code:
 
 ```bash
 apps/web/            # the application
@@ -61,9 +61,9 @@ packages/adapters/   # what the domain reaches outside itself, each with a mock
 ```bash
 pnpm install
 pnpm test                                                    # the domain and the adapters
-pnpm --filter @supersoft/web dev                             # projects read from their repositories
-SUPERSOFT_ADAPTERS=mock pnpm --filter @supersoft/web dev     # no outside service at all
-docker build -t supersoft . && docker run -p 3000:3000 supersoft   # as in production
+pnpm --filter @claree/web dev                                # projects read from their repositories
+CLAREE_ADAPTERS=mock pnpm --filter @claree/web dev           # no outside service at all
+docker build -t claree . && docker run -p 3000:3000 claree   # as in production
 ```
 
 Early and deliberately small: the application opens a project at the address of its repository. What comes next is in [`docs/features/`](./docs/features/README.md), for now.

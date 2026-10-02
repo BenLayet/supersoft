@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { gitProjectFiles } from './git-project-files'
 
-const scratch = mkdtempSync(join(tmpdir(), 'supersoft-test-'))
+const scratch = mkdtempSync(join(tmpdir(), 'claree-test-'))
 const repository = join(scratch, 'medito')
 /** A repository whose host sends every file, whatever it is asked for. */
 const unfiltered = join(scratch, 'unfiltered')
@@ -23,7 +23,7 @@ const commit = (at: string, files: Record<string, string | Buffer>) => {
 /** Bytes that do not compress, so a copy's size says what was fetched. */
 const noise = (size: number) => Buffer.from(Array.from({ length: size }, () => Math.floor(Math.random() * 256)))
 
-/** The bytes under a directory, counted as Supersoft counts them. */
+/** The bytes under a directory, counted as Clarée counts them. */
 const du = (path: string): number =>
   readdirSync(path, { withFileTypes: true }).reduce((size, entry) => {
     const inside = join(path, entry.name)
@@ -100,7 +100,7 @@ describe('projects read from their repository', () => {
   })
 })
 
-describe('opening an address without putting Supersoft at risk', () => {
+describe('opening an address without putting Clarée at risk', () => {
   it('fetches no file larger than 1 MB, and nothing when a file is read', async () => {
     const cache = aCache()
     const opened = await gitProjectFiles({ cache, local: true }).open(repository)

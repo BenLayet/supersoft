@@ -19,21 +19,21 @@ One person may hold both, and the roles say what someone knows rather than what 
 
 ## Language
 
-**Rule.** A project is written in one language: its customer's. Its business and its solution are kept in that language, and Supersoft never translates them.
+**Rule.** A project is written in one language: its customer's. Its business and its solution are kept in that language, and Clarée never translates them.
 
-**Rule.** Supersoft speaks to each person in the language they choose, and says which language a project is written in, so the one is never mistaken for the other.
+**Rule.** Clarée speaks to each person in the language they choose, and says which language a project is written in, so the one is never mistaken for the other.
 
 **Rule.** A person may ask to be spoken to in the language of whatever project they are reading. That is still their choice, and it translates nothing: the project keeps its own words.
 
 ## Arriving at a project
 
-A project is never created by Supersoft. It already exists, where its customer keeps it, and it goes on existing if Supersoft stops. Supersoft **opens** it, at the **address** where its customer keeps it.
+A project is never created by Clarée. It already exists, where its customer keeps it, and it goes on existing if Clarée stops. Clarée **opens** it, at the **address** where its customer keeps it.
 
-What is kept at that address is the project's **repository**: its files and their history. Anyone who may read the project can look at its repository without Supersoft.
+What is kept at that address is the project's **repository**: its files and their history. Anyone who may read the project can look at its repository without Clarée.
 
 **Rule.** A **public project** is read without saying who you are. Its business, its solution and its versions are looked at by anyone, at no cost and with nothing asked. A **private project** is read only by the people it recognises.
 
-**Rule.** Changing anything means saying who you are, and being someone the project already **recognises**. Supersoft grants nothing of its own: it can only act where the person could already act without it.
+**Rule.** Changing anything means saying who you are, and being someone the project already **recognises**. Clarée grants nothing of its own: it can only act where the person could already act without it.
 
 **Rule.** Someone's projects are the ones they have **added**, each at the address where it is kept. Adding grants nothing: a project is added only if it can already be opened. What someone added is kept for them alone — they remove it whenever they like, and the project loses nothing by it.
 
@@ -43,4 +43,4 @@ What is kept at that address is the project's **repository**: its files and thei
 
 **Nothing is agreed by silence.** Agreement is an act, by the customer, on something named, on a date.
 
-**No part of a project may depend on Supersoft continuing to exist.** A project abandoned by its maker, and by Supersoft, remains an application another maker can pick up by reading its business.
+**No part of a project may depend on Clarée continuing to exist.** A project abandoned by its maker, and by Clarée, remains an application another maker can pick up by reading its business.

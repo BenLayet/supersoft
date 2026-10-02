@@ -1,6 +1,6 @@
 # See the stories written in the files
 
-**As a** maker, **I want** to see the features and stories written in the project's files, with their business value, effort and state, **so that** what comes next is decided by the files, not by Supersoft.
+**As a** maker, **I want** to see the features and stories written in the project's files, with their business value, effort and state, **so that** what comes next is decided by the files, not by Clarée.
 
 - Business Value: XL
 - Effort: M

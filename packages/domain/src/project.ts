@@ -17,7 +17,7 @@ export interface Project {
   /** How the project is named where it lives. */
   readonly id: string
   readonly name: string
-  /** The language it is written in: its customer's. Supersoft never translates it. */
+  /** The language it is written in: its customer's. Clarée never translates it. */
   readonly language: string
   /** What the application is for, and what it is not: short, broad, deliberately vague. */
   readonly scope: string

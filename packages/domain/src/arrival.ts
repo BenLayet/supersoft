@@ -4,7 +4,7 @@ export interface Account {
   readonly name: string
 }
 
-/** A project Supersoft found and can offer. */
+/** A project Clarée found and can offer. */
 export interface AvailableProject {
   readonly id: string
   readonly name: string
@@ -13,7 +13,7 @@ export interface AvailableProject {
   readonly address: string
   /** A public project is read without saying who you are. */
   readonly isPublic: boolean
-  /** Who the project already recognises. Supersoft grants nothing of its own. */
+  /** Who the project already recognises. Clarée grants nothing of its own. */
   readonly guardians: readonly string[]
 }
 

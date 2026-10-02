@@ -1,4 +1,4 @@
-# Supersoft as one self-contained image: it runs on any container host, with
+# Clarée as one self-contained image: it runs on any container host, with
 # nothing outside it but the repositories it reads (ADR 0007).
 FROM node:22-alpine AS base
 RUN corepack enable pnpm
@@ -11,7 +11,7 @@ COPY packages/adapters/package.json packages/adapters/
 COPY apps/web/package.json apps/web/
 RUN pnpm install --frozen-lockfile
 COPY . .
-RUN pnpm --filter @supersoft/web build
+RUN pnpm --filter @claree/web build
 
 FROM node:22-alpine AS run
 # Projects are read from their repositories, into a cache on the temporary disk.
