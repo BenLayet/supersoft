@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 export function Page({ title, children }: { title?: string; children: ReactNode }) {
   return (
     <div className="mx-auto max-w-3xl px-6 py-10">
-      {title && <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>}
+      {title && <h1 className="text-2xl font-semibold tracking-tight break-words">{title}</h1>}
       <div className={`space-y-8 ${title ? 'mt-8' : ''}`}>{children}</div>
     </div>
   )
