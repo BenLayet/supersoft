@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import { nameAndScope } from '@claree/domain'
 import { projectFiles } from '@/adapters'
 import { en as t } from '@/i18n/en'
 import { Card, Page, Section } from '../ui'
@@ -13,9 +14,15 @@ export default async function ProjectPage({
   if (address === '') redirect('/')
   const project = await projectFiles.open(address)
   if (project === undefined) redirect(`/?unreadable=${encodeURIComponent(address)}`)
+  const { name, scope } = nameAndScope(project.address, await project.read('README.md'))
 
   return (
-    <Page>
+    <Page title={name}>
+      {scope !== '' && (
+        <Section title={t.overview.scope}>
+          <p className="text-sm">{scope}</p>
+        </Section>
+      )}
       <Section title={t.overview.repository}>
         <Card>
           <p className="text-sm break-all">

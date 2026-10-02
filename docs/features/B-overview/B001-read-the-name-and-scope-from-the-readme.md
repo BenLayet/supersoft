@@ -4,7 +4,7 @@
 
 - Business Value: L
 - Effort: XS
-- State: to do
+- State: done
 - Blocked by: A001
 
 ## Path
