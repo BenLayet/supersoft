@@ -13,6 +13,7 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Business term | Name in the code | Note |
 | --- | --- | --- |
 | Project | `Project` | one application, for one customer |
+| Name of a project | `Project.name` | the title of its README; its address when there is none |
 | Scope | `Project.scope` | short, broad, deliberately vague |
 | Participant | `Participant` | anyone taking part |
 | Customer | `customer` | commissions and owns the project; their words are the business's |
@@ -26,6 +27,8 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Opening a project | `ProjectFiles.open` | reads what is kept at its address, or nothing when it cannot be read |
 | What is kept at an address | `KeptFiles` | read as it was when the project was opened |
 | Repository of a project | `KeptFiles` | its files and their history, kept at its address |
+| README of a project | `readme` | where it says what it is: its name and its scope |
+| Reading the name and scope | `nameAndScope` | from the README; never written by Clarée |
 | Link to a repository | `KeptFiles.link` | where a person looks at it without Clarée; none when a browser cannot open it |
 | Public project | `isPublic` | read without saying who you are |
 | Private project | `isPublic` false | read only by the people it recognises |

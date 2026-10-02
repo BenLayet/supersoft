@@ -31,6 +31,8 @@ A project is never created by Clarée. It already exists, where its customer kee
 
 What is kept at that address is the project's **repository**: its files and their history. Anyone who may read the project can look at its repository without Clarée.
 
+**Rule.** A project says what it is in its own repository, in one place: its README. Its **name** is the README's title, and its scope is the first paragraph under that title. A project with no README, or whose README has no title, is named by its address; with no paragraph under the title, its scope is empty.
+
 **Rule.** A **public project** is read without saying who you are. Its business, its solution and its versions are looked at by anyone, at no cost and with nothing asked. A **private project** is read only by the people it recognises.
 
 **Rule.** Changing anything means saying who you are, and being someone the project already **recognises**. Clarée grants nothing of its own: it can only act where the person could already act without it.
