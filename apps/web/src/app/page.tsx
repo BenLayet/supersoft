@@ -9,7 +9,7 @@ export default async function ArrivalPage({
 }) {
   const { unreadable } = await searchParams
   return (
-    <Page title="Supersoft">
+    <Page title="Clarée">
       <Section title={t.arrival.addProject}>
         <Card>
           <form action="/projects" className="flex flex-col gap-2 sm:flex-row">

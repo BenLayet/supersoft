@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto'
 import { mkdir, readdir, rm, stat, utimes } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
-import type { KeptFiles, ProjectFiles } from '@supersoft/domain'
+import type { KeptFiles, ProjectFiles } from '@claree/domain'
 import { atMost } from './at-most'
 import { type Lookup, publicAddress, systemLookup } from './public-address'
 import { repositoryLink } from './repository-link'
@@ -65,7 +65,7 @@ const sizeOf = async (path: string): Promise<number> => {
  * this machine changes how a repository is read.
  */
 export const gitProjectFiles = (options: GitProjectFilesOptions = {}): ProjectFiles => {
-  const cache = options.cache ?? join(tmpdir(), 'supersoft-projects')
+  const cache = options.cache ?? join(tmpdir(), 'claree-projects')
   const local = options.local ?? false
   const timeout = options.timeoutMs ?? 20_000
   const maxFileBytes = options.maxFileBytes ?? 1 * MB

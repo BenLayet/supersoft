@@ -1,13 +1,13 @@
 import 'server-only'
-import { gitProjectFiles, inMemoryProjectFiles } from '@supersoft/adapters'
-import type { ProjectFiles } from '@supersoft/domain'
+import { gitProjectFiles, inMemoryProjectFiles } from '@claree/adapters'
+import type { ProjectFiles } from '@claree/domain'
 
 /**
- * The adapters Supersoft runs with. `SUPERSOFT_ADAPTERS=mock` runs it with no
+ * The adapters Clarée runs with. `CLAREE_ADAPTERS=mock` runs it with no
  * outside service at all; otherwise projects are read from their repositories,
  * and repositories on this machine only outside production.
  */
-const mock = process.env.SUPERSOFT_ADAPTERS === 'mock'
+const mock = process.env.CLAREE_ADAPTERS === 'mock'
 
 export const projectFiles: ProjectFiles = mock
   ? inMemoryProjectFiles({

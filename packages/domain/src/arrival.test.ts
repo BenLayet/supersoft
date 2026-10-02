@@ -32,7 +32,7 @@ describe('opening a project', () => {
 
 describe("someone's projects", () => {
   const mine = project({ id: 'medito' })
-  const theirs = project({ id: 'supersoft', isPublic: true, guardians: ['alex'] })
+  const theirs = project({ id: 'claree', isPublic: true, guardians: ['alex'] })
   const shut = project({ id: 'shut', guardians: ['alex'] })
   const found = [mine, theirs, shut]
 
@@ -41,9 +41,9 @@ describe("someone's projects", () => {
   })
 
   it('holds what was added, in the order it was found', () => {
-    expect(projectsFor(found, ['supersoft', 'medito'], ben).map((one) => one.id)).toEqual([
+    expect(projectsFor(found, ['claree', 'medito'], ben).map((one) => one.id)).toEqual([
       'medito',
-      'supersoft',
+      'claree',
     ])
   })
 
@@ -52,7 +52,7 @@ describe("someone's projects", () => {
   })
 
   it('holds what someone who has not said who they are added', () => {
-    expect(projectsFor(found, ['supersoft']).map((one) => one.id)).toEqual(['supersoft'])
+    expect(projectsFor(found, ['claree']).map((one) => one.id)).toEqual(['claree'])
   })
 })
 

@@ -10,10 +10,10 @@ importers:
 
   apps/web:
     dependencies:
-      '@supersoft/adapters':
+      '@claree/adapters':
         specifier: workspace:*
         version: link:../../packages/adapters
-      '@supersoft/domain':
+      '@claree/domain':
         specifier: workspace:*
         version: link:../../packages/domain
       next:
@@ -50,7 +50,7 @@ importers:
 
   packages/adapters:
     dependencies:
-      '@supersoft/domain':
+      '@claree/domain':
         specifier: workspace:*
         version: link:../domain
     devDependencies:

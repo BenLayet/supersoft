@@ -1,6 +1,6 @@
 # Be told what could not be read
 
-**As a** maker, **I want** to be told which file Supersoft could not read, and why, **so that** I correct the file instead of wondering why a story is missing.
+**As a** maker, **I want** to be told which file Clarée could not read, and why, **so that** I correct the file instead of wondering why a story is missing.
 
 - Business Value: M
 - Effort: S
@@ -8,11 +8,11 @@
 
 ## Path
 
-When a story has no reason, no business value, no effort, or a size Supersoft does not know, the project still opens. The story is listed with what is missing and its file.
+When a story has no reason, no business value, no effort, or a size Clarée does not know, the project still opens. The story is listed with what is missing and its file.
 
 ## Before the story
 
-Features and stories are shown when their files are written as expected. A file Supersoft cannot read is left out, and nothing says so.
+Features and stories are shown when their files are written as expected. A file Clarée cannot read is left out, and nothing says so.
 
 ## After the story
 

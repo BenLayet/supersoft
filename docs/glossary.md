@@ -2,11 +2,11 @@
 
 The bridge between the business documentation ([`docs/domain/`](domain/README.md), tool-free) and the code. Every business term used in the domain documents maps here to its name in the code.
 
-Supersoft's domain documents and its code are both in English, so this glossary is not a translation — it fixes **which** English word is used, and forbids the synonyms. Most naming drift in a codebase is not a wrong word; it is three right ones for the same thing.
+Clarée's domain documents and its code are both in English, so this glossary is not a translation — it fixes **which** English word is used, and forbids the synonyms. Most naming drift in a codebase is not a wrong word; it is three right ones for the same thing.
 
 When a new concept appears: define it first in [`docs/domain/`](domain/README.md), choose its name, and add it here **before** using it in the code.
 
-> A customer project has its own glossary, in its own language. This one is Supersoft's.
+> A customer project has its own glossary, in its own language. This one is Clarée's.
 
 ## Project and participants — [project.md](domain/project.md)
 
@@ -18,15 +18,15 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Customer | `customer` | commissions and owns the project; their words are the business's |
 | Maker | `maker` | builds and maintains |
 | Language of a project | `Project.language` | the customer's; never translated |
-| Language Supersoft speaks | `Locale` | chosen by the person; a convenience |
+| Language Clarée speaks | `Locale` | chosen by the person; a convenience |
 | Speaking the project's language | `localeIn` | asked for by the person; translates nothing |
 | Someone arriving | `Account` | who they are where their projects live |
-| Project on offer | `AvailableProject` | what Supersoft found |
+| Project on offer | `AvailableProject` | what Clarée found |
 | Address of a project | `address` | where its customer keeps it |
 | Opening a project | `ProjectFiles.open` | reads what is kept at its address, or nothing when it cannot be read |
 | What is kept at an address | `KeptFiles` | read as it was when the project was opened |
 | Repository of a project | `KeptFiles` | its files and their history, kept at its address |
-| Link to a repository | `KeptFiles.link` | where a person looks at it without Supersoft; none when a browser cannot open it |
+| Link to a repository | `KeptFiles.link` | where a person looks at it without Clarée; none when a browser cannot open it |
 | Public project | `isPublic` | read without saying who you are |
 | Private project | `isPublic` false | read only by the people it recognises |
 | Recognised by the project | `guardians` | who may change it |

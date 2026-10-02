@@ -1,4 +1,4 @@
-import type { KeptFiles, ProjectFiles } from '@supersoft/domain'
+import type { KeptFiles, ProjectFiles } from '@claree/domain'
 import { repositoryLink } from './repository-link'
 
 /** The files of one project, by their path from its root. */
@@ -6,7 +6,7 @@ export type Files = Readonly<Record<string, string>>
 
 /**
  * The mock adapter every port owes: projects held in memory, by address.
- * Nothing is read from anywhere else, so Supersoft runs with no outside service.
+ * Nothing is read from anywhere else, so Clarée runs with no outside service.
  */
 export const inMemoryProjectFiles = (projects: Readonly<Record<string, Files>>): ProjectFiles => ({
   async open(address) {

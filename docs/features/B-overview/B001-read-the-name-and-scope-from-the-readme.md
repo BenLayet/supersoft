@@ -21,5 +21,5 @@ The overview also shows the project's name and scope, read from its `README.md`.
 
 ## Tests
 
-- Opening this repository shows a project named "Supersoft", whose scope is the first paragraph of its README.
+- Opening this repository shows a project named "Clarée", whose scope is the first paragraph of its README.
 - Opening a repository with no `README.md` shows a project named by its address, with an empty scope.
