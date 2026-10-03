@@ -4,20 +4,20 @@ import type { Prototype } from './prototype'
 import type { Story } from './story'
 import type { Version } from './version'
 
-/** Who someone is on a project — what they know, never what they may touch. */
-export type Role = 'customer' | 'maker'
+/** Who someone is on a project — what they bring, never what they may touch. */
+export type Role = 'domainExpert' | 'projectOwner' | 'maker'
 
 export interface Participant {
   readonly name: string
   readonly role: Role
 }
 
-/** One application, built for one customer. */
+/** One application, carried by its project owner, built with its domain experts. */
 export interface Project {
   /** How the project is named where it lives. */
   readonly id: string
   readonly name: string
-  /** The language it is written in: its customer's. Clarée never translates it. */
+  /** The language it is written in: its domain experts'. Clarée never translates it. */
   readonly language: string
   /** What the application is for, and what it is not: short, broad, deliberately vague. */
   readonly scope: string
@@ -29,8 +29,8 @@ export interface Project {
   readonly versions: readonly Version[]
 }
 
-/** Agreement is an act by the customer. Nobody else's yes settles a rule. */
-export const mayAgree = (participant: Participant): boolean => participant.role === 'customer'
+/** Agreement is an act by a domain expert. Nobody else's yes settles a rule. */
+export const mayAgree = (participant: Participant): boolean => participant.role === 'domainExpert'
 
 /**
  * A project's name and scope, in its own words: the title of its README and

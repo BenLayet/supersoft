@@ -4,7 +4,7 @@ The **solution** is what the application does about the [business](business.md).
 
 ## Features
 
-A **feature** is one thing the application offers, named in a way the customer would use in a sentence: the video library, registering for an event.
+A **feature** is one thing the application offers, named in a way the domain expert would use in a sentence: the video library, registering for an event.
 
 **Rule.** A feature with no story describes nothing. It is an intention until someone can say who wants what, and why.
 
@@ -24,17 +24,17 @@ Stories use the words of the [lexicon](business.md). A story that introduces a n
 
 Each story carries two sizes: its **business value**, what it is worth to the business, and its **effort**, what it costs to build. A size is one of **XXS, XS, S, M, L, XL**, and stands for a number so that the two can be weighed against each other: 1, 2, 3, 5, 8, 13. The gaps widen on purpose — the larger something is, the less precisely it is known.
 
-**Rule.** Business value is set by the customer. Effort is stated by the maker, before the value is chosen.
+**Rule.** Business value is set by the domain experts. Effort is stated by the maker, before the value is chosen.
 
-A story is **to do**, then **in progress**, then **done**. It is done when the customer could see it working, not when the code exists.
+A story is **to do**, then **in progress**, then **done**. It is done when the domain expert could see it working, not when the code exists.
 
 A story can be **blocked by** other stories: it needs what they bring before it can be done. It stays blocked until every one of them is done.
 
-**Rule.** What comes next is the story still to do, and blocked by nothing, that brings the most value for its effort; between two that bring as much, the one worth more. A project always knows what it is doing next, and it is one thing.
+**Rule.** What comes next is the story still to do, and blocked by nothing, that brings the most value for its effort; between two that bring as much, the one worth more. The project owner may put another first, with its value and effort in view. A project always knows what it is doing next, and it is one thing.
 
 ## Prototypes
 
-A **prototype** is the application as the customer and the people who will use it can try it, before it is real. Making it is a shared work: they try it, say what is smooth and what is not, and it changes while that is still cheap.
+A **prototype** is the application as the domain experts and the people who will use it can try it, before it is real. Making it is a shared work: they try it, say what is smooth and what is not, and it changes while that is still cheap.
 
 **Rule.** Every prototype belongs to exactly one feature: it lets people try what that feature's stories ask for.
 
@@ -42,7 +42,7 @@ A **prototype** is the application as the customer and the people who will use i
 
 **Rule.** A prototype depends on nothing outside itself: everything it shows is invented for it. It can be tried at any moment, by anyone, with no consequence.
 
-A prototype is **being tried** until the customer **validates** it. Like any agreement, validation is an act, by the customer, on a date.
+A prototype is **being tried** until a domain expert **validates** it. Like any agreement, validation is an act, by a domain expert, on a date.
 
 Once it is right, a prototype is refined into realistic **mock-ups**. That is already a first version of the application: a **demonstration**, connected to nothing outside it.
 

@@ -8,7 +8,7 @@ The business is met in **workshops**. A workshop is one working session, held on
 
 A **document** is one thing the workshop left behind: slides, a video, a recording, notes, a report, a transcript. Each says what kind it is and where it is kept, so that anyone reading the project can go back to it. A document can also be written directly in the project — notes, a report — and its **text** is then part of the project.
 
-**Rule.** A workshop is dated. It is not a source of truth: it is what was said on one day. What was understood later is a later workshop, or it is written on the formal side, where the customer can contradict it.
+**Rule.** A workshop is dated. It is not a source of truth: it is what was said on one day. What was understood later is a later workshop, or it is written on the formal side, where the domain expert can contradict it.
 
 **Rule.** A document can be added to a workshop after the day it was held — a report or a transcript often comes later — and it is always about that day.
 
@@ -22,11 +22,11 @@ A business is rarely one thing. Each part of it that has its own words is a **do
 
 **Rule.** Every term, every rule and every question belongs to exactly one domain — the part of the business that owns the word, even when the rest of the business uses it. A question that fits in no domain is a part of the business nobody has named yet.
 
-A domain holds two things, both written by the maker and owned by the customer.
+A domain holds two things, both written by the maker and owned by the project owner.
 
-The **lexicon**: every concept of the business, with one name and one definition, in the customer's own words. The same name is then used everywhere — in the description, in the stories, on the screens and in the code.
+The **lexicon**: every concept of the business, with one name and one definition, in the domain experts' own words. The same name is then used everywhere — in the description, in the stories, on the screens and in the code.
 
-The **description**: what is true of the business, written as sentences a customer can confirm or deny. This is the project's main source of truth.
+The **description**: what is true of the business, written as sentences a domain expert can confirm or deny. This is the project's main source of truth.
 
 **Rule.** A rule not written in the description does not exist. It will not be built, and nobody is at fault when it is missing.
 
@@ -34,7 +34,7 @@ The **description**: what is true of the business, written as sentences a custom
 
 **Rule.** The rules are the core of the application. Each one can be checked on its own — before any screen exists, and without anything outside the application — and the rest of the application only uses them.
 
-**Rule.** A rule is **proposed** when it is written, and **agreed** once the customer has confirmed it. Rewriting an agreed rule makes it proposed again: agreement is given to a sentence, not to a subject.
+**Rule.** A rule is **proposed** when it is written, and **agreed** once a domain expert has confirmed it. Rewriting an agreed rule makes it proposed again: agreement is given to a sentence, not to a subject.
 
 A **question** is something the project knows it does not know about its domain. It is written down as soon as it appears and stays visible under that domain until it is answered.
 

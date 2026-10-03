@@ -6,24 +6,25 @@ Clarée's domain documents and its code are both in English, so this glossary is
 
 When a new concept appears: define it first in [`docs/domain/`](domain/README.md), choose its name, and add it here **before** using it in the code.
 
-> A customer project has its own glossary, in its own language. This one is Clarée's.
+> Every project has its own glossary, in its own language. This one is Clarée's.
 
 ## Project and participants — [project.md](domain/project.md)
 
 | Business term | Name in the code | Note |
 | --- | --- | --- |
-| Project | `Project` | one application, for one customer |
+| Project | `Project` | one application, carried by its project owner |
 | Name of a project | `Project.name` | the title of its README; its address when there is none |
 | Scope | `Project.scope` | short, broad, deliberately vague |
 | Participant | `Participant` | anyone taking part |
-| Customer | `customer` | commissions and owns the project; their words are the business's |
-| Maker | `maker` | builds and maintains |
-| Language of a project | `Project.language` | the customer's; never translated |
+| Domain expert | `domainExpert` | knows the business; their words are the business's; confirms and validates. Not *customer* or *client* |
+| Project owner | `projectOwner` | keeps the repository; settles what the domain experts leave open |
+| Maker | `maker` | listens, brings the craft, builds and maintains |
+| Language of a project | `Project.language` | the domain experts'; never translated |
 | Language Clarée speaks | `Locale` | chosen by the person; a convenience |
 | Speaking the project's language | `localeIn` | asked for by the person; translates nothing |
 | Someone arriving | `Account` | who they are where their projects live |
 | Project on offer | `AvailableProject` | what Clarée found |
-| Address of a project | `address` | where its customer keeps it |
+| Address of a project | `address` | where its project owner keeps it |
 | Opening a project | `ProjectFiles.open` | reads what is kept at its address, or nothing when it cannot be read |
 | What is kept at an address | `KeptFiles` | read as it was when the project was opened |
 | Repository of a project | `KeptFiles` | its files and their history, kept at its address |
@@ -58,9 +59,9 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Lexicon | `Term` | one concept, one name, one definition |
 | Lexicon of a domain | `termsOf` | |
 | Description of a domain | `rulesOf` | |
-| Description | `Rule` | one sentence a customer can confirm or deny |
+| Description | `Rule` | one sentence a domain expert can confirm or deny |
 | Proposed (state) | `proposed` | written, not yet confirmed |
-| Agreed (state) | `agreed` | confirmed by the customer |
+| Agreed (state) | `agreed` | confirmed by a domain expert |
 | Agreeing | `agree` | |
 | Rewriting a rule | `restate` | makes it `proposed` again |
 | Question | `Question` | something the project knows it does not know |
@@ -76,20 +77,20 @@ When a new concept appears: define it first in [`docs/domain/`](domain/README.md
 | Where a prototype is tried | `Prototype.location` | |
 | Prototypes of a feature | `prototypesOf` | each belongs to exactly one feature |
 | Being tried / validated | `being_tried` / `validated` | |
-| Validating a prototype | `validate` | by the customer |
+| Validating a prototype | `validate` | by a domain expert |
 | Mock-up / demonstration | — | a refined prototype, connected to nothing; not in the code yet |
 | Feature | `Feature` | one thing the application offers |
 | Stories of a feature | `storiesOf` | a feature with none describes nothing |
 | State of a feature | `stateOf` | derived from its stories, never set by hand |
 | Story | `Story` | person + intention + reason |
 | Reason | `Story.reason` | mandatory |
-| Business value | `Story.value` | a size, set by the customer |
+| Business value | `Story.value` | a size, set by the domain experts |
 | Effort | `Story.effort` | a size, stated by the maker before the value |
 | Size | `Size`, `sizes` | `XXS` / `XS` / `S` / `M` / `L` / `XL` |
 | What a size stands for | `pointsOf` | 1 / 2 / 3 / 5 / 8 / 13 |
 | To do / in progress / done | `to_do` / `in_progress` / `done` | |
 | Blocked by | `Story.blockedBy` | the stories it needs done first |
 | Blocked | `isBlocked` | while one of them is not done |
-| What comes next | `nextStory` | the most value for its effort, still to do and not blocked |
+| What comes next | `nextStory` | the most value for its effort, still to do and not blocked, unless the project owner puts another first |
 | Version | `Version` | gathers done stories |
 | The version that carried a story | `versionCarrying` | |

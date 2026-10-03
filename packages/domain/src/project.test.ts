@@ -5,8 +5,9 @@ import type { Participant } from './project'
 const participant = (role: Participant['role']): Participant => ({ name: 'Alex', role })
 
 describe('who settles what', () => {
-  it('leaves agreement to the customer', () => {
-    expect(mayAgree(participant('customer'))).toBe(true)
+  it('leaves agreement to the domain expert', () => {
+    expect(mayAgree(participant('domainExpert'))).toBe(true)
+    expect(mayAgree(participant('projectOwner'))).toBe(false)
     expect(mayAgree(participant('maker'))).toBe(false)
   })
 })

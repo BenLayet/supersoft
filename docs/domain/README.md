@@ -2,13 +2,13 @@
 
 This folder describes **what Clarée does**, in the language of the people it serves, with no reference to technical tooling. It is the source of truth for the vocabulary and the business rules:
 
-- it is the **common language** between makers, customers and contributors;
+- it is the **common language** between makers, domain experts and contributors;
 - every business term maps to its name in the code in the [glossary](../glossary.md);
 - a business rule that is not written here does not exist.
 
 ## What Clarée is
 
-Clarée is a **support for the conversation** between a maker and a customer about a web or mobile application. Its method is borrowed from domain-driven design: the business is described, in the customer's words, before it is built.
+Clarée is a **support for the conversation** between a maker and the domain experts about a web or mobile application. Its method is borrowed from domain-driven design: the business is described, in the domain experts' words, before it is built.
 
 A project has three parts, and they grow together rather than in sequence:
 
@@ -16,7 +16,7 @@ A project has three parts, and they grow together rather than in sequence:
 - **The business** — what the application serves. Informal on one side: what was said, recorded and asked, kept as it came. Formal on the other: the lexicon and the official description of the business, which is the project's main source of truth.
 - **The solution** — what the application does about that business: features, broken into stories, gathered into versions and followed into real use.
 
-Everything it produces belongs to the customer and stays readable without it.
+Everything it produces belongs to the project owner and stays readable without it.
 
 ## How a project grows
 
@@ -38,7 +38,7 @@ These steps are a cycle, not a sequence of sections: they come round again for e
 
 ## Language
 
-Unlike a customer project, whose domain documents are written in the language of its own domain experts, Clarée's are written in English: its domain experts are its makers.
+Unlike another project, whose domain documents are written in the language of its own domain experts, Clarée's are written in English: its domain experts are its makers.
 
 ## The documents
 
