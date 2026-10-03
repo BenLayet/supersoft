@@ -1,6 +1,6 @@
 # 0011 — The product is not named in its own specification
 
-**Status**: proposed (2026-10)
+**Status**: accepted (2026-10)
 
 ## Context
 
