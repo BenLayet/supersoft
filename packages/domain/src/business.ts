@@ -40,7 +40,7 @@ export interface Domain {
   readonly description: string
 }
 
-/** One concept of the business: one name, one definition, in the customer's words. */
+/** One concept of the business: one name, one definition, in the domain experts' words. */
 export interface Term {
   readonly name: string
   readonly definition: string

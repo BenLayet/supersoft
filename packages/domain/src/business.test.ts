@@ -104,7 +104,7 @@ describe('questions', () => {
 })
 
 describe('the description', () => {
-  it('is agreed once the customer has confirmed it', () => {
+  it('is agreed once a domain expert has confirmed it', () => {
     expect(agree(rule('A membership runs for a year')).state).toBe('agreed')
   })
 

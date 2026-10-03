@@ -1,6 +1,6 @@
 import type { Story, StoryState } from './story'
 
-/** One thing the application offers, named as the customer would say it. */
+/** One thing the application offers, named as the domain expert would say it. */
 export interface Feature {
   readonly id: string
   readonly name: string

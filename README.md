@@ -1,13 +1,13 @@
 # Clarée
 
-Clarée is an application where a customer and a maker co-create an application together, going step by step from a business need to fluid application that fits the need.
+Clarée is an application where a domain expert and a maker co-create an application together, going step by step from a business need to fluid application that fits the need.
 
 ## The business
 
 A project goes round the same cycle, once for every feature:
 
-1. **Workshop** — the customer and the maker meet. What was said, shown or recorded is kept as it came.
-2. **Domain** — the business is written from it: its terms, its rules, its open questions, in the customer's words.
+1. **Workshop** — the domain expert and the maker meet. What was said, shown or recorded is kept as it came.
+2. **Domain** — the business is written from it: its terms, its rules, its open questions, in the domain expert's words.
 3. **Prototype** — a prototype with mock-data is tested and refined with users.
 4. **Stories** — the validated prototype is cut into stories, each with its business value and development effort.
 5. **Roadmap** — the stories are prioritised and scheduled.
@@ -19,8 +19,8 @@ The written business is the source of truth; the application is a consequence of
 
 ## The solution
 
-The aim of Clarée is to support the cycle above, and to do it in a way that keeps the whole project in one GitHub repository: the business in its files, the solution in its issues. The customer and the maker can read and change that repository without Clarée, and if Clarée stops existing, the project goes on GitHub.
- Each customer owns a GitHub organisation, where their projects live and the maker is a member. Clarée reads a project's repository, shows it to the customer, and writes changes back as commits, pull requests and issues. Nothing is stored in Clarée itself, and nothing is lost if Clarée stops existing.
+The aim of Clarée is to support the cycle above, and to do it in a way that keeps the whole project in one GitHub repository: the business in its files, the solution in its issues. The domain expert and the maker can read and change that repository without Clarée, and if Clarée stops existing, the project goes on GitHub.
+ The domain experts own a GitHub organisation, where their projects live and the maker is a member. Clarée reads a project's repository, shows it to the domain expert, and writes changes back as commits, pull requests and issues. Nothing is stored in Clarée itself, and nothing is lost if Clarée stops existing.
 
 The business is in files, and changes with the code that applies it:
 

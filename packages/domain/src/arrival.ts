@@ -9,7 +9,7 @@ export interface AvailableProject {
   readonly id: string
   readonly name: string
   readonly owner: string
-  /** Where its customer keeps it. */
+  /** Where its domain experts keep it. */
   readonly address: string
   /** A public project is read without saying who you are. */
   readonly isPublic: boolean

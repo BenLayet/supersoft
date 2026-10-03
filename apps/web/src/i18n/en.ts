@@ -1,6 +1,6 @@
 /** What Clarée says, in English. Never what a project says: that is never translated. */
 export const en = {
-  description: 'Specifying and planning an application, with the customer in the conversation.',
+  description: 'Specifying and planning an application, with the domain experts in the conversation.',
   arrival: {
     addProject: 'Add a project',
     projectAddress: 'Address of its repository',

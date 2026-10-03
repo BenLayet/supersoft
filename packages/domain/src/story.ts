@@ -21,7 +21,7 @@ export interface Story {
   readonly intention: string
   /** Mandatory: without it nobody can tell, later, whether the story still serves anything. */
   readonly reason: string
-  /** What it is worth to the business. Set by the customer. */
+  /** What it is worth to the business. Set by the domain expert. */
   readonly value: Size
   /** What it costs to build. Stated by the maker, before the value is chosen. */
   readonly effort: Size
@@ -35,7 +35,7 @@ export const start = (story: Story): Story => {
   return { ...story, state: 'in_progress' }
 }
 
-/** Done means the customer could see it working. */
+/** Done means the domain expert could see it working. */
 export const finish = (story: Story): Story => {
   if (story.state !== 'in_progress')
     throw new Error(`Only a story in progress can be finished: ${story.id}`)
