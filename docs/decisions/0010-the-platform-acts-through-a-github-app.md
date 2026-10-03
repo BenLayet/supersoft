@@ -1,6 +1,6 @@
 # 0010 — The platform acts through a GitHub App, in the name of the person signed in
 
-**Status**: proposed (2026-10)
+**Status**: accepted (2026-10)
 
 ## Context
 
