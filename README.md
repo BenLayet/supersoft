@@ -1,6 +1,6 @@
 # Clarée
 
-It is an application where domain experts and a maker co-create an application together, going step by step from a business need to fluid application that fits the need.
+It is a platform where domain experts and makers build an application together, step by step, from a problem the domain experts live with to an application that eases their work.
 
 ## The business
 
