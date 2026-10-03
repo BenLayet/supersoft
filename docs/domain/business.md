@@ -22,7 +22,7 @@ A business is rarely one thing. Each part of it that has its own words is a **do
 
 **Rule.** Every term, every rule and every question belongs to exactly one domain — the part of the business that owns the word, even when the rest of the business uses it. A question that fits in no domain is a part of the business nobody has named yet.
 
-A domain holds two things, both written by the maker and owned by the domain experts.
+A domain holds two things, both written by the maker and owned by the project owner.
 
 The **lexicon**: every concept of the business, with one name and one definition, in the domain experts' own words. The same name is then used everywhere — in the description, in the stories, on the screens and in the code.
 

@@ -8,7 +8,7 @@ This folder describes **what Clarée does**, in the language of the people it se
 
 ## What Clarée is
 
-Clarée is a **support for the conversation** between a maker and a domain expert about a web or mobile application. Its method is borrowed from domain-driven design: the business is described, in the domain expert's words, before it is built.
+Clarée is a **support for the conversation** between a maker and the domain experts about a web or mobile application. Its method is borrowed from domain-driven design: the business is described, in the domain experts' words, before it is built.
 
 A project has three parts, and they grow together rather than in sequence:
 
@@ -16,7 +16,7 @@ A project has three parts, and they grow together rather than in sequence:
 - **The business** — what the application serves. Informal on one side: what was said, recorded and asked, kept as it came. Formal on the other: the lexicon and the official description of the business, which is the project's main source of truth.
 - **The solution** — what the application does about that business: features, broken into stories, gathered into versions and followed into real use.
 
-Everything it produces belongs to the domain experts and stays readable without it.
+Everything it produces belongs to the project owner and stays readable without it.
 
 ## How a project grows
 

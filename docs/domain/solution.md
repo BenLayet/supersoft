@@ -24,13 +24,13 @@ Stories use the words of the [lexicon](business.md). A story that introduces a n
 
 Each story carries two sizes: its **business value**, what it is worth to the business, and its **effort**, what it costs to build. A size is one of **XXS, XS, S, M, L, XL**, and stands for a number so that the two can be weighed against each other: 1, 2, 3, 5, 8, 13. The gaps widen on purpose — the larger something is, the less precisely it is known.
 
-**Rule.** Business value is set by the domain expert. Effort is stated by the maker, before the value is chosen.
+**Rule.** Business value is set by the domain experts. Effort is stated by the maker, before the value is chosen.
 
 A story is **to do**, then **in progress**, then **done**. It is done when the domain expert could see it working, not when the code exists.
 
 A story can be **blocked by** other stories: it needs what they bring before it can be done. It stays blocked until every one of them is done.
 
-**Rule.** What comes next is the story still to do, and blocked by nothing, that brings the most value for its effort; between two that bring as much, the one worth more. A project always knows what it is doing next, and it is one thing.
+**Rule.** What comes next is the story still to do, and blocked by nothing, that brings the most value for its effort; between two that bring as much, the one worth more. The project owner may put another first, with its value and effort in view. A project always knows what it is doing next, and it is one thing.
 
 ## Prototypes
 

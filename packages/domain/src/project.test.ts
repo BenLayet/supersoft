@@ -7,6 +7,7 @@ const participant = (role: Participant['role']): Participant => ({ name: 'Alex',
 describe('who settles what', () => {
   it('leaves agreement to the domain expert', () => {
     expect(mayAgree(participant('domainExpert'))).toBe(true)
+    expect(mayAgree(participant('projectOwner'))).toBe(false)
     expect(mayAgree(participant('maker'))).toBe(false)
   })
 })

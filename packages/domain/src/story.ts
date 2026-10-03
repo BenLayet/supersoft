@@ -21,7 +21,7 @@ export interface Story {
   readonly intention: string
   /** Mandatory: without it nobody can tell, later, whether the story still serves anything. */
   readonly reason: string
-  /** What it is worth to the business. Set by the domain expert. */
+  /** What it is worth to the business. Set by the domain experts. */
   readonly value: Size
   /** What it costs to build. Stated by the maker, before the value is chosen. */
   readonly effort: Size

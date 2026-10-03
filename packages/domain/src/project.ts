@@ -4,15 +4,15 @@ import type { Prototype } from './prototype'
 import type { Story } from './story'
 import type { Version } from './version'
 
-/** Who someone is on a project — what they know, never what they may touch. */
-export type Role = 'domainExpert' | 'maker'
+/** Who someone is on a project — what they bring, never what they may touch. */
+export type Role = 'domainExpert' | 'projectOwner' | 'maker'
 
 export interface Participant {
   readonly name: string
   readonly role: Role
 }
 
-/** One application, built for its domain experts. */
+/** One application, carried by its project owner, built with its domain experts. */
 export interface Project {
   /** How the project is named where it lives. */
   readonly id: string

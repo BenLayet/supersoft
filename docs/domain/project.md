@@ -1,8 +1,8 @@
 # Project and participants
 
-A **project** is one application, built for its domain experts: the people whose business it serves. It gathers the [business](business.md) it serves and the [solution](solution.md) built for it.
+A **project** is one application, carried by its project owner and built with its domain experts, the people who know the business it serves. It gathers the [business](business.md) it serves and the [solution](solution.md) built for it.
 
-A project belongs to its domain experts, from the first day and whatever happens to the maker afterwards.
+A project belongs to its project owner, from the first day and whatever happens to the maker afterwards.
 
 ## Scope
 
@@ -12,10 +12,11 @@ A project starts with its **scope**: a few sentences saying what the application
 
 ## Participants
 
-- The **domain expert** — has the need, and the project is theirs. They know how the business works, their words are the ones the business is written in, and they decide what is wanted.
-- The **maker** — brings listening and craft: helps the domain expert find what answers the need, builds and maintains it, and writes the business down.
+- The **domain experts** — know how the business works and say what it needs. They take part in the workshops, their words are the ones the business is written in, and they confirm its rules and validate its prototypes.
+- The **project owner** — carries the project: keeps its repository, and the project is theirs. When the domain experts hesitate or disagree, the project owner settles.
+- The **maker** — brings listening and craft: helps the domain experts find what answers the need, builds and maintains it, and writes the business down.
 
-One person may hold both, and the roles say what someone knows rather than what they are allowed to touch.
+One person may hold several — the project owner is often a domain expert too — and the roles say what someone brings to the project, never what they are allowed to touch.
 
 ## Language
 
@@ -27,7 +28,7 @@ One person may hold both, and the roles say what someone knows rather than what 
 
 ## Arriving at a project
 
-A project is never created by Clarée. It already exists, where its domain experts keep it, and it goes on existing if Clarée stops. Clarée **opens** it, at the **address** where its domain experts keep it.
+A project is never created by Clarée. It already exists, where its project owner keeps it, and it goes on existing if Clarée stops. Clarée **opens** it, at the **address** where its project owner keeps it.
 
 What is kept at that address is the project's **repository**: its files and their history. Anyone who may read the project can look at its repository without Clarée.
 
@@ -43,6 +44,6 @@ What is kept at that address is the project's **repository**: its files and thei
 
 **The written business is the source of truth.** The application is a consequence of it, never the other way round.
 
-**Nothing is agreed by silence.** Agreement is an act, by a domain expert, on something named, on a date.
+**Nothing is agreed by silence.** Agreement is an act, by a domain expert, on something named, on a date. What they leave open, the project owner settles, the same way.
 
 **No part of a project may depend on Clarée continuing to exist.** A project abandoned by its maker, and by Clarée, remains an application another maker can pick up by reading its business.
