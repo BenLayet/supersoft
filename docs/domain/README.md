@@ -1,14 +1,14 @@
-# The Clarée domain
+# The domain of the platform
 
-This folder describes **what Clarée does**, in the language of the people it serves, with no reference to technical tooling. It is the source of truth for the vocabulary and the business rules:
+This folder describes **what the platform does**, in the language of the people it serves, with no reference to technical tooling. It is the source of truth for the vocabulary and the business rules:
 
 - it is the **common language** between makers, domain experts and contributors;
 - every business term maps to its name in the code in the [glossary](../glossary.md);
 - a business rule that is not written here does not exist.
 
-## What Clarée is
+## What the platform is
 
-Clarée is a **support for the conversation** between a maker and the domain experts about a web or mobile application. Its method is borrowed from domain-driven design: the business is described, in the domain experts' words, before it is built.
+The platform is a **support for the conversation** between a maker and the domain experts about a web or mobile application. Its method is borrowed from domain-driven design: the business is described, in the domain experts' words, before it is built.
 
 A project has three parts, and they grow together rather than in sequence:
 
@@ -32,13 +32,13 @@ These steps are a cycle, not a sequence of sections: they come round again for e
 
 ## Writing conventions
 
-- No mention of a tool, a piece of software or a technique. Clarée is a tool for making software, so the temptation is constant — resist it.
+- No mention of a tool, a piece of software or a technique. The platform is a tool for making software, so the temptation is constant — resist it.
 - **These documents change only when the business changes** — never when the tooling changes. Nothing here says what is "already built", "in progress" or "planned".
 - Keep it short. A rule nobody can find is a rule nobody follows.
 
 ## Language
 
-Unlike another project, whose domain documents are written in the language of its own domain experts, Clarée's are written in English: its domain experts are its makers.
+Unlike another project, whose domain documents are written in the language of its own domain experts, the platform's are written in English: its domain experts are its makers.
 
 ## The documents
 

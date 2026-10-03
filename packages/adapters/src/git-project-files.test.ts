@@ -23,7 +23,7 @@ const commit = (at: string, files: Record<string, string | Buffer>) => {
 /** Bytes that do not compress, so a copy's size says what was fetched. */
 const noise = (size: number) => Buffer.from(Array.from({ length: size }, () => Math.floor(Math.random() * 256)))
 
-/** The bytes under a directory, counted as Clarée counts them. */
+/** The bytes under a directory, counted as the platform counts them. */
 const du = (path: string): number =>
   readdirSync(path, { withFileTypes: true }).reduce((size, entry) => {
     const inside = join(path, entry.name)
@@ -100,7 +100,7 @@ describe('projects read from their repository', () => {
   })
 })
 
-describe('opening an address without putting Clarée at risk', () => {
+describe('opening an address without putting the platform at risk', () => {
   it('fetches no file larger than 1 MB, and nothing when a file is read', async () => {
     const cache = aCache()
     const opened = await gitProjectFiles({ cache, local: true }).open(repository)

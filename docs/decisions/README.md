@@ -1,6 +1,6 @@
 # Architecture Decision Records
 
-Records of the structural technical decisions behind Clarée: what was decided, in which context, and what it costs. One file per decision, numbered in order (`0001-…`, `0002-…`), never deleted — a reversed decision gets a new ADR that supersedes the old one. The one exception is a decision abandoned before anything came to depend on it: it may be deleted, and its number is used again by the next decision.
+Records of the structural technical decisions behind the platform: what was decided, in which context, and what it costs. One file per decision, numbered in order (`0001-…`, `0002-…`), never deleted — a reversed decision gets a new ADR that supersedes the old one. The one exception is a decision abandoned before anything came to depend on it: it may be deleted, and its number is used again by the next decision.
 
 Unlike [`docs/domain/`](../domain/README.md) (business rules, tool-free), ADRs are about the software and its tooling. Every tool name in this repository belongs here or in the README, and nowhere else.
 

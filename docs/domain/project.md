@@ -20,23 +20,23 @@ One person may hold several — the project owner is often a domain expert too �
 
 ## Language
 
-**Rule.** A project is written in one language: its domain experts'. Its business and its solution are kept in that language, and Clarée never translates them.
+**Rule.** A project is written in one language: its domain experts'. Its business and its solution are kept in that language, and the platform never translates them.
 
-**Rule.** Clarée speaks to each person in the language they choose, and says which language a project is written in, so the one is never mistaken for the other.
+**Rule.** The platform speaks to each person in the language they choose, and says which language a project is written in, so the one is never mistaken for the other.
 
 **Rule.** A person may ask to be spoken to in the language of whatever project they are reading. That is still their choice, and it translates nothing: the project keeps its own words.
 
 ## Arriving at a project
 
-A project is never created by Clarée. It already exists, where its project owner keeps it, and it goes on existing if Clarée stops. Clarée **opens** it, at the **address** where its project owner keeps it.
+A project is never created by the platform. It already exists, where its project owner keeps it, and it goes on existing if the platform stops. The platform **opens** it, at the **address** where its project owner keeps it.
 
-What is kept at that address is the project's **repository**: its files and their history. Anyone who may read the project can look at its repository without Clarée.
+What is kept at that address is the project's **repository**: its files and their history. Anyone who may read the project can look at its repository without the platform.
 
 **Rule.** A project says what it is in its own repository, in one place: its README. Its **name** is the README's title, and its scope is the first paragraph under that title. A project with no README, or whose README has no title, is named by its address; with no paragraph under the title, its scope is empty.
 
 **Rule.** A **public project** is read without saying who you are. Its business, its solution and its versions are looked at by anyone, at no cost and with nothing asked. A **private project** is read only by the people it recognises.
 
-**Rule.** Changing anything means saying who you are, and being someone the project already **recognises**. Clarée grants nothing of its own: it can only act where the person could already act without it.
+**Rule.** Changing anything means saying who you are, and being someone the project already **recognises**. The platform grants nothing of its own: it can only act where the person could already act without it.
 
 **Rule.** Someone's projects are the ones they have **added**, each at the address where it is kept. Adding grants nothing: a project is added only if it can already be opened. What someone added is kept for them alone — they remove it whenever they like, and the project loses nothing by it.
 
@@ -46,4 +46,4 @@ What is kept at that address is the project's **repository**: its files and thei
 
 **Nothing is agreed by silence.** Agreement is an act, by a domain expert, on something named, on a date. What they leave open, the project owner settles, the same way.
 
-**No part of a project may depend on Clarée continuing to exist.** A project abandoned by its maker, and by Clarée, remains an application another maker can pick up by reading its business.
+**No part of a project may depend on the platform continuing to exist.** A project abandoned by its maker, and by the platform, remains an application another maker can pick up by reading its business.

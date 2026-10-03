@@ -4,14 +4,14 @@
  */
 export interface KeptFiles {
   readonly address: string
-  /** Where a person looks at the repository without Clarée; nothing when a browser cannot open it. */
+  /** Where a person looks at the repository without the platform; nothing when a browser cannot open it. */
   readonly link?: string
   /** The text of the file at this path, or nothing when there is none. */
   read(path: string): Promise<string | undefined>
 }
 
 /**
- * Where Clarée reads a project. It opens what already exists and never
+ * Where the platform reads a project. It opens what already exists and never
  * writes there — one port, and a mock adapter for it.
  */
 export interface ProjectFiles {
