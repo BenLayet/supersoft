@@ -44,4 +44,13 @@ It also left `main` holding two things that do not age the same way. A prototype
 
 The branch prefixes are plural, `stories/` and `prototypes/`, so that no branch can ever be named `story` or `prototype` alone and block them.
 
-A decision is written on its own branch too, `decisions/<decision>`, named after its file: `decisions/0007-production-runs-on-koyeb`. Work a story needs, such as choosing where production runs, is part of that story's effort, not a separate kind of work.
+Every other change has its own branch too, and its prefix says what kind of change it is (amended 2026-10):
+
+- `architecture/<decision>` for a decision, named after its file: `architecture/0010-the-platform-acts-through-a-github-app`. Earlier decisions were written on `decisions/` branches.
+- `business/<what>` for a change to the business, as [0008](0008-the-business-is-in-files-the-solution-in-github-issues.md) lists it: the scope in the README, the workshops, the domains, the glossary.
+- `technical/<what>` for tooling, continuous integration and dependencies.
+- `quickfix/<what>` for anything small that is none of these, such as a spelling mistake.
+
+Work a story needs, such as choosing where production runs, is part of that story's effort and its branch, not a separate kind of work.
+
+A pull request's title starts with the kind of its branch, so that the history of `main` reads by kind: `story #29: sign in with GitHub`, `prototype 002: …`, `architecture: …`, `business: …`, `technical: …`, `quickfix: …`. Pull requests are squashed, so their title is the commit `main` keeps; the commits inside a branch need no prefix.
