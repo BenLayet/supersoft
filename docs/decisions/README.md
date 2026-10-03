@@ -18,3 +18,4 @@ Format: **Status** (proposed / accepted / superseded by NNNN), **Context** (the 
 - [0008 — The business is in files; the solution is in GitHub issues](0008-the-business-is-in-files-the-solution-in-github-issues.md)
 - [0009 — Supersoft is named Clarée](0009-supersoft-is-named-claree.md)
 - [0010 — The platform acts through a GitHub App, in the name of the person signed in](0010-the-platform-acts-through-a-github-app.md)
+- [0011 — The product is not named in its own specification](0011-the-product-is-not-named-in-its-specification.md)
