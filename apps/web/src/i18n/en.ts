@@ -1,4 +1,4 @@
-/** What Clarée says, in English. Never what a project says: that is never translated. */
+/** What the platform says, in English. Never what a project says: that is never translated. */
 export const en = {
   description: 'Specifying and planning an application, with the domain experts in the conversation.',
   arrival: {

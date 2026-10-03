@@ -6,7 +6,7 @@ export type Files = Readonly<Record<string, string>>
 
 /**
  * The mock adapter every port owes: projects held in memory, by address.
- * Nothing is read from anywhere else, so Clarée runs with no outside service.
+ * Nothing is read from anywhere else, so the platform runs with no outside service.
  */
 export const inMemoryProjectFiles = (projects: Readonly<Record<string, Files>>): ProjectFiles => ({
   async open(address) {

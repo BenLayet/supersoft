@@ -1,4 +1,5 @@
 import { en as t } from '@/i18n/en'
+import { productName } from '@/product'
 import { Button, Card, Input, Page, Section } from './ui'
 
 /** Arriving: the address of a project, which asks nothing of anyone. */
@@ -9,7 +10,7 @@ export default async function ArrivalPage({
 }) {
   const { unreadable } = await searchParams
   return (
-    <Page title="Clarée">
+    <Page title={productName}>
       <Section title={t.arrival.addProject}>
         <Card>
           <form action="/projects" className="flex flex-col gap-2 sm:flex-row">

@@ -1,4 +1,4 @@
-# Clarée as one self-contained image: it runs on any container host, with
+# The platform as one self-contained image: it runs on any container host, with
 # nothing outside it but the repositories it reads (ADR 0007).
 FROM node:22-alpine AS base
 RUN corepack enable pnpm

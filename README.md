@@ -1,6 +1,6 @@
 # Clarée
 
-Clarée is an application where domain experts and a maker co-create an application together, going step by step from a business need to fluid application that fits the need.
+It is a platform where domain experts and makers build an application together, step by step, from a problem the domain experts live with to an application that eases their work.
 
 ## The business
 
@@ -19,8 +19,8 @@ The written business is the source of truth; the application is a consequence of
 
 ## The solution
 
-The aim of Clarée is to support the cycle above, and to do it in a way that keeps the whole project in one GitHub repository: the business in its files, the solution in its issues. The project owner, the domain experts and the maker can read and change that repository without Clarée, and if Clarée stops existing, the project goes on GitHub.
- The project owner owns a GitHub organisation, where their projects live and the maker is a member. Clarée reads a project's repository, shows it to the domain experts, and writes changes back as commits, pull requests and issues. Nothing is stored in Clarée itself, and nothing is lost if Clarée stops existing.
+The aim of the platform is to support the cycle above, and to do it in a way that keeps the whole project in one GitHub repository: the business in its files, the solution in its issues. The project owner, the domain experts and the maker can read and change that repository without the platform, and if the platform stops existing, the project goes on GitHub.
+ The project owner owns a GitHub organisation, where their projects live and the maker is a member. The platform reads a project's repository, shows it to the domain experts, and writes changes back as commits, pull requests and issues. Nothing is stored in the platform itself, and nothing is lost if the platform stops existing.
 
 The business is in files, and changes with the code that applies it:
 
@@ -44,13 +44,13 @@ The solution is in the repository's issues:
 
 `main` is production. Each story is built on a `stories/<number>-<title>` branch, and each prototype lives on a `prototypes/<number>` branch.
 
-Hence the one rule over all the others: **no part of a project may depend on Clarée continuing to exist.** Without Clarée, a project is still a repository any maker can read, change and take over.
+Hence the one rule over all the others: **no part of a project may depend on the platform continuing to exist.** Without the platform, a project is still a repository any maker can read, change and take over.
 
 The choices behind this are in [`docs/decisions/`](docs/decisions/README.md).
 
 ## This repository
 
-Clarée is built with its own method, so this repository follows the layout above, and its features and stories are its [issues](https://github.com/softersoftware/claree/issues). The code:
+The platform is built with its own method, so this repository follows the layout above, and its features and stories are its [issues](https://github.com/softersoftware/claree/issues). The code:
 
 ```bash
 apps/web/            # the application
